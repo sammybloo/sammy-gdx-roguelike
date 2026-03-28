@@ -1,0 +1,52 @@
+
+game.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+battler
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+game2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+bird
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+game3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+frame
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+game4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+slot
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
