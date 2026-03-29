@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.card;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -16,11 +17,12 @@ public class Battler extends Group {
     private Label powerLabel;
     private Label healthLabel;
 
-    private final static float WIDTH = 300;
-    private final static float HEIGHT = 300;
+    public final static float WIDTH = 260;
+    public final static float HEIGHT = 260;
 
     public Battler(BattlerModel model) {
         this.setSize(WIDTH,HEIGHT);
+        this.setOrigin(Align.center);
         this.model = model;
         sprite = new Image(AssetManager.INSTANCE.getSprite(model.getBattlerId()));
         sprite.setSize(WIDTH, HEIGHT);
@@ -31,19 +33,18 @@ public class Battler extends Group {
         powerLabel = new Label(model.getPower() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
 
-        powerLabel.setAlignment(Align.center);
+        powerLabel.setAlignment(Align.center, Align.center);
         powerLabel.setBounds(WIDTH * 0.0175f, HEIGHT * 0.0175f, WIDTH * 0.19f, HEIGHT * 0.19f);
 
         healthLabel = new Label(model.getHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
 
-        healthLabel.setAlignment(Align.center);
+        healthLabel.setAlignment(Align.center, Align.center);
         healthLabel.setBounds(WIDTH  - (WIDTH * 0.19f) - (WIDTH * 0.0175f),
             HEIGHT * 0.0175f, WIDTH * 0.19f, HEIGHT * 0.19f);
         this.addActor(sprite);
         this.addActor(frame);
         this.addActor(powerLabel);
         this.addActor(healthLabel);
-
     }
 }

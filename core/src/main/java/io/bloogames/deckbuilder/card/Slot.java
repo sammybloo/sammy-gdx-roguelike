@@ -1,20 +1,24 @@
 package io.bloogames.deckbuilder.card;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import io.bloogames.deckbuilder.manager.AssetManager;
 
 public class Slot extends Group {
-    Image image;
-    Battler battler;
+    private Image image;
+    private Participant participant;
+    private Battler battler;
 
     public static float WIDTH = 350;
     public static float HEIGHT = 350;
 
-    public Slot() {
+    public Slot(Participant participant) {
+        this.participant = participant;
         setSize(WIDTH, HEIGHT);
         image = new Image(AssetManager.INSTANCE.getSprite("slot"));
         image.setSize(WIDTH, HEIGHT);
+        image.setColor(participant.getColour());
         addActor(image);
     }
 
@@ -23,12 +27,31 @@ public class Slot extends Group {
         setBattler(battler);
     }
 
+    public Battler getBattler() {
+        return battler;
+    }
+
     public void setBattler(Battler battler) {
-        if (battler != null) {
-            removeActor(battler);
+        if (hasBattler()) {
+            battler.remove();
         }
         this.battler = battler;
         addActor(battler);
         battler.setPosition(getWidth() / 2 - battler.getWidth() / 2, getHeight() / 2 - battler.getHeight() / 2);
+    }
+
+    public void removeBattler() {
+        if (hasBattler()) {
+            battler.remove();
+            this.battler = null;
+        }
+    }
+
+    public boolean hasBattler() {
+        return battler != null;
+    }
+
+    public boolean hasBattler(Battler other) {
+        return battler == other;
     }
 }
