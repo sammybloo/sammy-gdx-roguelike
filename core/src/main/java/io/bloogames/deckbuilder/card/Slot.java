@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.card;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import io.bloogames.deckbuilder.manager.AssetManager;
 

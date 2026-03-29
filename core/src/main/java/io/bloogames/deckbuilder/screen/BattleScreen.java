@@ -28,8 +28,8 @@ public class BattleScreen implements Screen {
         stage = new Stage(game.getViewport());
         Gdx.input.setInputProcessor(stage);
 
-        player = new Participant(new Color(0.8f, 0.8f, 1f, 1f), 20);
-        enemy = new Participant(new Color(1f, 0.8f, 0.8f, 1f), 20);
+        player = new Participant(new Color(0.7f, 0.7f, 1f, 1f), 20);
+        enemy = new Participant(new Color(1f, 0.7f, 0.7f, 1f), 20);
 
         playerTableau = new Tableau(5, player, stage);
         playerTableau.setPosition((game.getViewport().getWorldWidth() - playerTableau.getWidth()) / 2, 200);
