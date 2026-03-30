@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Timer;
 import io.bloogames.deckbuilder.BaseStats;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.card.*;
@@ -65,7 +67,7 @@ public class BattleScreen implements Screen {
             )));
 
         var hand = new Hand(10);
-        hand.setBounds(0,-120, game.getViewport().getWorldWidth(), 540);
+        hand.setBounds(0,-200, game.getViewport().getWorldWidth(), 540);
 
         for (int i = 0 ; i < 10; i++) {
             var battlerCard = new BattlerCard(new BattlerModel(
@@ -73,11 +75,17 @@ public class BattleScreen implements Screen {
                     new BaseCard("bird", "Da Bird", 3),
                     new BaseStats(6, 2))
             ));
-            battlerCard.setScale(0.6f);
             hand.addCard(battlerCard);
         }
 
         stage.addActor(hand);
+
+        Timer.schedule(new Timer.Task(){
+            @Override
+            public void run() {
+                hand.setSelectedIndex(MathUtils.random(0, 9));
+            }
+        }, 2f, 2f);
     }
 
     @Override

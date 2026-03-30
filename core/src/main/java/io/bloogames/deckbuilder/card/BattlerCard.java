@@ -93,11 +93,6 @@ public class BattlerCard extends Card {
     }
 
     @Override
-    public void setScale(float scaleXY) {
-        setSize(WIDTH*scaleXY, HEIGHT*scaleXY);
-    }
-
-    @Override
     public void setSize(float width, float height) {
         super.setSize(width, height);
         if (battleFrame != null) {
