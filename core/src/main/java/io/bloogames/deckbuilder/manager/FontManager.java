@@ -11,14 +11,16 @@ import java.awt.*;
 public enum FontManager {
     INSTANCE;
 
+    BitmapFont cardNameFont;
     BitmapFont battlerStatFont;
+    BitmapFont battlerCardStatFont;
 
     public BitmapFont getBattlerStatFont() {
         if (battlerStatFont == null) {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             parameter.color = Color.BLACK;
-            parameter.size = 64;
+            parameter.size = 48;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;
             battlerStatFont = generator.generateFont(parameter);
@@ -26,5 +28,41 @@ public enum FontManager {
         }
 
         return battlerStatFont;
+    }
+
+    public BitmapFont getCardNameFont() {
+        if (cardNameFont == null) {
+            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.color = Color.BLACK;
+            parameter.size = 32;
+            parameter.minFilter = Texture.TextureFilter.Linear;
+            parameter.magFilter = Texture.TextureFilter.Linear;
+            cardNameFont = generator.generateFont(parameter);
+            generator.dispose();
+        }
+
+        return cardNameFont;
+    }
+
+    public BitmapFont getBattlerCardStatFont() {
+        if (battlerCardStatFont == null) {
+            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.color = Color.BLACK;
+            parameter.size = 64;
+            parameter.minFilter = Texture.TextureFilter.Linear;
+            parameter.magFilter = Texture.TextureFilter.Linear;
+            battlerCardStatFont = generator.generateFont(parameter);
+            generator.dispose();
+        }
+
+        return battlerCardStatFont;
+    }
+
+    public void dispose() {
+        if (cardNameFont != null) cardNameFont.dispose();
+        if (battlerStatFont != null) battlerStatFont.dispose();
+        if (battlerCardStatFont != null) battlerCardStatFont.dispose();
     }
 }

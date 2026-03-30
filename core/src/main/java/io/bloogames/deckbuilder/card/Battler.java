@@ -9,20 +9,20 @@ import io.bloogames.deckbuilder.manager.FontManager;
 
 public class Battler extends Group {
     private BattlerModel model;
-    private Image sprite;
+    private Image art;
     private Image frame;
     private Label powerLabel;
     private Label healthLabel;
 
-    public final static float WIDTH = 260;
-    public final static float HEIGHT = 260;
+    public final static float WIDTH = 200;
+    public final static float HEIGHT = 200;
 
     public Battler(BattlerModel model) {
         this.setSize(WIDTH,HEIGHT);
         this.setOrigin(Align.center);
         this.model = model;
-        sprite = new Image(AssetManager.INSTANCE.getSprite(model.getBattlerId()));
-        sprite.setSize(WIDTH, HEIGHT);
+        art = new Image(AssetManager.INSTANCE.getSprite(model.getBattlerId()));
+        art.setSize(WIDTH, HEIGHT);
 
         frame = new Image(AssetManager.INSTANCE.getSprite("frame"));
         frame.setSize(WIDTH, HEIGHT);
@@ -39,9 +39,14 @@ public class Battler extends Group {
         healthLabel.setAlignment(Align.center, Align.center);
         healthLabel.setBounds(WIDTH  - (WIDTH * 0.19f) - (WIDTH * 0.0175f),
             HEIGHT * 0.0175f, WIDTH * 0.19f, HEIGHT * 0.19f);
-        this.addActor(sprite);
+
+        this.addActor(art);
         this.addActor(frame);
         this.addActor(powerLabel);
         this.addActor(healthLabel);
+    }
+
+    public BattlerModel getModel() {
+        return model;
     }
 }

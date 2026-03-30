@@ -1,35 +1,30 @@
 
 game.png
-size: 1024, 1024
+size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
 battler
   rotate: false
-  xy: 2, 2
+  xy: 2, 516
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-
-game2.png
-size: 1024, 1024
-format: RGBA8888
-filter: Linear, Linear
-repeat: none
+battlerframe
+  rotate: false
+  xy: 2, 1030
+  size: 540, 810
+  orig: 540, 810
+  offset: 0, 0
+  index: -1
 beetle
   rotate: false
-  xy: 2, 2
+  xy: 544, 1328
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-
-game3.png
-size: 1024, 1024
-format: RGBA8888
-filter: Linear, Linear
-repeat: none
 bird
   rotate: false
   xy: 2, 2
@@ -37,28 +32,16 @@ bird
   orig: 512, 512
   offset: 0, 0
   index: -1
-
-game4.png
-size: 1024, 1024
-format: RGBA8888
-filter: Linear, Linear
-repeat: none
 frame
   rotate: false
-  xy: 2, 2
+  xy: 1058, 1328
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-
-game5.png
-size: 1024, 1024
-format: RGBA8888
-filter: Linear, Linear
-repeat: none
 slot
   rotate: false
-  xy: 2, 2
+  xy: 544, 814
   size: 512, 512
   orig: 512, 512
   offset: 0, 0

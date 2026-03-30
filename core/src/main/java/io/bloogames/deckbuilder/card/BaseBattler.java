@@ -3,25 +3,27 @@ package io.bloogames.deckbuilder.card;
 import io.bloogames.deckbuilder.BaseStats;
 
 public class BaseBattler {
-    private String battlerId;
-    private String battlerName;
+    private BaseCard baseCard;
     private BaseStats baseStats;
 
-    public BaseBattler(String battlerId, String name, BaseStats baseStats) {
-        this.battlerId = battlerId;
-        this.battlerName = name;
+    public BaseBattler(BaseCard baseCard, BaseStats baseStats) {
+        this.baseCard = baseCard;
         this.baseStats = baseStats;
     }
 
-    public String getBattlerId() {
-        return battlerId;
+    public String getId() {
+        return baseCard.getCardId();
     }
 
     public String getBattlerName() {
-        return battlerName;
+        return baseCard.getCardName();
     }
 
     public BaseStats getBaseStats() {
         return baseStats;
+    }
+
+    public BaseCard getBaseCard() {
+        return baseCard;
     }
 }

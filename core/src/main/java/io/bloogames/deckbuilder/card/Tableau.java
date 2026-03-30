@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
+import io.bloogames.deckbuilder.action.SwapBattlerCommand;
+import io.bloogames.deckbuilder.manager.CommandManager;
 
 public class Tableau extends Table {
     int numSlots;
@@ -16,8 +18,8 @@ public class Tableau extends Table {
 
     private DragAndDrop dragAndDrop;
 
-    public final static float WIDTH = 1750;
-    public final static float HEIGHT = 350;
+    public final static float WIDTH = 1300;
+    public final static float HEIGHT = 250;
     public final static float PADDING = 5;
 
     public Tableau(int numSlots, Participant participant, Stage stage) {
@@ -54,6 +56,7 @@ public class Tableau extends Table {
             dragAndDrop.setDragTime(0);
         }
         dragAndDrop.clear();
+        var that = this;
         for (Slot slot : slots) {
             dragAndDrop.addTarget(
                 new DragAndDrop.Target(slot) {
@@ -66,18 +69,7 @@ public class Tableau extends Table {
                     public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
                         Battler battler = (Battler) payload.getObject();
                         Slot oldSlot = getSlot(battler);
-
-                        if (slot.hasBattler()) {
-                            Battler currentBattler = slot.getBattler();
-                            slot.setBattler(battler);
-                            oldSlot.setBattler(currentBattler);
-                        }
-                        else {
-                            oldSlot.removeBattler();
-                            slot.setBattler(battler);
-                        }
-
-                        generateDragAndDrop();
+                        CommandManager.INSTANCE.processImmediately(new SwapBattlerCommand(that, oldSlot, slot));
                     }
                 }
             );
@@ -119,5 +111,9 @@ public class Tableau extends Table {
             }
         }
         return null;
+    }
+
+    public void refresh() {
+        generateDragAndDrop();
     }
 }

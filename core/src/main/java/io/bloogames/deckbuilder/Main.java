@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import io.bloogames.deckbuilder.manager.AssetManager;
+import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.screen.BattleScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -35,7 +36,8 @@ public class Main extends Game {
     @Override
     public void dispose() {
         batch.dispose();
-        AssetManager.INSTANCE.getAtlas().dispose();
+        AssetManager.INSTANCE.dispose();
+        FontManager.INSTANCE.dispose();
     }
 
     @Override

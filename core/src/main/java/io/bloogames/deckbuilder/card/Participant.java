@@ -3,21 +3,19 @@ package io.bloogames.deckbuilder.card;
 import com.badlogic.gdx.graphics.Color;
 
 public class Participant {
-    private Color colour;
-    private int maxHealth;
+    private ParticipantModel model;
     private int damage;
 
-    public Participant(Color colour, int maxHealth) {
-        this.colour = colour;
-        this.maxHealth = maxHealth;
+    public Participant(ParticipantModel model) {
+        this.model = model;
     }
 
     public Color getColour() {
-        return colour;
+        return model.getColour();
     }
 
     public int getMaxHealth() {
-        return maxHealth;
+        return model.getMaxHealth();
     }
 
     public int getDamage() {

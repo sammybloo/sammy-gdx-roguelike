@@ -9,8 +9,8 @@ public class Slot extends Group {
     private Participant participant;
     private Battler battler;
 
-    public static float WIDTH = 350;
-    public static float HEIGHT = 350;
+    public static float WIDTH = 250;
+    public static float HEIGHT = 250;
 
     public Slot(Participant participant) {
         this.participant = participant;
@@ -32,7 +32,10 @@ public class Slot extends Group {
 
     public void setBattler(Battler battler) {
         if (hasBattler()) {
-            battler.remove();
+            removeBattler();
+        }
+        if (battler == null) {
+            return;
         }
         this.battler = battler;
         addActor(battler);
@@ -41,7 +44,7 @@ public class Slot extends Group {
 
     public void removeBattler() {
         if (hasBattler()) {
-            battler.remove();
+            removeActor(battler);
             this.battler = null;
         }
     }
