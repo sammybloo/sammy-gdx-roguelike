@@ -1,6 +1,9 @@
 package io.bloogames.deckbuilder.card;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.RotateToAction;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 public class Hand extends Group {
@@ -18,10 +21,14 @@ public class Hand extends Group {
 
         cards.add(card);
         addActor(card);
-        fanHand();
+        fanHand(1);
     }
 
     public void fanHand() {
+        fanHand(0f);
+    }
+
+    public void fanHand(float duration) {
         if (cards.size == 0) return;
 
         float overlap = 0.35f;   // 0 = no overlap, 1 = full overlap
@@ -45,9 +52,17 @@ public class Hand extends Group {
             float y = lift * (1f - centered * centered);
             float rotation = -maxRotation * centered;
 
-            card.setOrigin(card.getWidth() / 2f, card.getHeight() / 2f);
-            card.setPosition(x, y);
-            card.setRotation(rotation);
+            card.setOrigin(Align.center);
+
+            var moveToAction = new MoveToAction();
+            moveToAction.setPosition(x, y);
+            moveToAction.setDuration(duration);
+            card.addAction(moveToAction);
+
+            var rotateAction = new RotateToAction();
+            rotateAction.setRotation(rotation);
+            rotateAction.setDuration(duration);
+            card.addAction(rotateAction);
         }
     }
 }
