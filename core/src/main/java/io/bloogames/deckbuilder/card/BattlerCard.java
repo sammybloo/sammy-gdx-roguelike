@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.card;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -27,17 +28,17 @@ public class BattlerCard extends Card {
 
         nameLabel = new Label(battlerModel.getCardModel().getCardName(),
             new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
-
+        nameLabel.setTouchable(Touchable.disabled);
         nameLabel.setAlignment(Align.center, Align.center);
 
         powerLabel = new Label(battlerModel.getPower() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardStatFont(), null));
-
+        powerLabel.setTouchable(Touchable.disabled);
         powerLabel.setAlignment(Align.center, Align.center);
 
         healthLabel = new Label(battlerModel.getHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardStatFont(), null));
-
+        healthLabel.setTouchable(Touchable.disabled);
         healthLabel.setAlignment(Align.center, Align.center);
 
         addActor(art);

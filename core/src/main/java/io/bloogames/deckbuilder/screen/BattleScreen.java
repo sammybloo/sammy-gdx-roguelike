@@ -72,20 +72,13 @@ public class BattleScreen implements Screen {
         for (int i = 0 ; i < 10; i++) {
             var battlerCard = new BattlerCard(new BattlerModel(
                 new BaseBattler(
-                    new BaseCard("bird", "Da Bird", 3),
+                    new BaseCard("bird", "Da Bird " + i, 3),
                     new BaseStats(6, 2))
             ));
             hand.addCard(battlerCard);
         }
 
         stage.addActor(hand);
-
-        Timer.schedule(new Timer.Task(){
-            @Override
-            public void run() {
-                    hand.setSelectedIndex(MathUtils.random(0, 9));
-            }
-        }, 2f, 2f);
     }
 
     @Override

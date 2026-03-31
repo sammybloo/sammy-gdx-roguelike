@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.scene2d;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -16,8 +16,8 @@ public class FannedGroup extends Group {
     private float maxRotation = 16f;
     private float normalScale = 0.5f;
     private float selectedScale = 0.8f;
-    private float selectedLift = 150f;
-    private float duration = 0.5f;
+    private float selectedLift = 130f;
+    private float duration = 0.3f;
 
     private int selectedIndex = -1;
 
@@ -26,6 +26,10 @@ public class FannedGroup extends Group {
     public void setSelectedIndex(int selectedIndex) {
         this.selectedIndex = selectedIndex;
         fan();
+    }
+
+    public void setSelectedActor(Actor actor) {
+        setSelectedIndex(fannables.indexOf(actor, true));
     }
 
     public void clearSelected() {
