@@ -83,7 +83,7 @@ public class BattleScreen implements Screen {
         Timer.schedule(new Timer.Task(){
             @Override
             public void run() {
-                hand.setSelectedIndex(MathUtils.random(0, 9));
+                    hand.setSelectedIndex(MathUtils.random(0, 9));
             }
         }, 2f, 2f);
     }

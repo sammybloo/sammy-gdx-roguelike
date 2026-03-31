@@ -23,7 +23,7 @@ application.mainClass = 'io.bloogames.deckbuilder.lwjgl3.Lwjgl3Launcher'
 application.applicationName = appName
 eclipse.project.name = appName + '-lwjgl3'
 java.sourceCompatibility = 21
-java.targetCompatibility = 21
+java.targetCompatibility = 8
 if (JavaVersion.current().isJava9Compatible()) {
         compileJava.options.release.set(21)
 }
