@@ -1,6 +1,7 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.graphics.Color;
+import io.bloogames.deckbuilder.model.ParticipantModel;
 
 public class Participant {
     private ParticipantModel model;

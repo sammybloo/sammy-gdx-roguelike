@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.graphics.Color;
 

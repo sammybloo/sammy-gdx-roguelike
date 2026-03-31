@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.scene2d;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 
 public class HoverListener extends InputListener {
@@ -38,15 +39,16 @@ public class HoverListener extends InputListener {
 
     @Override
     public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        super.exit(event, x, y, pointer, toActor);
+        if (pointer != -1) return;
 
+        super.exit(event, x, y, pointer, toActor);
         if (isHovered) {
             onHoverEnd(event, x, y, pointer, toActor);
+            isHovered = false;
         }
-        isHovered = false;
         if (hoverTask != null) {
             hoverTask.cancel();
+            hoverTask = null;
         }
-        hoverTask = null;
     }
 }

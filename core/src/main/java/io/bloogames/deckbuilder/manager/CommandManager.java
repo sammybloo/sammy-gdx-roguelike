@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.manager;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.action.Command;
+import io.bloogames.deckbuilder.command.Command;
 
 public enum CommandManager {
     INSTANCE;

@@ -1,12 +1,10 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
+import io.bloogames.deckbuilder.model.CardModel;
 
 public abstract class Card extends Group {
-    private CardModel cardModel;
+    private final CardModel cardModel;
 
     public Card(CardModel cardModel) {
         this.cardModel = cardModel;

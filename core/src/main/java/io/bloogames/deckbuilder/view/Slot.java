@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;

@@ -1,8 +1,8 @@
-package io.bloogames.deckbuilder.action;
+package io.bloogames.deckbuilder.command;
 
-import io.bloogames.deckbuilder.card.Battler;
-import io.bloogames.deckbuilder.card.Slot;
-import io.bloogames.deckbuilder.card.Tableau;
+import io.bloogames.deckbuilder.view.Battler;
+import io.bloogames.deckbuilder.view.Slot;
+import io.bloogames.deckbuilder.view.Tableau;
 
 public class SwapBattlerCommand extends Command {
     private Tableau tableau;

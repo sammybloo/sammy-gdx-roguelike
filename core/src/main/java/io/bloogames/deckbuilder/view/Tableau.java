@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.card;
+package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Null;
-import io.bloogames.deckbuilder.action.SwapBattlerCommand;
+import io.bloogames.deckbuilder.command.SwapBattlerCommand;
 import io.bloogames.deckbuilder.manager.CommandManager;
 
 public class Tableau extends Table {
@@ -75,26 +75,27 @@ public class Tableau extends Table {
             );
 
             if (slot.getBattler() != null) {
-                dragAndDrop.addSource(new DragAndDrop.Source(slot.getBattler()) {
-                    @Override
-                    public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
-                        var payload = new DragAndDrop.Payload();
-                        var battler = slot.getBattler();
-                        stage.addActor(battler);
-                        payload.setObject(battler);
-                        payload.setDragActor(battler);
-                        dragAndDrop.setDragActorPosition(battler.getWidth() / 2, - (battler.getHeight() / 2));
-                        return payload;
-                    }
-
-                    public void dragStop (InputEvent event, float x, float y, int pointer,
-                                          @Null DragAndDrop.Payload payload, @Null DragAndDrop.Target target) {
-                        if (target == null) {
-                            Battler battler = (Battler) (payload.getObject());
-                            slot.setBattler(battler);
+                dragAndDrop.addSource(
+                    new DragAndDrop.Source(slot.getBattler()) {
+                        @Override
+                        public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
+                            var payload = new DragAndDrop.Payload();
+                            var battler = slot.getBattler();
+                            stage.addActor(battler);
+                            payload.setObject(battler);
+                            payload.setDragActor(battler);
+                            dragAndDrop.setDragActorPosition(battler.getWidth() / 2, -(battler.getHeight() / 2));
+                            return payload;
                         }
-                                          }
-                }
+
+                        public void dragStop(InputEvent event, float x, float y, int pointer,
+                                             @Null DragAndDrop.Payload payload, @Null DragAndDrop.Target target) {
+                            if (target == null) {
+                                Battler battler = (Battler) (payload.getObject());
+                                slot.setBattler(battler);
+                            }
+                        }
+                    }
                 );
             }
         }
