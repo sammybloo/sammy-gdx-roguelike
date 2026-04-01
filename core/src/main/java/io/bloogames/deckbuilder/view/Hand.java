@@ -15,7 +15,17 @@ public class Hand extends FannedGroup {
     private final Array<Card> cards;
     private final int maxSize;
 
+     /*
+         private float overlap = 0.3f;
+    private float lift = 80f;
+    private float maxRotation = 16f;
+    private float normalScale = 0.5f;
+    private float selectedScale = 0.8f;
+    private float selectedLift = 130f;
+    private float duration = 0.3f;
+      */
     public Hand(int maxSize) {
+        super(new FanSettings(0.3f, 80f, 16f, 0.5f, 0.8f, 130f, 0.3f, Card.WIDTH, Card.HEIGHT));
         this.cards = new Array<>();
         this.maxSize = maxSize;
     }

@@ -16,8 +16,8 @@ public class BattlerCard extends Card {
     private Label powerLabel;
     private Label healthLabel;
 
-    public static final float WIDTH = 360f;
-    public static final float HEIGHT = 540f;
+    public static final float WIDTH = Card.WIDTH;
+    public static final float HEIGHT = Card.HEIGHT;
 
     public BattlerCard(BattlerModel battlerModel) {
         super(battlerModel.getCardModel());
@@ -97,6 +97,14 @@ public class BattlerCard extends Card {
     @Override
     public void setSize(float width, float height) {
         super.setSize(width, height);
+        if (battleFrame != null) {
+            layoutCard();
+        }
+    }
+
+    @Override
+    public void setBounds(float x, float y, float width, float height) {
+        super.setBounds(x, y, width, height);
         if (battleFrame != null) {
             layoutCard();
         }

@@ -11,26 +11,37 @@ import io.bloogames.deckbuilder.ui.Crosshair;
 
 public class TargetSystem extends Group implements InputProcessor {
 
-    public static final float WIDTH = 360f;
-    public static final float HEIGHT = 540f;
+    public static final float WIDTH = 240f;
+    public static final float HEIGHT = 360f;
 
     private Crosshair crosshair;
+    private Group cardSpot;
     private Card card;
 
     public TargetSystem() {
+        cardSpot = new Group();
+        cardSpot.setBounds(10, 200, WIDTH, HEIGHT);
         crosshair = new Crosshair();
         crosshair.setVisible(false);
+        addActor(cardSpot);
         addActor(crosshair);
     }
 
     public void attemptTargeting(Card card) {
         this.card = card;
         card.clearActions();
-        card.setRotation(getRotation());
-        card.setBounds(getX(), getY(), getWidth(), getHeight());
-        card.setScale(getScaleX(), getScaleY());
+        cardSpot.addActor(card);
+        card.setRotation(cardSpot.getRotation());
+        card.setBounds(cardSpot.getX(), cardSpot.getY(), cardSpot.getWidth(), cardSpot.getHeight());
+        card.setScale(cardSpot.getScaleX(), cardSpot.getScaleY());
         enableCrosshair();
-        addActor(card);
+    }
+
+    public boolean isTargeting() {
+        return card != null;
+    }
+    public Card getCard() {
+        return card;
     }
 
     public void cancelTargeting() {
@@ -75,7 +86,7 @@ public class TargetSystem extends Group implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (card == null || button != Input.Buttons.RIGHT) return false;
-        CommandManager.INSTANCE.processImmediately(new CancelTargetCommand(card));
+        CommandManager.INSTANCE.processImmediately(new CancelTargetCommand());
         return true;
     }
 

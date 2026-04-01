@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.model.BaseStats;
@@ -52,35 +53,30 @@ public class BattleScreen implements Screen {
         enemyTableau.setPosition((game.getViewport().getWorldWidth() - enemyTableau.getWidth()) / 2, 600);
         stage.addActor(enemyTableau);
 
-        playerTableau.addBattler(0, new Battler(
-            new BattlerModel(
-                new BaseBattler(
-                        new BaseCard("battler", "Mrs Battle", 1),
-                    new BaseStats(3, 5))
-            )));
+        var arr = new BaseBattler[] {
+            new BaseBattler(
+                new BaseCard("battler", "Mrs Battle", 1),
+                new BaseStats(3, 5)),
+            new BaseBattler(
+                new BaseCard("beetle", "Buggo", 2),
+                new BaseStats(7, 8)),
+            new BaseBattler(
+                new BaseCard("bird", "Da Bird", 3),
+                new BaseStats(6, 2))
+        };
 
-        playerTableau.addBattler(2, new Battler(
-            new BattlerModel(
-                new BaseBattler(
-                        new BaseCard("beetle", "Buggo", 2),
-                    new BaseStats(7, 8))
-            )));
+        playerTableau.addBattler(0, new Battler(new BattlerModel(arr[0])));
 
-        enemyTableau.addBattler(3, new Battler(
-            new BattlerModel(
-                new BaseBattler(
-                        new BaseCard("bird", "Da Bird", 3),
-                    new BaseStats(6, 2))
-            )));
+        playerTableau.addBattler(2, new Battler(new BattlerModel(arr[1])));
+
+        enemyTableau.addBattler(3, new Battler(new BattlerModel(arr[2])));
 
         playerHand = new Hand(10);
         playerHand.setBounds(0,-200, game.getViewport().getWorldWidth(), 540);
 
         for (int i = 0 ; i < 10; i++) {
             var battlerCard = new BattlerCard(new BattlerModel(
-                new BaseBattler(
-                    new BaseCard("bird", "Da Bird " + i, 3),
-                    new BaseStats(6, 2))
+                arr[MathUtils.random(0, 2)]
             ));
             playerHand.addCard(battlerCard);
         }
