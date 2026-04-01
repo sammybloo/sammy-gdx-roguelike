@@ -1,7 +1,5 @@
 package io.bloogames.deckbuilder.model;
 
-import io.bloogames.deckbuilder.BaseStats;
-
 public class BaseBattler {
     private BaseCard baseCard;
     private BaseStats baseStats;

@@ -13,7 +13,6 @@ public class Tableau extends Table {
     int numSlots;
     private Array<Slot> slots;
     private Participant participant;
-    private Stage stage;
     private boolean dragEnabled;
 
     private DragAndDrop dragAndDrop;
@@ -22,15 +21,14 @@ public class Tableau extends Table {
     public final static float HEIGHT = 250;
     public final static float PADDING = 5;
 
-    public Tableau(int numSlots, Participant participant, Stage stage) {
-        this(numSlots, participant, stage, true);
+    public Tableau(int numSlots, Participant participant) {
+        this(numSlots, participant, true);
 
     }
 
-    public Tableau(int numSlots, Participant participant, Stage stage, boolean dragEnabled) {
+    public Tableau(int numSlots, Participant participant, boolean dragEnabled) {
         super();
         this.participant = participant;
-        this.stage = stage;
         this.numSlots = numSlots;
         this.dragEnabled = dragEnabled;
         slots = new Array<>(numSlots);
@@ -81,7 +79,7 @@ public class Tableau extends Table {
                         public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
                             var payload = new DragAndDrop.Payload();
                             var battler = slot.getBattler();
-                            stage.addActor(battler);
+                            getStage().addActor(battler);
                             payload.setObject(battler);
                             payload.setDragActor(battler);
                             dragAndDrop.setDragActorPosition(battler.getWidth() / 2, -(battler.getHeight() / 2));

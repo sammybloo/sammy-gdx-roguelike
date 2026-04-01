@@ -1,8 +1,12 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
+import io.bloogames.deckbuilder.command.ChooseTargetCommand;
+import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
 
@@ -24,8 +28,21 @@ public class Hand extends FannedGroup {
         fan();
     }
 
+    // Lets the actor leave visually without leaving logically
+    public void leaveHandTemporarily(Card card) {
+        clearSelected();
+        removeActor(card);
+        fan();
+    }
+
+    public void returnCard(Card card) {
+        addActorAt(cards.indexOf(card, true), card);
+        addHoverLogic(card);
+        fan();
+    }
+
     public void addHoverLogic(Card card) {
-        card.addListener(new HoverListener(0.5f) {
+        card.addListener(new HoverListener(0f) {
             @Override
             public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 setSelectedActor(card);
@@ -34,6 +51,11 @@ public class Hand extends FannedGroup {
             @Override
             public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 clearSelected();
+            }
+
+            @Override
+            public void clicked (InputEvent event, float x, float y) {
+                CommandManager.INSTANCE.processImmediately(new ChooseTargetCommand(card));
             }
         });
     }

@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.command;
 
+import io.bloogames.deckbuilder.screen.BattleScreen;
 import io.bloogames.deckbuilder.view.Battler;
 import io.bloogames.deckbuilder.view.Slot;
 import io.bloogames.deckbuilder.view.Tableau;
@@ -15,7 +16,7 @@ public class SwapBattlerCommand extends Command {
         this.slot2 = slot2;
     }
 
-    public void execute() {
+    public void execute(BattleScreen battleScreen) {
         Battler battler1 = slot1.getBattler();
         Battler battler2 = slot2.getBattler();
 

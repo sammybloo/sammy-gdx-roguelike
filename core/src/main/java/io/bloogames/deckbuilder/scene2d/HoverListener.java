@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 
-public class HoverListener extends InputListener {
+public class HoverListener extends ClickListener {
 
     boolean isHovered;
     private float delay;

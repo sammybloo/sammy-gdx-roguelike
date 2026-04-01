@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder;
+package io.bloogames.deckbuilder.model;
 
 public class Stats {
     private BaseStats baseStats;

@@ -75,7 +75,7 @@ public class FannedGroup extends Group {
         for (int i = 0; i < fannables.size; i++) {
             Actor child = fannables.get(i);
             FannableLayout layout = getFannableLayout(i);
-
+            child.clearActions();
             child.setZIndex(i);
             child.addAction(Actions.scaleTo(layout.scale, layout.scale, duration));
             child.addAction(Actions.moveTo(layout.x, layout.y, duration));
@@ -83,7 +83,7 @@ public class FannedGroup extends Group {
         }
 
         if (selectedIndex >= 0 && selectedIndex < fannables.size) {
-            fannables.get(selectedIndex).setZIndex(fannables.size + 1);
+            fannables.get(selectedIndex).toFront();
         }
     }
 
@@ -91,18 +91,6 @@ public class FannedGroup extends Group {
     public Actor removeActorAt(int index, boolean unfocus) {
         fannables.removeIndex(index);
         return super.removeActorAt(index, unfocus);
-    }
-
-    @Override
-    public boolean removeActor(Actor actor, boolean unfocus) {
-        fannables.removeValue(actor, true);
-        return super.removeActor(actor, unfocus);
-    }
-
-    @Override
-    public boolean removeActor(Actor actor) {
-        fannables.removeValue(actor, true);
-        return super.removeActor(actor);
     }
 
     @Override
@@ -119,6 +107,7 @@ public class FannedGroup extends Group {
 
     @Override
     public void addActorAt(int index, Actor actor) {
+        if (index > fannables.size) index = fannables.size;
         fannables.insert(index, actor);
         super.addActorAt(index, actor);
     }
