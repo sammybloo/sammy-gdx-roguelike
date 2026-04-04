@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.manager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
@@ -21,6 +22,10 @@ public enum AssetManager {
 
     public Sprite getSprite(String name) {
         return getAtlas().createSprite(name);
+    }
+
+    public NinePatch getNinePatch(String name) {
+        return getAtlas().createPatch(name);
     }
 
     public void dispose() {

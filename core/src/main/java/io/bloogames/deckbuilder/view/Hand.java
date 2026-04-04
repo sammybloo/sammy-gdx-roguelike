@@ -1,10 +1,9 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 import io.bloogames.deckbuilder.command.ChooseTargetCommand;
 import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
@@ -15,15 +14,6 @@ public class Hand extends FannedGroup {
     private final Array<Card> cards;
     private final int maxSize;
 
-     /*
-         private float overlap = 0.3f;
-    private float lift = 80f;
-    private float maxRotation = 16f;
-    private float normalScale = 0.5f;
-    private float selectedScale = 0.8f;
-    private float selectedLift = 130f;
-    private float duration = 0.3f;
-      */
     public Hand(int maxSize) {
         super(new FanSettings(0.3f, 80f, 16f, 0.5f, 0.8f, 130f, 0.3f, Card.WIDTH, Card.HEIGHT));
         this.cards = new Array<>();
@@ -46,7 +36,10 @@ public class Hand extends FannedGroup {
     }
 
     public void returnCard(Card card) {
+        Vector2 stageCoords = card.localToStageCoordinates(new Vector2());
         addActorAt(cards.indexOf(card, true), card);
+        Vector2 localCoords = stageToLocalCoordinates(stageCoords);
+        card.setPosition(localCoords.x, localCoords.y);
         addHoverLogic(card);
         fan();
     }

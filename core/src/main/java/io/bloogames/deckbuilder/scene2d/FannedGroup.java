@@ -74,7 +74,7 @@ public class FannedGroup extends Group {
         for (int i = 0; i < fannables.size; i++) {
             Actor child = fannables.get(i);
             FannableLayout layout = getFannableLayout(i);
-            child.clearActions();
+            //child.clearActions();
             child.setZIndex(i);
             child.addAction(Actions.sizeTo(settings.fannableWidth, settings.fannableHeight, settings.duration));
             child.addAction(Actions.scaleTo(layout.scale, layout.scale, settings.duration));

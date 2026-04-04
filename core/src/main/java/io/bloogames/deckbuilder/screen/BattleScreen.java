@@ -74,7 +74,7 @@ public class BattleScreen implements Screen {
         playerHand = new Hand(10);
         playerHand.setBounds(0,-200, game.getViewport().getWorldWidth(), 540);
 
-        for (int i = 0 ; i < 10; i++) {
+        for (int i = 0 ; i < 5; i++) {
             var battlerCard = new BattlerCard(new BattlerModel(
                 arr[MathUtils.random(0, 2)]
             ));

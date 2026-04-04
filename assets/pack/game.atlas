@@ -6,49 +6,58 @@ filter: Linear, Linear
 repeat: none
 battler
   rotate: false
-  xy: 2, 516
+  xy: 2, 608
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 battlerframe
   rotate: false
-  xy: 2, 1030
+  xy: 2, 1122
   size: 540, 810
   orig: 540, 810
   offset: 0, 0
   index: -1
 beetle
   rotate: false
-  xy: 544, 1328
+  xy: 544, 1420
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 bird
   rotate: false
-  xy: 2, 2
+  xy: 2, 94
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
+cardspot
+  rotate: false
+  xy: 2, 2
+  size: 90, 90
+  split: 12, 12, 9, 10
+  pad: 12, 12, 10, 10
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
 crosshair
   rotate: false
-  xy: 1572, 1614
+  xy: 1572, 1706
   size: 226, 226
   orig: 226, 226
   offset: 0, 0
   index: -1
 frame
   rotate: false
-  xy: 1058, 1328
+  xy: 1058, 1420
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 slot
   rotate: false
-  xy: 544, 814
+  xy: 544, 906
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
