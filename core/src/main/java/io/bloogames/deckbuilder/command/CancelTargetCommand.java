@@ -1,18 +1,17 @@
 package io.bloogames.deckbuilder.command;
 
 import com.badlogic.gdx.Gdx;
-import io.bloogames.deckbuilder.screen.BattleScreen;
-import io.bloogames.deckbuilder.view.Card;
+import io.bloogames.deckbuilder.screen.Battle;
 
 public class CancelTargetCommand implements Command {
 
     @Override
-    public void execute(BattleScreen battleScreen) {
-        if (!battleScreen.getTargetSystem().isTargeting())
+    public void execute(Battle battle) {
+        if (!battle.getTargetSystem().isTargeting())
         {
             Gdx.app.error(CancelTargetCommand.class.getName(), "Tried to cancel targeting, but wasn't targeting.");
         }
-        battleScreen.getPlayerHand().returnCard(battleScreen.getTargetSystem().getCard());
-        battleScreen.getTargetSystem().cancelTargeting();
+        battle.getPlayerHand().returnCard(battle.getTargetSystem().getCard());
+        battle.getTargetSystem().cancelTargeting();
     }
 }

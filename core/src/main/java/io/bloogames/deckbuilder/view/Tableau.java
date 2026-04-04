@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.controller.TableauController;
+import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
@@ -32,6 +33,10 @@ public class Tableau extends Table {
         for (int i = 0; i < model.getSize(); i++) {
             slots.add(new Slot(model.getSlot(i)));
             add(slots.get(i)).pad(PADDING);
+            BattlerModel battlerModel = model.getSlot(i).getBattler();
+            if (battlerModel != null) {
+                slots.get(i).setBattler(new Battler(battlerModel));
+            }
         }
 
         this.controller = new TableauController(this, dragEnabled);
@@ -46,10 +51,10 @@ public class Tableau extends Table {
         return model;
     }
 
-    public void addBattler(int index, Battler battler) {
+    public void addBattler(int index, BattlerModel battlerModel) {
         Slot slot = getSlot(index);
-        slot.getModel().setBattler(battler.getModel());
-        slot.setBattler(battler);
+        slot.getModel().setBattler(battlerModel);
+        slot.setBattler(new Battler(battlerModel));
         refresh();
     }
 

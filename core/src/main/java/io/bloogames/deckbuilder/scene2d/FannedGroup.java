@@ -12,7 +12,8 @@ import com.badlogic.gdx.utils.Array;
  */
 public class FannedGroup extends Group {
     private FanSettings settings;
-
+    protected float fannableWidth;
+    protected float fannableHeight;
 
     private int selectedIndex = -1;
 
@@ -25,6 +26,11 @@ public class FannedGroup extends Group {
     public void setSelectedIndex(int selectedIndex) {
         this.selectedIndex = selectedIndex;
         fan();
+    }
+
+    public void setFannableSize(float width, float height) {
+        fannableWidth = width;
+        fannableHeight = height;
     }
 
     public void setSelectedActor(Actor actor) {
@@ -43,14 +49,13 @@ public class FannedGroup extends Group {
     }
 
     private FannableLayout getFannableLayout(int index) {
-        if (fannables.size == 0) return new FannableLayout(0f, 0f, 0f, settings.normalScale);
+        if (fannables.size == 0) return new FannableLayout(0f, 0f, 0f, 1f);
 
         float handWidth = getWidth();
-        float cardWidth = settings.fannableWidth * settings.normalScale;
-        float selectedCardAdjustment = (settings.fannableWidth * settings.selectedScale * (1 - settings.overlap)) / 2;
+        float selectedCardAdjustment = (fannableWidth * settings.selectedScale * (1 - settings.overlap)) / 2;
 
-        float spacing = cardWidth * (1f - settings.overlap);
-        float totalWidth = spacing * (fannables.size) + cardWidth;
+        float spacing = fannableWidth * (1f - settings.overlap);
+        float totalWidth = spacing * (fannables.size);
         float startX = (handWidth - totalWidth) / 2f;
 
         // centered is a value between -1 and 1 for each fannable
@@ -58,14 +63,14 @@ public class FannedGroup extends Group {
         float centered = t * 2f - 1f;
 
         float x = startX + index * spacing;
-        float y = settings.lift * (1f - centered * centered);
+        float y = (fannableHeight * settings.lift) * (1f - centered * centered);
         float rotation = -settings.maxRotation * centered;
-        float scale = settings.normalScale;
+        float scale = 1;
 
         if (index == selectedIndex) {
             rotation = settings.selectedRotation;
             scale = settings.selectedScale;
-            y = settings.selectedLift;
+            y = fannableHeight * settings.selectedLift;
         } else if (selectedIndex != -1) {
             if (index < selectedIndex) {
                 x -= selectedCardAdjustment;
@@ -82,7 +87,8 @@ public class FannedGroup extends Group {
             FannableLayout layout = getFannableLayout(i);
             //child.clearActions();
             child.setZIndex(i);
-            child.addAction(Actions.sizeTo(settings.fannableWidth, settings.fannableHeight, settings.duration));
+            child.setOrigin(fannableWidth * 0.5f, fannableHeight * 0.5f);
+            child.addAction(Actions.sizeTo(fannableWidth, fannableHeight, settings.duration));
             child.addAction(Actions.scaleTo(layout.scale, layout.scale, settings.duration));
             child.addAction(Actions.moveTo(layout.x, layout.y, settings.duration));
             child.addAction(Actions.rotateTo(layout.rotation, settings.duration));
@@ -141,9 +147,8 @@ public class FannedGroup extends Group {
     private record FannableLayout(float x, float y, float rotation, float scale) {
     }
 
-    public record FanSettings(float overlap,float lift, float maxRotation, float normalScale,
+    public record FanSettings(float overlap, float lift, float maxRotation,
                               float selectedScale, float selectedLift, float selectedRotation,
-                              float duration, float fannableWidth, float fannableHeight) {
-
+                              float duration) {
     }
 }

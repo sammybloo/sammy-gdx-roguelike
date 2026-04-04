@@ -22,7 +22,7 @@ public class Battler extends Group {
         this.setSize(WIDTH,HEIGHT);
         this.setOrigin(Align.center);
         this.model = model;
-        art = new Image(AssetManager.INSTANCE.getSprite(model.getBattlerId()));
+        art = new Image(AssetManager.INSTANCE.getSprite("card/" + model.getBattlerId()));
         art.setSize(WIDTH, HEIGHT);
 
         frame = new Image(AssetManager.INSTANCE.getSprite("frame"));

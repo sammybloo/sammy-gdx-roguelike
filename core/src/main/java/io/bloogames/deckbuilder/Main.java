@@ -1,31 +1,35 @@
 package io.bloogames.deckbuilder;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
-import io.bloogames.deckbuilder.screen.BattleScreen;
+import io.bloogames.deckbuilder.screen.Battle;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
 
     private SpriteBatch batch;
-    private FitViewport viewport;
+    private Viewport viewport;
 
     public SpriteBatch getBatch() {
         return batch;
     }
 
-    public FitViewport getViewport() {
+    public Viewport getViewport() {
         return viewport;
     }
 
     @Override
     public void create() {
-        this.viewport = new FitViewport(1920, 1080);
+        this.viewport = new ExtendViewport(1920, 1080);
         this.batch = new SpriteBatch();
-        this.setScreen(new BattleScreen(this));
+        this.setScreen(new Battle(this));
     }
 
     @Override

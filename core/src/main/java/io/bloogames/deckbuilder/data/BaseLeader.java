@@ -4,15 +4,17 @@ import com.badlogic.gdx.graphics.Color;
 
 public class BaseLeader {
     private Color colour;
+    private String id;
     private int maxHealth;
 
-    public BaseLeader(Color colour, int maxHealth) {
+    public BaseLeader(String id, int maxHealth) {
         this.colour = colour;
+        this.id = id;
         this.maxHealth = maxHealth;
     }
 
-    public Color getColour() {
-        return colour;
+    public String getId() {
+        return id;
     }
 
     public int getMaxHealth() {

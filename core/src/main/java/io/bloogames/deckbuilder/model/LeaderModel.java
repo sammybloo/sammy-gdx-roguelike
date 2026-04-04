@@ -11,15 +11,15 @@ public class LeaderModel {
         this.base = base;
     }
 
-    public Color getColour() {
-        return base.getColour();
-    }
-
     public int getMaxHealth() {
         return base.getMaxHealth();
     }
 
     public int getDamage() {
         return damage;
+    }
+
+    public String getId() {
+        return base.getId();
     }
 }

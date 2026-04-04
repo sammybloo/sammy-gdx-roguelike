@@ -22,9 +22,8 @@ public class BattlerCard extends Card {
     public BattlerCard(BattlerModel battlerModel) {
         super(battlerModel.getCardModel());
         this.battlerModel = battlerModel;
-        setSize(WIDTH, HEIGHT);
         setOrigin(Align.center);
-        art = new Image(AssetManager.INSTANCE.getSprite(battlerModel.getBattlerId()));
+        art = new Image(AssetManager.INSTANCE.getSprite("card/" + battlerModel.getBattlerId()));
         battleFrame = new Image(AssetManager.INSTANCE.getSprite("battlerframe"));
 
         nameLabel = new Label(battlerModel.getCardModel().getCardName(),
@@ -43,83 +42,23 @@ public class BattlerCard extends Card {
         healthLabel.setAlignment(Align.center, Align.center);
 
         showContents();
-        layoutCard();
-    }
-
-    private void layoutCard() {
-        float w = getWidth();
-        float h = getHeight();
-
-        float scaleX = w / WIDTH;
-        float scaleY = h / HEIGHT;
-        float fontScale = Math.min(scaleX, scaleY);
-
-        battleFrame.setBounds(0, 0, w, h);
-
-        art.setBounds(
-            w * 0.025f,
-            h * 0.284f,
-            w * 0.948f,
-            w * 0.948f
-        );
-
-        nameLabel.setFontScale(fontScale);
-        nameLabel.setBounds(
-            0,
-            h * 0.916f,
-            w,
-            h * 0.07f
-        );
-
-        powerLabel.setFontScale(fontScale);
-        powerLabel.setBounds(
-            w * 0.0425f,
-            h * 0.296f,
-            w * 0.181f,
-            h * 0.12f
-        );
-
-
-        healthLabel.setFontScale(fontScale);
-        healthLabel.setBounds(
-            w - (w * 0.181f) - (w * 0.0425f),
-            h * 0.296f,
-            w * 0.181f,
-            h * 0.12f
-        );
-    }
-
-    @Override
-    public void setSize(float width, float height) {
-        super.setSize(width, height);
-        if (battleFrame != null) {
-            layoutCard();
-        }
-    }
-
-    @Override
-    public void setBounds(float x, float y, float width, float height) {
-        super.setBounds(x, y, width, height);
-        if (battleFrame != null) {
-            layoutCard();
-        }
     }
 
     @Override
     public void hideContents() {
-        removeActor(art);
-        removeActor(battleFrame);
-        removeActor(nameLabel);
-        removeActor(powerLabel);
-        removeActor(healthLabel);
+        unregister(art);
+        unregister(battleFrame);
+        unregister(nameLabel);
+        unregister(powerLabel);
+        unregister(healthLabel);
     }
 
     @Override
     public void showContents() {
-        addActor(art);
-        addActor(battleFrame);
-        addActor(nameLabel);
-        addActor(powerLabel);
-        addActor(healthLabel);
+        register(art, new ResizeableSettings(WIDTH * 0.948f, WIDTH * 0.948f).offset(WIDTH * 0.025f, HEIGHT * 0.284f));
+        register(battleFrame, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
+        register(nameLabel, new ResizeableSettings(WIDTH, 25, Align.top).yOffset(15f));
+        register(powerLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f).offset(30f, HEIGHT * 0.296f));
+        register(healthLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f, Align.bottomRight).offset(30f, HEIGHT * 0.296f));
     }
 }

@@ -26,6 +26,7 @@ public class Hand extends FannedGroup {
         if (cardActors.containsKey(cardModel)) return false;
 
         cardActors.put(cardModel, card);
+        card.setSize(fannableWidth, fannableHeight);
         addActor(card);
         for (var controller : interactionControllers) {
             controller.attach(this, card);
@@ -73,4 +74,22 @@ public class Hand extends FannedGroup {
     public HandModel getModel() {
         return model;
     }
+
+    public void layout() {
+        setFannableSize(getHeight() * 0.67f, getHeight());
+        fan();
+    }
+
+    @Override
+    public void setSize(float width, float height) {
+        super.setSize(width, height);
+        layout();
+    }
+
+    @Override
+    public void setBounds(float x, float y, float width, float height) {
+        super.setBounds(x, y, width, height);
+        layout();
+    }
+
 }

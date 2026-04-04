@@ -4,32 +4,11 @@ size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-battler
-  rotate: false
-  xy: 544, 1340
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
 battlerframe
   rotate: false
   xy: 2, 1042
   size: 540, 810
   orig: 540, 810
-  offset: 0, 0
-  index: -1
-beetle
-  rotate: false
-  xy: 544, 826
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
-bird
-  rotate: false
-  xy: 1058, 1340
-  size: 512, 512
-  orig: 512, 512
   offset: 0, 0
   index: -1
 cardback
@@ -41,7 +20,7 @@ cardback
   index: -1
 cardspot
   rotate: false
-  xy: 1572, 1762
+  xy: 544, 734
   size: 90, 90
   split: 12, 12, 9, 10
   pad: 12, 12, 10, 10
@@ -57,14 +36,117 @@ crosshair
   index: -1
 frame
   rotate: false
-  xy: 544, 312
+  xy: 544, 1340
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+leaderframe
+  rotate: false
+  xy: 544, 826
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 slot
   rotate: false
-  xy: 1058, 826
+  xy: 1058, 1340
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+game2.png
+size: 2048, 2048
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+card/battler
+  rotate: false
+  xy: 2, 1490
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/beetle
+  rotate: false
+  xy: 2, 976
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/bird
+  rotate: false
+  xy: 516, 1490
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/columbo
+  rotate: false
+  xy: 2, 462
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/fallenstar
+  rotate: false
+  xy: 516, 976
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/paulallen
+  rotate: false
+  xy: 1030, 1490
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/snail
+  rotate: false
+  xy: 516, 462
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/vanille
+  rotate: false
+  xy: 1544, 1662
+  size: 340, 340
+  orig: 340, 340
+  offset: 0, 0
+  index: -1
+card/worms
+  rotate: false
+  xy: 1030, 976
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/wrio
+  rotate: false
+  xy: 2, 2
+  size: 458, 458
+  orig: 458, 458
+  offset: 0, 0
+  index: -1
+
+game3.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+leader/villain
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+leader/wizard
+  rotate: false
+  xy: 516, 2
   size: 512, 512
   orig: 512, 512
   offset: 0, 0

@@ -18,7 +18,6 @@ public class Slot extends Group {
         setSize(WIDTH, HEIGHT);
         image = new Image(AssetManager.INSTANCE.getSprite("slot"));
         image.setSize(WIDTH, HEIGHT);
-        image.setColor(model.getParticipant().getColour());
         addActor(image);
     }
 

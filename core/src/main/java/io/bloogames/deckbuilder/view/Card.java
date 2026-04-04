@@ -2,10 +2,12 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.CardModel;
+import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 
-public abstract class Card extends Group {
+public abstract class Card extends ResizableGroup {
 
     public static final float WIDTH = 360f;
     public static final float HEIGHT = 540f;
@@ -13,6 +15,7 @@ public abstract class Card extends Group {
     private final CardModel cardModel;
     private Image cardBack;
     public Card(CardModel cardModel) {
+        super(WIDTH, HEIGHT);
         this.cardModel = cardModel;
     }
 
@@ -31,18 +34,15 @@ public abstract class Card extends Group {
     public void flipCard(boolean faceup) {
         cardModel.setFaceup(faceup);
         if (faceup) {
-            cardBack.remove();
+            unregister(cardBack);
             showContents();
         }
         else {
             hideContents();
             if (cardBack == null) {
                 cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));
-                cardBack.setSize(getWidth(), getHeight());
             }
-            addActor(cardBack);
+            register(cardBack, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
         }
     }
-
-
 }

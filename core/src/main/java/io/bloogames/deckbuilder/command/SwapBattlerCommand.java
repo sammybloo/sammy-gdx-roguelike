@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.command;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
-import io.bloogames.deckbuilder.screen.BattleScreen;
+import io.bloogames.deckbuilder.screen.Battle;
 
 public class SwapBattlerCommand implements Command {
 
@@ -18,14 +18,14 @@ public class SwapBattlerCommand implements Command {
     }
 
     @Override
-    public void execute(BattleScreen battleScreen) {
+    public void execute(Battle battle) {
         BattlerModel battler1 = slot1.getBattler();
         BattlerModel battler2 = slot2.getBattler();
 
         slot1.setBattler(battler2);
         slot2.setBattler(battler1);
 
-        battleScreen.getPlayerTableau().refresh();
-        battleScreen.getEnemyTableau().refresh();
+        battle.getPlayerTableau().refresh();
+        battle.getEnemyTableau().refresh();
     }
 }

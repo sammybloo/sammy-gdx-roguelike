@@ -5,15 +5,13 @@ import com.badlogic.gdx.utils.Array;
 public class TableauModel {
     private int size;
     private Array<SlotModel> slots;
-    private LeaderModel participant;
 
-    public TableauModel(int size, LeaderModel participant) {
+    public TableauModel(int size) {
         this.size = size;
         this.slots = new Array<>();
-        this.participant = participant;
 
         for (int i = 0; i < size; i++) {
-            slots.add(new SlotModel(participant));
+            slots.add(new SlotModel());
         }
     }
 
