@@ -1,102 +1,56 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Null;
-import io.bloogames.deckbuilder.command.SwapBattlerCommand;
-import io.bloogames.deckbuilder.manager.CommandManager;
+import com.badlogic.gdx.utils.ObjectMap;
+import io.bloogames.deckbuilder.controller.TableauController;
+import io.bloogames.deckbuilder.model.BattlerModel;
+import io.bloogames.deckbuilder.model.SlotModel;
+import io.bloogames.deckbuilder.model.TableauModel;
 
 public class Tableau extends Table {
-    int numSlots;
-    private Array<Slot> slots;
-    private Participant participant;
-    private boolean dragEnabled;
 
-    private DragAndDrop dragAndDrop;
+    private final Array<Slot> slots;
+    private final TableauModel model;
+    private final TableauController controller;
 
     public final static float WIDTH = 1300;
     public final static float HEIGHT = 250;
     public final static float PADDING = 5;
 
-    public Tableau(int numSlots, Participant participant) {
-        this(numSlots, participant, true);
-
+    public Tableau(TableauModel model) {
+        this(model, true);
     }
 
-    public Tableau(int numSlots, Participant participant, boolean dragEnabled) {
+    public Tableau(TableauModel model, boolean dragEnabled) {
         super();
-        this.participant = participant;
-        this.numSlots = numSlots;
-        this.dragEnabled = dragEnabled;
-        slots = new Array<>(numSlots);
+        this.model = model;
+        this.slots = new Array<>(model.getSize());
+
         setSize(WIDTH, HEIGHT);
-        for (int i = 0; i < numSlots; i++) {
-            slots.add(new Slot(participant));
+
+        for (int i = 0; i < model.getSize(); i++) {
+            slots.add(new Slot(model.getSlot(i)));
             add(slots.get(i)).pad(PADDING);
         }
-        generateDragAndDrop();
+
+        this.controller = new TableauController(this, dragEnabled);
+        refresh();
+    }
+
+    public Array<Slot> getSlots() {
+        return slots;
+    }
+
+    public TableauModel getModel() {
+        return model;
     }
 
     public void addBattler(int index, Battler battler) {
-        slots.get(index).setBattler(battler);
-        generateDragAndDrop();
-    }
-
-    public void generateDragAndDrop() {
-        if (!dragEnabled) return;
-
-        if (dragAndDrop == null) {
-            dragAndDrop = new DragAndDrop();
-            dragAndDrop.setKeepWithinStage(false);
-            dragAndDrop.setDragTime(0);
-        }
-        dragAndDrop.clear();
-        var that = this;
-        for (Slot slot : slots) {
-            dragAndDrop.addTarget(
-                new DragAndDrop.Target(slot) {
-                    @Override
-                    public boolean drag(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                        return true;
-                    }
-
-                    @Override
-                    public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
-                        Battler battler = (Battler) payload.getObject();
-                        Slot oldSlot = getSlot(battler);
-                        CommandManager.INSTANCE.processImmediately(new SwapBattlerCommand(that, oldSlot, slot));
-                    }
-                }
-            );
-
-            if (slot.getBattler() != null) {
-                dragAndDrop.addSource(
-                    new DragAndDrop.Source(slot.getBattler()) {
-                        @Override
-                        public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
-                            var payload = new DragAndDrop.Payload();
-                            var battler = slot.getBattler();
-                            getStage().addActor(battler);
-                            payload.setObject(battler);
-                            payload.setDragActor(battler);
-                            dragAndDrop.setDragActorPosition(battler.getWidth() / 2, -(battler.getHeight() / 2));
-                            return payload;
-                        }
-
-                        public void dragStop(InputEvent event, float x, float y, int pointer,
-                                             @Null DragAndDrop.Payload payload, @Null DragAndDrop.Target target) {
-                            if (target == null) {
-                                Battler battler = (Battler) (payload.getObject());
-                                slot.setBattler(battler);
-                            }
-                        }
-                    }
-                );
-            }
-        }
+        Slot slot = getSlot(index);
+        slot.getModel().setBattler(battler.getModel());
+        slot.setBattler(battler);
+        refresh();
     }
 
     public Slot getSlot(int index) {
@@ -112,7 +66,29 @@ public class Tableau extends Table {
         return null;
     }
 
+    private void syncFromModel() {
+        ObjectMap<BattlerModel, Battler> battlerActors = new ObjectMap<>();
+        for (Slot slot : slots) {
+            if (slot.getBattler() != null) {
+                battlerActors.put(slot.getBattler().getModel(), slot.getBattler());
+            }
+        }
+
+        for (int i = 0; i < slots.size; i++) {
+            Slot slotView = slots.get(i);
+            SlotModel slotModel = model.getSlot(i);
+            BattlerModel battlerModel = slotModel.getBattler();
+
+            Battler battlerView = battlerModel == null ? null : battlerActors.get(battlerModel);
+
+            if (slotView.getBattler() != battlerView) {
+                slotView.setBattler(battlerView);
+            }
+        }
+    }
+
     public void refresh() {
-        generateDragAndDrop();
+        syncFromModel();
+        controller.rebuild();
     }
 }

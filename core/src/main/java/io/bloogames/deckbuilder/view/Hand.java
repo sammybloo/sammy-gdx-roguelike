@@ -1,65 +1,76 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.command.ChooseTargetCommand;
-import io.bloogames.deckbuilder.manager.CommandManager;
+import com.badlogic.gdx.utils.ObjectMap;
+import io.bloogames.deckbuilder.controller.HandController;
+import io.bloogames.deckbuilder.model.CardModel;
+import io.bloogames.deckbuilder.model.HandModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
 
 public class Hand extends FannedGroup {
 
-    private final Array<Card> cards;
-    private final int maxSize;
+    private final HandModel model;
+    private final ObjectMap<CardModel, Card> cardActors = new ObjectMap<>();
+    private final Array<HandController> interactionControllers;
 
-    public Hand(int maxSize) {
-        super(new FanSettings(0.3f, 80f, 16f, 0.5f, 0.8f, 130f, 0.3f, Card.WIDTH, Card.HEIGHT));
-        this.cards = new Array<>();
-        this.maxSize = maxSize;
+    public Hand(HandModel model, FannedGroup.FanSettings fanSettings, HandController... interactionControllers) {
+        super(fanSettings);
+        this.model = model;
+        this.interactionControllers = new Array<>(interactionControllers);
     }
 
-    public void addCard(Card card) {
-        if (cards.size >= maxSize) return;
-        cards.add(card);
+    public boolean addCard(Card card) {
+        CardModel cardModel = card.getModel();
+        if (!model.addCard(cardModel)) return false;
+        if (cardActors.containsKey(cardModel)) return false;
+
+        cardActors.put(cardModel, card);
         addActor(card);
-        addHoverLogic(card);
+        for (var controller : interactionControllers) {
+            controller.attach(this, card);
+        }
         fan();
+        return true;
     }
 
-    // Lets the actor leave visually without leaving logically
-    public void leaveHandTemporarily(Card card) {
+    public boolean removeCard(CardModel cardModel) {
+        if (!model.removeCard(cardModel)) return false;
+
+        Card card = cardActors.remove(cardModel);
+        if (card != null) {
+            removeActor(card);
+        }
+
+        fan();
+        return true;
+    }
+
+    public Card getCard(CardModel cardModel) {
+        return cardActors.get(cardModel);
+    }
+
+    public boolean contains(CardModel cardModel) {
+        return model.contains(cardModel);
+    }
+
+    public void leaveTemporarily(Card card) {
         clearSelected();
         removeActor(card);
         fan();
     }
 
     public void returnCard(Card card) {
+        if (card == null) return;
+
         Vector2 stageCoords = card.localToStageCoordinates(new Vector2());
-        addActorAt(cards.indexOf(card, true), card);
+        addActorAt(model.indexOf(card.getModel()), card);
         Vector2 localCoords = stageToLocalCoordinates(stageCoords);
         card.setPosition(localCoords.x, localCoords.y);
-        addHoverLogic(card);
         fan();
     }
 
-    public void addHoverLogic(Card card) {
-        card.addListener(new HoverListener(0f) {
-            @Override
-            public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                setSelectedActor(card);
-            }
-
-            @Override
-            public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                clearSelected();
-            }
-
-            @Override
-            public void clicked (InputEvent event, float x, float y) {
-                CommandManager.INSTANCE.processImmediately(new ChooseTargetCommand(card));
-            }
-        });
+    public HandModel getModel() {
+        return model;
     }
 }

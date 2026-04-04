@@ -1,13 +1,12 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.graphics.Color;
-import io.bloogames.deckbuilder.model.ParticipantModel;
+import io.bloogames.deckbuilder.model.LeaderModel;
 
-public class Participant {
-    private ParticipantModel model;
-    private int damage;
+public class Leader {
+    private LeaderModel model;
 
-    public Participant(ParticipantModel model) {
+    public Leader(LeaderModel model) {
         this.model = model;
     }
 
@@ -19,7 +18,7 @@ public class Participant {
         return model.getMaxHealth();
     }
 
-    public int getDamage() {
-        return damage;
+    public LeaderModel getModel() {
+        return model;
     }
 }

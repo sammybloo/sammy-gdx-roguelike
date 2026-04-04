@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.screen.BattleScreen;
 import io.bloogames.deckbuilder.view.Card;
 
-public class ChooseTargetCommand extends Command {
+public class ChooseTargetCommand implements Command {
 
     Card card;
 
@@ -18,7 +18,7 @@ public class ChooseTargetCommand extends Command {
             CommandManager.INSTANCE.processImmediately(
                 new CancelTargetCommand());
         }
-        battleScreen.getPlayerHand().leaveHandTemporarily(card);
+        battleScreen.getPlayerHand().leaveTemporarily(card);
         battleScreen.getTargetSystem().attemptTargeting(card);
     }
 }

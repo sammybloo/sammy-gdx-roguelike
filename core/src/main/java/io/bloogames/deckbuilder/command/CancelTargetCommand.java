@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import io.bloogames.deckbuilder.screen.BattleScreen;
 import io.bloogames.deckbuilder.view.Card;
 
-public class CancelTargetCommand extends Command {
+public class CancelTargetCommand implements Command {
 
     @Override
     public void execute(BattleScreen battleScreen) {

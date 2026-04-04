@@ -1,5 +1,7 @@
 package io.bloogames.deckbuilder.model;
 
+import io.bloogames.deckbuilder.data.BaseStats;
+
 public class Stats {
     private BaseStats baseStats;
     private int damage;

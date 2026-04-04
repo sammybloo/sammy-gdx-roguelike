@@ -1,39 +1,31 @@
 package io.bloogames.deckbuilder.command;
 
+import io.bloogames.deckbuilder.model.BattlerModel;
+import io.bloogames.deckbuilder.model.SlotModel;
+import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.screen.BattleScreen;
-import io.bloogames.deckbuilder.view.Battler;
-import io.bloogames.deckbuilder.view.Slot;
-import io.bloogames.deckbuilder.view.Tableau;
 
-public class SwapBattlerCommand extends Command {
-    private Tableau tableau;
-    private Slot slot1;
-    private Slot slot2;
+public class SwapBattlerCommand implements Command {
 
-    public SwapBattlerCommand(Tableau tableau, Slot slot1, Slot slot2) {
-        this.tableau = tableau;
+    private final TableauModel tableauModel;
+    private final SlotModel slot1;
+    private final SlotModel slot2;
+
+    public SwapBattlerCommand(TableauModel tableau, SlotModel slot1, SlotModel slot2) {
+        this.tableauModel = tableau;
         this.slot1 = slot1;
         this.slot2 = slot2;
     }
 
+    @Override
     public void execute(BattleScreen battleScreen) {
-        Battler battler1 = slot1.getBattler();
-        Battler battler2 = slot2.getBattler();
+        BattlerModel battler1 = slot1.getBattler();
+        BattlerModel battler2 = slot2.getBattler();
 
-        if (battler1 != null) {
-            slot2.setBattler(battler1);
-        }
-        else {
-            slot2.removeBattler();
-        }
+        slot1.setBattler(battler2);
+        slot2.setBattler(battler1);
 
-        if (battler2 != null) {
-            slot1.setBattler(battler2);
-        }
-        else {
-            slot1.removeBattler();
-        }
-
-        tableau.refresh();
+        battleScreen.getPlayerTableau().refresh();
+        battleScreen.getEnemyTableau().refresh();
     }
 }

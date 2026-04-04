@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.model;
+package io.bloogames.deckbuilder.data;
 
 public class BaseStats {
     private int health;

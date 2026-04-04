@@ -31,8 +31,14 @@ public class FannedGroup extends Group {
         setSelectedIndex(fannables.indexOf(actor, true));
     }
 
+    public void unselectActor(Actor actor) {
+        if (selectedIndex == fannables.indexOf(actor, true)) {
+            clearSelected();
+        }
+    }
+
     public void clearSelected() {
-        this.selectedIndex = -1;
+        selectedIndex = -1;
         fan();
     }
 
@@ -57,7 +63,7 @@ public class FannedGroup extends Group {
         float scale = settings.normalScale;
 
         if (index == selectedIndex) {
-            rotation = 0f;
+            rotation = settings.selectedRotation;
             scale = settings.selectedScale;
             y = settings.selectedLift;
         } else if (selectedIndex != -1) {
@@ -136,7 +142,8 @@ public class FannedGroup extends Group {
     }
 
     public record FanSettings(float overlap,float lift, float maxRotation, float normalScale,
-                              float selectedScale, float selectedLift, float duration, float fannableWidth, float fannableHeight) {
+                              float selectedScale, float selectedLift, float selectedRotation,
+                              float duration, float fannableWidth, float fannableHeight) {
 
     }
 }

@@ -42,12 +42,7 @@ public class BattlerCard extends Card {
         healthLabel.setTouchable(Touchable.disabled);
         healthLabel.setAlignment(Align.center, Align.center);
 
-        addActor(art);
-        addActor(battleFrame);
-        addActor(nameLabel);
-        addActor(powerLabel);
-        addActor(healthLabel);
-
+        showContents();
         layoutCard();
     }
 
@@ -108,5 +103,23 @@ public class BattlerCard extends Card {
         if (battleFrame != null) {
             layoutCard();
         }
+    }
+
+    @Override
+    public void hideContents() {
+        removeActor(art);
+        removeActor(battleFrame);
+        removeActor(nameLabel);
+        removeActor(powerLabel);
+        removeActor(healthLabel);
+    }
+
+    @Override
+    public void showContents() {
+        addActor(art);
+        addActor(battleFrame);
+        addActor(nameLabel);
+        addActor(powerLabel);
+        addActor(healthLabel);
     }
 }

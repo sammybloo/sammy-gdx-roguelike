@@ -1,12 +1,12 @@
-package io.bloogames.deckbuilder.model;
+package io.bloogames.deckbuilder.data;
 
 import com.badlogic.gdx.graphics.Color;
 
-public class ParticipantModel {
+public class BaseLeader {
     private Color colour;
     private int maxHealth;
 
-    public ParticipantModel(Color colour, int maxHealth) {
+    public BaseLeader(Color colour, int maxHealth) {
         this.colour = colour;
         this.maxHealth = maxHealth;
     }
