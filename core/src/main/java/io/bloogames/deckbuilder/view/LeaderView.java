@@ -7,8 +7,9 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.View;
 
-public class Leader extends ResizableGroup {
+public class LeaderView extends ResizableGroup implements View {
     private LeaderModel model;
     private Image image;
     private Image frame;
@@ -17,7 +18,7 @@ public class Leader extends ResizableGroup {
     private static float WIDTH = 200;
     private static float HEIGHT = 200;
 
-    public Leader(LeaderModel model) {
+    public LeaderView(LeaderModel model) {
         super(WIDTH, HEIGHT);
 
         this.model = model;
@@ -28,7 +29,7 @@ public class Leader extends ResizableGroup {
         healthLabel.setAlignment(Align.bottom);
         register(image, new ResizeableSettings(WIDTH, HEIGHT));
         register(frame, new ResizeableSettings(WIDTH, HEIGHT));
-        register(healthLabel, new ResizeableSettings(40, 40, Align.bottom).yOffset(-6f));
+        register(healthLabel, new ResizeableSettings(40, 40, Align.bottom).yOffset(2f));
     }
 
     public int getMaxHealth() {
@@ -37,5 +38,9 @@ public class Leader extends ResizableGroup {
 
     public LeaderModel getModel() {
         return model;
+    }
+
+    @Override
+    public void update() {
     }
 }

@@ -3,14 +3,14 @@ package io.bloogames.deckbuilder.data;
 import com.badlogic.gdx.graphics.Color;
 
 public class BaseLeader {
-    private Color colour;
     private String id;
     private int maxHealth;
+    private int maxMana;
 
-    public BaseLeader(String id, int maxHealth) {
-        this.colour = colour;
+    public BaseLeader(String id, int maxHealth, int maxMana) {
         this.id = id;
         this.maxHealth = maxHealth;
+        this.maxMana = maxMana;
     }
 
     public String getId() {
@@ -19,5 +19,9 @@ public class BaseLeader {
 
     public int getMaxHealth() {
         return maxHealth;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
     }
 }

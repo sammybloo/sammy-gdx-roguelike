@@ -1,24 +1,25 @@
 package io.bloogames.deckbuilder.command;
 
 import io.bloogames.deckbuilder.manager.CommandManager;
+import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.screen.Battle;
-import io.bloogames.deckbuilder.view.Card;
+import io.bloogames.deckbuilder.view.CardView;
 
 public class ChooseTargetCommand implements Command {
 
-    Card card;
+    CardView card;
 
-    public ChooseTargetCommand(Card card) {
+    public ChooseTargetCommand(CardView card) {
         this.card = card;
     }
 
     @Override
-    public void execute(Battle battle) {
-        if (battle.getTargetSystem().isTargeting()) {
-            CommandManager.INSTANCE.processImmediately(
-                new CancelTargetCommand());
-        }
-        battle.getPlayerHand().leaveTemporarily(card);
-        battle.getTargetSystem().attemptTargeting(card);
+    public void execute(BattleModel battle) {
+//        if (battle.getTargetSystem().isTargeting()) {
+//            CommandManager.INSTANCE.processImmediately(
+//                new CancelTargetCommand());
+//        }
+//        battle.getPlayerHand().leaveTemporarily(card);
+//        battle.getTargetSystem().attemptTargeting(card);
     }
 }

@@ -1,6 +1,7 @@
 package io.bloogames.deckbuilder;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -47,5 +48,8 @@ public class Main extends Game {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+        if (getScreen() != null) {
+            getScreen().resize(width, height);
+        }
     }
 }

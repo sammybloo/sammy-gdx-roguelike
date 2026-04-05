@@ -6,37 +6,38 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
+import io.bloogames.deckbuilder.model.BattlerCardModel;
 import io.bloogames.deckbuilder.model.BattlerModel;
 
-public class BattlerCard extends Card {
-    private BattlerModel battlerModel;
+public class BattlerCardView extends CardView {
+    private BattlerCardModel battlerCardModel;
     private Image battleFrame;
     private Image art;
     private Label nameLabel;
     private Label powerLabel;
     private Label healthLabel;
 
-    public static final float WIDTH = Card.WIDTH;
-    public static final float HEIGHT = Card.HEIGHT;
+    public static final float WIDTH = CardView.WIDTH;
+    public static final float HEIGHT = CardView.HEIGHT;
 
-    public BattlerCard(BattlerModel battlerModel) {
-        super(battlerModel.getCardModel());
-        this.battlerModel = battlerModel;
+    public BattlerCardView(BattlerCardModel model) {
+        super(model);
+        this.battlerCardModel = model;
         setOrigin(Align.center);
-        art = new Image(AssetManager.INSTANCE.getSprite("card/" + battlerModel.getBattlerId()));
+        art = new Image(AssetManager.INSTANCE.getSprite("card/" + model.getCardId()));
         battleFrame = new Image(AssetManager.INSTANCE.getSprite("battlerframe"));
 
-        nameLabel = new Label(battlerModel.getCardModel().getCardName(),
+        nameLabel = new Label(battlerCardModel.getCardName(),
             new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
         nameLabel.setTouchable(Touchable.disabled);
         nameLabel.setAlignment(Align.center, Align.center);
 
-        powerLabel = new Label(battlerModel.getPower() + "",
+        powerLabel = new Label(battlerCardModel.getPower() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardStatFont(), null));
         powerLabel.setTouchable(Touchable.disabled);
         powerLabel.setAlignment(Align.center, Align.center);
 
-        healthLabel = new Label(battlerModel.getHealth() + "",
+        healthLabel = new Label(battlerCardModel.getHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardStatFont(), null));
         healthLabel.setTouchable(Touchable.disabled);
         healthLabel.setAlignment(Align.center, Align.center);
@@ -60,5 +61,12 @@ public class BattlerCard extends Card {
         register(nameLabel, new ResizeableSettings(WIDTH, 25, Align.top).yOffset(15f));
         register(powerLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f).offset(30f, HEIGHT * 0.296f));
         register(healthLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f, Align.bottomRight).offset(30f, HEIGHT * 0.296f));
+    }
+
+    @Override
+    public void update() {
+        nameLabel.setText(getName());
+        powerLabel.setText(battlerCardModel.getPower());
+        healthLabel.setText(battlerCardModel.getHealth());
     }
 }

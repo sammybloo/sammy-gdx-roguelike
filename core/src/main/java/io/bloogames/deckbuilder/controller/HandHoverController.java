@@ -3,13 +3,21 @@ package io.bloogames.deckbuilder.controller;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
-import io.bloogames.deckbuilder.view.Card;
-import io.bloogames.deckbuilder.view.Hand;
+import io.bloogames.deckbuilder.view.CardView;
+import io.bloogames.deckbuilder.view.HandView;
 
-public class EnemyHandController implements HandController {
+public class HandHoverController implements HandController {
 
-    public void attach(Hand hand, Card card) {
-        card.addListener(new HoverListener(0.175f, 0.15f) {
+    private float hoverDelay;
+    private float unhoverDelay;
+
+    public HandHoverController(float hoverDelay, float unhoverDelay) {
+        this.hoverDelay = hoverDelay;
+        this.unhoverDelay = unhoverDelay;
+    }
+
+    public void attach(HandView hand, CardView card) {
+        card.addListener(new HoverListener(hoverDelay, unhoverDelay) {
             @Override
             public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 if (card.isFaceup()) {

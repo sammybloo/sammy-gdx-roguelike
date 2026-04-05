@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.command;
 
-import io.bloogames.deckbuilder.screen.Battle;
+import io.bloogames.deckbuilder.model.BattleModel;
 
 public interface Command {
-    void execute(Battle battle);
+    void execute(BattleModel battle);
 }

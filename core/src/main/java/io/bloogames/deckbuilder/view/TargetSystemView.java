@@ -7,16 +7,16 @@ import io.bloogames.deckbuilder.command.CancelTargetCommand;
 import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.ui.Crosshair;
 
-public class TargetSystem extends Group implements InputProcessor {
+public class TargetSystemView extends Group implements InputProcessor {
 
     public static final float WIDTH = 240f;
     public static final float HEIGHT = 360f;
 
     private Crosshair crosshair;
     private Group cardSpot;
-    private Card card;
+    private CardView card;
 
-    public TargetSystem() {
+    public TargetSystemView() {
         cardSpot = new Group();
         cardSpot.setBounds(10, 200, WIDTH, HEIGHT);
         crosshair = new Crosshair();
@@ -25,7 +25,7 @@ public class TargetSystem extends Group implements InputProcessor {
         addActor(crosshair);
     }
 
-    public void attemptTargeting(Card card) {
+    public void attemptTargeting(CardView card) {
         this.card = card;
         card.clearActions();
         cardSpot.addActor(card);
@@ -38,7 +38,7 @@ public class TargetSystem extends Group implements InputProcessor {
     public boolean isTargeting() {
         return card != null;
     }
-    public Card getCard() {
+    public CardView getCard() {
         return card;
     }
 

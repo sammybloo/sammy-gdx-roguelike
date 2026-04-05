@@ -1,20 +1,20 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.View;
 
-public abstract class Card extends ResizableGroup {
+public abstract class CardView extends ResizableGroup implements View {
 
     public static final float WIDTH = 360f;
     public static final float HEIGHT = 540f;
 
     private final CardModel cardModel;
     private Image cardBack;
-    public Card(CardModel cardModel) {
+    public CardView(CardModel cardModel) {
         super(WIDTH, HEIGHT);
         this.cardModel = cardModel;
     }

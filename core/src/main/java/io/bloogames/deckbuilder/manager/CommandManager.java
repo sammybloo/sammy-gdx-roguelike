@@ -2,15 +2,16 @@ package io.bloogames.deckbuilder.manager;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.command.Command;
+import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.screen.Battle;
 
 public enum CommandManager {
     INSTANCE;
 
     private Array<Command> deque = new Array<>();
-    private Battle battle;
+    private BattleModel battle;
 
-    public void setBattle(Battle battle) {
+    public void setBattle(BattleModel battle) {
         this.battle = battle;
     }
     public void processImmediately(Command command) {

@@ -1,25 +1,25 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
-import io.bloogames.deckbuilder.controller.PlayerHandController;
+import io.bloogames.deckbuilder.controller.HandHoverController;
+import io.bloogames.deckbuilder.controller.TargetController;
 import io.bloogames.deckbuilder.model.PartyModel;
-import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 
-public class PlayerParty extends Party {
+public class PlayerPartyView extends PartyView {
 
-    public PlayerParty(PartyModel model) {
+    public PlayerPartyView(PartyModel model) {
         super(model);
-        setLeader(new Leader(model.getLeader()));
+        setLeader(new LeaderView(model.getLeader()));
 
-        setHand(new Hand(model.getHand(),
+        setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
                 0.7f, 0f, 0.3f),
-            new PlayerHandController()));
-        setTableau(new Tableau(model.getTableau()));
+            new HandHoverController(0, 0.1f), new TargetController()));
+        setTableau(new TableauView(model.getTableau()));
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());
-        register(getTableau(), new ResizeableSettings(WIDTH * 0.8f, HEIGHT * 0.3f, Align.top)
+        register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)
             .yOffset(10f));
         register(getHand(), new ResizeableSettings(WIDTH, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
     }

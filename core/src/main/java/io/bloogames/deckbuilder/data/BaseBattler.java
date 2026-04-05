@@ -1,12 +1,10 @@
 package io.bloogames.deckbuilder.data;
 
 public class BaseBattler {
-    private BaseCard baseCard;
-    private BaseStats baseStats;
+    private BaseBattlerCard baseCard;
 
-    public BaseBattler(BaseCard baseCard, BaseStats baseStats) {
+    public BaseBattler(BaseBattlerCard baseCard) {
         this.baseCard = baseCard;
-        this.baseStats = baseStats;
     }
 
     public String getId() {
@@ -18,10 +16,10 @@ public class BaseBattler {
     }
 
     public BaseStats getBaseStats() {
-        return baseStats;
+        return baseCard.getBaseStats();
     }
 
-    public BaseCard getBaseCard() {
+    public BaseBattlerCard getBaseCard() {
         return baseCard;
     }
 }

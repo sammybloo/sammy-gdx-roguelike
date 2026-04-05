@@ -99,49 +99,13 @@ public class FannedGroup extends Group {
         }
     }
 
-    @Override
-    public Actor removeActorAt(int index, boolean unfocus) {
-        fannables.removeIndex(index);
-        return super.removeActorAt(index, unfocus);
+    public void setFannables(Array<Actor> actors) {
+        fannables = actors;
+        fan();
     }
 
-    @Override
-    public void addActorAfter(Actor actorAfter, Actor actor) {
-        fannables.insert(fannables.indexOf(actorAfter, true) + 1, actor);
-        super.addActorAfter(actorAfter, actor);
-    }
-
-    @Override
-    public void addActorBefore(Actor actorBefore, Actor actor) {
-        fannables.insert(fannables.indexOf(actorBefore, true), actor);
-        super.addActorBefore(actorBefore, actor);
-    }
-
-    @Override
-    public void addActorAt(int index, Actor actor) {
-        if (index > fannables.size) index = fannables.size;
-        fannables.insert(index, actor);
-        super.addActorAt(index, actor);
-    }
-
-    @Override
-    public void addActor(Actor actor) {
-        fannables.add(actor);
-        super.addActor(actor);
-    }
-
-    @Override
-    public boolean swapActor(int first, int second) {
-        var aux = fannables.get(first);
-        fannables.set(first, fannables.get(second));
-        fannables.set(second, aux);
-        return super.swapActor(first, second);
-    }
-
-    @Override
-    public boolean swapActor(Actor first, Actor second) {
-        swapActor(fannables.indexOf(first, true), fannables.indexOf(second, true));
-        return super.swapActor(first, second);
+    public void removeFannable(Actor actor) {
+        fannables.removeValue(actor, true);
     }
 
     private record FannableLayout(float x, float y, float rotation, float scale) {

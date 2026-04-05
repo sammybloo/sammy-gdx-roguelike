@@ -1,20 +1,20 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.Group;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.View;
 
-public abstract class Party extends ResizableGroup {
+public abstract class PartyView extends ResizableGroup implements View {
 
     private PartyModel model;
-    private Leader leader;
-    private Hand hand;
-    private Tableau tableau;
+    private LeaderView leader;
+    private HandView hand;
+    private TableauView tableau;
 
     public static final float WIDTH = 1920;
     public static final float HEIGHT = 540;
 
-    public Party(PartyModel model) {
+    public PartyView(PartyModel model) {
         super(WIDTH, HEIGHT);
         this.model = model;
     }
@@ -27,27 +27,34 @@ public abstract class Party extends ResizableGroup {
         this.model = model;
     }
 
-    public Leader getLeader() {
+    public LeaderView getLeader() {
         return leader;
     }
 
-    public void setLeader(Leader leader) {
+    public void setLeader(LeaderView leader) {
         this.leader = leader;
     }
 
-    public Hand getHand() {
+    public HandView getHand() {
         return hand;
     }
 
-    public void setHand(Hand hand) {
+    public void setHand(HandView hand) {
         this.hand = hand;
     }
 
-    public Tableau getTableau() {
+    public TableauView getTableau() {
         return tableau;
     }
 
-    public void setTableau(Tableau tableau) {
+    public void setTableau(TableauView tableau) {
         this.tableau = tableau;
+    }
+
+    @Override
+    public void update() {
+        leader.update();
+        hand.update();
+        tableau.update();
     }
 }

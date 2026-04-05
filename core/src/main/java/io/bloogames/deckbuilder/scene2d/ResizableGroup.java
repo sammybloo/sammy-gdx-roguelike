@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public class ResizableGroup extends Group {
-    ObjectMap<Actor, ResizeableSettings> map = new ObjectMap<>();
+    ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     public float targetWidth;
     public float targetHeight;
 
@@ -22,9 +22,10 @@ public class ResizableGroup extends Group {
         float scaleY = getHeight() / targetHeight;
 
         for (Actor actor : map.keys()) {
-            Bounds bounds = calculate(map.get(actor), scaleX, scaleY);
-            actor.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
-
+            ResizableContainer container = map.get(actor);
+            Bounds bounds = calculate(container.getSettings(), scaleX, scaleY);
+            container.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
+            container.setRotation(container.getSettings().rotation);
             if (actor instanceof Label) {
                 ((Label) actor).setFontScale(Math.max(0.01f, scaleX), Math.max(0.01f, scaleY));
             }
@@ -32,20 +33,25 @@ public class ResizableGroup extends Group {
     }
 
     public void register(Actor actor, ResizeableSettings settings) {
-        map.put(actor, settings);
-        addActor(actor);
+        ResizableContainer container = new ResizableContainer(actor, settings);
+        map.put(actor, container);
+        addActor(container);
         resize();
     }
 
     public void unregister(Actor actor) {
+        ResizableContainer container = map.get(actor);
         map.remove(actor);
-        actor.remove();
+        container.clear();
+        removeActor(container);
         resize();
     }
 
     private Bounds calculate(ResizeableSettings settings, float scaleX, float scaleY) {
         if (settings.keepAspect) {
-            scaleY = scaleX;
+            float scale = Math.min(scaleX, scaleY);
+            scaleX = scale;
+            scaleY = scale;
         }
         float width = settings.width * scaleX;
         float height = settings.height * scaleY;
@@ -91,6 +97,7 @@ public class ResizableGroup extends Group {
         float yOffset = 0f;
         float paddingX = 0f;
         float paddingY = 0f;
+        float rotation = 0f;
         boolean keepAspect = false;
 
         public ResizeableSettings() {
@@ -152,6 +159,11 @@ public class ResizableGroup extends Group {
         public ResizeableSettings padding(float paddingX, float paddingY) {
             this.paddingX = paddingX;
             this.paddingY = paddingY;
+            return this;
+        }
+
+        public ResizeableSettings rotation(float rotation) {
+            this.rotation = rotation;
             return this;
         }
 
