@@ -1,9 +1,8 @@
 package io.bloogames.deckbuilder.model;
 
-import com.badlogic.gdx.graphics.Color;
 import io.bloogames.deckbuilder.data.BaseLeader;
 
-public class LeaderModel {
+public class LeaderModel implements Damageable {
     private BaseLeader base;
     private int damage;
     private int currentMana;

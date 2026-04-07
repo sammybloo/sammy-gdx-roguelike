@@ -1,27 +1,38 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import io.bloogames.deckbuilder.command.CancelTargetCommand;
 import io.bloogames.deckbuilder.manager.CommandManager;
+import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.Crosshair;
+import io.bloogames.deckbuilder.ui.HighlightState;
+import io.bloogames.deckbuilder.ui.Highlightable;
 
-public class TargetSystemView extends Group implements InputProcessor {
+public class TargetSystemView extends ResizableGroup implements InputProcessor {
 
-    public static final float WIDTH = 240f;
-    public static final float HEIGHT = 360f;
+    public static final float WIDTH = 1920f;
+    public static final float HEIGHT = 1080f;
 
     private Crosshair crosshair;
     private Group cardSpot;
     private CardView card;
+    private Vector2 mousePosition = new Vector2();
+    private Highlightable target;
 
     public TargetSystemView() {
+        super(WIDTH, HEIGHT);
+        setTouchable(Touchable.disabled);
         cardSpot = new Group();
         cardSpot.setBounds(10, 200, WIDTH, HEIGHT);
         crosshair = new Crosshair();
         crosshair.setVisible(false);
-        addActor(cardSpot);
+        register(cardSpot, new ResizeableSettings(320, 540));
         addActor(crosshair);
     }
 
@@ -33,6 +44,38 @@ public class TargetSystemView extends Group implements InputProcessor {
         card.setBounds(cardSpot.getX(), cardSpot.getY(), cardSpot.getWidth(), cardSpot.getHeight());
         card.setScale(cardSpot.getScaleX(), cardSpot.getScaleY());
         enableCrosshair();
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (getStage() == null) return;
+
+        mousePosition.set(Gdx.input.getX(), Gdx.input.getY());
+        Vector2 stageCoordinates = getStage().getViewport().unproject(mousePosition);
+        Actor hoveredActor = getStage().hit(stageCoordinates.x, stageCoordinates.y, true);
+
+        if (hoveredActor instanceof Highlightable hoveredHighlightable) {
+            updateTarget(hoveredHighlightable);
+        } else {
+            clearTargetHighlight();
+        }
+    }
+
+    private void updateTarget(Highlightable newTarget) {
+        if (target != null && target != newTarget) {
+            target.clearHighlight();
+        }
+
+        newTarget.setHighlightState(HighlightState.VALID);
+        target = newTarget;
+    }
+
+    private void clearTargetHighlight() {
+        if (target != null) {
+            target.clearHighlight();
+            target = null;
+        }
     }
 
     public boolean isTargeting() {

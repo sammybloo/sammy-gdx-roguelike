@@ -1,8 +1,9 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.controller.HandHoverController;
-import io.bloogames.deckbuilder.controller.TargetController;
+import io.bloogames.deckbuilder.controller.CardTargetController;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 
@@ -15,7 +16,7 @@ public class PlayerPartyView extends PartyView {
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
                 0.7f, 0f, 0.3f),
-            new HandHoverController(0, 0.1f), new TargetController()));
+            new HandHoverController(0, 0.1f), new CardTargetController()));
         setTableau(new TableauView(model.getTableau()));
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());

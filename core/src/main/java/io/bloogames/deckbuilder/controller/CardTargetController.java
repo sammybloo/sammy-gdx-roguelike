@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
 
-public class TargetController implements HandController {
+public class CardTargetController implements HandController {
 
     public void attach(HandView hand, CardView card) {
         card.addListener(new HoverListener(0f, 0f) {

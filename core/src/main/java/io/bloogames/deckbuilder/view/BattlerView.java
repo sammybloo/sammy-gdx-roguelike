@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -7,9 +8,11 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.HighlightState;
+import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
-public class BattlerView extends ResizableGroup implements View {
+public class BattlerView extends ResizableGroup implements View, Highlightable {
     private BattlerModel model;
     private Image art;
     private Image frame;
@@ -24,12 +27,17 @@ public class BattlerView extends ResizableGroup implements View {
         this.setOrigin(Align.center);
         this.model = model;
         this.art = new Image(AssetManager.INSTANCE.getSprite("card/" + model.getBattlerId()));
+        art.setTouchable(Touchable.disabled);
         frame = new Image(AssetManager.INSTANCE.getSprite("frame"));
+        frame.setTouchable(Touchable.disabled);
         powerLabel = new Label("", new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
         powerLabel.setAlignment(Align.center, Align.center);
+        powerLabel.setTouchable(Touchable.disabled);
+
         healthLabel = new Label("",
             new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
         healthLabel.setAlignment(Align.center, Align.center);
+        healthLabel.setTouchable(Touchable.disabled);
 
         this.register(art, new ResizeableSettings(WIDTH, HEIGHT));
         this.register(frame, new ResizeableSettings(WIDTH, HEIGHT));
@@ -49,5 +57,10 @@ public class BattlerView extends ResizableGroup implements View {
     public void update() {
         powerLabel.setText(model.getPower());
         healthLabel.setText(model.getHealth());
+    }
+
+    public void setHighlightState(HighlightState state) {
+        art.setColor(state.getColour());
+        frame.setColor(state.getColour());
     }
 }

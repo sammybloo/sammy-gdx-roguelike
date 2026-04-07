@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.View;
@@ -16,6 +17,7 @@ public abstract class PartyView extends ResizableGroup implements View {
 
     public PartyView(PartyModel model) {
         super(WIDTH, HEIGHT);
+        setTouchable(Touchable.childrenOnly);
         this.model = model;
     }
 

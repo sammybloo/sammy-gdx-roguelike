@@ -1,14 +1,17 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.HighlightState;
+import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
-public class SlotView extends ResizableGroup implements View {
+public class SlotView extends ResizableGroup implements View, Highlightable {
     private final Image image;
     private final SlotModel model;
     private BattlerView battler;
@@ -20,6 +23,7 @@ public class SlotView extends ResizableGroup implements View {
         super(WIDTH, HEIGHT);
         this.model = model;
         image = new Image(AssetManager.INSTANCE.getSprite("slot"));
+        image.setTouchable(Touchable.disabled);
         register(image, new ResizeableSettings(WIDTH, HEIGHT));
         setBattler(model.getBattler());
     }
@@ -91,5 +95,9 @@ public class SlotView extends ResizableGroup implements View {
         if (hasBattler()) {
             battler.update();
         }
+    }
+
+    public void setHighlightState(HighlightState state) {
+        image.setColor(state.getColour());
     }
 }

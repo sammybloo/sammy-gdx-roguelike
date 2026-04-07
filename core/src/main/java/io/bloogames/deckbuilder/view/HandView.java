@@ -1,6 +1,7 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.controller.HandController;
@@ -20,6 +21,7 @@ public class HandView extends FannedGroup implements View {
         super(fanSettings);
         this.model = model;
         this.interactionControllers = new Array<>(interactionControllers);
+        setTouchable(Touchable.childrenOnly);
         update();
     }
 

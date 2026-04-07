@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.data.BaseBattler;
 
-public class BattlerModel {
+public class BattlerModel implements Damageable {
     private BaseBattler base;
     private CardModel cardModel;
     private Stats stats;

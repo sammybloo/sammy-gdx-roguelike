@@ -7,11 +7,11 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerCardModel;
-import io.bloogames.deckbuilder.model.BattlerModel;
+import io.bloogames.deckbuilder.ui.HighlightState;
 
 public class BattlerCardView extends CardView {
     private BattlerCardModel battlerCardModel;
-    private Image battleFrame;
+    private Image frame;
     private Image art;
     private Label nameLabel;
     private Label powerLabel;
@@ -24,8 +24,12 @@ public class BattlerCardView extends CardView {
         super(model);
         this.battlerCardModel = model;
         setOrigin(Align.center);
+        setTouchable(Touchable.enabled);
         art = new Image(AssetManager.INSTANCE.getSprite("card/" + model.getCardId()));
-        battleFrame = new Image(AssetManager.INSTANCE.getSprite("battlerframe"));
+        art.setTouchable(Touchable.disabled);
+
+        frame = new Image(AssetManager.INSTANCE.getSprite("battlerframe"));
+        frame.setTouchable(Touchable.disabled);
 
         nameLabel = new Label(battlerCardModel.getCardName(),
             new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
@@ -48,7 +52,7 @@ public class BattlerCardView extends CardView {
     @Override
     public void hideContents() {
         unregister(art);
-        unregister(battleFrame);
+        unregister(frame);
         unregister(nameLabel);
         unregister(powerLabel);
         unregister(healthLabel);
@@ -57,7 +61,7 @@ public class BattlerCardView extends CardView {
     @Override
     public void showContents() {
         register(art, new ResizeableSettings(WIDTH * 0.948f, WIDTH * 0.948f).offset(WIDTH * 0.025f, HEIGHT * 0.284f));
-        register(battleFrame, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
+        register(frame, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
         register(nameLabel, new ResizeableSettings(WIDTH, 25, Align.top).yOffset(15f));
         register(powerLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f).offset(30f, HEIGHT * 0.296f));
         register(healthLabel, new ResizeableSettings(WIDTH * 0.181f, HEIGHT * 0.12f, Align.bottomRight).offset(30f, HEIGHT * 0.296f));
@@ -68,5 +72,12 @@ public class BattlerCardView extends CardView {
         nameLabel.setText(getName());
         powerLabel.setText(battlerCardModel.getPower());
         healthLabel.setText(battlerCardModel.getHealth());
+    }
+
+    @Override
+    public void setHighlightState(HighlightState state) {
+        super.setHighlightState(state);
+        art.setColor(state.getColour());
+        frame.setColor(state.getColour());
     }
 }

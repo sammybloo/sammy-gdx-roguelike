@@ -5,9 +5,11 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.HighlightState;
+import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
-public abstract class CardView extends ResizableGroup implements View {
+public abstract class CardView extends ResizableGroup implements View, Highlightable {
 
     public static final float WIDTH = 360f;
     public static final float HEIGHT = 540f;
@@ -44,5 +46,10 @@ public abstract class CardView extends ResizableGroup implements View {
             }
             register(cardBack, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
         }
+    }
+
+    @Override
+    public void setHighlightState(HighlightState state) {
+        setColor(state.getColour());
     }
 }

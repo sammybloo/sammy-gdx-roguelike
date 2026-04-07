@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.controller.TableauController;
@@ -27,6 +28,7 @@ public class TableauView extends ResizableGroup implements View {
         super(WIDTH, HEIGHT);
         this.model = model;
         this.slots = new Array<>(model.getSize());
+        setTouchable(Touchable.childrenOnly);
 
         for (int i = 0; i < model.getSize(); i++) {
             slots.add(new SlotView(model.getSlot(i)));

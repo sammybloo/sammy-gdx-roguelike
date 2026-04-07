@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -7,9 +8,11 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.HighlightState;
+import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
-public class LeaderView extends ResizableGroup implements View {
+public class LeaderView extends ResizableGroup implements View, Highlightable {
     private LeaderModel model;
     private Image image;
     private Image frame;
@@ -22,10 +25,13 @@ public class LeaderView extends ResizableGroup implements View {
         super(WIDTH, HEIGHT);
 
         this.model = model;
-        this.image = new Image(AssetManager.INSTANCE.getSprite("leader/" + model.getId()));
-        this.frame = new Image(AssetManager.INSTANCE.getSprite("leaderframe"));
-        this.healthLabel = new Label(model.getMaxHealth() + "",
+        image = new Image(AssetManager.INSTANCE.getSprite("leader/" + model.getId()));
+        image.setTouchable(Touchable.disabled);
+        frame = new Image(AssetManager.INSTANCE.getSprite("leaderframe"));
+        frame.setTouchable(Touchable.disabled);
+        healthLabel = new Label(model.getMaxHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getLeaderHealthFont(), null));
+        healthLabel.setTouchable(Touchable.disabled);
         healthLabel.setAlignment(Align.bottom);
         register(image, new ResizeableSettings(WIDTH, HEIGHT));
         register(frame, new ResizeableSettings(WIDTH, HEIGHT));
@@ -42,5 +48,10 @@ public class LeaderView extends ResizableGroup implements View {
 
     @Override
     public void update() {
+    }
+
+    public void setHighlightState(HighlightState state) {
+        image.setColor(state.getColour());
+        frame.setColor(state.getColour());
     }
 }

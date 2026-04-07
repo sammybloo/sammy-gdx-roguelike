@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Json;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.data.*;
 import io.bloogames.deckbuilder.manager.CommandManager;
