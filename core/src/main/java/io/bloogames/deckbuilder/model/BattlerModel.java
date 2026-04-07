@@ -1,22 +1,25 @@
 package io.bloogames.deckbuilder.model;
 
-import io.bloogames.deckbuilder.data.BaseBattler;
+import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.effect.EffectContext;
 
 public class BattlerModel implements Damageable {
-    private BaseBattler base;
     private CardModel cardModel;
     private Stats stats;
     private int damage;
 
-    public BattlerModel(BaseBattler base) {
-        this.cardModel = new CardModel(base.getBaseCard());
-        stats = new Stats(base.getBaseStats());
-        this.base = base;
+    public BattlerModel(BaseBattlerCard cardModel) {
+        this.cardModel = new BattlerCardModel(cardModel);
+        this.stats = new Stats(cardModel.getBaseStats());
+    }
+
+    public BattlerModel(BattlerCardModel cardModel) {
+        this.cardModel = cardModel;
+        this.stats = new Stats(cardModel.getBaseBattlerCard().getBaseStats());
     }
 
     public String getBattlerId() {
-        return base.getId();
+        return cardModel.getCardId();
     }
 
     public int getPower() {

@@ -10,11 +10,16 @@ public class BattlerCardModel extends CardModel {
         this.baseBattlerCard = base;
     }
 
+
     public int getPower() {
         return baseBattlerCard.getBaseStats().getPower();
     }
 
     public int getHealth() {
         return baseBattlerCard.getBaseStats().getHealth();
+    }
+
+    public BaseBattlerCard getBaseBattlerCard() {
+        return baseBattlerCard;
     }
 }

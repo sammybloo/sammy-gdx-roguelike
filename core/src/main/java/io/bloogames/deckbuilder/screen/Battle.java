@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Json;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.data.*;
+import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.view.*;
@@ -42,51 +43,24 @@ public class Battle implements Screen {
                 new TableauModel(5), new HandModel(10))
         );
 
-        var arr = new BaseBattler[]{
-            new BaseBattler(
-                new BaseBattlerCard("battler", "Mrs Battle", 1,
-                    new BaseStats(3, 5))),
-            new BaseBattler(
-                new BaseBattlerCard("beetle", "Buggo", 2,
-                    new BaseStats(7, 8))),
-            new BaseBattler(
-                new BaseBattlerCard("bird", "Da Bird", 3,
-                    new BaseStats(6, 2))),
-            new BaseBattler(
-                new BaseBattlerCard("fallenstar", "Fallen Star", 3,
-                    new BaseStats(99, 99))),
-            new BaseBattler(
-                new BaseBattlerCard("wrio", "Warm Wriothesley", 3,
-                    new BaseStats(6, 0))),
-            new BaseBattler(
-                new BaseBattlerCard("vanille", "Lesbean", 3,
-                new BaseStats(3, 10))),
-            new BaseBattler(
-                new BaseBattlerCard("columbo", "Columbno Glasses", 3,
-                new BaseStats(5, 5))),
-            new BaseBattler(
-                new BaseBattlerCard("snail", "Snaul", 3,
-                new BaseStats(12, 1))),
-            new BaseBattler(
-                new BaseBattlerCard("paulallen", "Harvey Normal", 3,
-                new BaseStats(2, 2))),
-            new BaseBattler(
-                new BaseBattlerCard("worms", "Vent Worms", 3,
-                new BaseStats(4, 5)))
-        };
-        battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(new BattlerModel(arr[0]));
-        battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(new BattlerModel(arr[1]));
-        battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(new BattlerModel(arr[2]));
+        var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
+            "vanille", "columbo", "snail", "paulallen", "worms"};
+        battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(
+            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[0])));
+        battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(
+    new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[1])));
+        battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
+            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
         for (int i = 0; i < 10; i++) {
             var battlerCard = new BattlerCardModel(
-                arr[MathUtils.random(0, arr.length - 1)].getBaseCard());
+                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
             battleModel.getPlayerParty().getHand().addCard(battlerCard);
         }
 
         for (int i = 0; i < 10; i++) {
             var battlerCard = new BattlerCardModel(
-                arr[MathUtils.random(0, arr.length - 1)].getBaseCard());
+                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
             battleModel.getEnemyParty().getHand().addCard(battlerCard);
         }
 

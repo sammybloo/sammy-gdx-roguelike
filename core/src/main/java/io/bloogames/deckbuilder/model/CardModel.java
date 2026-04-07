@@ -18,6 +18,10 @@ public class CardModel {
         return base.getCardName();
     }
 
+    public BaseCard getBaseCard() {
+        return base;
+    }
+
     public boolean isFaceup() {
         return faceup;
     }

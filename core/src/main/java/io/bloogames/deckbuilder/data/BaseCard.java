@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.data;
 
+import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.target.BaseTargetData;
 
 public class BaseCard {
@@ -7,13 +8,13 @@ public class BaseCard {
     private String cardId;
     private String cardName;
     private int cost;
-    private BaseTargetData targetData;
+    private TargetedEffect effect;
 
-    public BaseCard(String cardId, String cardName, int cost, BaseTargetData targetData) {
+    public BaseCard(String cardId, String cardName, int cost, TargetedEffect effect) {
         this.cardId = cardId;
         this.cardName = cardName;
         this.cost = cost;
-        this.targetData = targetData;
+        this.effect = effect;
     }
 
     public String getCardId() {
@@ -28,7 +29,4 @@ public class BaseCard {
         return cost;
     }
 
-    public BaseTargetData getTargetData() {
-        return targetData;
-    }
 }
