@@ -1,7 +1,6 @@
-package io.bloogames.deckbuilder.effect.event.concrete;
+package io.bloogames.deckbuilder.effect.event;
 
 import io.bloogames.deckbuilder.effect.source.EffectSource;
-import io.bloogames.deckbuilder.effect.event.BattleEvent;
 import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.model.Damageable;
 
