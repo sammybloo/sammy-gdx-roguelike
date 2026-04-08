@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.data;
 
 import io.bloogames.deckbuilder.effect.TargetedEffect;
-import io.bloogames.deckbuilder.effect.target.BaseTargetData;
 
 public class BaseCard {
 

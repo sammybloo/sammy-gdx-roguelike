@@ -7,7 +7,6 @@ import io.bloogames.deckbuilder.effect.step.ReactionTiming;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.model.BattlerModel;
-import io.bloogames.deckbuilder.model.SlotModel;
 
 public class AddBattlerStep implements TargetStep<SlotTarget> {
     private BattlerModel battler;
@@ -17,7 +16,7 @@ public class AddBattlerStep implements TargetStep<SlotTarget> {
     }
 
     @Override
-    public void apply(EffectContext<SlotTarget> ctx, EffectExecutor executor) {
+    public void applyTarget(EffectContext<SlotTarget> ctx, EffectExecutor executor) {
         ctx.target().slot().setBattler(battler);
         executor.emit(
             new BattlerAddedEvent(

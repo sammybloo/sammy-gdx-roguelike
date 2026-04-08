@@ -1,50 +1,32 @@
 package io.bloogames.deckbuilder.effect.execution;
 
-import io.bloogames.deckbuilder.effect.Effect;
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.EffectContext;
+import io.bloogames.deckbuilder.effect.step.EffectStep;
 import io.bloogames.deckbuilder.effect.target.Target;
 
 public final class EffectExecution<T extends Target> {
-    private final Effect effect;
     private final EffectContext<T> context;
-    private int battleIndex;
-    private int targetIndex;
-    private boolean battlePhaseDone;
+    private final Array<EffectStep> steps;
 
-    public EffectExecution(Effect effect, EffectContext<T> context) {
-        this.effect = effect;
+    public EffectExecution(EffectContext<T> context, Array<EffectStep> steps) {
         this.context = context;
-    }
-
-    public Effect effect() {
-        return effect;
+        this.steps = new Array<>(steps);
     }
 
     public EffectContext<T> context() {
         return context;
     }
 
-    public int battleIndex() {
-        return battleIndex;
+    public boolean hasSteps() {
+        return steps.size > 0;
     }
 
-    public void battleIndex(int battleIndex) {
-        this.battleIndex = battleIndex;
+    public EffectStep popStep() {
+        return steps.removeIndex(0);
     }
 
-    public int targetIndex() {
-        return targetIndex;
-    }
-
-    public void targetIndex(int targetIndex) {
-        this.targetIndex = targetIndex;
-    }
-
-    public boolean battlePhaseDone() {
-        return battlePhaseDone;
-    }
-
-    public void battlePhaseDone(boolean battlePhaseDone) {
-        this.battlePhaseDone = battlePhaseDone;
+    public boolean isDone() {
+        return steps.size == 0;
     }
 }

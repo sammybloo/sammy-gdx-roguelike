@@ -15,7 +15,7 @@ public class DamageStep implements TargetStep<DamageableTarget> {
     }
 
     @Override
-    public void apply(EffectContext<DamageableTarget> ctx, EffectExecutor executor) {
+    public void applyTarget(EffectContext<DamageableTarget> ctx, EffectExecutor executor) {
         ctx.target().damageable().damage(ctx, amount);
 
         executor.emit(

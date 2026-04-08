@@ -13,8 +13,7 @@ public class BaseBattlerCard extends BaseCard {
     public BaseBattlerCard(String cardId, String cardName, int cost, BaseStats baseStats) {
         super(cardId, cardName, cost,
             new TargetedEffect(new TargetSpec(TargetOwnerType.OWN, TargetType.SLOT),
-                new EffectBuilder().addTargetStep(TargetType.SLOT,
-                        new AddBattlerFromIdStep(cardId)).build()));
+                new EffectBuilder().addTargetStep(TargetType.SLOT, new AddBattlerFromIdStep(cardId)).build()));
         this.baseStats = baseStats;
     }
     public BaseStats getBaseStats() {
