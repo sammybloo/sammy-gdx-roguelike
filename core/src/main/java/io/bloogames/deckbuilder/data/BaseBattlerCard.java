@@ -5,8 +5,6 @@ import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.condition.TargetConditionList;
 import io.bloogames.deckbuilder.effect.condition.concrete.target.SlotIsEmpty;
-import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
-import io.bloogames.deckbuilder.effect.step.concrete.AddBattlerFromIdStep;
 import io.bloogames.deckbuilder.effect.step.concrete.AddBattlerFromSourceCardStep;
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
@@ -23,6 +21,7 @@ public class BaseBattlerCard extends BaseCard {
             SourceConditionList.none());
         this.baseStats = baseStats;
     }
+
     public BaseStats getBaseStats() {
         return baseStats;
     }

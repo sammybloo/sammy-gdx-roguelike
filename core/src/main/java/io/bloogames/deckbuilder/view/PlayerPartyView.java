@@ -1,8 +1,8 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
-import io.bloogames.deckbuilder.effect.controller.HandHoverController;
 import io.bloogames.deckbuilder.effect.controller.CardTargetController;
+import io.bloogames.deckbuilder.effect.controller.HandHoverController;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 

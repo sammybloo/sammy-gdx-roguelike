@@ -2,7 +2,6 @@ package io.bloogames.deckbuilder.effect;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.step.BattleStep;
-import io.bloogames.deckbuilder.effect.step.EffectStep;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;

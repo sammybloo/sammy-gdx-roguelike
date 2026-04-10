@@ -5,8 +5,6 @@ import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
-import io.bloogames.deckbuilder.manager.CardManager;
-import io.bloogames.deckbuilder.model.BattlerCardModel;
 import io.bloogames.deckbuilder.model.BattlerModel;
 
 public class AddBattlerFromSourceCardStep implements TargetStep<SlotTarget> {

@@ -36,6 +36,7 @@ public class CardModel {
     public TargetSpec getTargetSpec() {
         return base.getEffect().targetSpec();
     }
+
     public int getCurrentCost() {
         return base.getCost();
     }

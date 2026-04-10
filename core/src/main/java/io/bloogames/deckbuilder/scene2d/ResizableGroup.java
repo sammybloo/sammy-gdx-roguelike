@@ -1,7 +1,5 @@
 package io.bloogames.deckbuilder.scene2d;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -89,7 +87,9 @@ public class ResizableGroup extends Group {
         resize();
     }
 
-    private record Bounds(float x, float y, float width, float height){}
+    private record Bounds(float x, float y, float width, float height) {
+    }
+
     public static class ResizeableSettings {
 
         float width;

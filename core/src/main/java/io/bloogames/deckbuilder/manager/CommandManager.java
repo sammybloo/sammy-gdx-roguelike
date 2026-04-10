@@ -13,6 +13,7 @@ public enum CommandManager {
     public void setBattle(BattleModel battle) {
         this.battle = battle;
     }
+
     public void processImmediately(Command command) {
         command.execute(battle);
     }

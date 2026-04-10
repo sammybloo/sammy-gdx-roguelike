@@ -10,6 +10,7 @@ public class SourceConditionList<T extends EffectSource> {
     public static <T extends EffectSource> SourceConditionList<T> none() {
         return (SourceConditionList<T>) NONE_INSTANCE;
     }
+
     private final Array<SourceCondition<? super T>> conditions;
 
     private SourceConditionList(Array<SourceCondition<? super T>> conditions) {

@@ -81,6 +81,7 @@ public class TargetSystemView extends ResizableGroup implements InputProcessor {
     public boolean isTargeting() {
         return card != null;
     }
+
     public CardView getCard() {
         return card;
     }

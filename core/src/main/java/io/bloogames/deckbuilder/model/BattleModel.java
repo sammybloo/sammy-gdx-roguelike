@@ -20,8 +20,7 @@ public class BattleModel {
     public PartyModel getOwner(CardModel cardModel) {
         if (playerParty.hasCard(cardModel)) {
             return playerParty;
-        }
-        else if (enemyParty.hasCard(cardModel)) {
+        } else if (enemyParty.hasCard(cardModel)) {
             return enemyParty;
         }
         return null;

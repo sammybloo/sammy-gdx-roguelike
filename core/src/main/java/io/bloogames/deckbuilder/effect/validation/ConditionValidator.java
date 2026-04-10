@@ -1,14 +1,11 @@
 package io.bloogames.deckbuilder.effect.validation;
 
-import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.effect.condition.SourceCondition;
 import io.bloogames.deckbuilder.effect.context.SourceContext;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
 import io.bloogames.deckbuilder.error.ValidationError;
-import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.screen.Battle;
 
 import java.util.Optional;
@@ -59,8 +56,7 @@ public class ConditionValidator {
         boolean isOwn = context.battle().getOwner(source.card()) == context.target().owner();
         if (targetSpec.ownerType() == TargetOwnerType.OWN && !isOwn) {
             return Optional.of(new ValidationError("target_must_be_own"));
-        }
-        else if (targetSpec.ownerType() == TargetOwnerType.OTHER && isOwn) {
+        } else if (targetSpec.ownerType() == TargetOwnerType.OTHER && isOwn) {
             return Optional.of(new ValidationError("target_must_be_other"));
         }
 

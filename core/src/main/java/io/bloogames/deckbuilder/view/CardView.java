@@ -16,6 +16,7 @@ public abstract class CardView extends ResizableGroup implements View, Highlight
 
     private final CardModel cardModel;
     private Image cardBack;
+
     public CardView(CardModel cardModel) {
         super(WIDTH, HEIGHT);
         this.cardModel = cardModel;
@@ -38,8 +39,7 @@ public abstract class CardView extends ResizableGroup implements View, Highlight
         if (faceup) {
             unregister(cardBack);
             showContents();
-        }
-        else {
+        } else {
             hideContents();
             if (cardBack == null) {
                 cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));

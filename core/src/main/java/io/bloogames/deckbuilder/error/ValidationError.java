@@ -1,3 +1,4 @@
 package io.bloogames.deckbuilder.error;
 
-public record ValidationError(String errorId) {}
+public record ValidationError(String errorId) {
+}

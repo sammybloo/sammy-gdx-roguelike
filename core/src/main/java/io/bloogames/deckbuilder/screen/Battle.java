@@ -7,12 +7,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.bloogames.deckbuilder.Main;
-import io.bloogames.deckbuilder.data.*;
-import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.TargetedEffect;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
-import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.CommandManager;
@@ -53,7 +52,7 @@ public class Battle implements Screen {
         battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[0])));
         battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(
-    new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[1])));
+            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[1])));
         battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 

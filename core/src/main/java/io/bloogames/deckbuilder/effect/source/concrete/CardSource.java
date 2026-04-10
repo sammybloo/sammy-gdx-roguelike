@@ -3,7 +3,6 @@ package io.bloogames.deckbuilder.effect.source.concrete;
 import io.bloogames.deckbuilder.effect.source.EffectSource;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.LeaderModel;
-import io.bloogames.deckbuilder.model.PartyModel;
 
 public class CardSource implements EffectSource {
     private final CardModel card;

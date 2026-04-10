@@ -1,7 +1,5 @@
 package io.bloogames.deckbuilder.data;
 
-import com.badlogic.gdx.graphics.Color;
-
 public class BaseLeader {
     private String id;
     private int maxHealth;
