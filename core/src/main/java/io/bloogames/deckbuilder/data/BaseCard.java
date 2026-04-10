@@ -6,11 +6,11 @@ import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 
 public class BaseCard {
 
-    private String cardId;
-    private String cardName;
-    private int cost;
-    private TargetedEffect effect;
-    private SourceConditionList<? extends CardSource> conditionList;
+    private final String cardId;
+    private final String cardName;
+    private final int cost;
+    private final TargetedEffect effect;
+    private final SourceConditionList<? extends CardSource> conditionList;
 
     public BaseCard(String cardId, String cardName, int cost, TargetedEffect effect, SourceConditionList<? extends CardSource> conditionList) {
         this.cardId = cardId;

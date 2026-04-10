@@ -86,7 +86,7 @@ public class Battle implements Screen {
 
         EffectExecutor executor = new EffectExecutor();
         TargetedEffect effect = battlerCard.getBaseCard().getEffect();
-        TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty().getLeader()),
+        TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty()),
             new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));
         executor.begin(effect.effect(), context);
         executor.update();

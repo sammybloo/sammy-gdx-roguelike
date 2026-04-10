@@ -11,7 +11,7 @@ import io.bloogames.deckbuilder.effect.target.TargetSpec;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 
 public class BaseBattlerCard extends BaseCard {
-    private BaseStats baseStats;
+    private final BaseStats baseStats;
 
     public BaseBattlerCard(String cardId, String cardName, int cost, BaseStats baseStats) {
         super(cardId, cardName, cost,
