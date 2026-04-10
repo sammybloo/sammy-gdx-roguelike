@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
-import io.bloogames.deckbuilder.effect.EffectContext;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
 
 public class BattlerModel implements Damageable {
     private CardModel cardModel;
@@ -35,12 +35,12 @@ public class BattlerModel implements Damageable {
     }
 
     @Override
-    public int damage(EffectContext<?> context, int amount) {
+    public int damage(TargetContext<?> context, int amount) {
         return damage += amount;
     }
 
     @Override
-    public int heal(EffectContext<?> context, int amount) {
+    public int heal(TargetContext<?> context, int amount) {
         return damage -= amount;
     }
 }

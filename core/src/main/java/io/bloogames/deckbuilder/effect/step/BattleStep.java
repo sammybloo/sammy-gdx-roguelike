@@ -1,12 +1,10 @@
 package io.bloogames.deckbuilder.effect.step;
 
-import io.bloogames.deckbuilder.effect.EffectContext;
-import io.bloogames.deckbuilder.effect.source.EffectSource;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.target.Target;
-import io.bloogames.deckbuilder.model.BattleModel;
 
 public interface BattleStep extends EffectStep {
     @Override
-    void apply(EffectContext<? extends Target> context, EffectExecutor executor);
+    void apply(TargetContext<? extends Target> context, EffectExecutor executor);
 }

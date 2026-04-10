@@ -3,8 +3,6 @@ package io.bloogames.deckbuilder.command;
 import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
-import io.bloogames.deckbuilder.model.TableauModel;
-import io.bloogames.deckbuilder.screen.Battle;
 
 public class SwapBattlerCommand implements Command {
 

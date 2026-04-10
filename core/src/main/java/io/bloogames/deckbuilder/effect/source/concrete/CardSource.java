@@ -2,12 +2,16 @@ package io.bloogames.deckbuilder.effect.source.concrete;
 
 import io.bloogames.deckbuilder.effect.source.EffectSource;
 import io.bloogames.deckbuilder.model.CardModel;
+import io.bloogames.deckbuilder.model.LeaderModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
-public final class CardSource implements EffectSource {
+public class CardSource implements EffectSource {
     private final CardModel card;
+    private final LeaderModel caster;
 
-    public CardSource(CardModel card) {
+    public CardSource(CardModel card, LeaderModel caster) {
         this.card = card;
+        this.caster = caster;
     }
 
     // TODO: find a different ID for this that is actually unique
@@ -18,5 +22,9 @@ public final class CardSource implements EffectSource {
 
     public CardModel card() {
         return card;
+    }
+
+    public LeaderModel caster() {
+        return caster;
     }
 }

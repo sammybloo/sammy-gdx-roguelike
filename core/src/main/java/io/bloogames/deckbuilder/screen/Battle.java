@@ -6,9 +6,14 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Json;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.data.*;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.effect.TargetedEffect;
+import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
+import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
+import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
+import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.model.*;
@@ -52,16 +57,17 @@ public class Battle implements Screen {
         battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
+        BattlerCardModel battlerCard = null;
         for (int i = 0; i < 10; i++) {
-            var battlerCard = new BattlerCardModel(
+            battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-            battleModel.getPlayerParty().getHand().addCard(battlerCard);
+            battleModel.getEnemyParty().getHand().addCard(battlerCard);
         }
 
         for (int i = 0; i < 10; i++) {
-            var battlerCard = new BattlerCardModel(
+            battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-            battleModel.getEnemyParty().getHand().addCard(battlerCard);
+            battleModel.getPlayerParty().getHand().addCard(battlerCard);
         }
 
         targetSystem = new TargetSystemView();
@@ -78,6 +84,16 @@ public class Battle implements Screen {
         stage.addActor(enemyParty);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
+
+        EffectExecutor executor = new EffectExecutor();
+        TargetedEffect effect = battlerCard.getBaseCard().getEffect();
+        TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty().getLeader()),
+            new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));
+        executor.begin(effect.effect(), context);
+        executor.update();
+        battleModel.getPlayerParty().getHand().removeCard(battlerCard);
+
+        playerParty.update();
     }
 
     @Override

@@ -1,20 +1,20 @@
 package io.bloogames.deckbuilder.effect.execution;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.effect.EffectContext;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.step.EffectStep;
 import io.bloogames.deckbuilder.effect.target.Target;
 
 public final class EffectExecution<T extends Target> {
-    private final EffectContext<T> context;
+    private final TargetContext<T> context;
     private final Array<EffectStep> steps;
 
-    public EffectExecution(EffectContext<T> context, Array<EffectStep> steps) {
+    public EffectExecution(TargetContext<T> context, Array<EffectStep> steps) {
         this.context = context;
         this.steps = new Array<>(steps);
     }
 
-    public EffectContext<T> context() {
+    public TargetContext<T> context() {
         return context;
     }
 

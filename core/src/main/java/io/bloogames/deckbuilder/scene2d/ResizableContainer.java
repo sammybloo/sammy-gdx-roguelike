@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.scene2d;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Container;
+import com.badlogic.gdx.utils.Align;
 
 public class ResizableContainer extends Container<Actor> {
     private ResizableGroup.ResizeableSettings settings;
@@ -10,6 +11,7 @@ public class ResizableContainer extends Container<Actor> {
         super(actor);
         actor.setPosition(0, 0);
         this.settings = settings;
+        getActor().setOrigin(Align.center);
     }
 
     public ResizableGroup.ResizeableSettings getSettings() {
@@ -20,11 +22,13 @@ public class ResizableContainer extends Container<Actor> {
     public void setSize(float width, float height) {
         super.setSize(width, height);
         getActor().setSize(width, height);
+        getActor().setOrigin(Align.center);
     }
 
     @Override
     public void setBounds(float x, float y, float width, float height) {
         super.setBounds(x, y, width, height);
         getActor().setSize(width, height);
+        getActor().setOrigin(Align.center);
     }
 }

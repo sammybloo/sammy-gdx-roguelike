@@ -16,4 +16,14 @@ public class BattleModel {
     public PartyModel getEnemyParty() {
         return enemyParty;
     }
+
+    public PartyModel getOwner(CardModel cardModel) {
+        if (playerParty.hasCard(cardModel)) {
+            return playerParty;
+        }
+        else if (enemyParty.hasCard(cardModel)) {
+            return enemyParty;
+        }
+        return null;
+    }
 }

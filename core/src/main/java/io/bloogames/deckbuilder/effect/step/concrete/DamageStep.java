@@ -1,6 +1,6 @@
 package io.bloogames.deckbuilder.effect.step.concrete;
 
-import io.bloogames.deckbuilder.effect.EffectContext;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.step.ReactionTiming;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
@@ -15,7 +15,7 @@ public class DamageStep implements TargetStep<DamageableTarget> {
     }
 
     @Override
-    public void applyTarget(EffectContext<DamageableTarget> ctx, EffectExecutor executor) {
+    public void applyTarget(TargetContext<DamageableTarget> ctx, EffectExecutor executor) {
         ctx.target().damageable().damage(ctx, amount);
 
         executor.emit(

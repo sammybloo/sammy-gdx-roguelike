@@ -22,4 +22,8 @@ public class PartyModel {
     public HandModel getHand() {
         return hand;
     }
+
+    public boolean hasCard(CardModel card) {
+        return hand.contains(card);
+    }
 }

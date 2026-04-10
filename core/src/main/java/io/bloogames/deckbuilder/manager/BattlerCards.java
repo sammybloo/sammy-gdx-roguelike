@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.manager;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.data.BaseStats;
+import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 
 public class BattlerCards {
     public static void registerAll(ObjectMap<String, BaseBattlerCard> objectMap) {

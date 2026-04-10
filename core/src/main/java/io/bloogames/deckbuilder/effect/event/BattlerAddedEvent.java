@@ -8,5 +8,5 @@ public record BattlerAddedEvent(
     EffectSource source,
     SlotModel slot,
     BattlerModel battler
-) implements BattleEvent {
+) implements GameEvent {
 }

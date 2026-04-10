@@ -3,7 +3,6 @@ package io.bloogames.deckbuilder.manager;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.command.Command;
 import io.bloogames.deckbuilder.model.BattleModel;
-import io.bloogames.deckbuilder.screen.Battle;
 
 public enum CommandManager {
     INSTANCE;

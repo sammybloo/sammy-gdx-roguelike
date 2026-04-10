@@ -10,4 +10,8 @@ public class SlotModel {
     public void setBattler(BattlerModel battler) {
         this.battler = battler;
     }
+
+    public boolean hasBattler() {
+        return battler != null;
+    }
 }

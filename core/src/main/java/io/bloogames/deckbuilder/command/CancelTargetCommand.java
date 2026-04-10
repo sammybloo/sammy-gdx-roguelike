@@ -1,8 +1,6 @@
 package io.bloogames.deckbuilder.command;
 
-import com.badlogic.gdx.Gdx;
 import io.bloogames.deckbuilder.model.BattleModel;
-import io.bloogames.deckbuilder.screen.Battle;
 
 public class CancelTargetCommand implements Command {
 

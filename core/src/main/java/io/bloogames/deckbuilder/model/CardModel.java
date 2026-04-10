@@ -1,6 +1,9 @@
 package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.data.BaseCard;
+import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
+import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
+import io.bloogames.deckbuilder.effect.target.TargetSpec;
 
 public class CardModel {
     private BaseCard base;
@@ -28,5 +31,16 @@ public class CardModel {
 
     public void setFaceup(boolean faceup) {
         this.faceup = faceup;
+    }
+
+    public TargetSpec getTargetSpec() {
+        return base.getEffect().targetSpec();
+    }
+    public int getCurrentCost() {
+        return base.getCost();
+    }
+
+    public SourceConditionList<? extends CardSource> getSourceConditionList() {
+        return base.getConditionList();
     }
 }

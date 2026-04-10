@@ -1,8 +1,6 @@
 package io.bloogames.deckbuilder.command;
 
-import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.model.BattleModel;
-import io.bloogames.deckbuilder.screen.Battle;
 import io.bloogames.deckbuilder.view.CardView;
 
 public class ChooseTargetCommand implements Command {

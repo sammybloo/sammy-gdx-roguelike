@@ -1,6 +1,8 @@
 package io.bloogames.deckbuilder.data;
 
 import io.bloogames.deckbuilder.effect.TargetedEffect;
+import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
+import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 
 public class BaseCard {
 
@@ -8,12 +10,14 @@ public class BaseCard {
     private String cardName;
     private int cost;
     private TargetedEffect effect;
+    private SourceConditionList<? extends CardSource> conditionList;
 
-    public BaseCard(String cardId, String cardName, int cost, TargetedEffect effect) {
+    public BaseCard(String cardId, String cardName, int cost, TargetedEffect effect, SourceConditionList<? extends CardSource> conditionList) {
         this.cardId = cardId;
         this.cardName = cardName;
         this.cost = cost;
         this.effect = effect;
+        this.conditionList = conditionList;
     }
 
     public String getCardId() {
@@ -28,4 +32,11 @@ public class BaseCard {
         return cost;
     }
 
+    public TargetedEffect getEffect() {
+        return effect;
+    }
+
+    public SourceConditionList<? extends CardSource> getConditionList() {
+        return conditionList;
+    }
 }

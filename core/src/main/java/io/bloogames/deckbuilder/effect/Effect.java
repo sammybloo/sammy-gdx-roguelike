@@ -11,10 +11,6 @@ public final class Effect {
         this.entries = new Array<>(entries);
     }
 
-    public Array<EffectStepEntry> entries() {
-        return new Array<>(entries);
-    }
-
     public Array<EffectStep> stepsFor(TargetType targetType) {
         Array<EffectStep> filtered = new Array<>();
 

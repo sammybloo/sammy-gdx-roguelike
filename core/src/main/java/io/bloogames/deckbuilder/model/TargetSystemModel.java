@@ -7,5 +7,4 @@ public class TargetSystemModel {
         this.battleModel = battleModel;
     }
 
-
 }

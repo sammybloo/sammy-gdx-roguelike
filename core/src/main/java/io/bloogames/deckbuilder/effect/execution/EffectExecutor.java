@@ -2,8 +2,8 @@ package io.bloogames.deckbuilder.effect.execution;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.Effect;
-import io.bloogames.deckbuilder.effect.EffectContext;
-import io.bloogames.deckbuilder.effect.event.BattleEvent;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.effect.event.GameEvent;
 import io.bloogames.deckbuilder.effect.step.EffectStep;
 import io.bloogames.deckbuilder.effect.step.ReactionTiming;
 import io.bloogames.deckbuilder.effect.target.Target;
@@ -18,7 +18,7 @@ public class EffectExecutor {
         triggers.add(trigger);
     }
 
-    public void begin(Effect effect, EffectContext<? extends Target> context) {
+    public void begin(Effect effect, TargetContext<? extends Target> context) {
         enqueueDeferred(effect, context);
     }
 
@@ -52,13 +52,13 @@ public class EffectExecutor {
         step.apply(execution.context(), this);
     }
 
-    public void emit(BattleEvent event, ReactionTiming timing) {
+    public void emit(GameEvent event, ReactionTiming timing) {
         for (int i = 0; i < triggers.size; i++) {
             dispatch(triggers.get(i), event, timing);
         }
     }
 
-    private <E extends BattleEvent> void dispatch(BattleTrigger<?> trigger, BattleEvent event, ReactionTiming timing) {
+    private <E extends GameEvent> void dispatch(BattleTrigger<?> trigger, GameEvent event, ReactionTiming timing) {
         @SuppressWarnings("unchecked")
         BattleTrigger<E> typed = (BattleTrigger<E>) trigger;
 
@@ -71,15 +71,15 @@ public class EffectExecutor {
         }
     }
 
-    public void enqueueImmediate(Effect effect, EffectContext<? extends Target> context) {
+    public void enqueueImmediate(Effect effect, TargetContext<? extends Target> context) {
         frontQueue.add(createExecution(effect, context));
     }
 
-    public void enqueueDeferred(Effect effect, EffectContext<? extends Target> context) {
+    public void enqueueDeferred(Effect effect, TargetContext<? extends Target> context) {
         queue.add(createExecution(effect, context));
     }
 
-    private <T extends Target> EffectExecution<T> createExecution(Effect effect, EffectContext<T> context) {
+    private <T extends Target> EffectExecution<T> createExecution(Effect effect, TargetContext<T> context) {
         return new EffectExecution<>(context, effect.stepsFor(context.target().type()));
     }
 }

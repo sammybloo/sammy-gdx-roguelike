@@ -9,5 +9,5 @@ public record DamageDealtEvent(
     EffectSource source,
     Damageable target,
     int amount
-) implements BattleEvent {
+) implements GameEvent {
 }
