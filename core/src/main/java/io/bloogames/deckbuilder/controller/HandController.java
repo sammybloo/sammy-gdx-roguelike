@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.effect.controller;
+package io.bloogames.deckbuilder.controller;
 
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;

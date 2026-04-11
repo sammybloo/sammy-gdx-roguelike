@@ -32,7 +32,7 @@ public class BaseCard {
         return cost;
     }
 
-    public TargetedEffect getEffect() {
+    public TargetedEffect getTargetedEffect() {
         return effect;
     }
 

@@ -14,8 +14,8 @@ import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.manager.CardManager;
-import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.model.*;
+import io.bloogames.deckbuilder.model.coordinator.BattleCoordinator;
 import io.bloogames.deckbuilder.view.*;
 
 public class Battle implements Screen {
@@ -24,6 +24,7 @@ public class Battle implements Screen {
     private Stage stage;
 
     private BattleModel battleModel;
+    private BattleCoordinator battleCoordinator;
 
     private PartyView playerParty;
     private PartyView enemyParty;
@@ -36,8 +37,6 @@ public class Battle implements Screen {
 
     @Override
     public void show() {
-        CommandManager.INSTANCE.setBattle(battleModel);
-
         stage = new Stage(game.getViewport());
 
         battleModel = new BattleModel(
@@ -82,10 +81,12 @@ public class Battle implements Screen {
         stage.addActor(playerParty);
         stage.addActor(enemyParty);
 
+        battleCoordinator = new BattleCoordinator(battleModel);
+
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
 
         EffectExecutor executor = new EffectExecutor();
-        TargetedEffect effect = battlerCard.getBaseCard().getEffect();
+        TargetedEffect effect = battlerCard.getBaseCard().getTargetedEffect();
         TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty()),
             new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));
         executor.begin(effect.effect(), context);

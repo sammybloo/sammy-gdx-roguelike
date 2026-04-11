@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
-import io.bloogames.deckbuilder.effect.controller.HandHoverController;
+import io.bloogames.deckbuilder.controller.HandHoverController;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 
@@ -17,7 +17,8 @@ public class EnemyPartyView extends PartyView {
                 1.05f, 180f, 0.2f),
             new HandHoverController(0.175f, 0.15f)));
 
-        setTableau(new TableauView(model.getTableau(), false));
+        setTableau(new TableauView(model.getTableau()
+        ));
 
         register(getLeader(), new ResizeableSettings(200f, 200f, Align.topLeft)
             .padding(10, 10).keepAspect());

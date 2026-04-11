@@ -7,8 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import io.bloogames.deckbuilder.command.CancelTargetCommand;
-import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.Crosshair;
 import io.bloogames.deckbuilder.ui.HighlightState;
@@ -128,7 +126,8 @@ public class TargetSystemView extends ResizableGroup implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (card == null || button != Input.Buttons.RIGHT) return false;
-        CommandManager.INSTANCE.processImmediately(new CancelTargetCommand());
+        // TODO replace functionality
+//        CommandManager.INSTANCE.processImmediately(new CancelTargetCommand());
         return true;
     }
 

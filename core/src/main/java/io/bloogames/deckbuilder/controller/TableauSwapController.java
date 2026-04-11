@@ -1,24 +1,20 @@
-package io.bloogames.deckbuilder.effect.controller;
+package io.bloogames.deckbuilder.controller;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
-import io.bloogames.deckbuilder.command.SwapBattlerCommand;
-import io.bloogames.deckbuilder.manager.CommandManager;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
 
-public class TableauController {
+public class TableauSwapController implements Controller {
 
     private final TableauView tableau;
     private final DragAndDrop dragAndDrop;
-    private boolean enabled;
 
-    public TableauController(TableauView tableau, boolean enabled) {
+    public TableauSwapController(TableauView tableau) {
         this.tableau = tableau;
-        this.enabled = enabled;
         this.dragAndDrop = new DragAndDrop();
         this.dragAndDrop.setKeepWithinStage(false);
         this.dragAndDrop.setDragTime(0);
@@ -28,8 +24,6 @@ public class TableauController {
 
     public void rebuild() {
         dragAndDrop.clear();
-
-        if (!enabled) return;
 
         for (SlotView slot : tableau.getSlots()) {
             dragAndDrop.addTarget(
@@ -43,8 +37,9 @@ public class TableauController {
                     public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
                         payload.getDragActor().remove();
                         SlotView otherSlot = (SlotView) payload.getObject();
-                        CommandManager.INSTANCE.processImmediately(
-                            new SwapBattlerCommand(otherSlot.getModel(), slot.getModel()));
+                        // TODO replace functionality
+//                        CommandManager.INSTANCE.processImmediately(
+//                            new SwapBattlerCommand(otherSlot.getModel(), slot.getModel()));
                         tableau.update();
                     }
                 }
@@ -81,5 +76,15 @@ public class TableauController {
 
     public DragAndDrop getDragAndDrop() {
         return dragAndDrop;
+    }
+
+    @Override
+    public void enable() {
+        rebuild();
+    }
+
+    @Override
+    public void disable() {
+        dragAndDrop.clear();
     }
 }

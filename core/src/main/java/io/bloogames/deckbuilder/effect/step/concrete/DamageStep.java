@@ -20,8 +20,6 @@ public class DamageStep implements TargetStep<DamageableTarget> {
 
         executor.emit(
             new DamageDealtEvent(
-                ctx.battle(), ctx.source(), ctx.target().damageable(), amount),
-            ReactionTiming.IMMEDIATE
-        );
+                ctx.battle(), ctx.source(), ctx.target().damageable(), amount));
     }
 }

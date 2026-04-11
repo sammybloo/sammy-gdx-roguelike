@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.effect.controller;
+package io.bloogames.deckbuilder.controller;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Timer;

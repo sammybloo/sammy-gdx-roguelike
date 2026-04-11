@@ -6,14 +6,14 @@ import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
-import io.bloogames.deckbuilder.screen.Battle;
+import io.bloogames.deckbuilder.model.BattleModel;
 
 import java.util.Optional;
 
 public class CardValidator {
     private final ConditionValidator conditionValidator = new ConditionValidator();
 
-    public Optional<ValidationError> checkCardsCanBePlayed(Battle battle) {
+    public Optional<ValidationError> checkCardsCanBePlayed(BattleModel battle) {
         return Optional.empty();
     }
 

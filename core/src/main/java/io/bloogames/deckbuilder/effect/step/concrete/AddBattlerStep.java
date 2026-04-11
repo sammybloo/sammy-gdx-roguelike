@@ -20,7 +20,6 @@ public class AddBattlerStep implements TargetStep<SlotTarget> {
         ctx.target().slot().setBattler(battler);
         executor.emit(
             new BattlerAddedEvent(
-                ctx.battle(), ctx.source(), ctx.target().slot(), battler),
-            ReactionTiming.IMMEDIATE);
+                ctx.battle(), ctx.source(), ctx.target().slot(), battler));
     }
 }

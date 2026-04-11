@@ -5,17 +5,15 @@ import io.bloogames.deckbuilder.effect.Effect;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.event.GameEvent;
 import io.bloogames.deckbuilder.effect.step.EffectStep;
-import io.bloogames.deckbuilder.effect.step.ReactionTiming;
 import io.bloogames.deckbuilder.effect.target.Target;
-import io.bloogames.deckbuilder.effect.trigger.BattleTrigger;
+import io.bloogames.deckbuilder.effect.trigger.GameEventTrigger;
 
 public class EffectExecutor {
     private final Array<EffectExecution<?>> queue = new Array<>();
-    private final Array<EffectExecution<?>> frontQueue = new Array<>();
-    private final Array<BattleTrigger<?>> triggers = new Array<>();
+    private final Array<GameEventTrigger<?>> subscribers = new Array<>();
 
-    public void addTrigger(BattleTrigger<?> trigger) {
-        triggers.add(trigger);
+    public void addSubscriber(GameEventTrigger<?> subscriber) {
+        subscribers.add(subscriber);
     }
 
     public void begin(Effect effect, TargetContext<? extends Target> context) {
@@ -23,23 +21,19 @@ public class EffectExecutor {
     }
 
     public boolean hasPending() {
-        return frontQueue.size > 0 || queue.size > 0;
+        return queue.size > 0;
     }
 
     public void update() {
-        EffectExecution<?> execution;
-        if (frontQueue.size > 0) {
-            execution = frontQueue.removeIndex(frontQueue.size - 1);
-        } else if (queue.size > 0) {
-            execution = queue.removeIndex(0);
-        } else {
+        if (queue.size == 0) {
             return;
         }
 
+        EffectExecution<?> execution = queue.removeIndex(queue.size - 1);
         runOneStep(execution);
 
         if (!execution.isDone()) {
-            frontQueue.add(execution);
+            queue.add(execution);
         }
     }
 
@@ -52,19 +46,15 @@ public class EffectExecutor {
         step.apply(execution.context(), this);
     }
 
-    public void emit(GameEvent event, ReactionTiming timing) {
-        for (int i = 0; i < triggers.size; i++) {
-            dispatch(triggers.get(i), event, timing);
+    public void emit(GameEvent event) {
+        for (int i = 0; i < subscribers.size; i++) {
+            dispatch(subscribers.get(i), event);
         }
     }
 
-    private <E extends GameEvent> void dispatch(BattleTrigger<?> trigger, GameEvent event, ReactionTiming timing) {
+    private <E extends GameEvent> void dispatch(GameEventTrigger<?> listener, GameEvent event) {
         @SuppressWarnings("unchecked")
-        BattleTrigger<E> typed = (BattleTrigger<E>) trigger;
-
-        if (typed.timing() != timing) {
-            return;
-        }
+        GameEventTrigger<E> typed = (GameEventTrigger<E>) listener;
 
         if (typed.eventType().isInstance(event)) {
             typed.onEvent(typed.eventType().cast(event), this);
@@ -72,11 +62,11 @@ public class EffectExecutor {
     }
 
     public void enqueueImmediate(Effect effect, TargetContext<? extends Target> context) {
-        frontQueue.add(createExecution(effect, context));
+        queue.add(createExecution(effect, context));
     }
 
     public void enqueueDeferred(Effect effect, TargetContext<? extends Target> context) {
-        queue.add(createExecution(effect, context));
+        queue.insert(0, createExecution(effect, context));
     }
 
     private <T extends Target> EffectExecution<T> createExecution(Effect effect, TargetContext<T> context) {

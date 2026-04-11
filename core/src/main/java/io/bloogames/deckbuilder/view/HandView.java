@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import io.bloogames.deckbuilder.effect.controller.HandController;
+import io.bloogames.deckbuilder.controller.HandController;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.HandModel;
@@ -47,6 +47,10 @@ public class HandView extends FannedGroup implements View {
         }
 
         fan();
+    }
+
+    public boolean containsCard(CardModel card) {
+        return cardViews.containsKey(card);
     }
 
     public HandModel getModel() {

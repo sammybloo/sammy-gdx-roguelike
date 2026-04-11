@@ -1,6 +1,7 @@
 package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.data.BaseCard;
+import io.bloogames.deckbuilder.effect.Effect;
 import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
@@ -34,7 +35,11 @@ public class CardModel {
     }
 
     public TargetSpec getTargetSpec() {
-        return base.getEffect().targetSpec();
+        return base.getTargetedEffect().targetSpec();
+    }
+
+    public Effect getEffect() {
+        return base.getTargetedEffect().effect();
     }
 
     public int getCurrentCost() {
