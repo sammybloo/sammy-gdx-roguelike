@@ -13,13 +13,13 @@ import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
 public class LeaderView extends ResizableGroup implements View, Highlightable {
-    private LeaderModel model;
-    private Image image;
-    private Image frame;
-    private Label healthLabel;
+    private final LeaderModel model;
+    private final Image image;
+    private final Image frame;
+    private final Label healthLabel;
 
-    private static float WIDTH = 200;
-    private static float HEIGHT = 200;
+    private static final float WIDTH = 200;
+    private static final float HEIGHT = 200;
 
     public LeaderView(LeaderModel model) {
         super(WIDTH, HEIGHT);

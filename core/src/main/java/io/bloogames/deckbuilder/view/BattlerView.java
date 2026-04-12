@@ -13,11 +13,11 @@ import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
 
 public class BattlerView extends ResizableGroup implements View, Highlightable {
-    private BattlerModel model;
-    private Image art;
-    private Image frame;
-    private Label powerLabel;
-    private Label healthLabel;
+    private final BattlerModel model;
+    private final Image art;
+    private final Image frame;
+    private final Label powerLabel;
+    private final Label healthLabel;
 
     public final static float WIDTH = 200;
     public final static float HEIGHT = 200;

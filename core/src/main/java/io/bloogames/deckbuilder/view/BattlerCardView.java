@@ -10,12 +10,12 @@ import io.bloogames.deckbuilder.model.BattlerCardModel;
 import io.bloogames.deckbuilder.ui.HighlightState;
 
 public class BattlerCardView extends CardView {
-    private BattlerCardModel battlerCardModel;
-    private Image frame;
-    private Image art;
-    private Label nameLabel;
-    private Label powerLabel;
-    private Label healthLabel;
+    private final BattlerCardModel battlerCardModel;
+    private final Image frame;
+    private final Image art;
+    private final Label nameLabel;
+    private final Label powerLabel;
+    private final Label healthLabel;
 
     public static final float WIDTH = CardView.WIDTH;
     public static final float HEIGHT = CardView.HEIGHT;

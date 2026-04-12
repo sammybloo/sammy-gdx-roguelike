@@ -10,6 +10,7 @@ import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.effect.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
@@ -86,7 +87,7 @@ public class Battle implements Screen {
 
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
 
-        EffectExecutor executor = new EffectExecutor();
+        EffectExecutor executor = new EffectExecutor(new GameEventDispatcher());
         TargetedEffect effect = battlerCard.getBaseCard().getTargetedEffect();
         TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty()),
             new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));

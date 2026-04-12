@@ -2,7 +2,6 @@ package io.bloogames.deckbuilder.effect.condition;
 
 import io.bloogames.deckbuilder.effect.context.SourceContext;
 import io.bloogames.deckbuilder.effect.source.Source;
-import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.validation.ConditionValidator;
 import io.bloogames.deckbuilder.error.ValidationError;
 

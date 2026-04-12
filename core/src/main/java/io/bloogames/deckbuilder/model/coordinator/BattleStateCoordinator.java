@@ -2,7 +2,6 @@ package io.bloogames.deckbuilder.model.coordinator;
 
 import io.bloogames.deckbuilder.effect.event.BattleStateEvent;
 import io.bloogames.deckbuilder.effect.event.CardPlayedEvent;
-import io.bloogames.deckbuilder.effect.event.GameEvent;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.trigger.GameEventTrigger;
 import io.bloogames.deckbuilder.ui.BattleState;
