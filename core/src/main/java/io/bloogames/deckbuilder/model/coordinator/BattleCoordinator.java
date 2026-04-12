@@ -1,21 +1,19 @@
 package io.bloogames.deckbuilder.model.coordinator;
 
-import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.effect.event.GameEvent;
+import io.bloogames.deckbuilder.effect.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
-import io.bloogames.deckbuilder.effect.trigger.GameEventListener;
-import io.bloogames.deckbuilder.effect.trigger.GameEventTrigger;
 import io.bloogames.deckbuilder.model.BattleModel;
 
 public class BattleCoordinator {
-    EffectExecutor executor = new EffectExecutor();
-    CardCoordinator cardCoordinator = new CardCoordinator();
-    EventAdapter eventAdapter = new EventAdapter();
-    BattleModel battle;
+    private final GameEventDispatcher eventDispatcher = new GameEventDispatcher();
+    private final EffectExecutor executor = new EffectExecutor(eventDispatcher);
+    private final CardCoordinator cardCoordinator;
+    private final BattleStateCoordinator interactionManager = new BattleStateCoordinator(executor);
+    private final BattleModel battle;
 
     public BattleCoordinator(BattleModel battle) {
         this.battle = battle;
-        executor.addSubscriber(eventAdapter);
+        cardCoordinator = new CardCoordinator(executor, battle);
     }
 
     public EffectExecutor getExecutor() {
@@ -26,7 +24,11 @@ public class BattleCoordinator {
         return cardCoordinator;
     }
 
-    public EventAdapter getEventAdapter() {
-        return eventAdapter;
+    public BattleStateCoordinator getInteractionManager() {
+        return interactionManager;
+    }
+
+    public GameEventDispatcher getEventDispatcher() {
+        return eventDispatcher;
     }
 }

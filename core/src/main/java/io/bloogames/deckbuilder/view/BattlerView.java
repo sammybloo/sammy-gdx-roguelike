@@ -46,7 +46,7 @@ public class BattlerView extends ResizableGroup implements View, Highlightable {
         this.register(healthLabel, new ResizeableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
             .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
 
-        update();
+        sync();
     }
 
     public BattlerModel getModel() {
@@ -54,7 +54,7 @@ public class BattlerView extends ResizableGroup implements View, Highlightable {
     }
 
     @Override
-    public void update() {
+    public void sync() {
         powerLabel.setText(model.getPower());
         healthLabel.setText(model.getHealth());
     }

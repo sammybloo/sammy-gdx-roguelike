@@ -22,7 +22,7 @@ public class HandView extends FannedGroup implements View {
         this.model = model;
         this.interactionControllers = new Array<>(interactionControllers);
         setTouchable(Touchable.childrenOnly);
-        update();
+        sync();
     }
 
     public void addCard(CardModel cardModel) {
@@ -75,7 +75,7 @@ public class HandView extends FannedGroup implements View {
     }
 
     @Override
-    public void update() {
+    public void sync() {
         Array<Actor> orderedCards = new Array<>();
         Array<CardModel> models = model.getCards();
         for (int i = 0; i < models.size; i++) {

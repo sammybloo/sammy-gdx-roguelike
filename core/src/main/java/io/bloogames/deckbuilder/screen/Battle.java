@@ -46,6 +46,8 @@ public class Battle implements Screen {
                 new TableauModel(5), new HandModel(10))
         );
 
+        battleCoordinator = new BattleCoordinator(battleModel);
+
         var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
             "vanille", "columbo", "snail", "paulallen", "worms"};
         battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(
@@ -72,16 +74,15 @@ public class Battle implements Screen {
         targetSystem.setPosition(0, 0);
         stage.addActor(targetSystem);
 
-        playerParty = new PlayerPartyView(battleModel.getPlayerParty());
+        playerParty = new PlayerPartyView(battleCoordinator, battleModel.getPlayerParty());
         playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
-        enemyParty = new EnemyPartyView(battleModel.getEnemyParty());
+        enemyParty = new EnemyPartyView(battleCoordinator, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
         stage.addActor(playerParty);
         stage.addActor(enemyParty);
 
-        battleCoordinator = new BattleCoordinator(battleModel);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
 
@@ -93,7 +94,7 @@ public class Battle implements Screen {
         executor.update();
         battleModel.getPlayerParty().getHand().removeCard(battlerCard);
 
-        playerParty.update();
+        playerParty.sync();
     }
 
     @Override

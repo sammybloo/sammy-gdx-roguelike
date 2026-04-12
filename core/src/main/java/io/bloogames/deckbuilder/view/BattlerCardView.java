@@ -68,7 +68,7 @@ public class BattlerCardView extends CardView {
     }
 
     @Override
-    public void update() {
+    public void sync() {
         nameLabel.setText(getName());
         powerLabel.setText(battlerCardModel.getPower());
         healthLabel.setText(battlerCardModel.getHealth());

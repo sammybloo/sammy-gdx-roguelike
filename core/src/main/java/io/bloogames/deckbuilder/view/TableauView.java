@@ -3,7 +3,6 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import io.bloogames.deckbuilder.controller.TableauSwapController;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
@@ -28,7 +27,7 @@ public class TableauView extends ResizableGroup implements View {
             register(slots.get(i), new ResizeableSettings(250, 250).xOffset(i * (260)));
         }
 
-        update();
+        sync();
     }
 
     public Array<SlotView> getSlots() {
@@ -43,7 +42,7 @@ public class TableauView extends ResizableGroup implements View {
         SlotView slot = getSlot(index);
         slot.setBattler(battlerModel);
         battlerActors.put(battlerModel, slot.getBattler());
-        update();
+        sync();
     }
 
     public SlotView getSlot(int index) {
@@ -60,9 +59,9 @@ public class TableauView extends ResizableGroup implements View {
     }
 
     @Override
-    public void update() {
+    public void sync() {
         for (SlotView slotView : slots) {
-            slotView.update();
+            slotView.sync();
         }
     }
 }

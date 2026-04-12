@@ -47,7 +47,7 @@ public class LeaderView extends ResizableGroup implements View, Highlightable {
     }
 
     @Override
-    public void update() {
+    public void sync() {
     }
 
     public void setHighlightState(HighlightState state) {

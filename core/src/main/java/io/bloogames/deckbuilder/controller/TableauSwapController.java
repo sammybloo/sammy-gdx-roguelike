@@ -40,7 +40,7 @@ public class TableauSwapController implements Controller {
                         // TODO replace functionality
 //                        CommandManager.INSTANCE.processImmediately(
 //                            new SwapBattlerCommand(otherSlot.getModel(), slot.getModel()));
-                        tableau.update();
+                        tableau.sync();
                     }
                 }
             );

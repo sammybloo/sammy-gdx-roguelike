@@ -10,36 +10,57 @@ import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.validation.CardValidator;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.BattleModel;
-import io.bloogames.deckbuilder.model.CardModel;
 
 import java.util.Optional;
 
 public class CardCoordinator {
-    CardValidator cardValidator = new CardValidator();
+    private final CardValidator cardValidator = new CardValidator();
+    private final EffectExecutor executor;
+    private final BattleModel battle;
 
-    public void playCard(EffectExecutor executor, BattleModel battle, CardModel card, Target target) {
+    public CardCoordinator(EffectExecutor executor, BattleModel battle) {
+        this.executor = executor;
+        this.battle = battle;
+    }
+
+    public boolean canPlayCard(CardSource source) {
         Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(battle);
         if (result.isPresent()) {
-            executor.emit(new CardFailedEvent(battle, card, target, result.get()));
+            return false;
+        }
+
+        SourceContext<CardSource> sourceContext = new SourceContext<>(battle, source);
+        result = cardValidator.checkCardCanBePlayed(sourceContext);
+        return result.isEmpty();
+    }
+
+    public boolean isValidTarget(CardSource source, Target target) {
+        TargetContext<Target> targetContext = new TargetContext<>(battle, source, target);
+        return cardValidator.checkCardCanBePlayedOnTarget(source, targetContext).isEmpty();
+    }
+
+    public void playCard(CardSource source, Target target) {
+        Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(battle);
+        if (result.isPresent()) {
+            executor.emit(new CardFailedEvent(battle, source.card(), target, result.get()));
             return;
         }
 
-        CardSource source = new CardSource(card, battle.getOwner(card));
         SourceContext<CardSource> sourceContext = new SourceContext<>(battle, source);
         result = cardValidator.checkCardCanBePlayed(sourceContext);
         if (result.isPresent()) {
-            executor.emit(new CardFailedEvent(battle, card, target, result.get()));
+            executor.emit(new CardFailedEvent(battle, source.card(), target, result.get()));
             return;
         }
 
         TargetContext<Target> targetContext = new TargetContext<>(battle, source, target);
         result = cardValidator.checkCardCanBePlayedOnTarget(source, targetContext);
         if (result.isPresent()) {
-            executor.emit(new CardFailedEvent(battle, card, target, result.get()));
+            executor.emit(new CardFailedEvent(battle, source.card(), target, result.get()));
             return;
         }
 
-        executor.enqueueImmediate(card.getEffect(), targetContext);
-        executor.emit(new CardPlayedEvent(battle, card, source, target));
+        executor.enqueueImmediate(source.card().getEffect(), targetContext);
+        executor.emit(new CardPlayedEvent(battle, source.card(), source, target));
     }
 }

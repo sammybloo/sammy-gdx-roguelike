@@ -54,9 +54,9 @@ public abstract class PartyView extends ResizableGroup implements View {
     }
 
     @Override
-    public void update() {
-        leader.update();
-        hand.update();
-        tableau.update();
+    public void sync() {
+        leader.sync();
+        hand.sync();
+        tableau.sync();
     }
 }

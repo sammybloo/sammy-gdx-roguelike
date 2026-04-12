@@ -89,11 +89,11 @@ public class SlotView extends ResizableGroup implements View, Highlightable {
     }
 
     @Override
-    public void update() {
+    public void sync() {
         setBattler(model.getBattler());
 
         if (hasBattler()) {
-            battler.update();
+            battler.sync();
         }
     }
 

@@ -4,16 +4,21 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.Effect;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.event.GameEvent;
+import io.bloogames.deckbuilder.effect.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.effect.step.EffectStep;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.trigger.GameEventTrigger;
 
 public class EffectExecutor {
     private final Array<EffectExecution<?>> queue = new Array<>();
-    private final Array<GameEventTrigger<?>> subscribers = new Array<>();
+    private final GameEventDispatcher eventDispatcher;
+
+    public EffectExecutor(GameEventDispatcher eventDispatcher) {
+        this.eventDispatcher = eventDispatcher;
+    }
 
     public void addSubscriber(GameEventTrigger<?> subscriber) {
-        subscribers.add(subscriber);
+        eventDispatcher.addSubscriber(subscriber);
     }
 
     public void begin(Effect effect, TargetContext<? extends Target> context) {
@@ -47,18 +52,7 @@ public class EffectExecutor {
     }
 
     public void emit(GameEvent event) {
-        for (int i = 0; i < subscribers.size; i++) {
-            dispatch(subscribers.get(i), event);
-        }
-    }
-
-    private <E extends GameEvent> void dispatch(GameEventTrigger<?> listener, GameEvent event) {
-        @SuppressWarnings("unchecked")
-        GameEventTrigger<E> typed = (GameEventTrigger<E>) listener;
-
-        if (typed.eventType().isInstance(event)) {
-            typed.onEvent(typed.eventType().cast(event), this);
-        }
+        eventDispatcher.emit(event, this);
     }
 
     public void enqueueImmediate(Effect effect, TargetContext<? extends Target> context) {

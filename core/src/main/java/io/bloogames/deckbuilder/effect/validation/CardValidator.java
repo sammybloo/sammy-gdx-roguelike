@@ -22,7 +22,6 @@ public class CardValidator {
         Optional<ValidationError> result = checkManaCondition(context);
         if (result.isPresent()) return result;
 
-        var conditions = context.source().card().getSourceConditionList().getConditions();
         return conditionValidator.checkSourceConditionsAreMet(
             (SourceConditionList<CardSource>) context.source().card().getSourceConditionList(),
             (SourceContext<CardSource>) context);
