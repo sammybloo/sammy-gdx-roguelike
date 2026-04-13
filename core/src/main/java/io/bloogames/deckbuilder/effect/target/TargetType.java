@@ -5,6 +5,7 @@ public enum TargetType {
     SLOT,
     BATTLER,
     CARD,
+    TABLEAU,
     DAMAGEABLE,
     BATTLE
 }

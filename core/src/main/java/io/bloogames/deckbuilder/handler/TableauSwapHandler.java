@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.controller;
+package io.bloogames.deckbuilder.handler;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,12 +8,12 @@ import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
 
-public class TableauSwapController implements Controller {
+public class TableauSwapHandler implements Handler {
 
     private final TableauView tableau;
     private final DragAndDrop dragAndDrop;
 
-    public TableauSwapController(TableauView tableau) {
+    public TableauSwapHandler(TableauView tableau) {
         this.tableau = tableau;
         this.dragAndDrop = new DragAndDrop();
         this.dragAndDrop.setKeepWithinStage(false);
@@ -40,7 +40,7 @@ public class TableauSwapController implements Controller {
                         // TODO replace functionality
 //                        CommandManager.INSTANCE.processImmediately(
 //                            new SwapBattlerCommand(otherSlot.getModel(), slot.getModel()));
-                        tableau.sync();
+
                     }
                 }
             );

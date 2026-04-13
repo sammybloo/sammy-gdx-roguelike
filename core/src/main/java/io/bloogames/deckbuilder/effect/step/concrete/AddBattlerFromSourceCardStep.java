@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.effect.step.concrete;
 
 import io.bloogames.deckbuilder.effect.context.TargetContext;
-import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
@@ -15,8 +14,8 @@ public class AddBattlerFromSourceCardStep implements TargetStep<SlotTarget> {
     }
 
     @Override
-    public void applyTarget(TargetContext<SlotTarget> ctx, EffectExecutor executor) {
+    public void applyTarget(TargetContext<SlotTarget> ctx) {
         AddBattlerStep battlerStep = new AddBattlerStep(new BattlerModel(((BattlerCardSource) ctx.source()).battlerCard()));
-        battlerStep.applyTarget(ctx, executor);
+        battlerStep.applyTarget(ctx);
     }
 }

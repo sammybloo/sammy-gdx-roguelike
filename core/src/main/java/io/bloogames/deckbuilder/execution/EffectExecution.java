@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.effect.execution;
+package io.bloogames.deckbuilder.execution;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.context.TargetContext;

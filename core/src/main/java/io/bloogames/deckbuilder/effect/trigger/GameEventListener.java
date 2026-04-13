@@ -1,9 +1,8 @@
 package io.bloogames.deckbuilder.effect.trigger;
 
-import io.bloogames.deckbuilder.effect.event.GameEvent;
+import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.model.BattleModel;
 
 public interface GameEventListener<E extends GameEvent> {
-    Class<E> eventType();
-
-    void onEvent(E event);
+    void onEvent(BattleModel battle, E event);
 }

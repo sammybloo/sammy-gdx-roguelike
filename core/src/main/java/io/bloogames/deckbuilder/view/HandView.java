@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import io.bloogames.deckbuilder.controller.HandController;
+import io.bloogames.deckbuilder.handler.HandHandler;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.HandModel;
@@ -15,9 +15,9 @@ public class HandView extends FannedGroup implements View {
 
     private final HandModel model;
     private final ObjectMap<CardModel, CardView> cardViews = new ObjectMap<>();
-    private final Array<HandController> interactionControllers;
+    private final Array<HandHandler> interactionControllers;
 
-    public HandView(HandModel model, FannedGroup.FanSettings fanSettings, HandController... interactionControllers) {
+    public HandView(HandModel model, FannedGroup.FanSettings fanSettings, HandHandler... interactionControllers) {
         super(fanSettings);
         this.model = model;
         this.interactionControllers = new Array<>(interactionControllers);

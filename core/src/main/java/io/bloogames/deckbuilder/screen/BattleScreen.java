@@ -10,29 +10,28 @@ import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
-import io.bloogames.deckbuilder.effect.event.GameEventDispatcher;
-import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
+import io.bloogames.deckbuilder.execution.EffectExecutor;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
-import io.bloogames.deckbuilder.model.coordinator.BattleCoordinator;
+import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.view.*;
 
-public class Battle implements Screen {
+public class BattleScreen implements Screen {
 
     private Main game;
     private Stage stage;
 
     private BattleModel battleModel;
-    private BattleCoordinator battleCoordinator;
+    private BattleController battleController;
 
     private PartyView playerParty;
     private PartyView enemyParty;
 
     private TargetSystemView targetSystem;
 
-    public Battle(Main game) {
+    public BattleScreen(Main game) {
         this.game = game;
     }
 
@@ -47,7 +46,7 @@ public class Battle implements Screen {
                 new TableauModel(5), new HandModel(10))
         );
 
-        battleCoordinator = new BattleCoordinator(battleModel);
+        battleController = new BattleController(battleModel);
 
         var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
             "vanille", "columbo", "snail", "paulallen", "worms"};
@@ -75,10 +74,10 @@ public class Battle implements Screen {
         targetSystem.setPosition(0, 0);
         stage.addActor(targetSystem);
 
-        playerParty = new PlayerPartyView(battleCoordinator, battleModel.getPlayerParty());
+        playerParty = new PlayerPartyView(battleController, battleModel.getPlayerParty());
         playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
-        enemyParty = new EnemyPartyView(battleCoordinator, battleModel.getEnemyParty());
+        enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
         stage.addActor(playerParty);
@@ -87,7 +86,7 @@ public class Battle implements Screen {
 
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
 
-        EffectExecutor executor = new EffectExecutor(new GameEventDispatcher());
+        EffectExecutor executor = new EffectExecutor();
         TargetedEffect effect = battlerCard.getBaseCard().getTargetedEffect();
         TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty()),
             new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));

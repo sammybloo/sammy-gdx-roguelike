@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
-import io.bloogames.deckbuilder.screen.Battle;
+import io.bloogames.deckbuilder.screen.BattleScreen;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
@@ -28,7 +28,7 @@ public class Main extends Game {
     public void create() {
         this.viewport = new ExtendViewport(1920, 1080);
         this.batch = new SpriteBatch();
-        this.setScreen(new Battle(this));
+        this.setScreen(new BattleScreen(this));
     }
 
     @Override

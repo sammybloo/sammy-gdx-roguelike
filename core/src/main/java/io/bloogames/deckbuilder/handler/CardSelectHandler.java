@@ -1,21 +1,21 @@
-package io.bloogames.deckbuilder.controller;
+package io.bloogames.deckbuilder.handler;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Timer;
+import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.model.PartyModel;
-import io.bloogames.deckbuilder.model.coordinator.BattleCoordinator;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
 
-public class CardSelectController implements HandController {
+public class CardSelectHandler implements HandHandler {
 
-    private final BattleCoordinator coordinator;
+    private final BattleController battleController;
     private final PartyModel owner;
 
-    public CardSelectController(BattleCoordinator coordinator, PartyModel owner) {
-        this.coordinator = coordinator;
+    public CardSelectHandler(BattleController battleController, PartyModel owner) {
+        this.battleController = battleController;
         this.owner = owner;
     }
 
@@ -23,8 +23,10 @@ public class CardSelectController implements HandController {
         card.addListener(new HoverListener(0f, 0f) {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (coordinator.getInteractionManager().canSelectCards()) {
-                    if (coordinator.getCardCoordinator().canPlayCard(new CardSource(card.getModel(), owner))) {
+                if (battleController.getBattleState().canSelectCards()) {
+                    // TODO make a view-based card coordinator
+                    if (battleController.getBattle().getCardCoordinator()
+                        .canPlayCard(battleController.getBattle(), new CardSource(card.getModel(), owner))) {
                         hand.removeCard(card.getModel());
                         Timer.schedule(new Timer.Task() {
                             @Override
