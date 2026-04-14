@@ -3,13 +3,14 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.handler.CardSelectHandler;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.handler.TableauSwapHandler;
+import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 
 public class PlayerPartyView extends PartyView {
 
-    public PlayerPartyView(BattleController battleController, PartyModel model) {
+    public PlayerPartyView(BattleController battleController, BattlePartyModel model) {
         super(model);
         setLeader(new LeaderView(model.getLeader()));
 
@@ -19,10 +20,11 @@ public class PlayerPartyView extends PartyView {
             new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
             new CardSelectHandler(battleController, model)));
         setTableau(new TableauView(model.getTableau()));
+        new TableauSwapHandler(getTableau(), battleController);
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)
             .yOffset(10f));
-        register(getHand(), new ResizeableSettings(WIDTH, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
+        register(getHand(), new ResizeableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
     }
 }

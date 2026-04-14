@@ -8,6 +8,7 @@ import io.bloogames.deckbuilder.effect.validation.CardValidator;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.BattleModel;
+import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 import java.util.Optional;
@@ -15,43 +16,42 @@ import java.util.Optional;
 public class CardCoordinator {
     private final CardValidator cardValidator = new CardValidator();
 
-    public boolean canPlayCard(BattleModel battle, CardSource source) {
-        Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(battle);
+    public Optional<ValidationError> canPlayCard(GameModel game, CardSource source) {
+        Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(game);
         if (result.isPresent()) {
-            return false;
+            return result;
         }
 
-        SourceContext<CardSource> sourceContext = new SourceContext<>(battle, source);
-        result = cardValidator.checkCardCanBePlayed(sourceContext);
-        return result.isEmpty();
+        SourceContext<CardSource> sourceContext = new SourceContext<>(game, source);
+        return cardValidator.checkCardCanBePlayed(sourceContext);
     }
 
-    public boolean isValidTarget(BattleModel battle, CardSource source, Target target) {
-        TargetContext<Target> targetContext = new TargetContext<>(battle, source, target);
+    public boolean isValidTarget(GameModel game, CardSource source, Target target) {
+        TargetContext<Target> targetContext = new TargetContext<>(game, source, target);
         return cardValidator.checkCardCanBePlayedOnTarget(source, targetContext).isEmpty();
     }
 
-    public Optional<ValidationError> playCard(BattleModel battle, CardSource source, Target target) {
-        Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(battle);
+    public Optional<ValidationError> playCard(GameModel game, CardSource source, Target target) {
+        Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(game);
         if (result.isPresent()) {
             return result;
         }
 
-        SourceContext<CardSource> sourceContext = new SourceContext<>(battle, source);
+        SourceContext<CardSource> sourceContext = new SourceContext<>(game, source);
         result = cardValidator.checkCardCanBePlayed(sourceContext);
         if (result.isPresent()) {
             return result;
         }
 
-        TargetContext<Target> targetContext = new TargetContext<>(battle, source, target);
+        TargetContext<Target> targetContext = new TargetContext<>(game, source, target);
         result = cardValidator.checkCardCanBePlayedOnTarget(source, targetContext);
         if (result.isPresent()) {
             return result;
         }
 
-        battle.getExecutor().enqueueImmediate(source.card().getEffect(), targetContext);
-        battle.dispatch(new GameEvent.CardPlayedEvent(battle, source.card(), source, target));
-        battle.setState(BattleState.CARD_ACTIVATING);
+        game.getExecutor().enqueueImmediate(source.card().getEffect(), targetContext);
+        game.dispatch(new GameEvent.CardPlayedEvent(source.card(), source, target));
+        game.getBattle().setState(BattleState.CARD_ACTIVATING);
         return Optional.empty();
     }
 }

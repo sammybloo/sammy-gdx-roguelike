@@ -16,8 +16,7 @@ public class DamageStep implements TargetStep<DamageableTarget> {
     public void applyTarget(TargetContext<DamageableTarget> ctx) {
         ctx.target().damageable().damage(ctx, amount);
 
-        ctx.battle().dispatch(
-            new GameEvent.DamageDealtEvent(
-                ctx.battle(), ctx.source(), ctx.target().damageable(), amount));
+        ctx.game().dispatch(new GameEvent.DamageDealtEvent(
+                ctx.source(), ctx.target().damageable(), amount));
     }
 }

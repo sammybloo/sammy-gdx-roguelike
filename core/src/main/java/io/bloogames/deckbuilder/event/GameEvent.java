@@ -14,8 +14,8 @@ public sealed interface GameEvent
         implements GameEvent { }
     record BattleStateEvent (BattleState oldState, BattleState newState)
         implements GameEvent { }
-    record CardPlayedEvent (BattleModel battle, CardModel card, CardSource cardSource, Target target)
+    record CardPlayedEvent (CardModel card, CardSource cardSource, Target target)
         implements GameEvent { }
-    record DamageDealtEvent(BattleModel battle, Source source, Damageable target, int amount)
+    record DamageDealtEvent(Source source, Damageable target, int amount)
         implements GameEvent { }
 }

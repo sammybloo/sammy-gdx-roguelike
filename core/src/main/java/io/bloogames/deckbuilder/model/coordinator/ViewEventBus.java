@@ -1,11 +1,12 @@
 package io.bloogames.deckbuilder.model.coordinator;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.event.*;
 import io.bloogames.deckbuilder.effect.trigger.ViewEventListener;
 import io.bloogames.deckbuilder.effect.trigger.GameEventListener;
-import io.bloogames.deckbuilder.model.BattleModel;
+import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class ViewEventBus implements GameEventListener<GameEvent> {
@@ -16,12 +17,13 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
     }
 
     @Override
-    public void onEvent(BattleModel battle, GameEvent gameEvent) {
+    public void onEvent(GameModel game, GameEvent gameEvent) {
         ViewEvent viewEvent = mapEvent(gameEvent);
         dispatch(viewEvent);
     }
 
     public <E extends ViewEvent> void dispatch(E event) {
+        Gdx.app.log(this.getClass().getName(), "View event: " + event);
         if (!eventListeners.containsKey(event.getClass())) {
             return;
         }
@@ -30,8 +32,8 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private <E extends ViewEvent> void dispatch(ViewEventListener<?> listener, E event) {
-        //noinspection unchecked
         ((ViewEventListener<E>) listener).onEvent(event);
     }
 
@@ -47,7 +49,7 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
 
     private ViewEvent mapEvent(GameEvent gameEvent) {
         return switch (gameEvent) {
-            case GameEvent.CardPlayedEvent e -> new ViewEvent.CardPlayedEvent(e.card(), e.cardSource(), e.target());
+            case GameEvent.CardPlayedEvent e -> new ViewEvent.CardPlayedEvent(e.cardSource(), e.target());
             case GameEvent.BattleStateEvent e -> new ViewEvent.BattleStateEvent(e.oldState(), e.newState());
             case GameEvent.BattlerAddedEvent e -> new ViewEvent.BattlerAddedEvent(e.slot(), e.battler());
             case GameEvent.DamageDealtEvent e -> new ViewEvent.DamageDealtEvent(e.source(), e.target(), e.amount());

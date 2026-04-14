@@ -1,13 +1,13 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.View;
 
 public abstract class PartyView extends ResizableGroup implements View {
 
-    private PartyModel model;
+    private BattlePartyModel model;
     private LeaderView leader;
     private HandView hand;
     private TableauView tableau;
@@ -15,17 +15,17 @@ public abstract class PartyView extends ResizableGroup implements View {
     public static final float WIDTH = 1920;
     public static final float HEIGHT = 540;
 
-    public PartyView(PartyModel model) {
+    public PartyView(BattlePartyModel model) {
         super(WIDTH, HEIGHT);
         setTouchable(Touchable.childrenOnly);
         this.model = model;
     }
 
-    public PartyModel getModel() {
+    public BattlePartyModel getModel() {
         return model;
     }
 
-    public void setModel(PartyModel model) {
+    public void setModel(BattlePartyModel model) {
         this.model = model;
     }
 

@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.event;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.effect.trigger.GameEventListener;
-import io.bloogames.deckbuilder.model.BattleModel;
+import io.bloogames.deckbuilder.model.GameModel;
 
 public class GameEventDispatcher {
     private final Array<GameEventListener<? super GameEvent>> globalListeners = new Array<>();
@@ -23,21 +23,21 @@ public class GameEventDispatcher {
         globalListeners.add(listener);
     }
 
-    public void dispatch(BattleModel battle, GameEvent event) {
+    public void dispatch(GameModel game, GameEvent event) {
         for (GameEventListener<? super GameEvent> listener : globalListeners) {
-            listener.onEvent(battle, event);
+            listener.onEvent(game, event);
         }
 
         Array<GameEventListener<?>> listeners = triggers.get(event.getClass());
         if (listeners == null) return;
 
         for (GameEventListener<?> listener : listeners) {
-            invoke(listener, battle, event);
+            invoke(listener, game, event);
         }
     }
 
     @SuppressWarnings("unchecked")
-    private <E extends GameEvent> void invoke(GameEventListener<?> trigger, BattleModel battle, GameEvent event) {
-        ((GameEventListener<E>) trigger).onEvent(battle, (E) event);
+    private <E extends GameEvent> void invoke(GameEventListener<?> trigger, GameModel game, GameEvent event) {
+        ((GameEventListener<E>) trigger).onEvent(game, (E) event);
     }
 }

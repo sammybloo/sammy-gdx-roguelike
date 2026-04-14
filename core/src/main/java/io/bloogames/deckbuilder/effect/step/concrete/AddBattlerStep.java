@@ -16,7 +16,7 @@ public class AddBattlerStep implements TargetStep<SlotTarget> {
     @Override
     public void applyTarget(TargetContext<SlotTarget> context) {
         context.target().slot().setBattler(battler);
-        context.battle().dispatch(
+        context.game().dispatch(
             new GameEvent.BattlerAddedEvent(context.target().slot(), battler));
     }
 }

@@ -2,13 +2,13 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
 
 public class EnemyPartyView extends PartyView {
 
-    public EnemyPartyView(BattleController battleController, PartyModel model) {
+    public EnemyPartyView(BattleController battleController, BattlePartyModel model) {
         super(model);
         setLeader(new LeaderView(model.getLeader()));
         getLeader().setPosition(15, 15);
@@ -24,7 +24,7 @@ public class EnemyPartyView extends PartyView {
             .padding(10, 10).keepAspect());
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
             .yOffset(10f));
-        register(getHand(), new ResizeableSettings(WIDTH, HEIGHT * 0.5f, Align.top)
+        register(getHand(), new ResizeableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
             .yOffset(HEIGHT * -0.4f));
         getHand().setRotation(180f);
     }

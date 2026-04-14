@@ -4,22 +4,32 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
+import io.bloogames.deckbuilder.controller.BattleController;
+import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
+import io.bloogames.deckbuilder.view.event.ViewEvent;
 
-public class TableauSwapHandler implements Handler {
+public class TableauSwapHandler {
 
     private final TableauView tableau;
     private final DragAndDrop dragAndDrop;
+    private final BattleController battleController;
 
-    public TableauSwapHandler(TableauView tableau) {
+    public TableauSwapHandler(TableauView tableau, BattleController battleController) {
         this.tableau = tableau;
         this.dragAndDrop = new DragAndDrop();
         this.dragAndDrop.setKeepWithinStage(false);
         this.dragAndDrop.setDragTime(0);
+        this.battleController = battleController;
 
         rebuild();
+
+        battleController.getEventBus().register(ViewEvent.BattlerSwappedEvent.class, e -> {
+            tableau.sync();
+            rebuild();
+        });
     }
 
     public void rebuild() {
@@ -37,10 +47,7 @@ public class TableauSwapHandler implements Handler {
                     public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
                         payload.getDragActor().remove();
                         SlotView otherSlot = (SlotView) payload.getObject();
-                        // TODO replace functionality
-//                        CommandManager.INSTANCE.processImmediately(
-//                            new SwapBattlerCommand(otherSlot.getModel(), slot.getModel()));
-
+                        battleController.swapSlots(tableau.getModel(), slot.getModel(), otherSlot.getModel());
                     }
                 }
             );
@@ -72,19 +79,5 @@ public class TableauSwapHandler implements Handler {
                 );
             }
         }
-    }
-
-    public DragAndDrop getDragAndDrop() {
-        return dragAndDrop;
-    }
-
-    @Override
-    public void enable() {
-        rebuild();
-    }
-
-    @Override
-    public void disable() {
-        dragAndDrop.clear();
     }
 }

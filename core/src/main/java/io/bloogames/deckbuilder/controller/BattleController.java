@@ -1,21 +1,30 @@
 package io.bloogames.deckbuilder.controller;
 
-import io.bloogames.deckbuilder.model.BattleModel;
+import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
+import io.bloogames.deckbuilder.error.ValidationError;
+import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
+import io.bloogames.deckbuilder.view.event.ViewEvent;
+
+import java.util.Optional;
 
 public class BattleController {
-    private final BattleModel battle;
+    private final GameModel game;
     private final ViewEventBus eventBus;
     private final BattleStateController battleState;
 
-    public BattleController(BattleModel battle) {
-        this.battle = battle;
-        this.eventBus = new ViewEventBus(battle.getEventDispatcher());
+    public BattleController(GameModel game) {
+        this.game = game;
+        this.eventBus = new ViewEventBus(game.getEventDispatcher());
         this.battleState = new BattleStateController(eventBus);
     }
 
+    public GameModel getGame() {
+        return game;
+    }
+
     public BattleModel getBattle() {
-        return battle;
+        return game.getBattle();
     }
 
     public ViewEventBus getEventBus() {
@@ -24,5 +33,17 @@ public class BattleController {
 
     public BattleStateController getBattleState() {
         return battleState;
+    }
+
+    public void startPlayCard(CardModel card, BattlePartyModel owner) {
+        CardSource cardSource = new CardSource(card, owner);
+        Optional<ValidationError> result = getBattle().getCardCoordinator().canPlayCard(game, cardSource);
+
+        result.ifPresentOrElse(error -> getEventBus().dispatch(new ViewEvent.CardStartFailedEvent(cardSource, error)),
+            () -> getEventBus().dispatch(new ViewEvent.CardStartEvent(cardSource)));
+    }
+
+    public void swapSlots(TableauModel tableau, SlotModel slot1, SlotModel slot2) {
+        tableau.swapBattlers(getBattle(), slot1, slot2);
     }
 }

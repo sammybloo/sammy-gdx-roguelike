@@ -2,41 +2,32 @@ package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
+import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.execution.EffectExecutor;
 import io.bloogames.deckbuilder.model.coordinator.CardCoordinator;
 import io.bloogames.deckbuilder.ui.BattleState;
 
-public class BattleModel {
-    private final PartyModel playerParty;
-    private final PartyModel enemyParty;
-    private final GameEventDispatcher eventDispatcher;
-    private final EffectExecutor executor;
+public class BattleModel implements GameEventPublisher {
+    private final BattlePartyModel playerParty;
+    private final BattlePartyModel enemyParty;
     private final BattleStateModel battleStateModel;
     private final CardCoordinator cardCoordinator;
+    private final GameEventPublisher eventPublisher;
 
-    public BattleModel(PartyModel playerParty, PartyModel enemyParty) {
+    public BattleModel(BattlePartyModel playerParty, BattlePartyModel enemyParty, GameEventPublisher eventPublisher) {
         this.playerParty = playerParty;
         this.enemyParty = enemyParty;
-        this.eventDispatcher = new GameEventDispatcher();
-        this.executor = new EffectExecutor();
         this.battleStateModel = new BattleStateModel();
         this.cardCoordinator = new CardCoordinator();
+        this.eventPublisher = eventPublisher;
     }
 
-    public PartyModel getPlayerParty() {
+    public BattlePartyModel getPlayerParty() {
         return playerParty;
     }
 
-    public PartyModel getEnemyParty() {
+    public BattlePartyModel getEnemyParty() {
         return enemyParty;
-    }
-
-    public GameEventDispatcher getEventDispatcher() {
-        return eventDispatcher;
-    }
-
-    public EffectExecutor getExecutor() {
-        return executor;
     }
 
     public CardCoordinator getCardCoordinator() {
@@ -47,7 +38,7 @@ public class BattleModel {
         return battleStateModel;
     }
 
-    public PartyModel getOwner(CardModel cardModel) {
+    public BattlePartyModel getOwner(CardModel cardModel) {
         if (playerParty.hasCard(cardModel)) {
             return playerParty;
         } else if (enemyParty.hasCard(cardModel)) {
@@ -60,7 +51,9 @@ public class BattleModel {
         battleStateModel.setState(this, newState);
     }
 
+
+    @Override
     public void dispatch(GameEvent event) {
-        eventDispatcher.dispatch(this, event);
+        eventPublisher.dispatch(event);
     }
 }

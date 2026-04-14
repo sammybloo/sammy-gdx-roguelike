@@ -2,13 +2,13 @@ package io.bloogames.deckbuilder.effect.source.concrete;
 
 import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.model.CardModel;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.BattlePartyModel;
 
 public class CardSource implements Source {
     private final CardModel card;
-    private final PartyModel owner;
+    private final BattlePartyModel owner;
 
-    public CardSource(CardModel card, PartyModel owner) {
+    public CardSource(CardModel card, BattlePartyModel owner) {
         this.card = card;
         this.owner = owner;
     }
@@ -20,7 +20,7 @@ public class CardSource implements Source {
     }
 
     @Override
-    public PartyModel owner() {
+    public BattlePartyModel owner() {
         return owner;
     }
 

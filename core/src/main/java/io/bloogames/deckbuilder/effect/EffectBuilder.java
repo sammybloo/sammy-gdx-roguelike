@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.effect;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.effect.step.BattleStep;
+import io.bloogames.deckbuilder.effect.step.GameStep;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
@@ -9,7 +9,7 @@ import io.bloogames.deckbuilder.effect.target.TargetType;
 public final class EffectBuilder {
     private final Array<EffectStepEntry> entries = new Array<>();
 
-    public EffectBuilder addBattleStep(BattleStep step) {
+    public EffectBuilder addBattleStep(GameStep step) {
         entries.add(new EffectStepEntry.Battle(step));
         return this;
     }

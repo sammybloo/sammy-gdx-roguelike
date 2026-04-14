@@ -23,6 +23,7 @@ public class BattleScreen implements Screen {
     private Main game;
     private Stage stage;
 
+    private GameModel gameModel;
     private BattleModel battleModel;
     private BattleController battleController;
 
@@ -39,14 +40,16 @@ public class BattleScreen implements Screen {
     public void show() {
         stage = new Stage(game.getViewport());
 
+        gameModel = new GameModel();
+
         battleModel = new BattleModel(
-            new PartyModel(new LeaderModel(new BaseLeader("wizard", 20, 5)),
-                new TableauModel(5), new HandModel(10)),
-            new PartyModel(new LeaderModel(new BaseLeader("villain", 20, 5)),
-                new TableauModel(5), new HandModel(10))
+            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("wizard", 20, 5)))),
+            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("villain", 20, 5)))),
+            gameModel
         );
 
-        battleController = new BattleController(battleModel);
+        gameModel.setBattle(battleModel);
+        battleController = new BattleController(gameModel);
 
         var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
             "vanille", "columbo", "snail", "paulallen", "worms"};
@@ -57,7 +60,7 @@ public class BattleScreen implements Screen {
         battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
-        BattlerCardModel battlerCard = null;
+        BattlerCardModel battlerCard;
         for (int i = 0; i < 10; i++) {
             battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
@@ -85,14 +88,6 @@ public class BattleScreen implements Screen {
 
 
         Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
-
-        EffectExecutor executor = new EffectExecutor();
-        TargetedEffect effect = battlerCard.getBaseCard().getTargetedEffect();
-        TargetContext<SlotTarget> context = new TargetContext<>(battleModel, new BattlerCardSource(battlerCard, battleModel.getPlayerParty()),
-            new SlotTarget(battleModel.getPlayerParty().getTableau().getSlot(1), battleModel.getPlayerParty()));
-        executor.begin(effect.effect(), context);
-        executor.update();
-        battleModel.getPlayerParty().getHand().removeCard(battlerCard);
 
         playerParty.sync();
     }

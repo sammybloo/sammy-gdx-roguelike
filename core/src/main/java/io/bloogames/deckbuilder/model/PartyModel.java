@@ -1,29 +1,19 @@
 package io.bloogames.deckbuilder.model;
 
 public class PartyModel {
-    private LeaderModel leader;
-    private TableauModel tableau;
-    private HandModel hand;
+    private final LeaderModel leader;
+    private final DeckModel fullDeck;
 
-    public PartyModel(LeaderModel leader, TableauModel tableau, HandModel hand) {
+    public PartyModel(LeaderModel leader) {
         this.leader = leader;
-        this.tableau = tableau;
-        this.hand = hand;
+        this.fullDeck = new DeckModel();
     }
 
     public LeaderModel getLeader() {
         return leader;
     }
 
-    public TableauModel getTableau() {
-        return tableau;
-    }
-
-    public HandModel getHand() {
-        return hand;
-    }
-
-    public boolean hasCard(CardModel card) {
-        return hand.contains(card);
+    public DeckModel getFullDeck() {
+        return fullDeck;
     }
 }
