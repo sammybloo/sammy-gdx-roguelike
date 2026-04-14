@@ -1,6 +1,7 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
+import io.bloogames.deckbuilder.controller.TableauController;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.controller.BattleController;
@@ -19,6 +20,7 @@ public class EnemyPartyView extends PartyView {
             new HandHoverHandler(battleController.getBattleState(), 0.175f, 0.15f)));
 
         setTableau(new TableauView(model.getTableau()));
+        new TableauController(getTableau(), battleController, false);
 
         register(getLeader(), new ResizeableSettings(200f, 200f, Align.topLeft)
             .padding(10, 10).keepAspect());

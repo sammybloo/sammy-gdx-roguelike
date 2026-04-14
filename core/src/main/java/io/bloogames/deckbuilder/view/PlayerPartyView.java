@@ -1,6 +1,8 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
+import io.bloogames.deckbuilder.controller.HandController;
+import io.bloogames.deckbuilder.controller.TableauController;
 import io.bloogames.deckbuilder.handler.CardSelectHandler;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.handler.TableauSwapHandler;
@@ -19,8 +21,10 @@ public class PlayerPartyView extends PartyView {
                 0.7f, 0f, 0.3f),
             new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
             new CardSelectHandler(battleController, model)));
+        new HandController(getHand(), battleController);
+
         setTableau(new TableauView(model.getTableau()));
-        new TableauSwapHandler(getTableau(), battleController);
+        new TableauController(getTableau(), battleController, true);
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)

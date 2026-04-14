@@ -41,9 +41,9 @@ public class HandView extends FannedGroup implements View {
     public void removeCard(CardModel cardModel) {
         CardView card = cardViews.remove(cardModel);
         if (card != null) {
+            removeFannable(card);
             unselectActor(card);
             removeActor(card);
-            removeFannable(card);
         }
 
         fan();
@@ -51,6 +51,10 @@ public class HandView extends FannedGroup implements View {
 
     public boolean containsCard(CardModel card) {
         return cardViews.containsKey(card);
+    }
+
+    public CardView getCardView(CardModel card) {
+        return cardViews.get(card);
     }
 
     public HandModel getModel() {

@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
@@ -8,6 +9,7 @@ import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.HighlightState;
 import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.ViewUtils;
 
 public abstract class CardView extends ResizableGroup implements View, Highlightable {
 
@@ -46,6 +48,16 @@ public abstract class CardView extends ResizableGroup implements View, Highlight
             }
             register(cardBack, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
         }
+    }
+
+    public void disappear() {
+        clearListeners();
+        clearActions();
+        ViewUtils.unmoor(this);
+
+        addAction(Actions.moveBy(0, 100f, 0.2f));
+        addAction(Actions.fadeOut(0.2f));
+        addAction(Actions.delay(0.2f, Actions.removeActor()));
     }
 
     @Override

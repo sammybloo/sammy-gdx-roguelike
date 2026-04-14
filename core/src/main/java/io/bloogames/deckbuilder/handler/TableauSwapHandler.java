@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
+import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
@@ -26,10 +27,6 @@ public class TableauSwapHandler {
 
         rebuild();
 
-        battleController.getEventBus().register(ViewEvent.BattlerSwappedEvent.class, e -> {
-            tableau.sync();
-            rebuild();
-        });
     }
 
     public void rebuild() {
@@ -57,12 +54,13 @@ public class TableauSwapHandler {
                     new DragAndDrop.Source(slot.getBattler()) {
                         @Override
                         public DragAndDrop.Payload dragStart(InputEvent event, float x, float y, int pointer) {
+                            if (!battleController.getBattleState().canSwapBattlers()) {
+                                return null;
+                            }
                             var payload = new DragAndDrop.Payload();
                             var battler = slot.getBattler();
-                            Vector2 stageCoords = battler.localToStageCoordinates(new Vector2());
-                            tableau.getStage().addActor(battler);
+                            ViewUtils.unmoor(battler);
                             slot.removeBattler();
-                            battler.setPosition(stageCoords.x, stageCoords.y);
                             payload.setObject(slot);
                             payload.setDragActor(battler);
                             dragAndDrop.setDragActorPosition(battler.getWidth() / 2, -(battler.getHeight() / 2));

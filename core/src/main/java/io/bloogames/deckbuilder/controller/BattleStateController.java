@@ -45,4 +45,8 @@ public class BattleStateController {
         return state == BattleViewState.CARD_SELECTED;
     }
 
+    public boolean canSwapBattlers() {
+        return state == BattleViewState.PLAYER_TURN;
+    }
+
 }

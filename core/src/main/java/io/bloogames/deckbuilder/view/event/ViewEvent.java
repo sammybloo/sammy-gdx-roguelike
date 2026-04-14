@@ -13,8 +13,8 @@ public sealed interface ViewEvent {
     record BattlerAddedEvent(SlotModel slot, BattlerModel battler) implements ViewEvent {}
     record BattlerSwappedEvent(TableauModel tableau, SlotModel slot1, SlotModel slot2) implements ViewEvent {}
     record CardAttemptStartEvent(CardModel card, BattlePartyModel owner) implements ViewEvent {}
-    record CardStartEvent(CardSource card) implements ViewEvent {}
-    record CardStartFailedEvent(CardSource card, ValidationError validationError) implements ViewEvent {}
+    record CardStartEvent(CardSource cardSource) implements ViewEvent {}
+    record CardStartFailedEvent(CardSource cardSource, ValidationError validationError) implements ViewEvent {}
     record CardFailedEvent(CardSource card, Target target, ValidationError error) implements ViewEvent {}
     record CardPlayedEvent(CardSource cardSource, Target target) implements ViewEvent {}
     record DamageDealtEvent(Source source, Damageable target, int amount) implements ViewEvent { }

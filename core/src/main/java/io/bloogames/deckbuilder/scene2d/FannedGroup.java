@@ -15,7 +15,7 @@ public class FannedGroup extends Group {
     protected float fannableWidth;
     protected float fannableHeight;
 
-    private int selectedIndex = -1;
+    private Actor selectedActor = null;
 
     private Array<Actor> fannables = new Array<>();
 
@@ -23,28 +23,28 @@ public class FannedGroup extends Group {
         this.settings = fanSettings;
     }
 
-    public void setSelectedIndex(int selectedIndex) {
-        this.selectedIndex = selectedIndex;
-        fan();
-    }
-
     public void setFannableSize(float width, float height) {
         fannableWidth = width;
         fannableHeight = height;
     }
 
+    public int getSelectedIndex() {
+        return fannables.indexOf(selectedActor, true);
+    }
+
     public void setSelectedActor(Actor actor) {
-        setSelectedIndex(fannables.indexOf(actor, true));
+        selectedActor = actor;
+        fan();
     }
 
     public void unselectActor(Actor actor) {
-        if (selectedIndex == fannables.indexOf(actor, true)) {
+        if (selectedActor == actor) {
             clearSelected();
         }
     }
 
     public void clearSelected() {
-        selectedIndex = -1;
+        selectedActor = null;
         fan();
     }
 
@@ -67,6 +67,7 @@ public class FannedGroup extends Group {
         float rotation = -settings.maxRotation * centered;
         float scale = 1;
 
+        int selectedIndex = getSelectedIndex();
         if (index == selectedIndex) {
             rotation = settings.selectedRotation;
             scale = settings.selectedScale;
@@ -85,7 +86,6 @@ public class FannedGroup extends Group {
         for (int i = 0; i < fannables.size; i++) {
             Actor child = fannables.get(i);
             FannableLayout layout = getFannableLayout(i);
-            //child.clearActions();
             child.setZIndex(i);
             child.setOrigin(fannableWidth * 0.5f, fannableHeight * 0.5f);
             child.addAction(Actions.sizeTo(fannableWidth, fannableHeight, settings.duration));
@@ -94,8 +94,8 @@ public class FannedGroup extends Group {
             child.addAction(Actions.rotateTo(layout.rotation, settings.duration));
         }
 
-        if (selectedIndex >= 0 && selectedIndex < fannables.size) {
-            fannables.get(selectedIndex).toFront();
+        if (selectedActor != null) {
+            selectedActor.toFront();
         }
     }
 
