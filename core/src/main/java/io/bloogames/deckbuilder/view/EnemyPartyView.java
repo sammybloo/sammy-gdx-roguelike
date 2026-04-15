@@ -17,8 +17,8 @@ public class EnemyPartyView extends PartyView {
 
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.3f, 10f, 1.5f,
-                1.05f, 180f, 0.2f),
-            new HandHoverHandler(battleController.getBattleState(), 0.175f, 0.15f)));
+                1.045f, 180f, 0.15f),
+            new HandHoverHandler(battleController.getBattleState(), 0.3f, 0.1f)));
         new HandController(getHand(), battleController, model.getParty());
 
         setTableau(new TableauView(model.getTableau()));

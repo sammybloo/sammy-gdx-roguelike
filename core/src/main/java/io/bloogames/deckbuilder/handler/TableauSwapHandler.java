@@ -1,9 +1,11 @@
 package io.bloogames.deckbuilder.handler;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.controller.BattleController;
+import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
@@ -47,6 +49,22 @@ public class TableauSwapHandler {
             );
 
             if (slot.getBattler() != null) {
+                slot.getBattler().addListener(new HoverListener(0f, 0f) {
+                    BattlerView battler = slot.getBattler();
+                    @Override
+                    public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                        if (battleController.getBattleState().canSwapBattlers()) {
+                            battler.setHovered(true);
+                        }
+                    }
+
+                    @Override
+                    public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                        if (battleController.getBattleState().canSwapBattlers()) {
+                            battler.setHovered(false);
+                        }
+                    }
+                });
                 dragAndDrop.addSource(
                     new DragAndDrop.Source(slot.getBattler()) {
                         @Override

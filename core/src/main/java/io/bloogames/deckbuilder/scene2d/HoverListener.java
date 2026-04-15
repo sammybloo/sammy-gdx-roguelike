@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 
-public class HoverListener extends ClickListener {
+public abstract class HoverListener extends ClickListener {
 
     boolean isHovered;
     private float hoverDelay;
@@ -18,17 +18,17 @@ public class HoverListener extends ClickListener {
         this.unhoverDelay = unhoverDelay;
     }
 
-    public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-    }
+    public abstract void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor);
 
-    public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor) {
-    }
+    public abstract void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor);
 
     @Override
     public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
         super.enter(event, x, y, pointer, fromActor);
 
         if (pointer != -1) return;
+        if (y < 0) return;
+
         if (hoverTask == null) {
             hoverTask = Timer.schedule(new Timer.Task() {
                 @Override
@@ -47,9 +47,9 @@ public class HoverListener extends ClickListener {
 
     @Override
     public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-        if (pointer != -1) return;
-
         super.exit(event, x, y, pointer, toActor);
+
+        if (pointer != -1) return;
 
         if (unhoverTask == null) {
             unhoverTask = Timer.schedule(new Timer.Task() {

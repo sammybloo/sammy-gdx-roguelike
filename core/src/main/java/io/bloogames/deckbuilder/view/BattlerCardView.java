@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -7,7 +8,6 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerCardModel;
-import io.bloogames.deckbuilder.ui.HighlightState;
 
 public class BattlerCardView extends CardView {
     private final BattlerCardModel battlerCardModel;
@@ -75,9 +75,9 @@ public class BattlerCardView extends CardView {
     }
 
     @Override
-    public void setHighlightState(HighlightState state) {
-        super.setHighlightState(state);
-        art.setColor(state.getColour());
-        frame.setColor(state.getColour());
+    public void applyHighlight() {
+        Color colour = targetingVisualState().getColour();
+        art.setColor(colour);
+        frame.setColor(colour);
     }
 }

@@ -17,7 +17,7 @@ public class PlayerPartyView extends PartyView {
 
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
-                0.7f, 0f, 0.3f),
+                0.7f, 0f, 0.15f),
             new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
             new CardSelectHandler(battleController, model.getParty())));
         new HandController(getHand(), battleController, model.getParty());

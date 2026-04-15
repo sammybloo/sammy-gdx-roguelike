@@ -26,6 +26,7 @@ public class HandHoverHandler implements HandHandler {
                 if (stateController.canHoverCards()) {
                     if (card.isFaceup()) {
                         hand.setSelectedActor(card);
+                        card.setHovered(true);
                     }
                 }
             }
@@ -34,6 +35,7 @@ public class HandHoverHandler implements HandHandler {
             public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 if (stateController.canHoverCards()) {
                     hand.unselectActor(card);
+                    card.setHovered(false);
                 }
             }
         });

@@ -44,6 +44,11 @@ public class BattleController {
             () -> getEventBus().dispatch(new ViewEvent.CardStartEvent(cardSource)));
     }
 
+    public void playCard(CardSource cardSource, Target target) {
+        Optional<ValidationError> result = getBattle().getCardCoordinator().playCard(game, cardSource, target);
+        result.ifPresent(error -> getEventBus().dispatch(new ViewEvent.CardFailedEvent(cardSource, target, error)));
+    }
+
     public boolean isValidTarget(CardSource cardSource, Target target) {
         return getBattle().getCardCoordinator().isValidTarget(game, cardSource, target);
     }

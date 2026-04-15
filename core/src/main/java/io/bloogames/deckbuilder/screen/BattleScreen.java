@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.controller.BattleController;
+import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
@@ -24,8 +25,6 @@ public class BattleScreen implements Screen {
 
     private PartyView playerParty;
     private PartyView enemyParty;
-
-    private TargetSystemView targetSystem;
 
     public BattleScreen(Main game) {
         this.game = game;
@@ -78,6 +77,8 @@ public class BattleScreen implements Screen {
         enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
+        new TargetingController(battleController, playerParty, enemyParty);
+
         stage.addActor(playerParty);
         stage.addActor(enemyParty);
 
@@ -111,10 +112,6 @@ public class BattleScreen implements Screen {
 
     public TableauView getPlayerTableau() {
         return playerParty.getTableau();
-    }
-
-    public TargetSystemView getTargetSystem() {
-        return targetSystem;
     }
 
     @Override

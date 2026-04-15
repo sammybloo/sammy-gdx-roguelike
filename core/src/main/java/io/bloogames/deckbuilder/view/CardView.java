@@ -1,21 +1,24 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.ui.HighlightState;
-import io.bloogames.deckbuilder.ui.Highlightable;
+import io.bloogames.deckbuilder.ui.target.TargetState;
+import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.ViewUtils;
+import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
-public abstract class CardView extends ResizableGroup implements View, Highlightable {
+public abstract class CardView extends ResizableGroup implements View, Targetable {
 
     public static final float WIDTH = 360f;
     public static final float HEIGHT = 540f;
 
+    private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final CardModel cardModel;
     private Image cardBack;
 
@@ -61,7 +64,12 @@ public abstract class CardView extends ResizableGroup implements View, Highlight
     }
 
     @Override
-    public void setHighlightState(HighlightState state) {
-        setColor(state.getColour());
+    public TargetingVisualState targetingVisualState() {
+        return targetingVisualState;
+    }
+
+    @Override
+    public Actor actor() {
+        return this;
     }
 }

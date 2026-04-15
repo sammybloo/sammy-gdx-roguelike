@@ -1,6 +1,9 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -8,11 +11,12 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.ui.HighlightState;
-import io.bloogames.deckbuilder.ui.Highlightable;
 import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.target.Targetable;
+import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
-public class BattlerView extends ResizableGroup implements View, Highlightable {
+public class BattlerView extends ResizableGroup implements View, Targetable {
+    private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final BattlerModel model;
     private final Image art;
     private final Image frame;
@@ -59,9 +63,28 @@ public class BattlerView extends ResizableGroup implements View, Highlightable {
         healthLabel.setText(model.getHealth());
     }
 
-    public void setHighlightState(HighlightState state) {
-        art.setColor(state.getColour());
-        frame.setColor(state.getColour());
-        //addAction(Actions.color(state.getColour()));
+    @Override
+    public void applyHighlight() {
+        Color colour = targetingVisualState().getColour();
+        art.setColor(colour);
+        frame.setColor(colour);
+        powerLabel.setColor(colour);
+        healthLabel.setColor(colour);
+
+        if (targetingVisualState().isHovered() && !targetingVisualState().isTargeted()) {
+            addAction(Actions.scaleTo(1.1f, 1.1f, 0.1f));
+        }
+        else {
+            addAction(Actions.scaleTo(1f, 1f, 0.1f));
+        }
+    }
+
+    @Override
+    public TargetingVisualState targetingVisualState() {
+        return targetingVisualState;
+    }
+
+    @Override public Actor actor() {
+        return this;
     }
 }

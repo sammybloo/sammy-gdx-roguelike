@@ -15,7 +15,7 @@ public sealed interface ViewEvent {
     record CardAttemptStartEvent(CardModel card, PartyModel owner) implements ViewEvent {}
     record CardStartEvent(CardSource cardSource) implements ViewEvent {}
     record CardStartFailedEvent(CardSource cardSource, ValidationError validationError) implements ViewEvent {}
-    record CardFailedEvent(CardSource card, Target target, ValidationError error) implements ViewEvent {}
+    record CardFailedEvent(CardSource cardSource, Target target, ValidationError error) implements ViewEvent {}
     record CardPlayedEvent(CardSource cardSource, Target target) implements ViewEvent {}
     record DamageDealtEvent(Source source, Damageable target, int amount) implements ViewEvent { }
 }
