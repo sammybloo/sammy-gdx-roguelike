@@ -29,5 +29,6 @@ public class PlayerPartyView extends PartyView {
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)
             .yOffset(10f));
         register(getHand(), new ResizeableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
+        register(new LeaderMessageView(), new ResizeableSettings(600, 300).offset(220f, 110f));
     }
 }

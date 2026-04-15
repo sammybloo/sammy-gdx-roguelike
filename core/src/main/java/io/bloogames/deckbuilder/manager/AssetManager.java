@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.manager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 public enum AssetManager {
     INSTANCE;
@@ -19,8 +20,8 @@ public enum AssetManager {
         return getAtlas().createSprite(name);
     }
 
-    public NinePatch getNinePatch(String name) {
-        return getAtlas().createPatch(name);
+    public NinePatchDrawable getNinePatch(String name) {
+        return new NinePatchDrawable(getAtlas().createPatch(name));
     }
 
     public Animation<TextureRegion> getAnimation(String region) {

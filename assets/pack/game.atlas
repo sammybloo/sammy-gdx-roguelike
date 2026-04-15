@@ -55,6 +55,15 @@ slot
   orig: 512, 512
   offset: 0, 0
   index: -1
+speechbubble
+  rotate: false
+  xy: 1058, 1274
+  size: 64, 64
+  split: 28, 29, 24, 33
+  pad: 28, 29, 25, 33
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 
 game2.png
 size: 2048, 2048

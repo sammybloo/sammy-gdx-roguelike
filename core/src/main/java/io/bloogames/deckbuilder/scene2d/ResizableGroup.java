@@ -14,7 +14,6 @@ public class ResizableGroup extends Group {
     public ResizableGroup(float targetWidth, float targetHeight) {
         this.targetWidth = targetWidth;
         this.targetHeight = targetHeight;
-        setSize(targetWidth, targetHeight);
     }
 
     public void resize() {

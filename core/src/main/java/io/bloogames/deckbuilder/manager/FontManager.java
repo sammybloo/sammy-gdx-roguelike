@@ -13,6 +13,7 @@ public enum FontManager {
     BitmapFont battlerStatFont;
     BitmapFont battlerCardStatFont;
     BitmapFont leaderHealthFont;
+    BitmapFont leaderMessageFont;
 
     public BitmapFont getBattlerStatFont() {
         if (battlerStatFont == null) {
@@ -72,6 +73,21 @@ public enum FontManager {
         }
 
         return leaderHealthFont;
+    }
+
+    public BitmapFont getLeaderMessageFont() {
+        if (leaderMessageFont == null) {
+            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.color = Color.BLACK;
+            parameter.size = 48;
+            parameter.minFilter = Texture.TextureFilter.Linear;
+            parameter.magFilter = Texture.TextureFilter.Linear;
+            leaderMessageFont = generator.generateFont(parameter);
+            generator.dispose();
+        }
+
+        return leaderMessageFont;
     }
 
     public void dispose() {
