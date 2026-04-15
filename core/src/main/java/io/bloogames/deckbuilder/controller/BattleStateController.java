@@ -14,6 +14,7 @@ public class BattleStateController {
         this.eventBus = eventBus;
 
         eventBus.register(ViewEvent.BattleStateEvent.class, event -> changeStateBasedOnModel(event.newState()));
+        eventBus.register(ViewEvent.CardStartEvent.class, event -> changeState(BattleViewState.CARD_SELECTED));
     }
 
     private void changeStateBasedOnModel(BattleState battleState) {
@@ -34,7 +35,7 @@ public class BattleStateController {
     }
 
     public boolean canHoverCards() {
-        return state == BattleViewState.PLAYER_TURN;
+        return true;
     }
 
     public boolean canSelectCards() {

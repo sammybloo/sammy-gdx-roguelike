@@ -1,6 +1,7 @@
 package io.bloogames.deckbuilder.controller;
 
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
+import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
@@ -41,6 +42,10 @@ public class BattleController {
 
         result.ifPresentOrElse(error -> getEventBus().dispatch(new ViewEvent.CardStartFailedEvent(cardSource, error)),
             () -> getEventBus().dispatch(new ViewEvent.CardStartEvent(cardSource)));
+    }
+
+    public boolean isValidTarget(CardSource cardSource, Target target) {
+        return getBattle().getCardCoordinator().isValidTarget(game, cardSource, target);
     }
 
     public void swapSlots(TableauModel tableau, SlotModel slot1, SlotModel slot2) {

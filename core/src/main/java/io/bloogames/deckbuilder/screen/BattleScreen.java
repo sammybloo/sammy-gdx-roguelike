@@ -73,9 +73,9 @@ public class BattleScreen implements Screen {
             battleModel.getPlayerParty().getHand().addCard(battlerCard);
         }
 
-        targetSystem = new TargetSystemView();
-        targetSystem.setPosition(0, 0);
-        stage.addActor(targetSystem);
+//        targetSystem = new TargetSystemView();
+//        targetSystem.setPosition(0, 0);
+//        stage.addActor(targetSystem);
 
         playerParty = new PlayerPartyView(battleController, battleModel.getPlayerParty());
         playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
@@ -87,7 +87,7 @@ public class BattleScreen implements Screen {
         stage.addActor(enemyParty);
 
 
-        Gdx.input.setInputProcessor(new InputMultiplexer(targetSystem, stage));
+        Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();
     }

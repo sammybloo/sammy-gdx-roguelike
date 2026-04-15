@@ -21,10 +21,10 @@ public class PlayerPartyView extends PartyView {
                 0.7f, 0f, 0.3f),
             new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
             new CardSelectHandler(battleController, model)));
-        new HandController(getHand(), battleController);
+        new HandController(getHand(), battleController, model);
 
         setTableau(new TableauView(model.getTableau()));
-        new TableauController(getTableau(), battleController, true);
+        new TableauController(getTableau(), battleController,  model, true);
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)

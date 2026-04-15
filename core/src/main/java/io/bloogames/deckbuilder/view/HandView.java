@@ -57,6 +57,10 @@ public class HandView extends FannedGroup implements View {
         return cardViews.get(card);
     }
 
+    public Array<CardView> getCardViews() {
+        return cardViews.values().toArray();
+    }
+
     public HandModel getModel() {
         return model;
     }
