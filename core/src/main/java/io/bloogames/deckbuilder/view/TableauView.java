@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.model.BattlerModel;
+import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.View;
@@ -52,6 +53,15 @@ public class TableauView extends ResizableGroup implements View {
     public SlotView getSlot(BattlerModel battlerModel) {
         for (SlotView s : slots) {
             if (s.hasBattler(battlerModel)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public SlotView getSlot(SlotModel slotModel) {
+        for (SlotView s : slots) {
+            if (s.getModel() == slotModel) {
                 return s;
             }
         }

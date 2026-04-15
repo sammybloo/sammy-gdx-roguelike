@@ -15,6 +15,12 @@ public class GameModel implements GameEventPublisher {
         this.executor = new EffectExecutor();
     }
 
+    public void doNext() {
+        if (battle != null) {
+            battle.doNext(executor);
+        }
+    }
+
     public BattleModel getBattle() {
         return battle;
     }

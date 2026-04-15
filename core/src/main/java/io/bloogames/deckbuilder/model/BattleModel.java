@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
+import io.bloogames.deckbuilder.execution.EffectExecutor;
 import io.bloogames.deckbuilder.model.coordinator.CardCoordinator;
 import io.bloogames.deckbuilder.ui.BattleState;
 
@@ -18,6 +19,34 @@ public class BattleModel implements GameEventPublisher {
         this.battleStateModel = new BattleStateModel();
         this.cardCoordinator = new CardCoordinator();
         this.eventPublisher = eventPublisher;
+    }
+
+    public void doNext(EffectExecutor executor) {
+        switch (battleStateModel.getState()) {
+            case START_PLAYER_TURN -> {
+                if (executor.hasPending()) {
+                    executor.update();
+                    return;
+                }
+                battleStateModel.setState(this, BattleState.PLAYER_TURN);
+            }
+            case PLAYER_TURN -> {
+                return;
+            }
+            case CARD_ACTIVATING -> {
+                if (executor.hasPending()) {
+                    executor.update();
+                    return;
+                }
+                battleStateModel.setState(this, BattleState.PLAYER_TURN);
+            }
+            case FIGHTING -> {
+                return;
+            }
+            case ENEMY_TURN -> {
+                return;
+            }
+        }
     }
 
     public BattlePartyModel getPlayerParty() {

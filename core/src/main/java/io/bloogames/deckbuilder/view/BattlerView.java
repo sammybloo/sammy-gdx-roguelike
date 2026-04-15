@@ -57,6 +57,11 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         return model;
     }
 
+    public void playEntry() {
+        addAction(Actions.fadeIn(0.2f));
+        addAction(Actions.sequence(Actions.scaleTo(1.2f, 1.2f), Actions.scaleTo(1, 1, 0.2f)));
+    }
+
     @Override
     public void sync() {
         powerLabel.setText(model.getPower());
