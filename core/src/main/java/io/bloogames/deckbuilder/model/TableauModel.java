@@ -2,8 +2,6 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.event.GameEventDispatcher;
-import io.bloogames.deckbuilder.event.GameEventPublisher;
 
 public class TableauModel {
     private int size;

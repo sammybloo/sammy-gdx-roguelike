@@ -7,7 +7,6 @@ import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.validation.CardValidator;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.ui.BattleState;
 

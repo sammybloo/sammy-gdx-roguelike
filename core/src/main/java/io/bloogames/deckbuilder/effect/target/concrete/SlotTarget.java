@@ -2,14 +2,14 @@ package io.bloogames.deckbuilder.effect.target.concrete;
 
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 
 public final class SlotTarget implements Target {
     private final SlotModel slot;
-    private final BattlePartyModel owner;
+    private final PartyModel owner;
 
-    public SlotTarget(SlotModel slot, BattlePartyModel owner) {
+    public SlotTarget(SlotModel slot, PartyModel owner) {
         this.slot = slot;
         this.owner = owner;
     }
@@ -24,7 +24,7 @@ public final class SlotTarget implements Target {
     }
 
     @Override
-    public BattlePartyModel owner() {
+    public PartyModel owner() {
         return owner;
     }
 }

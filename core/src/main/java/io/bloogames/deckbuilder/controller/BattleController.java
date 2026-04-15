@@ -36,7 +36,7 @@ public class BattleController {
         return battleState;
     }
 
-    public void startPlayCard(CardModel card, BattlePartyModel owner) {
+    public void startPlayCard(CardModel card, PartyModel owner) {
         CardSource cardSource = new CardSource(card, owner);
         Optional<ValidationError> result = getBattle().getCardCoordinator().canPlayCard(game, cardSource);
 

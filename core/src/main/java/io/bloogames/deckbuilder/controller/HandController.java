@@ -1,8 +1,7 @@
 package io.bloogames.deckbuilder.controller;
 
 import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
-import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.ui.HighlightState;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
@@ -11,9 +10,9 @@ import io.bloogames.deckbuilder.view.event.ViewEvent;
 public class HandController {
     private final HandView hand;
     private final BattleController battleController;
-    private final BattlePartyModel owner;
+    private final PartyModel owner;
 
-    public HandController(HandView hand, BattleController battleController, BattlePartyModel owner) {
+    public HandController(HandView hand, BattleController battleController, PartyModel owner) {
         this.hand = hand;
         this.battleController = battleController;
         this.owner = owner;

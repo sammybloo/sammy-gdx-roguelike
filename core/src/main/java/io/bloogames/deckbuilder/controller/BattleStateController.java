@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.controller;
 
-import io.bloogames.deckbuilder.effect.trigger.ViewEventListener;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;

@@ -3,13 +3,13 @@ package io.bloogames.deckbuilder.effect.target.concrete;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.BattlerModel;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
 public final class BattlerTarget implements Target {
     private final BattlerModel battler;
-    private final BattlePartyModel owner;
+    private final PartyModel owner;
 
-    public BattlerTarget(BattlerModel battler, BattlePartyModel owner) {
+    public BattlerTarget(BattlerModel battler, PartyModel owner) {
         this.battler = battler;
         this.owner = owner;
     }
@@ -24,7 +24,7 @@ public final class BattlerTarget implements Target {
     }
 
     @Override
-    public BattlePartyModel owner() {
+    public PartyModel owner() {
         return owner;
     }
 }

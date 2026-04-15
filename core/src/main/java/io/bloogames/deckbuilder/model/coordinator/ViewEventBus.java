@@ -3,9 +3,10 @@ package io.bloogames.deckbuilder.model.coordinator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import io.bloogames.deckbuilder.event.*;
-import io.bloogames.deckbuilder.effect.trigger.ViewEventListener;
 import io.bloogames.deckbuilder.effect.trigger.GameEventListener;
+import io.bloogames.deckbuilder.effect.trigger.ViewEventListener;
+import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 

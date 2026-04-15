@@ -1,12 +1,12 @@
 package io.bloogames.deckbuilder.effect.source.concrete;
 
 import io.bloogames.deckbuilder.model.BattlerCardModel;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
 public class BattlerCardSource extends CardSource {
     private BattlerCardModel battlerCard;
 
-    public BattlerCardSource(BattlerCardModel card, BattlePartyModel owner) {
+    public BattlerCardSource(BattlerCardModel card, PartyModel owner) {
         super(card, owner);
         this.battlerCard = card;
     }

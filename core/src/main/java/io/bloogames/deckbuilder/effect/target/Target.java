@@ -1,9 +1,9 @@
 package io.bloogames.deckbuilder.effect.target;
 
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
 public interface Target {
-    BattlePartyModel owner();
+    PartyModel owner();
 
     TargetType type();
 }

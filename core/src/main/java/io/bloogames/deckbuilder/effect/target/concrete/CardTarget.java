@@ -2,21 +2,21 @@ package io.bloogames.deckbuilder.effect.target.concrete;
 
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.model.CardModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
 public class CardTarget implements Target {
 
-    private BattlePartyModel owner;
+    private PartyModel owner;
     private CardModel card;
 
-    public CardTarget(CardModel card, BattlePartyModel owner) {
+    public CardTarget(CardModel card, PartyModel owner) {
         this.owner = owner;
         this.card = card;
     }
 
     @Override
-    public BattlePartyModel owner() {
+    public PartyModel owner() {
         return owner;
     }
 

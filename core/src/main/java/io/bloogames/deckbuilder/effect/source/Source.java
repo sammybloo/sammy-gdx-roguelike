@@ -1,9 +1,9 @@
 package io.bloogames.deckbuilder.effect.source;
 
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 
 public interface Source {
     String sourceId();
 
-    BattlePartyModel owner();
+    PartyModel owner();
 }

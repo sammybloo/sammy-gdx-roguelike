@@ -7,15 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.bloogames.deckbuilder.Main;
+import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.data.BaseLeader;
-import io.bloogames.deckbuilder.effect.TargetedEffect;
-import io.bloogames.deckbuilder.effect.context.TargetContext;
-import io.bloogames.deckbuilder.execution.EffectExecutor;
-import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
-import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
-import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.view.*;
 
 public class BattleScreen implements Screen {

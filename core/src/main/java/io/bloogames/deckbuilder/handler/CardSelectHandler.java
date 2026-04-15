@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.handler;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.model.BattlePartyModel;
+import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
@@ -10,9 +10,9 @@ import io.bloogames.deckbuilder.view.HandView;
 public class CardSelectHandler implements HandHandler {
 
     private final BattleController battleController;
-    private final BattlePartyModel owner;
+    private final PartyModel owner;
 
-    public CardSelectHandler(BattleController battleController, BattlePartyModel owner) {
+    public CardSelectHandler(BattleController battleController, PartyModel owner) {
         this.battleController = battleController;
         this.owner = owner;
     }

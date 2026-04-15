@@ -1,16 +1,13 @@
 package io.bloogames.deckbuilder.handler;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class TableauSwapHandler {
 

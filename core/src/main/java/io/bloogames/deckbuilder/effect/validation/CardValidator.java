@@ -6,7 +6,6 @@ import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
-import io.bloogames.deckbuilder.model.BattleModel;
 import io.bloogames.deckbuilder.model.GameModel;
 
 import java.util.Optional;

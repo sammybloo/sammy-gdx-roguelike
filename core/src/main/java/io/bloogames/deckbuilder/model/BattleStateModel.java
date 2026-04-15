@@ -1,8 +1,6 @@
 package io.bloogames.deckbuilder.model;
 
-import io.bloogames.deckbuilder.effect.trigger.GameEventListener;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 public class BattleStateModel {
