@@ -1,13 +1,12 @@
 package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
-import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.controller.HandController;
-import io.bloogames.deckbuilder.controller.TableauController;
+import io.bloogames.deckbuilder.controller.*;
 import io.bloogames.deckbuilder.handler.CardSelectHandler;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
+import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class PlayerPartyView extends PartyView {
 
@@ -32,6 +31,9 @@ public class PlayerPartyView extends PartyView {
             .yOffset(10f));
         register(getHand(), new ResizeableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
         leaderMessageView = new LeaderMessageView();
-        register(leaderMessageView, new ResizeableSettings(600, 300).offset(220f, 110f));
+        register(leaderMessageView, new ResizeableSettings(600, 200).offset(220f, 110f));
+
+        new LeaderMessageController(leaderMessageView, battleController);
+
     }
 }

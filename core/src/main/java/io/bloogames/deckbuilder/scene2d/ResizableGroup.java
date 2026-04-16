@@ -115,15 +115,12 @@ public class ResizableGroup extends Group {
         }
 
         public ResizeableSettings(float width, float height) {
-            this.width = width;
-            this.height = height;
+            width(width).height(height);
         }
 
 
         public ResizeableSettings(float width, float height, int alignment) {
-            this.width = width;
-            this.height = height;
-            this.alignment = alignment;
+            width(width).height(height).alignment(alignment);
         }
 
         public ResizeableSettings width(float width) {
@@ -142,9 +139,7 @@ public class ResizableGroup extends Group {
         }
 
         public ResizeableSettings offset(float xOffset, float yOffset) {
-            this.xOffset = xOffset;
-            this.yOffset = yOffset;
-            return this;
+            return xOffset(xOffset).yOffset(yOffset);
         }
 
         public ResizeableSettings xOffset(float xOffset) {
@@ -168,9 +163,7 @@ public class ResizableGroup extends Group {
         }
 
         public ResizeableSettings padding(float paddingX, float paddingY) {
-            this.paddingX = paddingX;
-            this.paddingY = paddingY;
-            return this;
+            return paddingX(paddingX).paddingY(paddingY);
         }
 
         public ResizeableSettings rotation(float rotation) {

@@ -24,5 +24,7 @@ public class ResizableContainer extends Container<Actor> {
         super.sizeChanged();
         getActor().setSize(getWidth(), getHeight());
         getActor().setOrigin(Align.center);
+        invalidateHierarchy();
+        layout();
     }
 }
