@@ -80,7 +80,7 @@ public enum FontManager {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             parameter.color = Color.BLACK;
-            parameter.size = 48;
+            parameter.size = 12;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;
             leaderMessageFont = generator.generateFont(parameter);

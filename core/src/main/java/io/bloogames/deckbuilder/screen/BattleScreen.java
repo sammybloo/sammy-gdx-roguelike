@@ -6,10 +6,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Scaling;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.BaseLeader;
+import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.view.*;
@@ -67,12 +72,8 @@ public class BattleScreen implements Screen {
             battleModel.getPlayerParty().getHand().addCard(battlerCard);
         }
 
-//        targetSystem = new TargetSystemView();
-//        targetSystem.setPosition(0, 0);
-//        stage.addActor(targetSystem);
-
         playerParty = new PlayerPartyView(battleController, battleModel.getPlayerParty());
-        playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
+        playerParty.setSize(game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
         enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
@@ -81,7 +82,6 @@ public class BattleScreen implements Screen {
 
         stage.addActor(playerParty);
         stage.addActor(enemyParty);
-
 
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 

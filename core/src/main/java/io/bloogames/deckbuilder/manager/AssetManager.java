@@ -20,8 +20,8 @@ public enum AssetManager {
         return getAtlas().createSprite(name);
     }
 
-    public NinePatchDrawable getNinePatch(String name) {
-        return new NinePatchDrawable(getAtlas().createPatch(name));
+    public NinePatch getNinePatch(String name) {
+        return getAtlas().createPatch(name);
     }
 
     public Animation<TextureRegion> getAnimation(String region) {

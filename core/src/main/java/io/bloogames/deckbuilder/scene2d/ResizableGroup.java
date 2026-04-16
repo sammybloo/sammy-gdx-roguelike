@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.scene2d;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -10,10 +11,15 @@ public class ResizableGroup extends Group {
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     public float targetWidth;
     public float targetHeight;
+    public boolean valid = false;
 
     public ResizableGroup(float targetWidth, float targetHeight) {
         this.targetWidth = targetWidth;
         this.targetHeight = targetHeight;
+    }
+
+    public void invalidate() {
+        valid = false;
     }
 
     public void resize() {
@@ -29,13 +35,15 @@ public class ResizableGroup extends Group {
                 ((Label) actor).setFontScale(Math.max(0.01f, scaleX), Math.max(0.01f, scaleY));
             }
         }
+
+        valid = true;
     }
 
     public void register(Actor actor, ResizeableSettings settings) {
         ResizableContainer container = new ResizableContainer(actor, settings);
         map.put(actor, container);
         addActor(container);
-        resize();
+        invalidate();
     }
 
     public void unregister(Actor actor) {
@@ -43,7 +51,7 @@ public class ResizableGroup extends Group {
         map.remove(actor);
         container.clear();
         removeActor(container);
-        resize();
+        invalidate();
     }
 
     private Bounds calculate(ResizeableSettings settings, float scaleX, float scaleY) {
@@ -75,15 +83,17 @@ public class ResizableGroup extends Group {
     }
 
     @Override
-    public void setSize(float width, float height) {
-        super.setSize(width, height);
-        resize();
+    public void draw(Batch batch, float parentAlpha) {
+        if (!valid) {
+            resize();
+        }
+        super.draw(batch, parentAlpha);
     }
 
     @Override
-    public void setBounds(float x, float y, float width, float height) {
-        super.setBounds(x, y, width, height);
-        resize();
+    protected void sizeChanged() {
+        super.sizeChanged();
+        invalidate();
     }
 
     private record Bounds(float x, float y, float width, float height) {

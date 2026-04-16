@@ -71,14 +71,8 @@ public class HandView extends FannedGroup implements View {
     }
 
     @Override
-    public void setSize(float width, float height) {
-        super.setSize(width, height);
-        layout();
-    }
-
-    @Override
-    public void setBounds(float x, float y, float width, float height) {
-        super.setBounds(x, y, width, height);
+    protected void sizeChanged() {
+        super.sizeChanged();
         layout();
     }
 
