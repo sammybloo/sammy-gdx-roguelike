@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
+import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
+import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.LeaderTarget;
@@ -36,11 +38,15 @@ public class TargetingController {
             LeaderTarget leaderTarget = new LeaderTarget(party.getLeader().getModel(), party.getModel().getParty());
             setValidity(battleController, party.getLeader(), leaderTarget);
             registerToPlayCard(battleController, party.getLeader(), leaderTarget);
-
-            for (CardView card : party.getHand().getCardViews()) {
-                CardTarget cardTarget = new CardTarget(card.getModel(), party.getModel().getParty());
-                setValidity(battleController, card, cardTarget);
-                registerToPlayCard(battleController, card, cardTarget);
+            // TODO double yikes!!!
+            if ((e.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().allows(TargetType.CARD)
+                && e.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().ownerType() != TargetOwnerType.OTHER)
+            || party.getModel().getParty() != currentCard.owner()) {
+                for (CardView card : party.getHand().getCardViews()) {
+                    CardTarget cardTarget = new CardTarget(card.getModel(), party.getModel().getParty());
+                    setValidity(battleController, card, cardTarget);
+                    registerToPlayCard(battleController, card, cardTarget);
+                }
             }
 
             for (SlotView slot : party.getTableau().getSlots()) {

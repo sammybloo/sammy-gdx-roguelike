@@ -1,5 +1,7 @@
 package io.bloogames.deckbuilder.controller;
 
+import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
+import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
@@ -8,12 +10,18 @@ import io.bloogames.deckbuilder.view.event.ViewEvent;
 public class BattleStateController {
     private final ViewEventBus eventBus;
     private BattleViewState state = BattleViewState.PLAYER_TURN;
+    public boolean targetsOwnCards = false;
 
     public BattleStateController(ViewEventBus eventBus) {
         this.eventBus = eventBus;
 
         eventBus.register(ViewEvent.BattleStateEvent.class, event -> changeStateBasedOnModel(event.newState()));
-        eventBus.register(ViewEvent.CardStartEvent.class, event -> changeState(BattleViewState.CARD_SELECTED));
+        eventBus.register(ViewEvent.CardStartEvent.class, event -> {
+            // TODO yikes!
+            targetsOwnCards = event.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().allows(TargetType.CARD)
+            && event.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().ownerType() != TargetOwnerType.OTHER;
+            changeState(BattleViewState.CARD_SELECTED);
+        });
     }
 
     private void changeStateBasedOnModel(BattleState battleState) {
@@ -38,7 +46,8 @@ public class BattleStateController {
     }
 
     public boolean canSelectCards() {
-        return state == BattleViewState.PLAYER_TURN;
+        return state == BattleViewState.PLAYER_TURN
+            || (state == BattleViewState.CARD_SELECTED && !targetsOwnCards);
     }
 
     public boolean canTargetCards() {
