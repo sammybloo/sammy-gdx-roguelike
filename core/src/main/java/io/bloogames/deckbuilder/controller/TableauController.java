@@ -3,7 +3,6 @@ package io.bloogames.deckbuilder.controller;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.handler.TableauSwapHandler;
 import io.bloogames.deckbuilder.model.PartyModel;
-import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;

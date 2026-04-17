@@ -21,8 +21,6 @@ import io.bloogames.deckbuilder.view.PartyView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 
-import java.util.EventListener;
-
 public class TargetingController {
     private CardSource currentCard;
     private ObjectMap<Targetable, InputListener> listenerMap = new ObjectMap<>();

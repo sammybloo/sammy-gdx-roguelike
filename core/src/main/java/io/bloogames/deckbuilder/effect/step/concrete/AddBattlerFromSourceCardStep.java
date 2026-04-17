@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.effect.step.concrete;
 
 import io.bloogames.deckbuilder.effect.context.TargetContext;
-import io.bloogames.deckbuilder.effect.source.concrete.BattlerCardSource;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;

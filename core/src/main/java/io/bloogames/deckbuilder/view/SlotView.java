@@ -9,8 +9,8 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
 public class SlotView extends ResizableGroup implements View, Targetable {

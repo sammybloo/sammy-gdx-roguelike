@@ -1,6 +1,8 @@
 package io.bloogames.deckbuilder.scene2d;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 public class ResizableGroup extends Group {
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
+    private NinePatch background;
     public float targetWidth;
     public float targetHeight;
     public boolean valid = false;
@@ -27,13 +30,13 @@ public class ResizableGroup extends Group {
         float scaleY = getHeight() / targetHeight;
 
         for (Actor actor : map.keys()) {
+            if (actor instanceof Label label) {
+                label.setFontScale(Math.max(0.01f, scaleX), Math.max(0.01f, scaleY));
+            }
             ResizableContainer container = map.get(actor);
             Bounds bounds = calculate(container.getSettings(), scaleX, scaleY);
             container.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
             container.setRotation(container.getSettings().rotation);
-            if (actor instanceof Label) {
-                ((Label) actor).setFontScale(Math.max(0.01f, scaleX), Math.max(0.01f, scaleY));
-            }
         }
 
         valid = true;
@@ -82,10 +85,32 @@ public class ResizableGroup extends Group {
         return new Bounds(x, y, width, height);
     }
 
+    public void setBackground(NinePatch background) {
+        this.background = background;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (!valid) {
             resize();
+        }
+
+        if (background != null) {
+            float alpha = getColor().a * parentAlpha;
+
+            Color oldBatchColor = batch.getColor();
+            batch.setColor(getColor().r, getColor().g, getColor().b, oldBatchColor.a * alpha);
+
+            background.draw(
+                batch,
+                getX(), getY(),
+                getOriginX(), getOriginY(),
+                getWidth(), getHeight(),
+                getScaleX(), getScaleY(),
+                getRotation()
+            );
+
+            batch.setColor(oldBatchColor);
         }
         super.draw(batch, parentAlpha);
     }
