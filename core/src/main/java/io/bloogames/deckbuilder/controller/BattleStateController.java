@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.controller;
 
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetType;
+import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
@@ -17,9 +18,7 @@ public class BattleStateController {
 
         eventBus.register(ViewEvent.BattleStateEvent.class, event -> changeStateBasedOnModel(event.newState()));
         eventBus.register(ViewEvent.CardStartEvent.class, event -> {
-            // TODO yikes!
-            targetsOwnCards = event.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().allows(TargetType.CARD)
-            && event.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().ownerType() != TargetOwnerType.OTHER;
+            targetsOwnCards = targetsOwnCards(event.cardSource().card());
             changeState(BattleViewState.CARD_SELECTED);
         });
     }
@@ -56,6 +55,11 @@ public class BattleStateController {
 
     public boolean canSwapBattlers() {
         return state == BattleViewState.PLAYER_TURN;
+    }
+
+    private boolean targetsOwnCards(CardModel card) {
+        return card.getBaseCard().getTargetedEffect().targetSpec().allows(TargetType.CARD)
+            && card.getBaseCard().getTargetedEffect().targetSpec().ownerType() != TargetOwnerType.OTHER;
     }
 
 }

@@ -26,7 +26,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         super(WIDTH, HEIGHT);
         this.model = model;
         image = new Image(AssetManager.INSTANCE.getSprite("slot"));
-        image.setTouchable(Touchable.disabled);
+        setTouchable(Touchable.childrenOnly);
         register(image, new ResizeableSettings(WIDTH, HEIGHT));
         setBattler(model.getBattler());
     }

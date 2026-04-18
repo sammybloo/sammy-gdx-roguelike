@@ -36,10 +36,7 @@ public class TargetingController {
             LeaderTarget leaderTarget = new LeaderTarget(party.getLeader().getModel(), party.getModel().getParty());
             setValidity(battleController, party.getLeader(), leaderTarget);
             registerToPlayCard(battleController, party.getLeader(), leaderTarget);
-            // TODO double yikes!!!
-            if ((e.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().allows(TargetType.CARD)
-                && e.cardSource().card().getBaseCard().getTargetedEffect().targetSpec().ownerType() != TargetOwnerType.OTHER)
-            || party.getModel().getParty() != currentCard.owner()) {
+            if (!battleController.getBattleState().canSelectCards() || party.getModel().getParty() != currentCard.owner()) {
                 for (CardView card : party.getHand().getCardViews()) {
                     CardTarget cardTarget = new CardTarget(card.getModel(), party.getModel().getParty());
                     setValidity(battleController, card, cardTarget);
