@@ -56,6 +56,7 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
             case GameEvent.DamageDealtEvent e -> new ViewEvent.DamageDealtEvent(e.source(), e.target(), e.amount());
             case GameEvent.BattlersSwappedEvent e ->
                 new ViewEvent.BattlerSwappedEvent(e.tableau(), e.slot1(), e.slot2());
+            case GameEvent.ManaSpentEvent e -> new ViewEvent.ManaSpentEvent(e.leader(), e.amount());
         };
     }
 

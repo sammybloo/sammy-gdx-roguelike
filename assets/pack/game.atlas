@@ -48,6 +48,13 @@ leaderframe
   orig: 512, 512
   offset: 0, 0
   index: -1
+mana
+  rotate: false
+  xy: 1572, 1788
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
 slot
   rotate: false
   xy: 1058, 1340

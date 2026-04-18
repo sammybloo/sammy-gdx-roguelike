@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.model;
 
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.event.GameEvent;
 
 public class LeaderModel implements Damageable {
     private BaseLeader base;
@@ -27,6 +28,15 @@ public class LeaderModel implements Damageable {
 
     public int getCurrentMana() {
         return currentMana;
+    }
+
+    public int getMaxMana() {
+        return base.getMaxMana();
+    }
+
+    public void spendMana(BattleModel battle, int amount) {
+        currentMana -= amount;
+        battle.dispatch(new GameEvent.ManaSpentEvent(this, amount));
     }
 
     @Override

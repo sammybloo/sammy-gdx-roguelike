@@ -7,6 +7,7 @@ import io.bloogames.deckbuilder.controller.TableauController;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 
 public class EnemyPartyView extends PartyView {
 
@@ -24,12 +25,15 @@ public class EnemyPartyView extends PartyView {
         setTableau(new TableauView(model.getTableau()));
         new TableauController(getTableau(), battleController, model.getParty(), false);
 
-        register(getLeader(), new ResizeableSettings(200f, 200f, Align.topLeft)
-            .padding(10, 10).keepAspect());
-        register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
+        register(getTableau(), new ResizableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
             .yOffset(10f));
-        register(getHand(), new ResizeableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
+        register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
             .yOffset(HEIGHT * -0.4f));
+        register(getLeader(), new ResizableSettings(200f, 200f, Align.topLeft)
+            .padding(10, 10).keepAspect());
+
+        register(new ManaView(model.getLeader()), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10));
+
         getHand().setRotation(180f);
     }
 }

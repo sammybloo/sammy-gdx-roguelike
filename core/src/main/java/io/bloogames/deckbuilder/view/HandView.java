@@ -38,6 +38,18 @@ public class HandView extends FannedGroup implements View {
         fan();
     }
 
+    public void addCard(CardView cardView) {
+        if (cardViews.containsKey(cardView.getModel())) return;
+
+        cardViews.put(cardView.getModel(), cardView);
+        cardView.setSize(fannableWidth, fannableHeight);
+        addActor(cardView);
+        for (var controller : interactionControllers) {
+            controller.attach(this, cardView);
+        }
+        fan();
+    }
+
     public void removeCard(CardModel cardModel) {
         CardView card = cardViews.remove(cardModel);
         if (card != null) {

@@ -7,6 +7,7 @@ import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 
 public class TableauView extends ResizableGroup implements View {
@@ -24,7 +25,7 @@ public class TableauView extends ResizableGroup implements View {
 
         for (int i = 0; i < model.getSize(); i++) {
             slots.add(new SlotView(model.getSlot(i)));
-            register(slots.get(i), new ResizeableSettings(250, 250).xOffset(i * (260)));
+            register(slots.get(i), new ResizableSettings(250, 250).xOffset(i * (260)));
         }
 
         sync();

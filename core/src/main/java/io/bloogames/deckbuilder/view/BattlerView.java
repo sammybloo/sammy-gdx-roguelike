@@ -11,6 +11,7 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -42,11 +43,11 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         healthLabel.setAlignment(Align.center, Align.center);
         healthLabel.setTouchable(Touchable.disabled);
 
-        this.register(art, new ResizeableSettings(WIDTH, HEIGHT));
-        this.register(frame, new ResizeableSettings(WIDTH, HEIGHT));
-        this.register(powerLabel, new ResizeableSettings(WIDTH * 0.19f, HEIGHT * 0.19f)
+        this.register(art, new ResizableSettings(WIDTH, HEIGHT));
+        this.register(frame, new ResizableSettings(WIDTH, HEIGHT));
+        this.register(powerLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f)
             .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
-        this.register(healthLabel, new ResizeableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
+        this.register(healthLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
             .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
 
         sync();

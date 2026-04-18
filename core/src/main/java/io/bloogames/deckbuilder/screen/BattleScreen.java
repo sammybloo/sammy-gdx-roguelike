@@ -26,6 +26,8 @@ public class BattleScreen implements Screen {
     private PartyView playerParty;
     private PartyView enemyParty;
 
+    private SelectedCardView selectedCardView;
+
     public BattleScreen(Main game) {
         this.game = game;
     }
@@ -73,8 +75,11 @@ public class BattleScreen implements Screen {
         enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
-        new TargetingController(battleController, playerParty, enemyParty);
+        selectedCardView = new SelectedCardView();
+        selectedCardView.setBounds(50, (game.getViewport().getWorldHeight() - 450) * 0.5f, 300, 450);
+        new TargetingController(battleController, playerParty, enemyParty, selectedCardView);
 
+        stage.addActor(selectedCardView);
         stage.addActor(playerParty);
         stage.addActor(enemyParty);
 

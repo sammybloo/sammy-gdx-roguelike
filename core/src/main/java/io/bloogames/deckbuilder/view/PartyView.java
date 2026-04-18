@@ -13,6 +13,7 @@ public abstract class PartyView extends ResizableGroup implements View {
     private LeaderView leader;
     private HandView hand;
     private TableauView tableau;
+    private ManaView manaView;
 
     public PartyView(BattlePartyModel model) {
         super(WIDTH, HEIGHT);
@@ -50,6 +51,14 @@ public abstract class PartyView extends ResizableGroup implements View {
 
     public void setTableau(TableauView tableau) {
         this.tableau = tableau;
+    }
+
+    public ManaView getManaView() {
+        return manaView;
+    }
+
+    public void setManaView(ManaView manaView) {
+        this.manaView = manaView;
     }
 
     @Override

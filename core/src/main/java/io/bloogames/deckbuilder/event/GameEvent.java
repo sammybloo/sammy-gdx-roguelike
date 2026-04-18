@@ -19,6 +19,10 @@ public sealed interface GameEvent {
         implements GameEvent {
     }
 
+    record ManaSpentEvent(LeaderModel leader, int amount)
+        implements GameEvent {
+    }
+
     record CardPlayedEvent(CardModel card, CardSource cardSource, Target target)
         implements GameEvent {
     }

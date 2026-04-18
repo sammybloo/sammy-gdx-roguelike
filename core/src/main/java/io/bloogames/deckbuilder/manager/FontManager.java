@@ -94,5 +94,7 @@ public enum FontManager {
         if (cardNameFont != null) cardNameFont.dispose();
         if (battlerStatFont != null) battlerStatFont.dispose();
         if (battlerCardStatFont != null) battlerCardStatFont.dispose();
+        if (leaderHealthFont != null) leaderHealthFont.dispose();
+        if (leaderMessageFont != null) leaderMessageFont.dispose();
     }
 }

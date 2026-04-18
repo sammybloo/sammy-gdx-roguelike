@@ -9,6 +9,7 @@ import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -26,7 +27,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         this.model = model;
         image = new Image(AssetManager.INSTANCE.getSprite("slot"));
         setTouchable(Touchable.childrenOnly);
-        register(image, new ResizeableSettings(WIDTH, HEIGHT));
+        register(image, new ResizableSettings(WIDTH, HEIGHT));
         setBattler(model.getBattler());
     }
 
@@ -50,7 +51,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         }
 
         this.battler = new BattlerView(battlerModel);
-        register(battler, new ResizeableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
+        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
     }
 
     public void setBattler(BattlerView battler) {
@@ -65,7 +66,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         }
 
         this.battler = battler;
-        register(battler, new ResizeableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
+        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
     }
 
     public BattlerModel getBattlerModel() {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.ui.target.Targetable;
@@ -48,7 +49,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
             if (cardBack == null) {
                 cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));
             }
-            register(cardBack, new ResizeableSettings(WIDTH, HEIGHT, Align.center));
+            register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         }
     }
 

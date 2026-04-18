@@ -48,6 +48,9 @@ public class CardCoordinator {
             return result;
         }
 
+        source.owner().getLeader().spendMana(game.getBattle(), source.card().getCurrentCost());
+
+        game.getBattle().getOwner(source.card()).getHand().removeCard(source.card());
         game.getExecutor().enqueueImmediate(source.card().getEffect(), targetContext);
         game.dispatch(new GameEvent.CardPlayedEvent(source.card(), source, target));
         game.getBattle().setState(BattleState.CARD_ACTIVATING);

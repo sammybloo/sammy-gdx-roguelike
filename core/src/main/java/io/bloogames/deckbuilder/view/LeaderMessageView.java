@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
@@ -24,7 +25,7 @@ public class LeaderMessageView extends ResizableGroup {
         label.setTouchable(Touchable.disabled);
 
         setBackground(AssetManager.INSTANCE.getNinePatch("speechbubble"));
-        register(label, new ResizeableSettings(600, 180, Align.bottom).paddingY(10));
+        register(label, new ResizableSettings(600, 180, Align.bottom).paddingY(10));
         setVisible(false);
 
         addListener(new ClickListener() {

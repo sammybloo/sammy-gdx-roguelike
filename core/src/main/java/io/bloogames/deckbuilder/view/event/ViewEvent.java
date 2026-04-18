@@ -4,6 +4,7 @@ import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
+import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
@@ -34,6 +35,10 @@ public sealed interface ViewEvent {
     }
 
     record CardPlayedEvent(CardSource cardSource, Target target) implements ViewEvent {
+    }
+
+    record ManaSpentEvent(LeaderModel leader, int amount)
+        implements ViewEvent {
     }
 
     record DamageDealtEvent(Source source, Damageable target, int amount) implements ViewEvent {

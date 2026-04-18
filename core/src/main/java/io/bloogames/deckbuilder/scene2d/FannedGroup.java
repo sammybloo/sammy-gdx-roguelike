@@ -54,7 +54,7 @@ public class FannedGroup extends Group {
         float selectedCardAdjustment = (fannableWidth * settings.selectedScale * (1 - settings.overlap)) / 2;
 
         float spacing = fannableWidth * (1f - settings.overlap);
-        float totalWidth = spacing * (fannables.size);
+        float totalWidth = spacing * (fannables.size) + (fannableWidth * settings.overlap);
         float startX = (handWidth - totalWidth) / 2f;
 
         // centered is a value between -1 and 1 for each fannable

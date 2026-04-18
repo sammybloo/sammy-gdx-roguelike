@@ -42,7 +42,7 @@ public class ResizableGroup extends Group {
         valid = true;
     }
 
-    public void register(Actor actor, ResizeableSettings settings) {
+    public void register(Actor actor, ResizableSettings settings) {
         ResizableContainer container = new ResizableContainer(actor, settings);
         map.put(actor, container);
         addActor(container);
@@ -57,7 +57,7 @@ public class ResizableGroup extends Group {
         invalidate();
     }
 
-    private Bounds calculate(ResizeableSettings settings, float scaleX, float scaleY) {
+    private Bounds calculate(ResizableSettings settings, float scaleX, float scaleY) {
         if (settings.keepAspect) {
             float scale = Math.min(scaleX, scaleY);
             scaleX = scale;
@@ -99,7 +99,7 @@ public class ResizableGroup extends Group {
             float alpha = getColor().a * parentAlpha;
 
             Color oldBatchColor = batch.getColor();
-            batch.setColor(getColor().r, getColor().g, getColor().b, oldBatchColor.a * alpha);
+            batch.setColor(getColor().r, getColor().g, getColor().b, alpha);
 
             background.draw(
                 batch,
@@ -124,82 +124,4 @@ public class ResizableGroup extends Group {
     private record Bounds(float x, float y, float width, float height) {
     }
 
-    public static class ResizeableSettings {
-
-        float width;
-        float height;
-        int alignment = Align.bottomLeft;
-        float xOffset = 0f;
-        float yOffset = 0f;
-        float paddingX = 0f;
-        float paddingY = 0f;
-        float rotation = 0f;
-        boolean keepAspect = false;
-
-        public ResizeableSettings() {
-        }
-
-        public ResizeableSettings(float width, float height) {
-            width(width).height(height);
-        }
-
-
-        public ResizeableSettings(float width, float height, int alignment) {
-            width(width).height(height).alignment(alignment);
-        }
-
-        public ResizeableSettings width(float width) {
-            this.width = width;
-            return this;
-        }
-
-        public ResizeableSettings height(float height) {
-            this.height = height;
-            return this;
-        }
-
-        public ResizeableSettings alignment(int alignment) {
-            this.alignment = alignment;
-            return this;
-        }
-
-        public ResizeableSettings offset(float xOffset, float yOffset) {
-            return xOffset(xOffset).yOffset(yOffset);
-        }
-
-        public ResizeableSettings xOffset(float xOffset) {
-            this.xOffset = xOffset;
-            return this;
-        }
-
-        public ResizeableSettings yOffset(float yOffset) {
-            this.yOffset = yOffset;
-            return this;
-        }
-
-        public ResizeableSettings paddingX(float paddingX) {
-            this.paddingX = paddingX;
-            return this;
-        }
-
-        public ResizeableSettings paddingY(float paddingY) {
-            this.paddingY = paddingY;
-            return this;
-        }
-
-        public ResizeableSettings padding(float paddingX, float paddingY) {
-            return paddingX(paddingX).paddingY(paddingY);
-        }
-
-        public ResizeableSettings rotation(float rotation) {
-            this.rotation = rotation;
-            return this;
-        }
-
-        public ResizeableSettings keepAspect() {
-            keepAspect = true;
-            return this;
-        }
-
-    }
 }
