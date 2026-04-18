@@ -28,8 +28,8 @@ public class ManaView extends ResizableGroup implements View {
         manaSymbols = new Array<>(10);
         for (int i = 0; i < 10; i++) {
             manaSymbols.add(new ManaSymbol(AssetManager.INSTANCE.getSprite("mana")));
-            register(manaSymbols.get(i), new ResizableSettings(WIDTH / 2, HEIGHT / 5)
-                .offset(i > 4 ? WIDTH / 2 : 0, HEIGHT / 5 * (i % 5)).keepAspect());
+            register(manaSymbols.get(i), new ResizableSettings(WIDTH / 2f, HEIGHT / 5f)
+                .offset(i > 4 ? WIDTH / 2f : 0, HEIGHT / 5f * (i % 5)).keepAspect());
             manaSymbols.get(i).setRotation(i * 45);
         }
         sync();
