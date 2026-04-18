@@ -7,9 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import com.badlogic.gdx.utils.Align;
 
 public class ResizableContainer extends Group {
-    private ResizableGroup.ResizeableSettings settings;
-
     private final Actor actor;
+    private ResizableGroup.ResizeableSettings settings;
 
     public ResizableContainer(Actor actor, ResizableGroup.ResizeableSettings settings) {
         this.settings = settings;

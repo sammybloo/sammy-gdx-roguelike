@@ -10,8 +10,8 @@ import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class BattleStateController {
     private final ViewEventBus eventBus;
-    private BattleViewState state = BattleViewState.PLAYER_TURN;
     public boolean targetsOwnCards = false;
+    private BattleViewState state = BattleViewState.PLAYER_TURN;
 
     public BattleStateController(ViewEventBus eventBus) {
         this.eventBus = eventBus;

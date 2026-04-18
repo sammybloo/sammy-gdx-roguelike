@@ -10,11 +10,11 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public class ResizableGroup extends Group {
-    ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
-    private NinePatch background;
     public float targetWidth;
     public float targetHeight;
     public boolean valid = false;
+    ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
+    private NinePatch background;
 
     public ResizableGroup(float targetWidth, float targetHeight) {
         this.targetWidth = targetWidth;

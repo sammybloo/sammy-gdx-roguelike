@@ -15,14 +15,13 @@ import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
 public class LeaderView extends ResizableGroup implements View, Targetable {
+    private static final float WIDTH = 200;
+    private static final float HEIGHT = 200;
     private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final LeaderModel model;
     private final Image image;
     private final Image frame;
     private final Label healthLabel;
-
-    private static final float WIDTH = 200;
-    private static final float HEIGHT = 200;
 
     public LeaderView(LeaderModel model) {
         super(WIDTH, HEIGHT);
@@ -66,7 +65,8 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         healthLabel.setColor(colour);
     }
 
-    @Override public Actor actor() {
+    @Override
+    public Actor actor() {
         return this;
     }
 }

@@ -10,15 +10,14 @@ import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerCardModel;
 
 public class BattlerCardView extends CardView {
+    public static final float WIDTH = CardView.WIDTH;
+    public static final float HEIGHT = CardView.HEIGHT;
     private final BattlerCardModel battlerCardModel;
     private final Image frame;
     private final Image art;
     private final Label nameLabel;
     private final Label powerLabel;
     private final Label healthLabel;
-
-    public static final float WIDTH = CardView.WIDTH;
-    public static final float HEIGHT = CardView.HEIGHT;
 
     public BattlerCardView(BattlerCardModel model) {
         super(model);

@@ -10,12 +10,11 @@ import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.View;
 
 public class TableauView extends ResizableGroup implements View {
-    ObjectMap<BattlerModel, BattlerView> battlerActors = new ObjectMap<>();
-    private final Array<SlotView> slots;
-    private final TableauModel model;
-
     public final static float WIDTH = 1290;
     public final static float HEIGHT = 250;
+    private final Array<SlotView> slots;
+    private final TableauModel model;
+    ObjectMap<BattlerModel, BattlerView> battlerActors = new ObjectMap<>();
 
     public TableauView(TableauModel model) {
         super(WIDTH, HEIGHT);

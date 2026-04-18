@@ -33,7 +33,7 @@ public class ConditionValidator {
 
     @SuppressWarnings("unchecked")
     private Optional<ValidationError> checkTargetConditionsAreMet(TargetConditionList conditionList,
-                                                                 TargetContext<?> context) {
+                                                                  TargetContext<?> context) {
         for (var c : conditionList.getConditions(context.target().type())) {
 
             Optional<ValidationError> result = ((TargetCondition<Target>) c).check((TargetContext<Target>) context, this);
@@ -44,7 +44,7 @@ public class ConditionValidator {
     }
 
     private Optional<ValidationError> checkTargetAgainstTargetSpec(TargetSpec targetSpec,
-                                                                  TargetContext<?> context) {
+                                                                   TargetContext<?> context) {
         if (!targetSpec.allows(context.target().type())) {
             return Optional.of(new ValidationError("wrong_target_type"));
         }

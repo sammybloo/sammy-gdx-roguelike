@@ -6,8 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
-import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
-import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.LeaderTarget;
@@ -48,8 +46,7 @@ public class TargetingController {
                 SlotTarget slotTarget = new SlotTarget(slot.getModel(), party.getModel().getParty());
                 if (battleController.isValidTarget(currentCard, slotTarget)) {
                     slot.setTargetState(TargetState.VALID);
-                }
-                else {
+                } else {
                     slot.setTargetState(TargetState.INVALID);
                 }
                 setValidity(battleController, slot, slotTarget);
@@ -79,8 +76,7 @@ public class TargetingController {
     public void setValidity(BattleController battleController, Targetable targetable, Target target) {
         if (battleController.isValidTarget(currentCard, target)) {
             targetable.setTargetState(TargetState.VALID);
-        }
-        else {
+        } else {
             targetable.setTargetState(TargetState.INVALID);
         }
     }
@@ -91,27 +87,27 @@ public class TargetingController {
         }
 
         InputListener listener = new HoverListener(0f, 0f) {
-                @Override
-                public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                    if (battleController.getBattleState().canTargetCards()) {
-                        targetable.setHovered(true);
-                    }
+            @Override
+            public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                if (battleController.getBattleState().canTargetCards()) {
+                    targetable.setHovered(true);
                 }
+            }
 
-                @Override
-                public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                    if (battleController.getBattleState().canTargetCards()) {
-                        targetable.setHovered(false);
-                    }
+            @Override
+            public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                if (battleController.getBattleState().canTargetCards()) {
+                    targetable.setHovered(false);
                 }
+            }
 
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (battleController.getBattleState().canTargetCards()) {
-                        battleController.playCard(currentCard, target);
-                    }
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (battleController.getBattleState().canTargetCards()) {
+                    battleController.playCard(currentCard, target);
                 }
-            };
+            }
+        };
         targetable.actor().addListener(listener);
         listenerMap.put(targetable, listener);
     }

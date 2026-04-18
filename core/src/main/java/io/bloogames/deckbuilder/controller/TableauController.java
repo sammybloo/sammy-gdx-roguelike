@@ -15,8 +15,7 @@ public class TableauController {
     public TableauController(TableauView tableau, BattleController battleController, PartyModel owner, boolean canSwap) {
         if (canSwap) {
             this.tableauSwapHandler = new TableauSwapHandler(tableau, battleController);
-        }
-        else {
+        } else {
             this.tableauSwapHandler = null;
         }
         this.tableau = tableau;

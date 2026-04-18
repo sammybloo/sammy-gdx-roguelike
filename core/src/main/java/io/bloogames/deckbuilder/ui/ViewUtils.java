@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public enum ViewUtils {
     ;
+
     public static void unmoor(Actor actor) {
         Stage stage = actor.getStage();
 

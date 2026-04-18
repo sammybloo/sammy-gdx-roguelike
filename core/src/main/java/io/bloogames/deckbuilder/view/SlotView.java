@@ -14,13 +14,12 @@ import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
 public class SlotView extends ResizableGroup implements View, Targetable {
+    public static float WIDTH = 250;
+    public static float HEIGHT = 250;
     private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final Image image;
     private final SlotModel model;
     private BattlerView battler;
-
-    public static float WIDTH = 250;
-    public static float HEIGHT = 250;
 
     public SlotView(SlotModel model) {
         super(WIDTH, HEIGHT);
@@ -37,10 +36,6 @@ public class SlotView extends ResizableGroup implements View, Targetable {
 
     public BattlerView getBattler() {
         return battler;
-    }
-
-    public BattlerModel getBattlerModel() {
-        return hasBattler() ? battler.getModel() : null;
     }
 
     public void setBattler(BattlerModel battlerModel) {
@@ -71,6 +66,10 @@ public class SlotView extends ResizableGroup implements View, Targetable {
 
         this.battler = battler;
         register(battler, new ResizeableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
+    }
+
+    public BattlerModel getBattlerModel() {
+        return hasBattler() ? battler.getModel() : null;
     }
 
     public void removeBattler() {
@@ -111,7 +110,8 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         image.setColor(colour);
     }
 
-    @Override public Actor actor() {
+    @Override
+    public Actor actor() {
         return this;
     }
 }

@@ -5,24 +5,23 @@ import io.bloogames.deckbuilder.effect.source.Source;
 
 public class SourceConditionList<T extends Source> {
     private static final SourceConditionList<?> NONE_INSTANCE = new SourceConditionList<>(new Array<>());
-
-    @SuppressWarnings("unchecked")
-    public static <T extends Source> SourceConditionList<T> none() {
-        return (SourceConditionList<T>) NONE_INSTANCE;
-    }
-
     private final Array<SourceCondition<? super T>> conditions;
 
     private SourceConditionList(Array<SourceCondition<? super T>> conditions) {
         this.conditions = conditions;
     }
 
-    public Array<SourceCondition<? super T>> getConditions() {
-        return new Array<>(conditions);
+    @SuppressWarnings("unchecked")
+    public static <T extends Source> SourceConditionList<T> none() {
+        return (SourceConditionList<T>) NONE_INSTANCE;
     }
 
     public static <T extends Source> Builder<T> builder() {
         return new Builder<>();
+    }
+
+    public Array<SourceCondition<? super T>> getConditions() {
+        return new Array<>(conditions);
     }
 
     public static class Builder<T extends Source> {

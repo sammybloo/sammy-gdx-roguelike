@@ -26,7 +26,7 @@ public class PlayerPartyView extends PartyView {
         new HandController(getHand(), battleController, model.getParty());
 
         setTableau(new TableauView(model.getTableau()));
-        new TableauController(getTableau(), battleController,  model.getParty(), true);
+        new TableauController(getTableau(), battleController, model.getParty(), true);
 
         register(getLeader(), new ResizeableSettings(200f, 200f).padding(10, 10).keepAspect());
         register(getTableau(), new ResizeableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)

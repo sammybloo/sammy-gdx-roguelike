@@ -8,6 +8,7 @@ public enum TextManager {
     INSTANCE;
 
     private final I18NBundle errorMessages;
+
     TextManager() {
         errorMessages = AssetManager.INSTANCE.getBundle("errors", Locale.ENGLISH);
     }

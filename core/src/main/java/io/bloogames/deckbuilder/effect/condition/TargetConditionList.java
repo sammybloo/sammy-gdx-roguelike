@@ -7,24 +7,23 @@ import io.bloogames.deckbuilder.effect.target.TargetType;
 
 public class TargetConditionList {
     private static final TargetConditionList NONE_INSTANCE = new TargetConditionList(new ObjectMap<>());
-
-    public static TargetConditionList none() {
-        return NONE_INSTANCE;
-    }
-
     private final ObjectMap<TargetType, Array<TargetCondition<? extends Target>>> conditionsByType;
 
     private TargetConditionList(ObjectMap<TargetType, Array<TargetCondition<? extends Target>>> conditionsByType) {
         this.conditionsByType = conditionsByType;
     }
 
-    public Array<TargetCondition<? extends Target>> getConditions(TargetType targetType) {
-        Array<TargetCondition<? extends Target>> conditions = conditionsByType.get(targetType);
-        return conditions == null ? new Array<>() : new Array<>(conditions);
+    public static TargetConditionList none() {
+        return NONE_INSTANCE;
     }
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public Array<TargetCondition<? extends Target>> getConditions(TargetType targetType) {
+        Array<TargetCondition<? extends Target>> conditions = conditionsByType.get(targetType);
+        return conditions == null ? new Array<>() : new Array<>(conditions);
     }
 
     public static class Builder {

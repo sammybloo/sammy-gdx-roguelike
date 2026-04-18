@@ -10,12 +10,11 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 
 public class Crosshair extends Group {
+    public static float WIDTH = 75;
+    public static float HEIGHT = 75;
     Image image;
     Image shadow;
     Vector2 mousePosition = new Vector2();
-
-    public static float WIDTH = 75;
-    public static float HEIGHT = 75;
 
     public Crosshair() {
         setTouchable(Touchable.disabled);

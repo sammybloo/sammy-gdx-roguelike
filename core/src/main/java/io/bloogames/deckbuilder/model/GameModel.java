@@ -6,9 +6,9 @@ import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.execution.EffectExecutor;
 
 public class GameModel implements GameEventPublisher {
-    private BattleModel battle;
     private final GameEventDispatcher eventDispatcher;
     private final EffectExecutor executor;
+    private BattleModel battle;
 
     public GameModel() {
         this.eventDispatcher = new GameEventDispatcher();

@@ -7,13 +7,12 @@ import io.bloogames.deckbuilder.ui.View;
 
 public abstract class PartyView extends ResizableGroup implements View {
 
+    public static final float WIDTH = 1920;
+    public static final float HEIGHT = 540;
     private BattlePartyModel model;
     private LeaderView leader;
     private HandView hand;
     private TableauView tableau;
-
-    public static final float WIDTH = 1920;
-    public static final float HEIGHT = 540;
 
     public PartyView(BattlePartyModel model) {
         super(WIDTH, HEIGHT);

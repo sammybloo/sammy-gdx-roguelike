@@ -8,10 +8,10 @@ import com.badlogic.gdx.utils.Timer;
 public abstract class HoverListener extends ClickListener {
 
     boolean isHovered;
-    private float hoverDelay;
-    private float unhoverDelay;
     Timer.Task hoverTask;
     Timer.Task unhoverTask;
+    private float hoverDelay;
+    private float unhoverDelay;
 
     public HoverListener(float hoverDelay, float unhoverDelay) {
         this.hoverDelay = hoverDelay;

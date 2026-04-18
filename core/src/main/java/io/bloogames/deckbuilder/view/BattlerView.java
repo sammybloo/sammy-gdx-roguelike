@@ -16,15 +16,14 @@ import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 
 public class BattlerView extends ResizableGroup implements View, Targetable {
+    public final static float WIDTH = 200;
+    public final static float HEIGHT = 200;
     private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final BattlerModel model;
     private final Image art;
     private final Image frame;
     private final Label powerLabel;
     private final Label healthLabel;
-
-    public final static float WIDTH = 200;
-    public final static float HEIGHT = 200;
 
     public BattlerView(BattlerModel model) {
         super(WIDTH, HEIGHT);
@@ -78,8 +77,7 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
 
         if (targetingVisualState().isHovered() && !targetingVisualState().isTargeted()) {
             addAction(Actions.scaleTo(1.1f, 1.1f, 0.1f));
-        }
-        else {
+        } else {
             addAction(Actions.scaleTo(1f, 1f, 0.1f));
         }
     }
@@ -89,7 +87,8 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         return targetingVisualState;
     }
 
-    @Override public Actor actor() {
+    @Override
+    public Actor actor() {
         return this;
     }
 }

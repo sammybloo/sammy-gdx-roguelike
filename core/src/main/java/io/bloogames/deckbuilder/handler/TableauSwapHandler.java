@@ -51,6 +51,7 @@ public class TableauSwapHandler {
             if (slot.getBattler() != null) {
                 slot.getBattler().addListener(new HoverListener(0f, 0f) {
                     BattlerView battler = slot.getBattler();
+
                     @Override
                     public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                         if (battleController.getBattleState().canSwapBattlers()) {
