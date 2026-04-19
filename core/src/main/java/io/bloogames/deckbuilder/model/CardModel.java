@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
 
-public class CardModel {
+public abstract class CardModel {
     private BaseCard base;
     private boolean faceup = true;
 

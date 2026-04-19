@@ -6,21 +6,28 @@ filter: Linear, Linear
 repeat: none
 battlerframe
   rotate: false
-  xy: 2, 1042
+  xy: 2, 1138
   size: 540, 810
   orig: 540, 810
   offset: 0, 0
   index: -1
 cardback
   rotate: false
-  xy: 2, 230
+  xy: 2, 326
   size: 540, 810
   orig: 540, 810
   offset: 0, 0
   index: -1
+cardmana
+  rotate: false
+  xy: 2, 68
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
 cardspot
   rotate: false
-  xy: 1058, 1248
+  xy: 1572, 1858
   size: 90, 90
   split: 12, 12, 9, 10
   pad: 12, 12, 10, 10
@@ -29,42 +36,42 @@ cardspot
   index: -1
 crosshair
   rotate: false
-  xy: 2, 2
+  xy: 544, 694
   size: 226, 226
   orig: 226, 226
   offset: 0, 0
   index: -1
 frame
   rotate: false
-  xy: 544, 1340
+  xy: 544, 1436
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 leaderframe
   rotate: false
-  xy: 544, 826
+  xy: 544, 922
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 mana
   rotate: false
-  xy: 1572, 1788
+  xy: 2, 2
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 slot
   rotate: false
-  xy: 1058, 1340
+  xy: 1058, 1436
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 speechbubble
   rotate: false
-  xy: 544, 696
+  xy: 1058, 1306
   size: 128, 128
   split: 56, 57, 51, 65
   pad: 55, 59, 50, 65

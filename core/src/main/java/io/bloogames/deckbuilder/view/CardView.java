@@ -1,10 +1,15 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
+import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
@@ -20,37 +25,61 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
     private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final CardModel cardModel;
-    private Image cardBack;
+    protected Image cardBack;
+    protected Image frame;
+    protected Image art;
+    protected Image manaSymbol;
+    protected Label nameLabel;
+    protected Label manaLabel;
+    protected ResizableGroup frontFace;
 
-    public CardView(CardModel cardModel) {
+    public CardView(CardModel cardModel, String frameReference, String artReference) {
         super(WIDTH, HEIGHT);
         this.cardModel = cardModel;
+        setOrigin(Align.center);
+
+        this.frontFace = new ResizableGroup(WIDTH, HEIGHT);
+        frontFace.setTouchable(Touchable.disabled);
+
+        this.art = new Image(AssetManager.INSTANCE.getSprite(artReference));
+
+        this.frame = new Image(AssetManager.INSTANCE.getSprite(frameReference));
+
+        this.manaSymbol = new Image(AssetManager.INSTANCE.getSprite("cardmana"));
+
+        nameLabel = new Label(cardModel.getCardName(),
+            new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
+        nameLabel.setAlignment(Align.center, Align.left);
+
+        manaLabel = new Label(cardModel.getCurrentCost() + "",
+            new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardManaCostFont(), null));
+        manaLabel.setAlignment(Align.center, Align.center);
+
+        frontFace.register(art, new ResizableSettings(WIDTH * 0.948f, WIDTH * 0.948f).offset(WIDTH * 0.025f, HEIGHT * 0.284f));
+        frontFace.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
+        frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 25, Align.top).offset(30f, 15f));
+        frontFace.register(manaSymbol, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
+        frontFace.register(manaLabel, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
+
+        cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));
+        register(frontFace, new ResizableSettings(WIDTH, HEIGHT, Align.center));
+        register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
+        setTouchable(Touchable.enabled);
+
+        setFacing(cardModel.isFaceup());
     }
 
     public CardModel getModel() {
         return cardModel;
     }
 
-    public abstract void hideContents();
-
-    public abstract void showContents();
+    public void setFacing(boolean isFaceUp) {
+        frontFace.setVisible(isFaceUp);
+        cardBack.setVisible(!isFaceUp);
+    }
 
     public boolean isFaceup() {
         return cardModel.isFaceup();
-    }
-
-    public void flipCard(boolean faceup) {
-        cardModel.setFaceup(faceup);
-        if (faceup) {
-            unregister(cardBack);
-            showContents();
-        } else {
-            hideContents();
-            if (cardBack == null) {
-                cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));
-            }
-            register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
-        }
     }
 
     public void disappear() {
@@ -71,5 +100,19 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
     @Override
     public Actor actor() {
         return this;
+    }
+
+    @Override
+    public void applyHighlight() {
+        Color colour = targetingVisualState().getColour();
+        art.setColor(colour);
+        frame.setColor(colour);
+        manaSymbol.setColor(colour);
+    }
+
+    @Override
+    public void sync() {
+        nameLabel.setText(getName());
+        manaLabel.setText(cardModel.getCurrentCost());
     }
 }
