@@ -1,5 +1,7 @@
 package io.bloogames.deckbuilder.effect.target.concrete;
 
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.CardModel;
@@ -9,6 +11,9 @@ public class CardTarget implements Target {
 
     private PartyModel owner;
     private CardModel card;
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[] {TargetType.CARD}
+    );
 
     public CardTarget(CardModel card, PartyModel owner) {
         this.owner = owner;
@@ -21,8 +26,8 @@ public class CardTarget implements Target {
     }
 
     @Override
-    public TargetType type() {
-        return TargetType.CARD;
+    public Array<TargetType> types() {
+        return TYPES;
     }
 
     public CardModel card() {

@@ -9,6 +9,7 @@ import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
+import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.error.ValidationError;
 
 import java.util.Optional;
@@ -34,10 +35,12 @@ public class ConditionValidator {
     @SuppressWarnings("unchecked")
     private Optional<ValidationError> checkTargetConditionsAreMet(TargetConditionList conditionList,
                                                                   TargetContext<?> context) {
-        for (var c : conditionList.getConditions(context.target().type())) {
+        for (TargetType type : context.target().types()) {
+            for (var c : conditionList.getConditions(type)) {
 
-            Optional<ValidationError> result = ((TargetCondition<Target>) c).check((TargetContext<Target>) context, this);
-            if (result.isPresent()) return result;
+                Optional<ValidationError> result = ((TargetCondition<Target>) c).check((TargetContext<Target>) context, this);
+                if (result.isPresent()) return result;
+            }
         }
 
         return Optional.empty();
@@ -45,7 +48,7 @@ public class ConditionValidator {
 
     private Optional<ValidationError> checkTargetAgainstTargetSpec(TargetSpec targetSpec,
                                                                    TargetContext<?> context) {
-        if (!targetSpec.allows(context.target().type())) {
+        if (!targetSpec.allows(context.target().types())) {
             return Optional.of(new ValidationError("wrong_target_type"));
         }
 

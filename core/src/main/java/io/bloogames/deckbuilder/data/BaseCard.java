@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 
-public class BaseCard {
+public abstract class BaseCard {
 
     private final String cardId;
     private final String cardName;

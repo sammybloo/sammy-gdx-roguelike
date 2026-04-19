@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.effect.target;
 
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.effect.condition.TargetConditionList;
 
@@ -14,6 +15,15 @@ public final class TargetSpec {
         for (TargetType type : validTypes) {
             this.validTypes.put(type, true);
         }
+    }
+
+    public boolean allows(Array<TargetType> types) {
+        for (TargetType type : types) {
+            if (allows(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean allows(TargetType type) {

@@ -26,10 +26,13 @@ public class BattlerModel implements Damageable {
         return stats.getBaseStats().getPower();
     }
 
-    public int getHealth() {
+    public int getMaxHealth() {
         return stats.getBaseStats().getHealth();
     }
 
+    public int getCurrentHealth() {
+        return getMaxHealth() - damage;
+    }
     public CardModel getCardModel() {
         return cardModel;
     }

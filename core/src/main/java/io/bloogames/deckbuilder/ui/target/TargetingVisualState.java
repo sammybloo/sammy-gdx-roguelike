@@ -38,8 +38,8 @@ public final class TargetingVisualState {
             if (hoverState == HoverState.HOVERED) {
                 return new Color(1f, 1f, 0.5f, 1f);
             }
-            return new Color(0.9f, 1f, 0.9f, 1f);
+            return new Color(0.8f, 1f, 0.8f, 1f);
         }
-        return new Color(0.9f, 0.9f, 0.9f, 1f);
+        return new Color(0.8f, 0.8f, 0.8f, 1f);
     }
 }

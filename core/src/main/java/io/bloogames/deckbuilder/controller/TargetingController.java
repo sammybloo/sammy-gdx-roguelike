@@ -26,8 +26,6 @@ public class TargetingController {
     }
 
     public void registerParties(BattleController battleController, PartyView playerParty, PartyView enemyParty) {
-
-
         battleController.getEventBus().register(ViewEvent.CardStartEvent.class, e -> {
             if (selectedCardView.getSelectedCardSource() != null) {
                 selectedCardView.removeCard().remove();

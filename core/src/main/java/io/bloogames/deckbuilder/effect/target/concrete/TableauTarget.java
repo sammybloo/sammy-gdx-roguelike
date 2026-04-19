@@ -1,5 +1,7 @@
 package io.bloogames.deckbuilder.effect.target.concrete;
 
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.PartyModel;
@@ -9,6 +11,10 @@ public class TableauTarget implements Target {
 
     private PartyModel owner;
     private TableauModel tableau;
+
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[] {TargetType.TABLEAU}
+    );
 
     public TableauTarget(PartyModel owner, TableauModel tableau) {
         this.owner = owner;
@@ -21,8 +27,8 @@ public class TableauTarget implements Target {
     }
 
     @Override
-    public TargetType type() {
-        return TargetType.TABLEAU;
+    public Array<TargetType> types() {
+        return TYPES;
     }
 
     public TableauModel tableau() {

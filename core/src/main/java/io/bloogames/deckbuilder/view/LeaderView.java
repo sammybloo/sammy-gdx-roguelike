@@ -32,7 +32,7 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         image.setTouchable(Touchable.disabled);
         frame = new Image(AssetManager.INSTANCE.getSprite("leaderframe"));
         frame.setTouchable(Touchable.disabled);
-        healthLabel = new Label(model.getMaxHealth() + "",
+        healthLabel = new Label(model.getCurrentHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getLeaderHealthFont(), null));
         healthLabel.setTouchable(Touchable.disabled);
         healthLabel.setAlignment(Align.bottom);
@@ -41,16 +41,13 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         register(healthLabel, new ResizableSettings(40, 40, Align.bottom).yOffset(-6f));
     }
 
-    public int getMaxHealth() {
-        return model.getMaxHealth();
-    }
-
     public LeaderModel getModel() {
         return model;
     }
 
     @Override
     public void sync() {
+        healthLabel.setText(model.getCurrentHealth() + "");
     }
 
     @Override

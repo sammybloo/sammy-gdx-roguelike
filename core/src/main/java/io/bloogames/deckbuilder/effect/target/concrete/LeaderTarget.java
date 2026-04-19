@@ -1,22 +1,27 @@
 package io.bloogames.deckbuilder.effect.target.concrete;
 
-import io.bloogames.deckbuilder.effect.target.Target;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.model.PartyModel;
 
-public final class LeaderTarget implements Target {
+public final class LeaderTarget extends DamageableTarget {
     private final LeaderModel leader;
     private final PartyModel owner;
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[] { TargetType.LEADER, TargetType.DAMAGEABLE}
+    );
 
     public LeaderTarget(LeaderModel leader, PartyModel owner) {
+        super(leader, owner);
         this.leader = leader;
         this.owner = owner;
     }
 
     @Override
-    public TargetType type() {
-        return TargetType.LEADER;
+    public Array<TargetType> types() {
+        return TYPES;
     }
 
     public LeaderModel leader() {

@@ -65,7 +65,7 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
     @Override
     public void sync() {
         powerLabel.setText(model.getPower());
-        healthLabel.setText(model.getHealth());
+        healthLabel.setText(model.getCurrentHealth());
     }
 
     @Override

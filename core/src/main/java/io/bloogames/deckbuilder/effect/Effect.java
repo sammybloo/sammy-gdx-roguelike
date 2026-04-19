@@ -11,7 +11,7 @@ public final class Effect {
         this.entries = new Array<>(entries);
     }
 
-    public Array<EffectStep> stepsFor(TargetType targetType) {
+    public Array<EffectStep> stepsFor(Array<TargetType> targetTypes) {
         Array<EffectStep> filtered = new Array<>();
 
         for (int i = 0; i < entries.size; i++) {
@@ -23,7 +23,7 @@ public final class Effect {
             }
 
             EffectStepEntry.Target target = (EffectStepEntry.Target) entry;
-            if (target.targetType() == targetType) {
+            if (targetTypes.contains(target.targetType(), true)) {
                 filtered.add(target.step());
             }
         }

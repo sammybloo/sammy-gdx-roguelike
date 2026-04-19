@@ -60,14 +60,16 @@ public class BattleScreen implements Screen {
         for (int i = 0; i < 10; i++) {
             battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
+            battlerCard.setFaceup(i % 2 != 0);
             battleModel.getEnemyParty().getHand().addCard(battlerCard);
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
             battleModel.getPlayerParty().getHand().addCard(battlerCard);
         }
+        battleModel.getPlayerParty().getHand().addCard(new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball")));
 
         playerParty = new PlayerPartyView(battleController, battleModel.getPlayerParty());
         playerParty.setSize(game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);

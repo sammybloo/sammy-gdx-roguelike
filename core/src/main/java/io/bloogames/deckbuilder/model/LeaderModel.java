@@ -18,8 +18,8 @@ public class LeaderModel implements Damageable {
         return base.getMaxHealth();
     }
 
-    public int getDamage() {
-        return damage;
+    public int getCurrentHealth() {
+        return getMaxHealth() - damage;
     }
 
     public String getId() {

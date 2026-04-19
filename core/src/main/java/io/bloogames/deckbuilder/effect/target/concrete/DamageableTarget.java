@@ -5,18 +5,13 @@ import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.Damageable;
 import io.bloogames.deckbuilder.model.PartyModel;
 
-public final class DamageableTarget implements Target {
+public abstract class DamageableTarget implements Target {
     private final Damageable damageable;
     private final PartyModel owner;
 
     public DamageableTarget(Damageable damageable, PartyModel owner) {
         this.damageable = damageable;
         this.owner = owner;
-    }
-
-    @Override
-    public TargetType type() {
-        return TargetType.DAMAGEABLE;
     }
 
     public Damageable damageable() {
