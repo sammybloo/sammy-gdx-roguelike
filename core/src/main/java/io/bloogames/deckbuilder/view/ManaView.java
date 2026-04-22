@@ -41,16 +41,13 @@ public class ManaView extends ResizableGroup implements View {
                 manaSymbols.get(i).setFull();
             } else if (i < leader.getMaxMana()) {
                 manaSymbols.get(i).setEmpty();
-            }
-            else {
+            } else {
                 manaSymbols.get(i).setInvisible();
             }
         }
     }
 
     private class ManaSymbol extends Image {
-        private enum ManaState {EMPTY, FULL, INVISIBLE}
-
         private ManaState state = ManaState.INVISIBLE;
 
         public ManaSymbol(TextureRegion textureRegion) {
@@ -105,5 +102,7 @@ public class ManaView extends ResizableGroup implements View {
                 this.state = ManaState.INVISIBLE;
             }
         }
+
+        private enum ManaState {EMPTY, FULL, INVISIBLE}
     }
 }

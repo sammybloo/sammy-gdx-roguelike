@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -39,6 +38,8 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         register(image, new ResizableSettings(WIDTH, HEIGHT));
         register(frame, new ResizableSettings(WIDTH, HEIGHT));
         register(healthLabel, new ResizableSettings(40, 40, Align.bottom).yOffset(-6f));
+
+        addTint(targetingVisualState().getTint());
     }
 
     public LeaderModel getModel() {
@@ -57,7 +58,7 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        addTint(targetingVisualState().getTint());
+        targetingVisualState.updateTint();
     }
 
     @Override

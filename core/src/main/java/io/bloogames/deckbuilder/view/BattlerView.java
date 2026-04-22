@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -50,6 +49,8 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         this.register(healthLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
             .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
 
+        addTint(targetingVisualState().getTint());
+
         sync();
     }
 
@@ -70,11 +71,7 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        addTint(targetingVisualState().getTint());
-//        art.setColor(colour);
-//        frame.setColor(colour);
-//        powerLabel.setColor(colour);
-//        healthLabel.setColor(colour);
+        targetingVisualState().updateTint();
 
         if (targetingVisualState().isHovered() && !targetingVisualState().isTargeted()) {
             addAction(Actions.scaleTo(1.1f, 1.1f, 0.1f));

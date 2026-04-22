@@ -33,8 +33,11 @@ public final class TargetingVisualState {
     }
 
     public Tint getTint() {
-        currentTint.setColor(getColor());
         return currentTint;
+    }
+
+    public void updateTint() {
+        currentTint.setColor(getColor());
     }
 
     private Color getColor() {

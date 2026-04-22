@@ -7,11 +7,11 @@ import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
 
 public final class BattlerTarget extends DamageableTarget {
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[]{TargetType.BATTLER, TargetType.DAMAGEABLE}
+    );
     private final BattlerModel battler;
     private final PartyModel owner;
-    private static final Array<TargetType> TYPES = new SnapshotArray<>(
-        new TargetType[] { TargetType.BATTLER, TargetType.DAMAGEABLE}
-    );
 
     public BattlerTarget(BattlerModel battler, PartyModel owner) {
         super(battler, owner);

@@ -4,18 +4,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Array;
 import com.github.tommyettinger.colorful.FloatColors;
 
-public class ColorSet {
+public class TintSet {
     private Array<Tint> tints = new Array<>();
     private Color color = new Color();
+    private Tintable parent;
 
     public void addTint(Tint tint) {
         if (!tints.contains(tint, true)) {
             tints.add(tint);
+            tint.setParent(this);
         }
     }
 
     public void removeTint(Tint tint) {
         tints.removeValue(tint, true);
+        tint.setParent(null);
     }
 
     public boolean hasTint() {
@@ -39,4 +42,13 @@ public class ColorSet {
         return color;
     }
 
+    public void update() {
+        if (parent != null) {
+            parent.refreshColour();
+        }
+    }
+
+    public void setParent(Tintable parent) {
+        this.parent = parent;
+    }
 }

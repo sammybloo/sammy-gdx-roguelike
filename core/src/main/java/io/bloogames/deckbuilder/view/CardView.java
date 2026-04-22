@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -66,6 +65,8 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         setTouchable(Touchable.enabled);
 
         setFacing(cardModel.isFaceup());
+
+        addTint(targetingVisualState().getTint());
     }
 
     public CardModel getModel() {
@@ -103,11 +104,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
     @Override
     public void applyHighlight() {
-        addTint(targetingVisualState().getTint());
-//        art.setColor(colour);
-//        frame.setColor(colour);
-//        manaSymbol.setColor(colour);
-//        cardBack.setColor(colour);
+        targetingVisualState().updateTint();
     }
 
     @Override

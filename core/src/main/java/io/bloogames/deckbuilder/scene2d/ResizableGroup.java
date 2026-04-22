@@ -8,21 +8,23 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ObjectMap;
-import io.bloogames.deckbuilder.ui.color.ColorSet;
 import io.bloogames.deckbuilder.ui.color.Tint;
+import io.bloogames.deckbuilder.ui.color.TintSet;
+import io.bloogames.deckbuilder.ui.color.Tintable;
 
-public class ResizableGroup extends Group {
+public class ResizableGroup extends Group implements Tintable {
     public float targetWidth;
     public float targetHeight;
     public boolean valid = false;
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     private NinePatch background;
-    private ColorSet colorSet = new ColorSet();
+    private TintSet tintSet = new TintSet();
     private Color parentColor = null;
 
     public ResizableGroup(float targetWidth, float targetHeight) {
         this.targetWidth = targetWidth;
         this.targetHeight = targetHeight;
+        tintSet.setParent(this);
     }
 
     public void invalidate() {
@@ -116,13 +118,12 @@ public class ResizableGroup extends Group {
     }
 
     public void addTint(Tint tint) {
-        colorSet.addTint(tint);
-        setColor(parentColor);
+        tintSet.addTint(tint);
+
     }
 
     public void removeTint(Tint tint) {
-        colorSet.removeTint(tint);
-        setColor(parentColor);
+        tintSet.removeTint(tint);
     }
 
     @Override
@@ -130,10 +131,9 @@ public class ResizableGroup extends Group {
         parentColor = color;
         Color newColor;
         if (parentColor == null) {
-            newColor = colorSet.getColor();
-        }
-        else {
-            newColor = colorSet.getColor(color);
+            newColor = tintSet.getColor();
+        } else {
+            newColor = tintSet.getColor(color);
         }
 
         super.setColor(newColor);
@@ -154,6 +154,11 @@ public class ResizableGroup extends Group {
     protected void sizeChanged() {
         super.sizeChanged();
         invalidate();
+    }
+
+    @Override
+    public void refreshColour() {
+        setColor(parentColor);
     }
 
     private record Bounds(float x, float y, float width, float height) {

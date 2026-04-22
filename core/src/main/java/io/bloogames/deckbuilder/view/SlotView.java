@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -29,6 +28,8 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         setTouchable(Touchable.childrenOnly);
         register(image, new ResizableSettings(WIDTH, HEIGHT));
         setBattler(model.getBattler());
+
+        addTint(targetingVisualState().getTint());
     }
 
     public SlotModel getModel() {
@@ -108,8 +109,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        addTint(targetingVisualState().getTint());
-        // image.setColor(colour);
+        targetingVisualState().updateTint();
     }
 
     @Override

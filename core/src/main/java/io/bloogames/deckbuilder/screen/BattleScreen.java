@@ -53,9 +53,9 @@ public class BattleScreen implements Screen {
         var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
             "vanille", "columbo", "snail", "paulallen", "worms"};
         battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(
-            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[0])));
-        battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[1])));
+        battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(
+            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[0])));
         battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
@@ -91,13 +91,14 @@ public class BattleScreen implements Screen {
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();
+        BattlerView battler = playerParty.getTableau().getSlot(2).getBattler();
         new Timer().scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                var vfx = new DamageVisualEffect(playerParty.getTableau().getSlot(2), 4);
+                var vfx = new DamageVisualEffect(battler, 3);
                 vfx.play();
             }
-        }, 1f);
+        }, 3f);
     }
 
     @Override

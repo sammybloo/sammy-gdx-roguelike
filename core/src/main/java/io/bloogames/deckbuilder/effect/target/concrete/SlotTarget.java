@@ -8,11 +8,11 @@ import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 
 public final class SlotTarget implements Target {
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[]{TargetType.SLOT}
+    );
     private final SlotModel slot;
     private final PartyModel owner;
-    private static final Array<TargetType> TYPES = new SnapshotArray<>(
-        new TargetType[] {TargetType.SLOT}
-    );
 
     public SlotTarget(SlotModel slot, PartyModel owner) {
         this.slot = slot;

@@ -10,7 +10,6 @@ import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.LeaderTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
-import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.ui.target.TargetState;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.view.*;

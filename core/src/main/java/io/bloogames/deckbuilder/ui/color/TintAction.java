@@ -1,58 +1,48 @@
 package io.bloogames.deckbuilder.ui.color;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
-import com.badlogic.gdx.utils.Null;
+import com.github.tommyettinger.colorful.FloatColors;
 
 public class TintAction extends TemporalAction {
-    private float startR, startG, startB, startA;
-    private @Null Color color;
-    private final Color end = new Color();
+    private float start, end;
+    private Tint tint;
 
-    protected void begin () {
-        if (color == null) color = target.getColor();
-        startR = color.r;
-        startG = color.g;
-        startB = color.b;
-        startA = color.a;
+    protected void begin() {
+        start = tint.getColorFloatBits();
     }
 
-    protected void update (float percent) {
+    protected void update(float percent) {
         if (percent == 0)
-            color.set(startR, startG, startB, startA);
+            tint.setColorFloatBits(start);
         else if (percent == 1)
-            color.set(end);
+            tint.setColorFloatBits(end);
         else {
-            float r = startR + (end.r - startR) * percent;
-            float g = startG + (end.g - startG) * percent;
-            float b = startB + (end.b - startB) * percent;
-            float a = startA + (end.a - startA) * percent;
-            color.set(r, g, b, a);
+            tint.setColorFloatBits(FloatColors.lerpFloatColors(start, end, percent));
         }
     }
 
-    public void reset () {
+    public void reset() {
         super.reset();
-        color = null;
     }
 
-    public @Null Color getColor () {
-        return color;
+    public Tint getTint() {
+        return tint;
     }
 
-    /** Sets the color to modify. If null (the default), the {@link #getActor() actor's} {@link Actor#getColor() color} will be
-     * used. */
-    public void setColor (@Null Color color) {
-        this.color = color;
+    public void setTint(Tint tint) {
+        this.tint = tint;
     }
 
-    public Color getEndColor () {
+    public float getEnd() {
         return end;
     }
 
-    /** Sets the color to transition to. Required. */
-    public void setEndColor (Color color) {
-        end.set(color);
+    public void setEndColor(Color color) {
+        end = color.toFloatBits();
+    }
+
+    public void setEndColor(float colorFloatBits) {
+        this.end = colorFloatBits;
     }
 }

@@ -7,12 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import com.github.tommyettinger.colorful.ipt.ColorfulSprite;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.scene2d.ResizableContainer;
+import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.color.Tint;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static io.bloogames.deckbuilder.manager.CustomActions.tint;
 
 public class DamageVisualEffect implements VisualEffect {
 
@@ -20,16 +22,20 @@ public class DamageVisualEffect implements VisualEffect {
     private Actor actor;
     private ResizableContainer damageLabel;
 
-    public DamageVisualEffect(Actor actor, int amount) {
+    public DamageVisualEffect(ResizableGroup actor, int amount) {
         this.actor = actor;
-        this.action = sequence(color(Color.RED, 0.2f), color(actor.getColor(), 0.2f));
+        Tint tint = new Tint();
+        actor.addTint(tint);
+
+        this.action = sequence(delay(0.1f), tint(tint, Color.RED.toFloatBits(), 0.2f),
+            tint(tint, Color.GRAY.toFloatBits(), 0.2f));
         this.damageLabel = new ResizableContainer(new Label(amount + "",
-            new Label.LabelStyle(FontManager.INSTANCE.getDamagePopupFont(), null)),
+            new Label.LabelStyle(FontManager.INSTANCE.getDamagePopupFont(), Color.GRAY)),
             new ResizableSettings(200f, 200f, Align.center));
         damageLabel.setTouchable(Touchable.disabled);
         damageLabel.setOrigin(Align.center);
+        damageLabel.setColor(0.5f, 0.5f, 0.5f, 1f);
         ((Label) (damageLabel.getActor())).setAlignment(Align.center, Align.center);
-        ColorfulSprite s;
     }
 
     @Override
@@ -43,17 +49,19 @@ public class DamageVisualEffect implements VisualEffect {
         damageLabel.addAction(
             sequence(
                 alpha(0),
-                delay(0.1f),
                 scaleTo(0, 0),
                 parallel(
                     fadeIn(0.1f),
-                    scaleTo(1.2f, 1.2f, 0.1f)
+                    scaleTo(1.2f, 1.2f, 0.2f)
                 ),
-                scaleTo(1, 1, 0.1f),
                 delay(0.1f),
+                scaleTo(1, 1, 0.1f),
                 parallel(
-                    fadeOut(0.5f),
-                    moveBy(0, 50f, 0.5f)
+                    moveBy(0, 50f, 0.5f),
+                    sequence(
+                        delay(0.2f),
+                        fadeOut(0.3f)
+                    )
                 ),
                 removeActor())
         );

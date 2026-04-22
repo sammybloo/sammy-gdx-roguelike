@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.effect.target.concrete;
 
 import io.bloogames.deckbuilder.effect.target.Target;
-import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.Damageable;
 import io.bloogames.deckbuilder.model.PartyModel;
 

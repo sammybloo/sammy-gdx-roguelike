@@ -9,12 +9,11 @@ import io.bloogames.deckbuilder.model.TableauModel;
 
 public class TableauTarget implements Target {
 
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[]{TargetType.TABLEAU}
+    );
     private PartyModel owner;
     private TableauModel tableau;
-
-    private static final Array<TargetType> TYPES = new SnapshotArray<>(
-        new TargetType[] {TargetType.TABLEAU}
-    );
 
     public TableauTarget(PartyModel owner, TableauModel tableau) {
         this.owner = owner;

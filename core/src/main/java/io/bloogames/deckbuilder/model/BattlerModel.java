@@ -33,6 +33,7 @@ public class BattlerModel implements Damageable {
     public int getCurrentHealth() {
         return getMaxHealth() - damage;
     }
+
     public CardModel getCardModel() {
         return cardModel;
     }

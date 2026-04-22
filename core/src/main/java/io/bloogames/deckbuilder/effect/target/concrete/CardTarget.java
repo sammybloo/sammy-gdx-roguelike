@@ -9,11 +9,11 @@ import io.bloogames.deckbuilder.model.PartyModel;
 
 public class CardTarget implements Target {
 
+    private static final Array<TargetType> TYPES = new SnapshotArray<>(
+        new TargetType[]{TargetType.CARD}
+    );
     private PartyModel owner;
     private CardModel card;
-    private static final Array<TargetType> TYPES = new SnapshotArray<>(
-        new TargetType[] {TargetType.CARD}
-    );
 
     public CardTarget(CardModel card, PartyModel owner) {
         this.owner = owner;
