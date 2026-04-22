@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 
@@ -20,16 +21,15 @@ public class Crosshair extends Group {
         setTouchable(Touchable.disabled);
         setSize(WIDTH, HEIGHT);
         setOrigin(Align.center);
-        image = new Image(AssetManager.INSTANCE.getSprite("crosshair"));
+        image = new Image(AssetManager.INSTANCE.findRegion("crosshair"));
         image.setSize(WIDTH, HEIGHT);
         image.setColor(Color.RED);
-        shadow = new Image(AssetManager.INSTANCE.getSprite("crosshair"));
+        shadow = new Image(AssetManager.INSTANCE.findRegion("crosshair"));
         shadow.setSize(WIDTH, HEIGHT);
         shadow.setColor(new Color(0, 0, 0, 0.25f));
         shadow.setPosition(1.5f, -1.5f);
         addActor(shadow);
         addActor(image);
-
     }
 
     @Override

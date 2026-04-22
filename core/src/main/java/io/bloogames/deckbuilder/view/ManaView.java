@@ -17,8 +17,8 @@ public class ManaView extends ResizableGroup implements View {
 
     public final static int WIDTH = 80;
     public final static int HEIGHT = 200;
-    private final static Color FULL = new Color(0.6f, 0.6f, 1f, 0.8f);
-    private final static Color EMPTY = new Color(0.6f, 0.6f, 0.6f, 0.3f);
+    private final static Color FULL = new Color(0.3f, 0.3f, 1f, 0.8f);
+    private final static Color EMPTY = new Color(0.3f, 0.3f, 0.3f, 0.3f);
     private final Array<ManaSymbol> manaSymbols;
     private final LeaderModel leader;
 
@@ -27,7 +27,7 @@ public class ManaView extends ResizableGroup implements View {
         this.leader = leader;
         manaSymbols = new Array<>(10);
         for (int i = 0; i < 10; i++) {
-            manaSymbols.add(new ManaSymbol(AssetManager.INSTANCE.getSprite("mana")));
+            manaSymbols.add(new ManaSymbol(AssetManager.INSTANCE.findRegion("mana")));
             register(manaSymbols.get(i), new ResizableSettings(WIDTH / 2f, HEIGHT / 5f)
                 .offset(i > 4 ? WIDTH / 2f : 0, HEIGHT / 5f * (i % 5)).keepAspect());
             manaSymbols.get(i).setRotation(i * 45);

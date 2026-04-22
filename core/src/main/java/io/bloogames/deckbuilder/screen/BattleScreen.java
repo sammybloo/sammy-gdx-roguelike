@@ -6,12 +6,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Timer;
+import com.github.tommyettinger.colorful.rgb.ColorfulBatch;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
+import io.bloogames.deckbuilder.vfx.DamageVisualEffect;
 import io.bloogames.deckbuilder.view.*;
 
 public class BattleScreen implements Screen {
@@ -34,7 +37,7 @@ public class BattleScreen implements Screen {
 
     @Override
     public void show() {
-        stage = new Stage(game.getViewport());
+        stage = new Stage(game.getViewport(), new ColorfulBatch());
 
         gameModel = new GameModel();
 
@@ -88,6 +91,13 @@ public class BattleScreen implements Screen {
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();
+        new Timer().scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                var vfx = new DamageVisualEffect(playerParty.getTableau().getSlot(2), 4);
+                vfx.play();
+            }
+        }, 1f);
     }
 
     @Override

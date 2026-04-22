@@ -19,6 +19,10 @@ public class ResizableContainer extends Group {
         addActor(actor);
     }
 
+    public Actor getActor() {
+        return actor;
+    }
+
     public ResizableSettings getSettings() {
         return settings;
     }
@@ -28,8 +32,5 @@ public class ResizableContainer extends Group {
         super.sizeChanged();
         actor.setSize(getWidth(), getHeight());
         actor.setOrigin(Align.center);
-        if (actor instanceof Widget widget) {
-            widget.invalidateHierarchy();
-        }
     }
 }

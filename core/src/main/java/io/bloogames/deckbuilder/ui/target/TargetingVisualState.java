@@ -1,10 +1,12 @@
 package io.bloogames.deckbuilder.ui.target;
 
 import com.badlogic.gdx.graphics.Color;
+import io.bloogames.deckbuilder.ui.color.Tint;
 
 public final class TargetingVisualState {
     private TargetState targetState = TargetState.NOT_TARGETED;
     private HoverState hoverState = HoverState.NOT_HOVERED;
+    private Tint currentTint = new Tint(Color.GRAY.toFloatBits());
 
     public TargetState getTargetState() {
         return targetState;
@@ -30,16 +32,21 @@ public final class TargetingVisualState {
         return hoverState == HoverState.HOVERED;
     }
 
-    public Color getColour() {
+    public Tint getTint() {
+        currentTint.setColor(getColor());
+        return currentTint;
+    }
+
+    private Color getColor() {
         if (!isTargeted()) {
-            return new Color(1f, 1f, 1f, 1f);
+            return new Color(0.5f, 0.5f, 0.5f, 1f);
         }
         if (targetState == TargetState.VALID) {
             if (hoverState == HoverState.HOVERED) {
-                return new Color(1f, 1f, 0.5f, 1f);
+                return new Color(0.6f, 0.6f, 0.5f, 1f);
             }
-            return new Color(0.8f, 1f, 0.8f, 1f);
+            return new Color(0.55f, 0.55f, 0.5f, 1f);
         }
-        return new Color(0.8f, 0.8f, 0.8f, 1f);
+        return new Color(0.3f, 0.3f, 0.3f, 1f);
     }
 }

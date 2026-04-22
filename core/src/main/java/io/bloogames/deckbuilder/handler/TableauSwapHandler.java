@@ -43,7 +43,9 @@ public class TableauSwapHandler {
                     public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
                         payload.getDragActor().remove();
                         SlotView otherSlot = (SlotView) payload.getObject();
-                        battleController.swapSlots(tableau.getModel(), slot.getModel(), otherSlot.getModel());
+                        if (slot != otherSlot) {
+                            battleController.swapSlots(tableau.getModel(), slot.getModel(), otherSlot.getModel());
+                        }
                     }
                 }
             );

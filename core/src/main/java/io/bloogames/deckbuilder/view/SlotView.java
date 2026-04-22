@@ -25,7 +25,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
     public SlotView(SlotModel model) {
         super(WIDTH, HEIGHT);
         this.model = model;
-        image = new Image(AssetManager.INSTANCE.getSprite("slot"));
+        image = new Image(AssetManager.INSTANCE.findRegion("slot"));
         setTouchable(Touchable.childrenOnly);
         register(image, new ResizableSettings(WIDTH, HEIGHT));
         setBattler(model.getBattler());
@@ -51,7 +51,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         }
 
         this.battler = new BattlerView(battlerModel);
-        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
+        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect().keepColour());
     }
 
     public void setBattler(BattlerView battler) {
@@ -66,7 +66,8 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         }
 
         this.battler = battler;
-        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center).keepAspect());
+        register(battler, new ResizableSettings(WIDTH * 0.8f, HEIGHT * 0.8f, Align.center)
+            .keepAspect().keepColour());
     }
 
     public BattlerModel getBattlerModel() {
@@ -107,8 +108,8 @@ public class SlotView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        Color colour = targetingVisualState().getColour();
-        image.setColor(colour);
+        addTint(targetingVisualState().getTint());
+        // image.setColor(colour);
     }
 
     @Override

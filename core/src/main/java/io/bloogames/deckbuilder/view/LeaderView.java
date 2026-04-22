@@ -28,9 +28,9 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         super(WIDTH, HEIGHT);
 
         this.model = model;
-        image = new Image(AssetManager.INSTANCE.getSprite("leader/" + model.getId()));
+        image = new Image(AssetManager.INSTANCE.findRegion("leader/" + model.getId()));
         image.setTouchable(Touchable.disabled);
-        frame = new Image(AssetManager.INSTANCE.getSprite("leaderframe"));
+        frame = new Image(AssetManager.INSTANCE.findRegion("leaderframe"));
         frame.setTouchable(Touchable.disabled);
         healthLabel = new Label(model.getCurrentHealth() + "",
             new Label.LabelStyle(FontManager.INSTANCE.getLeaderHealthFont(), null));
@@ -57,10 +57,7 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        Color colour = targetingVisualState().getColour();
-        image.setColor(colour);
-        frame.setColor(colour);
-        healthLabel.setColor(colour);
+        addTint(targetingVisualState().getTint());
     }
 
     @Override

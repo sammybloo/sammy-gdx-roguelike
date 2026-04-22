@@ -15,6 +15,7 @@ public enum FontManager {
     BitmapFont leaderHealthFont;
     BitmapFont leaderMessageFont;
     BitmapFont battlerCardManaCostFont;
+    BitmapFont damagePopupFont;
 
     public BitmapFont getBattlerStatFont() {
         if (battlerStatFont == null) {
@@ -106,11 +107,29 @@ public enum FontManager {
         return leaderMessageFont;
     }
 
+    public BitmapFont getDamagePopupFont() {
+        if (damagePopupFont == null) {
+            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.color = Color.WHITE;
+            parameter.size = 64;
+            parameter.minFilter = Texture.TextureFilter.Linear;
+            parameter.magFilter = Texture.TextureFilter.Linear;
+            parameter.borderColor = Color.BLACK;
+            parameter.borderWidth = 3;
+            damagePopupFont = generator.generateFont(parameter);
+            generator.dispose();
+        }
+
+        return damagePopupFont;
+    }
+
     public void dispose() {
         if (cardNameFont != null) cardNameFont.dispose();
         if (battlerStatFont != null) battlerStatFont.dispose();
         if (battlerCardStatFont != null) battlerCardStatFont.dispose();
         if (leaderHealthFont != null) leaderHealthFont.dispose();
         if (leaderMessageFont != null) leaderMessageFont.dispose();
+        if (damagePopupFont != null) damagePopupFont.dispose();
     }
 }

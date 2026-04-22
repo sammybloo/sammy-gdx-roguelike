@@ -13,6 +13,7 @@ public class ResizableSettings {
     float paddingY = 0f;
     float rotation = 0f;
     boolean keepAspect = false;
+    boolean keepColour = false;
 
     public ResizableSettings(float width, float height) {
         width(width).height(height);
@@ -73,6 +74,11 @@ public class ResizableSettings {
 
     public ResizableSettings keepAspect() {
         keepAspect = true;
+        return this;
+    }
+
+    public ResizableSettings keepColour() {
+        keepColour = true;
         return this;
     }
 

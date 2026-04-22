@@ -40,11 +40,11 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         this.frontFace = new ResizableGroup(WIDTH, HEIGHT);
         frontFace.setTouchable(Touchable.disabled);
 
-        this.art = new Image(AssetManager.INSTANCE.getSprite(artReference));
+        this.art = new Image(AssetManager.INSTANCE.findRegion(artReference));
 
-        this.frame = new Image(AssetManager.INSTANCE.getSprite(frameReference));
+        this.frame = new Image(AssetManager.INSTANCE.findRegion(frameReference));
 
-        this.manaSymbol = new Image(AssetManager.INSTANCE.getSprite("cardmana"));
+        this.manaSymbol = new Image(AssetManager.INSTANCE.findRegion("cardmana"));
 
         nameLabel = new Label(cardModel.getCardName(),
             new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
@@ -60,7 +60,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         frontFace.register(manaSymbol, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
         frontFace.register(manaLabel, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
 
-        cardBack = new Image(AssetManager.INSTANCE.getSprite("cardback"));
+        cardBack = new Image(AssetManager.INSTANCE.findRegion("cardback"));
         register(frontFace, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         setTouchable(Touchable.enabled);
@@ -103,11 +103,11 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
     @Override
     public void applyHighlight() {
-        Color colour = targetingVisualState().getColour();
-        art.setColor(colour);
-        frame.setColor(colour);
-        manaSymbol.setColor(colour);
-        cardBack.setColor(colour);
+        addTint(targetingVisualState().getTint());
+//        art.setColor(colour);
+//        frame.setColor(colour);
+//        manaSymbol.setColor(colour);
+//        cardBack.setColor(colour);
     }
 
     @Override

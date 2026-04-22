@@ -87,6 +87,19 @@ speechbubble
   index: -1
 
 game2.png
+size: 2048, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+animations/fireball
+  rotate: false
+  xy: 2, 2
+  size: 1152, 96
+  orig: 1152, 96
+  offset: 0, 0
+  index: -1
+
+game3.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -169,7 +182,7 @@ card/wrio
   offset: 0, 0
   index: -1
 
-game3.png
+game4.png
 size: 2048, 1024
 format: RGBA8888
 filter: Linear, Linear

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.github.tommyettinger.colorful.oklab.ColorfulBatch;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.screen.BattleScreen;
@@ -16,9 +17,6 @@ public class Main extends Game {
     private SpriteBatch batch;
     private Viewport viewport;
 
-    public SpriteBatch getBatch() {
-        return batch;
-    }
 
     public Viewport getViewport() {
         return viewport;
@@ -27,7 +25,7 @@ public class Main extends Game {
     @Override
     public void create() {
         this.viewport = new ExtendViewport(1920, 1080);
-        this.batch = new SpriteBatch();
+
         this.setScreen(new BattleScreen(this));
     }
 
@@ -38,7 +36,6 @@ public class Main extends Game {
 
     @Override
     public void dispose() {
-        batch.dispose();
         AssetManager.INSTANCE.dispose();
         FontManager.INSTANCE.dispose();
     }

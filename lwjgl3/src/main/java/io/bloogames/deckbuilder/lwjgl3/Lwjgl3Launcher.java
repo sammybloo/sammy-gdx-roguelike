@@ -10,8 +10,11 @@ import io.bloogames.deckbuilder.Main;
  */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
-        TexturePacker.Settings settings = new TexturePacker.Settings();
-        TexturePacker.processIfModified(settings, "images", "pack", "game");
+        boolean runPacker = Boolean.getBoolean("run.texturepacker");
+        if (runPacker) {
+            TexturePacker.Settings settings = new TexturePacker.Settings();
+            TexturePacker.processIfModified(settings, "images", "pack", "game");
+        }
 
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();

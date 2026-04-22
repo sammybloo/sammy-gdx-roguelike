@@ -30,9 +30,9 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         super(WIDTH, HEIGHT);
         this.setOrigin(Align.center);
         this.model = model;
-        this.art = new Image(AssetManager.INSTANCE.getSprite("card/" + model.getBattlerId()));
+        this.art = new Image(AssetManager.INSTANCE.findRegion("card/" + model.getBattlerId()));
         art.setTouchable(Touchable.disabled);
-        frame = new Image(AssetManager.INSTANCE.getSprite("frame"));
+        frame = new Image(AssetManager.INSTANCE.findRegion("frame"));
         frame.setTouchable(Touchable.disabled);
         powerLabel = new Label("", new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
         powerLabel.setAlignment(Align.center, Align.center);
@@ -43,8 +43,8 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         healthLabel.setAlignment(Align.center, Align.center);
         healthLabel.setTouchable(Touchable.disabled);
 
-        this.register(art, new ResizableSettings(WIDTH, HEIGHT));
-        this.register(frame, new ResizableSettings(WIDTH, HEIGHT));
+        this.register(art, new ResizableSettings(WIDTH * 0.99f, HEIGHT * 0.99f, Align.center));
+        this.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         this.register(powerLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f)
             .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
         this.register(healthLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
@@ -70,11 +70,11 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void applyHighlight() {
-        Color colour = targetingVisualState().getColour();
-        art.setColor(colour);
-        frame.setColor(colour);
-        powerLabel.setColor(colour);
-        healthLabel.setColor(colour);
+        addTint(targetingVisualState().getTint());
+//        art.setColor(colour);
+//        frame.setColor(colour);
+//        powerLabel.setColor(colour);
+//        healthLabel.setColor(colour);
 
         if (targetingVisualState().isHovered() && !targetingVisualState().isTargeted()) {
             addAction(Actions.scaleTo(1.1f, 1.1f, 0.1f));

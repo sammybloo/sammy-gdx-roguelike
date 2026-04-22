@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ObjectMap;
+import io.bloogames.deckbuilder.ui.color.ColorSet;
+import io.bloogames.deckbuilder.ui.color.Tint;
 
 public class ResizableGroup extends Group {
     public float targetWidth;
@@ -15,6 +17,8 @@ public class ResizableGroup extends Group {
     public boolean valid = false;
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     private NinePatch background;
+    private ColorSet colorSet = new ColorSet();
+    private Color parentColor = null;
 
     public ResizableGroup(float targetWidth, float targetHeight) {
         this.targetWidth = targetWidth;
@@ -38,6 +42,8 @@ public class ResizableGroup extends Group {
             container.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
             container.setRotation(container.getSettings().rotation);
         }
+
+        setColor(parentColor);
 
         valid = true;
     }
@@ -101,18 +107,47 @@ public class ResizableGroup extends Group {
             Color oldBatchColor = batch.getColor();
             batch.setColor(getColor().r, getColor().g, getColor().b, alpha);
 
-            background.draw(
-                batch,
-                getX(), getY(),
-                getOriginX(), getOriginY(),
-                getWidth(), getHeight(),
-                getScaleX(), getScaleY(),
-                getRotation()
-            );
+            background.draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(),
+                getScaleX(), getScaleY(), getRotation());
 
             batch.setColor(oldBatchColor);
         }
         super.draw(batch, parentAlpha);
+    }
+
+    public void addTint(Tint tint) {
+        colorSet.addTint(tint);
+        setColor(parentColor);
+    }
+
+    public void removeTint(Tint tint) {
+        colorSet.removeTint(tint);
+        setColor(parentColor);
+    }
+
+    @Override
+    public void setColor(Color color) {
+        parentColor = color;
+        Color newColor;
+        if (parentColor == null) {
+            newColor = colorSet.getColor();
+        }
+        else {
+            newColor = colorSet.getColor(color);
+        }
+
+        super.setColor(newColor);
+
+        map.forEach(entry -> {
+            if (!entry.value.getSettings().keepColour) {
+                entry.key.setColor(newColor);
+            }
+        });
+    }
+
+    @Override
+    public void setColor(float r, float g, float b, float a) {
+        setColor(new Color(r, g, b, a));
     }
 
     @Override
