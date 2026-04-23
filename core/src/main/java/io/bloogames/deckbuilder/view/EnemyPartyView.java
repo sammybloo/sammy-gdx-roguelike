@@ -2,8 +2,6 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.controller.HandController;
-import io.bloogames.deckbuilder.controller.TableauController;
 import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.scene2d.FannedGroup;
@@ -14,16 +12,15 @@ public class EnemyPartyView extends PartyView {
     public EnemyPartyView(BattleController battleController, BattlePartyModel model) {
         super(model);
         setLeader(new LeaderView(model.getLeader()));
-        getLeader().setPosition(15, 15);
 
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.3f, 10f, 1.5f,
                 1.045f, 180f, 0.15f),
             new HandHoverHandler(battleController.getBattleState(), 0.3f, 0.1f)));
-        new HandController(getHand(), battleController, model.getParty());
 
         setTableau(new TableauView(model.getTableau()));
-        new TableauController(getTableau(), battleController, model.getParty(), false);
+
+        setManaView(new ManaView(model.getLeader()));
 
         register(getTableau(), new ResizableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
             .yOffset(10f));
@@ -31,8 +28,7 @@ public class EnemyPartyView extends PartyView {
             .yOffset(HEIGHT * -0.4f));
         register(getLeader(), new ResizableSettings(200f, 200f, Align.topLeft)
             .padding(10, 10).keepAspect());
-
-        register(new ManaView(model.getLeader()), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10));
+        register(getManaView(), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10));
 
         getHand().setRotation(180f);
     }

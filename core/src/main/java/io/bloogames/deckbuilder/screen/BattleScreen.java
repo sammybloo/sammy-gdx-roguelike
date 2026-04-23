@@ -6,15 +6,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Timer;
 import com.github.tommyettinger.colorful.rgb.ColorfulBatch;
 import io.bloogames.deckbuilder.Main;
 import io.bloogames.deckbuilder.controller.BattleController;
+import io.bloogames.deckbuilder.controller.PartyController;
+import io.bloogames.deckbuilder.controller.PlayerPartyController;
 import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.*;
-import io.bloogames.deckbuilder.vfx.DamageVisualEffect;
+import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.view.*;
 
 public class BattleScreen implements Screen {
@@ -26,8 +27,8 @@ public class BattleScreen implements Screen {
     private BattleModel battleModel;
     private BattleController battleController;
 
-    private PartyView playerParty;
-    private PartyView enemyParty;
+    private PlayerPartyView playerParty;
+    private EnemyPartyView enemyParty;
 
     private SelectedCardView selectedCardView;
 
@@ -48,7 +49,6 @@ public class BattleScreen implements Screen {
         );
 
         gameModel.setBattle(battleModel);
-        battleController = new BattleController(gameModel);
 
         var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
             "vanille", "columbo", "snail", "paulallen", "worms"};
@@ -74,14 +74,21 @@ public class BattleScreen implements Screen {
         }
         battleModel.getPlayerParty().getHand().addCard(new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball")));
 
+        battleController = new BattleController(gameModel);
+
         playerParty = new PlayerPartyView(battleController, battleModel.getPlayerParty());
         playerParty.setSize(game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
+
+        new PlayerPartyController(playerParty, battleController);
 
         enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
+        new PartyController(enemyParty, battleController);
+
         selectedCardView = new SelectedCardView();
         selectedCardView.setBounds(50, (game.getViewport().getWorldHeight() - 450) * 0.5f, 300, 450);
+
         new TargetingController(battleController, playerParty, enemyParty, selectedCardView);
 
         stage.addActor(selectedCardView);
@@ -91,19 +98,13 @@ public class BattleScreen implements Screen {
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();
-        BattlerView battler = playerParty.getTableau().getSlot(2).getBattler();
-        new Timer().scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                var vfx = new DamageVisualEffect(battler, 3);
-                vfx.play();
-            }
-        }, 3f);
     }
 
     @Override
     public void render(float delta) {
-        gameModel.doNext();
+        if (VFXManager.INSTANCE.isReady()) {
+            gameModel.doNext();
+        }
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

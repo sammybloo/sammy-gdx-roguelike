@@ -68,6 +68,15 @@ public class TableauView extends ResizableGroup implements View {
         return null;
     }
 
+    public BattlerView getBattler(BattlerModel battlerModel) {
+        for (SlotView s : slots) {
+            if (s.hasBattler(battlerModel)) {
+                return s.getBattler();
+            }
+        }
+        return null;
+    }
+
     @Override
     public void sync() {
         for (SlotView slotView : slots) {
