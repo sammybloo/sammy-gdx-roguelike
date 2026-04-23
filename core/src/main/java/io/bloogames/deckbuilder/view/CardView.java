@@ -82,16 +82,6 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         return cardModel.isFaceup();
     }
 
-    public void disappear() {
-        clearListeners();
-        clearActions();
-        ViewUtils.unmoor(this);
-
-        addAction(Actions.moveBy(0, 100f, 0.2f));
-        addAction(Actions.fadeOut(0.2f));
-        addAction(Actions.delay(0.2f, Actions.removeActor()));
-    }
-
     @Override
     public TargetingVisualState targetingVisualState() {
         return targetingVisualState;

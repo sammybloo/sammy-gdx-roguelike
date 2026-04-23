@@ -10,6 +10,10 @@ public enum ViewUtils {
     public static void unmoor(Actor actor) {
         Stage stage = actor.getStage();
 
+        if (stage == null) {
+            return;
+        }
+
         Vector2 localPosition = new Vector2(actor.getWidth() * 0.5f, actor.getHeight() * 0.5f);
         Vector2 stagePosition = actor.localToStageCoordinates(localPosition);
         stage.addActor(actor);

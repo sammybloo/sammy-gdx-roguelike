@@ -18,10 +18,10 @@ public enum VFXManager {
         boolean isReady = true;
         for (int i = 0; i < visualEffects.size; i++) {
             VisualEffect vfx = visualEffects.get(i);
-            if (vfx.isFinished()) {
+            if (vfx.isReady()) {
                 visualEffects.removeIndex(i);
             }
-            else if (!vfx.isReady()) {
+            else {
                 isReady = false;
             }
         }

@@ -83,9 +83,4 @@ public class DamageVisualEffect implements VisualEffect {
     public boolean isReady() {
         return flashAction.getActor() == null && shakeAction.getActor() == null;
     }
-
-    public boolean isFinished() {
-        return flashAction.getActor() == null && shakeAction.getActor() == null && damageBubbleAction.getActor() == null;
-    }
-
 }

@@ -9,7 +9,7 @@ public class PartyController {
     protected final LeaderController leaderController;
 
     public PartyController(PartyView party, BattleController battleController) {
-        handController = new HandController(party.getHand(), battleController, party.getModel().getParty());
+        handController = new HandController(party.getHand(), battleController);
         tableauController = new TableauController(party.getTableau(), battleController, party.getModel().getParty());
         leaderController = new LeaderController(party.getLeader(), party.getManaView(), battleController);
     }
