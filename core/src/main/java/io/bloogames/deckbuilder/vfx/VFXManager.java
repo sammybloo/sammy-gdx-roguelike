@@ -20,8 +20,7 @@ public enum VFXManager {
             VisualEffect vfx = visualEffects.get(i);
             if (vfx.isReady()) {
                 visualEffects.removeIndex(i);
-            }
-            else {
+            } else {
                 isReady = false;
             }
         }

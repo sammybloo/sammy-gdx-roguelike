@@ -1,7 +1,5 @@
 package io.bloogames.deckbuilder.vfx.concrete;
 
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.vfx.VisualEffect;
 import io.bloogames.deckbuilder.view.CardView;
 

@@ -4,7 +4,6 @@ import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.concrete.DrawCardEffect;
 import io.bloogames.deckbuilder.vfx.concrete.FlipCardFaceupVisualEffect;
 import io.bloogames.deckbuilder.view.CardView;
-import io.bloogames.deckbuilder.view.HandView;
 import io.bloogames.deckbuilder.view.PartyView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 

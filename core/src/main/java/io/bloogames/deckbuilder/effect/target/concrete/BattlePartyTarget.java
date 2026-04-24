@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
-import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.model.PartyModel;
 
 public class BattlePartyTarget implements Target {

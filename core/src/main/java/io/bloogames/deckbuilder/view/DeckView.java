@@ -3,17 +3,13 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 import io.bloogames.deckbuilder.manager.CardManager;
-import io.bloogames.deckbuilder.model.ActionCardModel;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.DeckModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
-import io.bloogames.deckbuilder.vfx.VFXManager;
-import io.bloogames.deckbuilder.vfx.concrete.FlipCardFaceupVisualEffect;
 
 public class DeckView extends ResizableGroup implements View {
 

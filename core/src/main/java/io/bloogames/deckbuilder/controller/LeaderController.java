@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.controller;
 
-import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
+import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.view.LeaderView;
 import io.bloogames.deckbuilder.view.ManaView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;

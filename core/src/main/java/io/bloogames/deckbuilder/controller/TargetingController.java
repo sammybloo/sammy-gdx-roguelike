@@ -13,8 +13,8 @@ import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.ui.target.TargetState;
 import io.bloogames.deckbuilder.ui.target.Targetable;
-import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
+import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.*;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 

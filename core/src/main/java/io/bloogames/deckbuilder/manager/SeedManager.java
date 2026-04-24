@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.manager;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Random;

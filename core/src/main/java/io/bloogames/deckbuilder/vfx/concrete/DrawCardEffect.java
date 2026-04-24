@@ -2,15 +2,13 @@ package io.bloogames.deckbuilder.vfx.concrete;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.ui.ViewUtils;
 import io.bloogames.deckbuilder.vfx.VisualEffect;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.DeckView;
 import io.bloogames.deckbuilder.view.HandView;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class DrawCardEffect implements VisualEffect {
 

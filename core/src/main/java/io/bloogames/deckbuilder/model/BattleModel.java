@@ -1,7 +1,5 @@
 package io.bloogames.deckbuilder.model;
 
-import com.badlogic.gdx.Game;
-import io.bloogames.deckbuilder.effect.Effect;
 import io.bloogames.deckbuilder.effect.EffectBuilder;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.step.concrete.DrawCardsStep;

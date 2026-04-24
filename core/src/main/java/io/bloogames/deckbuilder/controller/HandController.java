@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.controller;
 
-import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
+import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;

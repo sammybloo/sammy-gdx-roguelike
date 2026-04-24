@@ -4,18 +4,18 @@ import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.handler.TableauSwapHandler;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
-import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
+import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class TableauController {
-    @Null
-    private TableauSwapHandler tableauSwapHandler;
     private final TableauView tableau;
     private final BattleController battleController;
+    @Null
+    private TableauSwapHandler tableauSwapHandler;
 
     public TableauController(TableauView tableau, BattleController battleController, PartyModel owner) {
         this.battleController = battleController;

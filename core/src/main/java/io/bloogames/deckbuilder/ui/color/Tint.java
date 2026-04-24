@@ -15,6 +15,7 @@ public class Tint {
         super();
         this.id = id;
     }
+
     public Tint(float colorFloatBits) {
         this.colorFloatBits = colorFloatBits;
     }
