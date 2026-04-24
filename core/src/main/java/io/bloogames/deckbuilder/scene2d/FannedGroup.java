@@ -103,6 +103,10 @@ public class FannedGroup extends Group {
         fan();
     }
 
+    public void addFannable(Actor actor) {
+        fannables.add(actor);
+    }
+
     public void removeFannable(Actor actor) {
         fannables.removeValue(actor, true);
     }

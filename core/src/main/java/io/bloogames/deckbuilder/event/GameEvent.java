@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.event;
 import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
+import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.ui.BattleState;
 
@@ -28,6 +29,14 @@ public sealed interface GameEvent {
     }
 
     record DamageDealtEvent(Source source, Damageable target, int amount)
+        implements GameEvent {
+    }
+
+    record CardDrawnEvent(HandModel hand, CardModel card)
+        implements GameEvent {
+    }
+
+    record EffectFailedEvent(Source source, Target target, ValidationError error)
         implements GameEvent {
     }
 }

@@ -22,12 +22,15 @@ public class EnemyPartyView extends PartyView {
 
         setManaView(new ManaView(model.getLeader()));
 
+        setDeck(new DeckView(model.getDeck(), true));
+
         register(getTableau(), new ResizableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
             .yOffset(10f));
-        register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
-            .yOffset(HEIGHT * -0.4f));
         register(getLeader(), new ResizableSettings(200f, 200f, Align.topLeft)
             .padding(10, 10).keepAspect());
+        register(getDeck(), new ResizableSettings(200, 300, Align.bottomRight).offset(10, 10).keepAspect());
+        register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
+            .yOffset(HEIGHT * -0.4f));
         register(getManaView(), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10));
 
         getHand().setRotation(180f);

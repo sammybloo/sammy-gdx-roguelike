@@ -42,7 +42,6 @@ public class ResizableGroup extends Group implements Tintable {
             ResizableContainer container = map.get(actor);
             Bounds bounds = calculate(container.getSettings(), scaleX, scaleY);
             container.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
-            container.setRotation(container.getSettings().rotation);
         }
 
         setColor(parentColor);
@@ -117,13 +116,20 @@ public class ResizableGroup extends Group implements Tintable {
         super.draw(batch, parentAlpha);
     }
 
+    @Override
     public void addTint(Tint tint) {
         tintSet.addTint(tint);
 
     }
 
+    @Override
     public void removeTint(Tint tint) {
         tintSet.removeTint(tint);
+    }
+
+    @Override
+    public void removeTint(String id) {
+        tintSet.removeTint(id);
     }
 
     @Override

@@ -10,5 +10,7 @@ public class LeaderMessageController {
             e -> leaderMessageView.showMessage(TextManager.INSTANCE.getErrorMessage(e.error().errorId())));
         battleController.getEventBus().register(ViewEvent.CardFailedEvent.class,
             e -> leaderMessageView.showMessage(TextManager.INSTANCE.getErrorMessage(e.error().errorId())));
+        battleController.getEventBus().register(ViewEvent.EffectFailedEvent.class,
+            e -> leaderMessageView.showMessage(TextManager.INSTANCE.getErrorMessage(e.error().errorId())));
     }
 }

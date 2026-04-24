@@ -5,12 +5,22 @@ import com.badlogic.gdx.graphics.Color;
 public class Tint {
     private TintSet parent;
     private float colorFloatBits;
+    private String id;
 
     public Tint() {
         this.colorFloatBits = Color.GRAY.toFloatBits();
     }
 
+    public Tint(String id) {
+        super();
+        this.id = id;
+    }
     public Tint(float colorFloatBits) {
+        this.colorFloatBits = colorFloatBits;
+    }
+
+    public Tint(String id, float colorFloatBits) {
+        this.id = id;
         this.colorFloatBits = colorFloatBits;
     }
 
@@ -31,5 +41,9 @@ public class Tint {
 
     public void setParent(TintSet parent) {
         this.parent = parent;
+    }
+
+    public String getId() {
+        return id;
     }
 }

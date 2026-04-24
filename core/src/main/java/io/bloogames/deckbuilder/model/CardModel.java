@@ -8,7 +8,7 @@ import io.bloogames.deckbuilder.effect.target.TargetSpec;
 
 public abstract class CardModel {
     private BaseCard base;
-    private boolean faceup = true;
+    private boolean faceup = false;
 
     public CardModel(BaseCard base) {
         this.base = base;

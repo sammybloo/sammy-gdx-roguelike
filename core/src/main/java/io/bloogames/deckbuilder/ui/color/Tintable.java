@@ -5,5 +5,7 @@ public interface Tintable {
 
     void removeTint(Tint tint);
 
+    void removeTint(String id);
+
     void refreshColour();
 }

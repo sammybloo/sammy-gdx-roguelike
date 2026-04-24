@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.ObjectMap;
+import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
@@ -12,35 +13,50 @@ import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.ui.target.TargetState;
 import io.bloogames.deckbuilder.ui.target.Targetable;
-import io.bloogames.deckbuilder.vfx.DisappearEffect;
+import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.view.*;
 import io.bloogames.deckbuilder.view.event.ViewEvent;
 
 public class TargetingController {
-    private ObjectMap<Targetable, InputListener> listenerMap = new ObjectMap<>();
-    private SelectedCardView selectedCardView = new SelectedCardView();
+    private final ObjectMap<Targetable, InputListener> listenerMap = new ObjectMap<>();
+    private final SelectedCardView selectedCardView;
 
     public TargetingController(BattleController battleController, PartyView playerParty, PartyView enemyParty, SelectedCardView selectedCardView) {
         this.selectedCardView = selectedCardView;
         registerParties(battleController, playerParty, enemyParty);
     }
 
+    public void beginTargeting(CardSource cardSource, BattleController battleController, PartyView playerParty, PartyView enemyParty) {
+        if (selectedCardView.getSelectedCardSource() != null) {
+            selectedCardView.removeCard().remove();
+        }
+        selectedCardView.setCard(cardSource);
+
+        onCardStart(battleController, playerParty);
+        onCardStart(battleController, enemyParty);
+    }
+
+    public void cancelTargeting() {
+        listenerMap.forEach(entry -> {
+            entry.key.setTargetState(TargetState.NOT_TARGETED);
+            entry.key.setHovered(false);
+            entry.key.actor().removeListener(entry.value);
+        });
+        listenerMap.clear();
+        if (selectedCardView.getSelectedCardSource() != null) {
+            VFXManager.INSTANCE.addEffect(new DisappearEffect(selectedCardView.removeCard()));
+        }
+    }
+
     public void registerParties(BattleController battleController, PartyView playerParty, PartyView enemyParty) {
         battleController.getEventBus().register(ViewEvent.CardStartEvent.class, e -> {
-            if (selectedCardView.getSelectedCardSource() != null) {
-                selectedCardView.removeCard().remove();
-            }
-            selectedCardView.setCard(e.cardSource());
-
-            onCardStart(battleController, playerParty);
-            onCardStart(battleController, enemyParty);
+            beginTargeting(e.cardSource(), battleController, playerParty, enemyParty);
         });
 
         battleController.getEventBus().register(ViewEvent.CardPlayedEvent.class, e -> {
             cancelTargeting();
         });
-
     }
 
     public void onCardStart(BattleController battleController, PartyView party) {
@@ -72,19 +88,6 @@ public class TargetingController {
                 registerToPlayCard(battleController, battler, battlerTarget);
             }
         }
-    }
-
-    public void cancelTargeting() {
-        listenerMap.forEach(entry -> {
-            entry.key.setTargetState(TargetState.NOT_TARGETED);
-            entry.key.setHovered(false);
-            entry.key.actor().removeListener(entry.value);
-        });
-        listenerMap.clear();
-        if (selectedCardView.getSelectedCardSource() != null) {
-            VFXManager.INSTANCE.addEffect(new DisappearEffect(selectedCardView.removeCard()));
-        }
-
     }
 
     public void setValidity(BattleController battleController, Targetable targetable, Target target) {

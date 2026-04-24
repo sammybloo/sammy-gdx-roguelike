@@ -28,6 +28,8 @@ public class BattlerCardView extends CardView {
 
         frontFace.register(powerLabel, new ResizableSettings(WIDTH * 0.181f, HEIGHT * 0.12f).offset(30f, HEIGHT * 0.296f));
         frontFace.register(healthLabel, new ResizableSettings(WIDTH * 0.181f, HEIGHT * 0.12f, Align.bottomRight).offset(30f, HEIGHT * 0.296f));
+
+        sync();
     }
 
     @Override

@@ -55,16 +55,14 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
         frontFace.register(art, new ResizableSettings(WIDTH * 0.948f, WIDTH * 0.948f).offset(WIDTH * 0.025f, HEIGHT * 0.284f));
         frontFace.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
-        frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 25, Align.top).offset(30f, 15f));
         frontFace.register(manaSymbol, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
         frontFace.register(manaLabel, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
+        frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 25, Align.top).offset(30f, 15f));
 
         cardBack = new Image(AssetManager.INSTANCE.findRegion("cardback"));
         register(frontFace, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         setTouchable(Touchable.enabled);
-
-        setFacing(cardModel.isFaceup());
 
         addTint(targetingVisualState().getTint());
     }
@@ -79,7 +77,15 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
     }
 
     public boolean isFaceup() {
-        return cardModel.isFaceup();
+        return frontFace.isVisible();
+    }
+
+    public ResizableGroup getFrontFace() {
+        return frontFace;
+    }
+
+    public Image getCardBack() {
+        return cardBack;
     }
 
     @Override
@@ -99,7 +105,8 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
     @Override
     public void sync() {
-        nameLabel.setText(getName());
+        setFacing(cardModel.isFaceup());
+        nameLabel.setText(cardModel.getCardName());
         manaLabel.setText(cardModel.getCurrentCost());
     }
 }

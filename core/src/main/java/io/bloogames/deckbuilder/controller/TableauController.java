@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.handler.TableauSwapHandler;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
-import io.bloogames.deckbuilder.vfx.DamageVisualEffect;
+import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;

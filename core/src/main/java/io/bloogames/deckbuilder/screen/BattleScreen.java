@@ -14,6 +14,7 @@ import io.bloogames.deckbuilder.controller.PlayerPartyController;
 import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
+import io.bloogames.deckbuilder.manager.SeedManager;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.view.*;
@@ -40,6 +41,8 @@ public class BattleScreen implements Screen {
     public void show() {
         stage = new Stage(game.getViewport(), new ColorfulBatch());
 
+        SeedManager.INSTANCE.setSeed("WUMBO");
+
         gameModel = new GameModel();
 
         battleModel = new BattleModel(
@@ -60,18 +63,31 @@ public class BattleScreen implements Screen {
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
         BattlerCardModel battlerCard;
-        for (int i = 0; i < 10; i++) {
+//        for (int i = 0; i < 10; i++) {
+//            battlerCard = new BattlerCardModel(
+//                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
+//            battlerCard.setFaceup(i % 2 != 0);
+//            battleModel.getEnemyParty().getHand().addCard(battlerCard);
+//        }
+//
+//        for (int i = 0; i < 9; i++) {
+//            battlerCard = new BattlerCardModel(
+//                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
+//            battleModel.getPlayerParty().getHand().addCard(battlerCard);
+//        }
+
+        for (int i = 0; i < 20; i++) {
             battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-            battlerCard.setFaceup(i % 2 != 0);
-            battleModel.getEnemyParty().getHand().addCard(battlerCard);
+            battleModel.getPlayerParty().getDeck().addCard(battlerCard);
         }
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 45; i++) {
             battlerCard = new BattlerCardModel(
                 CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-            battleModel.getPlayerParty().getHand().addCard(battlerCard);
+            battleModel.getEnemyParty().getDeck().addCard(battlerCard);
         }
+
         battleModel.getPlayerParty().getHand().addCard(new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball")));
 
         battleController = new BattleController(gameModel);
@@ -92,12 +108,14 @@ public class BattleScreen implements Screen {
         new TargetingController(battleController, playerParty, enemyParty, selectedCardView);
 
         stage.addActor(selectedCardView);
-        stage.addActor(playerParty);
         stage.addActor(enemyParty);
+        stage.addActor(playerParty);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();
+
+
     }
 
     @Override
@@ -134,6 +152,7 @@ public class BattleScreen implements Screen {
     public void resize(int width, int height) {
         playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
+        selectedCardView.setBounds(50, (game.getViewport().getWorldHeight() - 450) * 0.5f, 300, 450);
     }
 
     @Override

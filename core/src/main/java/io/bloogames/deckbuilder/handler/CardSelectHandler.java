@@ -18,13 +18,15 @@ public class CardSelectHandler implements HandHandler {
     }
 
     public void attach(HandView hand, CardView card) {
-        card.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (battleController.getBattleState().canSelectCards()) {
-                    battleController.startPlayCard(card.getModel(), owner);
+        card.addListener(
+            new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (battleController.getBattleState().canSelectCards()) {
+                        battleController.startPlayCard(card.getModel(), owner);
+                    }
                 }
             }
-        });
+        );
     }
 }

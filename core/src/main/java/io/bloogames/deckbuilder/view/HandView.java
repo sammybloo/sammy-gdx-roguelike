@@ -32,6 +32,7 @@ public class HandView extends FannedGroup implements View {
         cardViews.put(cardModel, cardView);
         cardView.setSize(fannableWidth, fannableHeight);
         addActor(cardView);
+        addFannable(cardView);
         for (var controller : interactionControllers) {
             controller.attach(this, cardView);
         }
@@ -44,6 +45,7 @@ public class HandView extends FannedGroup implements View {
         cardViews.put(cardView.getModel(), cardView);
         cardView.setSize(fannableWidth, fannableHeight);
         addActor(cardView);
+        addFannable(cardView);
         for (var controller : interactionControllers) {
             controller.attach(this, cardView);
         }

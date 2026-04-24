@@ -1,5 +1,12 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.Game;
+import io.bloogames.deckbuilder.effect.Effect;
+import io.bloogames.deckbuilder.effect.EffectBuilder;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.effect.step.concrete.DrawCardsStep;
+import io.bloogames.deckbuilder.effect.target.TargetType;
+import io.bloogames.deckbuilder.effect.target.concrete.BattlePartyTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.execution.EffectExecutor;
@@ -13,12 +20,22 @@ public class BattleModel implements GameEventPublisher {
     private final CardCoordinator cardCoordinator;
     private final GameEventPublisher eventPublisher;
 
-    public BattleModel(BattlePartyModel playerParty, BattlePartyModel enemyParty, GameEventPublisher eventPublisher) {
+    public BattleModel(BattlePartyModel playerParty, BattlePartyModel enemyParty, GameModel game) {
         this.playerParty = playerParty;
         this.enemyParty = enemyParty;
         this.battleStateModel = new BattleStateModel();
         this.cardCoordinator = new CardCoordinator();
-        this.eventPublisher = eventPublisher;
+        this.eventPublisher = game;
+
+        playerParty.getHand().setDrawFaceUp(true);
+
+        game.getExecutor().begin(
+            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, new DrawCardsStep(5)).build(),
+            new TargetContext<>(game, null, new BattlePartyTarget(enemyParty)));
+
+        game.getExecutor().begin(
+            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, new DrawCardsStep(5)).build(),
+            new TargetContext<>(game, null, new BattlePartyTarget(playerParty)));
     }
 
     public void doNext(EffectExecutor executor) {

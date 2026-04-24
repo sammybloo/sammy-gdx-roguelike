@@ -19,6 +19,24 @@ public class TintSet {
     public void removeTint(Tint tint) {
         tints.removeValue(tint, true);
         tint.setParent(null);
+        update();
+    }
+
+    public void removeTint(String id) {
+        Tint target = null;
+
+        for (Tint tint : tints) {
+            if (id.equals(tint.getId())) {
+                target = tint;
+                break;
+            }
+        }
+
+        if (target != null) {
+            tints.removeValue(target, true);
+            target.setParent(null);
+            update();
+        }
     }
 
     public boolean hasTint() {

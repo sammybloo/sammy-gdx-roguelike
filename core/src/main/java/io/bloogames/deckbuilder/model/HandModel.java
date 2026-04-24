@@ -6,6 +6,7 @@ public class HandModel {
 
     private final Array<CardModel> cards = new Array<>();
     private final int maxSize;
+    private boolean drawFaceUp = false;
 
     public HandModel(int maxSize) {
         this.maxSize = maxSize;
@@ -38,6 +39,9 @@ public class HandModel {
     public boolean addCard(CardModel card) {
         if (isFull() || contains(card)) return false;
         cards.add(card);
+        if (drawFaceUp) {
+            card.setFaceup(true);
+        }
         return true;
     }
 
@@ -55,7 +59,7 @@ public class HandModel {
         return true;
     }
 
-    public void clear() {
-        cards.clear();
+    public void setDrawFaceUp(boolean drawFaceUp) {
+        this.drawFaceUp = drawFaceUp;
     }
 }

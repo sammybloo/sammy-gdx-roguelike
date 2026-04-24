@@ -11,7 +11,6 @@ public class ResizableSettings {
     float yOffset = 0f;
     float paddingX = 0f;
     float paddingY = 0f;
-    float rotation = 0f;
     boolean keepAspect = false;
     boolean keepColour = false;
 
@@ -65,11 +64,6 @@ public class ResizableSettings {
 
     public ResizableSettings padding(float paddingX, float paddingY) {
         return paddingX(paddingX).paddingY(paddingY);
-    }
-
-    public ResizableSettings rotation(float rotation) {
-        this.rotation = rotation;
-        return this;
     }
 
     public ResizableSettings keepAspect() {

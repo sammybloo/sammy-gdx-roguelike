@@ -42,6 +42,9 @@ public class LeaderMessageView extends ResizableGroup {
     }
 
     public void showMessage(String message) {
+        if (isVisible() && message.equalsIgnoreCase(label.getText().toString())) {
+            return;
+        }
         label.setText(message);
         clearActions();
         addAction(sequence(

@@ -7,5 +7,6 @@ public enum TargetType {
     CARD,
     TABLEAU,
     DAMAGEABLE,
+    BATTLE_PARTY,
     BATTLE
 }

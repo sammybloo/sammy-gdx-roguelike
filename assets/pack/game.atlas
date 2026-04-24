@@ -48,6 +48,13 @@ crosshair
   orig: 226, 226
   offset: 0, 0
   index: -1
+deckicon
+  rotate: false
+  xy: 1600, 1529
+  size: 64, 83
+  orig: 64, 83
+  offset: 0, 0
+  index: -1
 frame
   rotate: false
   xy: 544, 516
@@ -64,7 +71,7 @@ leaderframe
   index: -1
 mana
   rotate: false
-  xy: 1600, 1548
+  xy: 1828, 1776
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

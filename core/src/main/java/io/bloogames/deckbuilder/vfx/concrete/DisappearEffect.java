@@ -1,11 +1,9 @@
-package io.bloogames.deckbuilder.vfx;
+package io.bloogames.deckbuilder.vfx.concrete;
 
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import io.bloogames.deckbuilder.ui.ViewUtils;
-
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import io.bloogames.deckbuilder.vfx.VisualEffect;
 
 public class DisappearEffect implements VisualEffect {
 

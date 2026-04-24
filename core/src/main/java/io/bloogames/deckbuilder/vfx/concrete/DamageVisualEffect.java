@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.vfx;
+package io.bloogames.deckbuilder.vfx.concrete;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -13,6 +13,7 @@ import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
+import io.bloogames.deckbuilder.vfx.VisualEffect;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static io.bloogames.deckbuilder.manager.CustomActions.tint;
