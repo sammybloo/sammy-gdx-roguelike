@@ -11,7 +11,7 @@ import io.bloogames.deckbuilder.view.event.ViewEvent;
 public class BattleStateController {
     private final ViewEventBus eventBus;
     public boolean targetsOwnCards = false;
-    private BattleViewState state = BattleViewState.PLAYER_TURN;
+    private BattleViewState state = BattleViewState.START_PLAYER_TURN;
 
     public BattleStateController(ViewEventBus eventBus) {
         this.eventBus = eventBus;
@@ -25,6 +25,7 @@ public class BattleStateController {
 
     private void changeStateBasedOnModel(BattleState battleState) {
         BattleViewState newState = switch (battleState) {
+            case BATTLE_START -> BattleViewState.BATTLE_START;
             case START_PLAYER_TURN -> BattleViewState.START_PLAYER_TURN;
             case PLAYER_TURN -> BattleViewState.PLAYER_TURN;
             case CARD_ACTIVATING -> BattleViewState.CARD_ACTIVATING;

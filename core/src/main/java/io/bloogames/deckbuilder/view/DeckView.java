@@ -2,14 +2,22 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.CardManager;
+import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.DeckModel;
+import io.bloogames.deckbuilder.scene2d.HoverListener;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class DeckView extends ResizableGroup implements View {
 
@@ -17,6 +25,7 @@ public class DeckView extends ResizableGroup implements View {
     public static final float HEIGHT = 300f;
 
     private Array<CardView> cardViews = new Array<>();
+    private Label cardsLeftLabel;
     private DeckModel deckModel;
 
     public DeckView(DeckModel deckModel, boolean rotateCards) {
@@ -35,6 +44,7 @@ public class DeckView extends ResizableGroup implements View {
             card.rotateBy(MathUtils.random(-0.5f, 0.5f));
             register(card, new ResizableSettings(CardView.WIDTH / 2, CardView.HEIGHT / 2).offset(i * 0.2f, i * 1f));
         }
+        setupCardsLeft();
     }
 
     public CardView getCard(CardModel cardModel) {
@@ -58,8 +68,37 @@ public class DeckView extends ResizableGroup implements View {
         }
     }
 
+    public void setupCardsLeft() {
+        cardsLeftLabel = new Label(deckModel.getCards().size + "",
+            new Label.LabelStyle(FontManager.INSTANCE.getDeckCardsLeftFont(), null));
+        cardsLeftLabel.setAlignment(Align.center, Align.center);
+        cardsLeftLabel.setVisible(false);
+
+        addListener(new HoverListener(0f, 0f) {
+            @Override
+            public void onHoverStart(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                cardsLeftLabel.addAction(
+                    sequence(
+                        visible(true),
+                        fadeIn(0.1f)
+                    ));
+            }
+
+            @Override
+            public void onHoverEnd(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                cardsLeftLabel.addAction(
+                    sequence(
+                        fadeOut(0.1f),
+                        visible(false)
+                    ));
+            }
+        });
+
+        register(cardsLeftLabel, new ResizableSettings(WIDTH, HEIGHT));
+    }
+
     @Override
     public void sync() {
-
+        cardsLeftLabel.setText(deckModel.getCards().size + "");
     }
 }

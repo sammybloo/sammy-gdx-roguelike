@@ -31,7 +31,7 @@ public class EnemyPartyView extends PartyView {
         register(getDeck(), new ResizableSettings(200, 300, Align.bottomRight).offset(10, 10).keepAspect());
         register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
             .yOffset(HEIGHT * -0.4f));
-        register(getManaView(), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10));
+        register(getManaView(), new ResizableSettings(80, 200, Align.topLeft).xOffset(220f).paddingY(10).keepAspect());
 
         getHand().setRotation(180f);
     }

@@ -55,7 +55,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         frontFace.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         frontFace.register(manaSymbol, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
         frontFace.register(manaLabel, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
-        frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 25, Align.top).offset(30f, 15f));
+        frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 30, Align.top).offset(30f, 9f));
 
         cardBack = new Image(AssetManager.INSTANCE.findRegion("cardback"));
         register(frontFace, new ResizableSettings(WIDTH, HEIGHT, Align.center));

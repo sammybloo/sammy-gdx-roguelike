@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 public class BattleStateModel {
-    private BattleState state = BattleState.START_PLAYER_TURN;
+    private BattleState state = BattleState.BATTLE_START;
 
     public BattleState getState() {
         return state;

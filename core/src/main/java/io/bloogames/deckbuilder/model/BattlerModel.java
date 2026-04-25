@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 
 public class BattlerModel implements Damageable {
-    private CardModel cardModel;
+    private BattlerCardModel cardModel;
     private Stats stats;
     private int damage;
 
@@ -34,7 +34,7 @@ public class BattlerModel implements Damageable {
         return getMaxHealth() - damage;
     }
 
-    public CardModel getCardModel() {
+    public BattlerCardModel getCardModel() {
         return cardModel;
     }
 

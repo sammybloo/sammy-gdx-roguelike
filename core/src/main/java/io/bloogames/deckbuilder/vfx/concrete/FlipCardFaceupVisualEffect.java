@@ -14,9 +14,9 @@ public class FlipCardFaceupVisualEffect implements VisualEffect {
 
     @Override
     public void play() {
-        cardView.getCardBack().addAction(sequence(scaleTo(0f, 1f, 0.05f), visible(false)));
-        cardView.getFrontFace().addAction(delay(0.05f, sequence(scaleTo(0f, 1f), visible(true), scaleTo(1f, 1f, 0.05f))));
-        cardView.addAction(delay(0.1f, run(cardView::sync)));
+        cardView.getCardBack().addAction(sequence(scaleTo(0f, 1f, 0.1f), visible(false)));
+        cardView.getFrontFace().addAction(delay(0.1f, sequence(scaleTo(0f, 1f), visible(true), scaleTo(1f, 1f, 0.1f))));
+        cardView.addAction(delay(0.2f, run(cardView::sync)));
     }
 
     @Override

@@ -26,6 +26,7 @@ public class DrawCardEffect implements VisualEffect {
 
     @Override
     public void play() {
+        // TODO this is to flip cards from the enemy hand, and is obviously a hack. also, the enemy cards are ~20px off at the moment
         if (card.getRotation() > 175f) {
             card.moveBy(deck.getWidth() / 2 + card.getWidth() / 2 * card.getScaleX(),
                 deck.getHeight() / 2 + card.getHeight() / 2 * card.getScaleY());
@@ -37,6 +38,7 @@ public class DrawCardEffect implements VisualEffect {
         hand.addCard(card);
         card.setPosition(handPosition.x, handPosition.y);
         hand.getStage().addAction(delay);
+        deck.sync();
     }
 
     @Override

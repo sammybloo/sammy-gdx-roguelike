@@ -37,7 +37,7 @@ public class PlayerPartyView extends PartyView {
 
         register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
 
-        register(getManaView(), new ResizableSettings(80, 200).xOffset(220f).paddingY(10));
+        register(getManaView(), new ResizableSettings(80, 200).xOffset(220f).paddingY(10).keepAspect());
 
         leaderMessageView = new LeaderMessageView();
         register(leaderMessageView, new ResizableSettings(600, 200).offset(220f, 110f));

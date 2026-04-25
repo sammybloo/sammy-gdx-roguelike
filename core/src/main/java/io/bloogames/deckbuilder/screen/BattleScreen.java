@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.github.tommyettinger.colorful.rgb.ColorfulBatch;
 import io.bloogames.deckbuilder.Main;
@@ -63,30 +62,20 @@ public class BattleScreen implements Screen {
             new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2])));
 
         BattlerCardModel battlerCard;
-//        for (int i = 0; i < 10; i++) {
-//            battlerCard = new BattlerCardModel(
-//                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-//            battlerCard.setFaceup(i % 2 != 0);
-//            battleModel.getEnemyParty().getHand().addCard(battlerCard);
-//        }
-//
-//        for (int i = 0; i < 9; i++) {
-//            battlerCard = new BattlerCardModel(
-//                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
-//            battleModel.getPlayerParty().getHand().addCard(battlerCard);
-//        }
 
         for (int i = 0; i < 20; i++) {
             battlerCard = new BattlerCardModel(
-                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
+                CardManager.INSTANCE.getBattlerCard(arr[i % arr.length]));
             battleModel.getPlayerParty().getDeck().addCard(battlerCard);
         }
+        battleModel.getPlayerParty().getDeck().shuffle();
 
         for (int i = 0; i < 45; i++) {
             battlerCard = new BattlerCardModel(
-                CardManager.INSTANCE.getBattlerCard(arr[MathUtils.random(0, arr.length - 1)]));
+                CardManager.INSTANCE.getBattlerCard(arr[i % arr.length]));
             battleModel.getEnemyParty().getDeck().addCard(battlerCard);
         }
+        battleModel.getEnemyParty().getDeck().shuffle();
 
         battleModel.getPlayerParty().getHand().addCard(new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball")));
 
