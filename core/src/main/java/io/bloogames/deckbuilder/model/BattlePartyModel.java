@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.GameConstants;
 
 public class BattlePartyModel {
@@ -33,6 +34,11 @@ public class BattlePartyModel {
 
     public DeckModel getDeck() {
         return deck;
+    }
+
+    public void addAllAuras(Array<Aura> arr) {
+        party.addAllAuras(arr);
+        tableau.addAllAuras(arr);
     }
 
     public boolean hasCard(CardModel card) {

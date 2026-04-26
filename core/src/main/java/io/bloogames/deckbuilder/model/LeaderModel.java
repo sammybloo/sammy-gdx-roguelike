@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.event.GameEvent;
@@ -8,10 +9,12 @@ public class LeaderModel implements Damageable {
     private BaseLeader base;
     private int damage;
     private int currentMana;
+    private Array<Aura> auras;
 
     public LeaderModel(BaseLeader base) {
         this.base = base;
         this.currentMana = base.getMaxMana();
+        this.auras = base.getAuras();
     }
 
     public int getMaxHealth() {
@@ -32,6 +35,10 @@ public class LeaderModel implements Damageable {
 
     public int getMaxMana() {
         return base.getMaxMana();
+    }
+
+    public void addAllAuras(Array<Aura> arr) {
+        arr.addAll(auras);
     }
 
     public void spendMana(BattleModel battle, int amount) {

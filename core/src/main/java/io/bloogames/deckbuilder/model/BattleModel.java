@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.EffectBuilder;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.step.concrete.DrawCardsStep;
@@ -88,6 +89,11 @@ public class BattleModel implements GameEventPublisher {
             return enemyParty;
         }
         return null;
+    }
+
+    public void addAllAuras(Array<Aura> arr) {
+        playerParty.addAllAuras(arr);
+        enemyParty.addAllAuras(arr);
     }
 
     public void setState(BattleState newState) {

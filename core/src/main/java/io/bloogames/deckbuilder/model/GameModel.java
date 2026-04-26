@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
@@ -16,7 +17,7 @@ public class GameModel implements GameEventPublisher {
     }
 
     public void doNext() {
-        if (battle != null) {
+        if (inBattle()) {
             battle.doNext(executor);
         }
     }
@@ -29,12 +30,24 @@ public class GameModel implements GameEventPublisher {
         this.battle = battle;
     }
 
+    public boolean inBattle() {
+        return battle != null;
+    }
+
     public GameEventDispatcher getEventDispatcher() {
         return eventDispatcher;
     }
 
     public EffectExecutor getExecutor() {
         return executor;
+    }
+
+    public Array<Aura> getAllAuras() {
+        Array<Aura> result = new Array<>();
+        if (inBattle()) {
+            battle.addAllAuras(result);
+        }
+        return result;
     }
 
     @Override

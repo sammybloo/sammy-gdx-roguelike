@@ -11,6 +11,7 @@ import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.controller.PartyController;
 import io.bloogames.deckbuilder.controller.PlayerPartyController;
 import io.bloogames.deckbuilder.controller.TargetingController;
+import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.SeedManager;
@@ -45,8 +46,8 @@ public class BattleScreen implements Screen {
         gameModel = new GameModel();
 
         battleModel = new BattleModel(
-            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("wizard", 20, 5)))),
-            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("villain", 20, 5)))),
+            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("wizard", 20, 5, AuraSupplier.empty)))),
+            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("villain", 20, 5, AuraSupplier.empty)))),
             gameModel
         );
 

@@ -1,21 +1,23 @@
 package io.bloogames.deckbuilder.model;
 
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 
 public class BattlerModel implements Damageable {
     private BattlerCardModel cardModel;
-    private Stats stats;
+    private StatsModel stats;
     private int damage;
+    private Array<Aura> auras;
 
     public BattlerModel(BaseBattlerCard cardModel) {
-        this.cardModel = new BattlerCardModel(cardModel);
-        this.stats = new Stats(cardModel.getBaseStats());
+        this(new BattlerCardModel(cardModel));
     }
 
     public BattlerModel(BattlerCardModel cardModel) {
         this.cardModel = cardModel;
-        this.stats = new Stats(cardModel.getBaseBattlerCard().getBaseStats());
+        this.stats = new StatsModel(cardModel.getBaseBattlerCard().getBaseStats());
+        this.auras = new Array<>();
     }
 
     public String getBattlerId() {
@@ -23,11 +25,11 @@ public class BattlerModel implements Damageable {
     }
 
     public int getPower() {
-        return stats.getBaseStats().getPower();
+        return stats.getBaseStats().power();
     }
 
     public int getMaxHealth() {
-        return stats.getBaseStats().getHealth();
+        return stats.getBaseStats().health();
     }
 
     public int getCurrentHealth() {
@@ -46,5 +48,10 @@ public class BattlerModel implements Damageable {
     @Override
     public int heal(TargetContext<?> context, int amount) {
         return damage -= amount;
+    }
+
+    public void addAllAuras(Array<Aura> arr) {
+        arr.addAll(auras);
+        cardModel.addAllAuras(arr);
     }
 }

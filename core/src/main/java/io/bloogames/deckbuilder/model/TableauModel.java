@@ -34,4 +34,13 @@ public class TableauModel {
         slot2.setBattler(battler1);
         battle.dispatch(new GameEvent.BattlersSwappedEvent(this, slot1, slot2));
     }
+
+    public void addAllAuras(Array<Aura> arr) {
+        for (SlotModel slot : slots) {
+            slot.addAllAuras(arr);
+            if (slot.hasBattler()) {
+                slot.getBattler().addAllAuras(arr);
+            }
+        }
+    }
 }
