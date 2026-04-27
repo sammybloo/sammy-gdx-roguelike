@@ -28,11 +28,14 @@ public class PlayerPartyView extends PartyView {
 
         setDeck(new DeckView(model.getDeck(), false));
 
+        setDiscardPile(new DiscardPileView(model.getDiscardPile()));
+
         register(getTableau(), new ResizableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.top)
             .yOffset(10f));
 
         register(getLeader(), new ResizableSettings(200f, 200f).padding(10, 10).keepAspect());
 
+        register(getDiscardPile(), new ResizableSettings(153.75f, 78.75f, Align.topRight).offset(30, 340).keepAspect());
         register(getDeck(), new ResizableSettings(200, 300, Align.topRight).offset(10, 10).keepAspect());
 
         register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));

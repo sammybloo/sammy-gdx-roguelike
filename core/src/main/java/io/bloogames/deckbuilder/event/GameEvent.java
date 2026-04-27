@@ -5,6 +5,7 @@ import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.*;
+import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 public sealed interface GameEvent {
@@ -37,6 +38,10 @@ public sealed interface GameEvent {
     }
 
     record EffectFailedEvent(Source source, Target target, ValidationError error)
+        implements GameEvent {
+    }
+
+    record AuraModifiedEvent(Aura aura)
         implements GameEvent {
     }
 }

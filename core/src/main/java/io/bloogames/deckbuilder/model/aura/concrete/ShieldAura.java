@@ -5,6 +5,7 @@ import io.bloogames.deckbuilder.damage.Damage;
 import io.bloogames.deckbuilder.damage.DamageModifier;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
+import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.StackableAura;
 
@@ -15,6 +16,7 @@ public class ShieldAura extends StackableAura {
 
     @Override
     public void beforeDamage(TargetContext<DamageableTarget> damageableTargetContext, Damage damage) {
+        ShieldAura that = this;
         damage.addModifier(new DamageModifier() {
             @Override
             public float calculate(Damage damage, float currentAmount) {
@@ -26,6 +28,7 @@ public class ShieldAura extends StackableAura {
                 float result = calculate(damage, currentAmount);
                 int amountRemoved = MathUtils.ceil(result - currentAmount);
                 removeStacks(amountRemoved);
+                context.game().dispatch(new GameEvent.AuraModifiedEvent(that));
                 return result;
             }
 

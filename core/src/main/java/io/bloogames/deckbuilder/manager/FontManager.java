@@ -17,6 +17,7 @@ public enum FontManager {
     BitmapFont battlerCardManaCostFont;
     BitmapFont damagePopupFont;
     BitmapFont deckCardsLeftFont;
+    BitmapFont discardPileSizeFont;
 
     public BitmapFont getBattlerStatFont() {
         if (battlerStatFont == null) {
@@ -142,6 +143,23 @@ public enum FontManager {
         return deckCardsLeftFont;
     }
 
+    public BitmapFont getDiscardPileSizeFont() {
+        if (discardPileSizeFont == null) {
+            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            parameter.color = Color.WHITE;
+            parameter.size = 76;
+            parameter.minFilter = Texture.TextureFilter.Linear;
+            parameter.magFilter = Texture.TextureFilter.Linear;
+            parameter.borderColor = Color.BLACK;
+            parameter.borderWidth = 3;
+            discardPileSizeFont = generator.generateFont(parameter);
+            generator.dispose();
+        }
+
+        return discardPileSizeFont;
+    }
+
     public void dispose() {
         if (cardNameFont != null) cardNameFont.dispose();
         if (battlerStatFont != null) battlerStatFont.dispose();
@@ -150,5 +168,6 @@ public enum FontManager {
         if (leaderMessageFont != null) leaderMessageFont.dispose();
         if (damagePopupFont != null) damagePopupFont.dispose();
         if (deckCardsLeftFont != null) deckCardsLeftFont.dispose();
+        if (discardPileSizeFont != null) discardPileSizeFont.dispose();
     }
 }

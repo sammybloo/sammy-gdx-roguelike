@@ -12,22 +12,20 @@ public class EnemyPartyView extends PartyView {
     public EnemyPartyView(BattleController battleController, BattlePartyModel model) {
         super(model);
         setLeader(new LeaderView(model.getLeader()));
-
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.3f, 10f, 1.5f,
                 1.045f, 180f, 0.15f),
             new HandHoverHandler(battleController.getBattleState(), 0.3f, 0.1f)));
-
         setTableau(new TableauView(model.getTableau()));
-
         setManaView(new ManaView(model.getLeader()));
-
         setDeck(new DeckView(model.getDeck(), true));
+        setDiscardPile(new DiscardPileView(model.getDiscardPile()));
 
         register(getTableau(), new ResizableSettings(WIDTH * 0.6f, HEIGHT * 0.4f, Align.bottom)
             .yOffset(10f));
         register(getLeader(), new ResizableSettings(200f, 200f, Align.topLeft)
             .padding(10, 10).keepAspect());
+        register(getDiscardPile(), new ResizableSettings(153.75f, 78.75f, Align.bottomRight).offset(30, 340).keepAspect());
         register(getDeck(), new ResizableSettings(200, 300, Align.bottomRight).offset(10, 10).keepAspect());
         register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.top)
             .yOffset(HEIGHT * -0.4f));

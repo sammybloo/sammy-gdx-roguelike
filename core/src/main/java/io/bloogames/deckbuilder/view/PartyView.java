@@ -14,7 +14,8 @@ public abstract class PartyView extends ResizableGroup implements View {
     private HandView hand;
     private TableauView tableau;
     private ManaView manaView;
-    private DeckView deckView;
+    private DeckView deck;
+    private DiscardPileView discardPile;
 
     public PartyView(BattlePartyModel model) {
         super(WIDTH, HEIGHT);
@@ -63,11 +64,19 @@ public abstract class PartyView extends ResizableGroup implements View {
     }
 
     public DeckView getDeck() {
-        return deckView;
+        return deck;
     }
 
     public void setDeck(DeckView deckView) {
-        this.deckView = deckView;
+        this.deck = deckView;
+    }
+
+    public DiscardPileView getDiscardPile() {
+        return discardPile;
+    }
+
+    public void setDiscardPile(DiscardPileView discardPile) {
+        this.discardPile = discardPile;
     }
 
     @Override

@@ -7,6 +7,7 @@ public class Ownership {
 
     public Ownership(Type originalOwner) {
         this.originalOwner = originalOwner;
+        this.currentOwner = originalOwner;
     }
 
     public Type getCurrentOwner() {
@@ -20,7 +21,6 @@ public class Ownership {
     public void setCurrentOwner(Type currentOwner) {
         this.currentOwner = currentOwner;
     }
-
 
     public enum Type {
         NONE,
