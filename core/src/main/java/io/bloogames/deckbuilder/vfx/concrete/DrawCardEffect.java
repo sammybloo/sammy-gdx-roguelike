@@ -12,10 +12,10 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 
 public class DrawCardEffect implements VisualEffect {
 
-    private DeckView deck;
-    private CardView card;
-    private HandView hand;
-    private Action delay;
+    private final DeckView deck;
+    private final CardView card;
+    private final HandView hand;
+    private final Action delay;
 
     public DrawCardEffect(DeckView deck, CardView card, HandView hand) {
         this.deck = deck;

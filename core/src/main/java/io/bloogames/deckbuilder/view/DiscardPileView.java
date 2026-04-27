@@ -19,8 +19,8 @@ public class DiscardPileView extends ResizableGroup implements View {
     public static final float WIDTH = 205;
     public static final float HEIGHT = 105;
 
-    private DiscardPileModel model;
-    private Image image;
+    private final DiscardPileModel model;
+    private final Image image;
     private Label discardPileLabel;
 
     public DiscardPileView(DiscardPileModel model) {

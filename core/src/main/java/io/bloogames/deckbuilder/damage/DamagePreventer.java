@@ -10,11 +10,11 @@ public interface DamagePreventer {
 
     Priority priority();
 
-    public enum Priority {
+    enum Priority {
         ONE_USE(100),
         ENDURING(1000);
 
-        private int speed;
+        private final int speed;
 
         Priority(int speed) {
             this.speed = speed;

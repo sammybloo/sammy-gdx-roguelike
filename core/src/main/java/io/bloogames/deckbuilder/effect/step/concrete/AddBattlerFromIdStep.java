@@ -7,7 +7,7 @@ import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 
 public class AddBattlerFromIdStep implements TargetStep<SlotTarget> {
-    private String cardId;
+    private final String cardId;
 
     public AddBattlerFromIdStep(String cardId) {
         this.cardId = cardId;

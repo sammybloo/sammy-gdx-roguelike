@@ -6,9 +6,9 @@ import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class TableauModel {
-    private int size;
-    private Array<SlotModel> slots;
-    private Ownership ownership;
+    private final int size;
+    private final Array<SlotModel> slots;
+    private final Ownership ownership;
 
     public TableauModel(int size, Ownership.Type owner) {
         this.size = size;

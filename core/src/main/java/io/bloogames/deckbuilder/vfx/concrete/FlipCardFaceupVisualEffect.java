@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.view.CardView;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class FlipCardFaceupVisualEffect implements VisualEffect {
-    private CardView cardView;
+    private final CardView cardView;
 
     public FlipCardFaceupVisualEffect(CardView cardView) {
         this.cardView = cardView;

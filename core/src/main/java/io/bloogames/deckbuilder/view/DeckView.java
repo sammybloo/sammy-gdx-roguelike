@@ -24,9 +24,9 @@ public class DeckView extends ResizableGroup implements View {
     public static final float WIDTH = 200f;
     public static final float HEIGHT = 300f;
 
-    private Array<CardView> cardViews = new Array<>();
+    private final Array<CardView> cardViews = new Array<>();
     private Label cardsLeftLabel;
-    private DeckModel deckModel;
+    private final DeckModel deckModel;
 
     public DeckView(DeckModel deckModel, boolean rotateCards) {
         super(WIDTH, HEIGHT);

@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 
 public class ResizableContainer extends Group {
     private final Actor actor;
-    private ResizableSettings settings;
+    private final ResizableSettings settings;
 
     public ResizableContainer(Actor actor, ResizableSettings settings) {
         this.settings = settings;

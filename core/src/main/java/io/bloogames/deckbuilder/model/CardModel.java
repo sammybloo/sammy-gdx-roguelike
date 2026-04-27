@@ -8,8 +8,8 @@ import io.bloogames.deckbuilder.effect.target.TargetSpec;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public abstract class CardModel {
-    private BaseCard base;
-    private Ownership ownership;
+    private final BaseCard base;
+    private final Ownership ownership;
     private boolean faceup = false;
 
     public CardModel(BaseCard base, Ownership.Type owner) {

@@ -7,9 +7,9 @@ import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class TrinketModel {
-    private BaseTrinket base;
-    private AuraSet auraSet;
-    private Ownership ownership;
+    private final BaseTrinket base;
+    private final AuraSet auraSet;
+    private final Ownership ownership;
 
     public TrinketModel(BaseTrinket base, Ownership.Type owner) {
         this.base = base;

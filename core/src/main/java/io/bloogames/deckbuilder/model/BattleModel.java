@@ -53,13 +53,11 @@ public class BattleModel implements GameEventPublisher {
                 battleStateModel.setState(this, BattleState.PLAYER_TURN);
             }
             case PLAYER_TURN -> {
-                return;
             }
             case CARD_ACTIVATING -> {
                 battleStateModel.setState(this, BattleState.PLAYER_TURN);
             }
             case FIGHTING -> {
-                return;
             }
             case ENEMY_TURN -> {
                 battleStateModel.setState(this, BattleState.START_PLAYER_TURN);

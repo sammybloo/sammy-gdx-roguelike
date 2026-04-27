@@ -10,8 +10,8 @@ public abstract class HoverListener extends ClickListener {
     boolean isHovered;
     Timer.Task hoverTask;
     Timer.Task unhoverTask;
-    private float hoverDelay;
-    private float unhoverDelay;
+    private final float hoverDelay;
+    private final float unhoverDelay;
 
     public HoverListener(float hoverDelay, float unhoverDelay) {
         this.hoverDelay = hoverDelay;

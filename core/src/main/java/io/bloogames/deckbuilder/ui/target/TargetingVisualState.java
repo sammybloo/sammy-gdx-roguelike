@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.ui.color.Tint;
 public final class TargetingVisualState {
     private TargetState targetState = TargetState.NOT_TARGETED;
     private HoverState hoverState = HoverState.NOT_HOVERED;
-    private Tint currentTint = new Tint(Color.GRAY.toFloatBits());
+    private final Tint currentTint = new Tint(Color.GRAY.toFloatBits());
 
     public TargetState getTargetState() {
         return targetState;

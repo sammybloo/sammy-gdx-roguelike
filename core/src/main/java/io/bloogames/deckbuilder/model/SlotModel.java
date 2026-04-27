@@ -8,8 +8,8 @@ import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class SlotModel {
     private BattlerModel battler;
-    private AuraSet auraSet;
-    private Ownership ownership;
+    private final AuraSet auraSet;
+    private final Ownership ownership;
 
     public SlotModel(Ownership.Type owner) {
         auraSet = new AuraSet(AuraSupplier.empty);

@@ -8,7 +8,7 @@ public class HandModel {
     private final Array<CardModel> cards = new Array<>();
     private final int maxSize;
     private boolean drawFaceUp = false;
-    private Ownership ownership;
+    private final Ownership ownership;
 
     public HandModel(int maxSize, Ownership.Type owner) {
         this.maxSize = maxSize;

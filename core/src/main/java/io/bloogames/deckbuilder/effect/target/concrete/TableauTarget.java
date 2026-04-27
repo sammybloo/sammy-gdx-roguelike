@@ -13,7 +13,7 @@ public class TableauTarget implements Target {
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
         new TargetType[]{TargetType.TABLEAU}
     );
-    private TableauModel tableau;
+    private final TableauModel tableau;
 
     public TableauTarget(PartyModel owner, TableauModel tableau) {
         this.tableau = tableau;

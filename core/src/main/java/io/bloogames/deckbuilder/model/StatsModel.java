@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.model;
 import io.bloogames.deckbuilder.data.BaseStats;
 
 public class StatsModel {
-    private BaseStats baseStats;
+    private final BaseStats baseStats;
 
     public StatsModel(BaseStats baseStats) {
         this.baseStats = baseStats;

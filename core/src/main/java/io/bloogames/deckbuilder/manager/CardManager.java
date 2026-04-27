@@ -25,12 +25,12 @@ public enum CardManager {
     }
 
     public CardView getCard(CardModel cardModel) {
-        if (cardModel instanceof BattlerCardModel) {
-            return new BattlerCardView((BattlerCardModel) cardModel);
+        if (cardModel instanceof BattlerCardModel battlerCardModel) {
+            return new BattlerCardView(battlerCardModel);
         }
 
-        if (cardModel instanceof ActionCardModel) {
-            return new ActionCardView((ActionCardModel) cardModel);
+        if (cardModel instanceof ActionCardModel actionCardModel) {
+            return new ActionCardView(actionCardModel);
         }
 
         return null;

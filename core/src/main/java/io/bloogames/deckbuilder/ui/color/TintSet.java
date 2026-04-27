@@ -5,8 +5,8 @@ import com.badlogic.gdx.utils.Array;
 import com.github.tommyettinger.colorful.FloatColors;
 
 public class TintSet {
-    private Array<Tint> tints = new Array<>();
-    private Color color = new Color();
+    private final Array<Tint> tints = new Array<>();
+    private final Color color = new Color();
     private Tintable parent;
 
     public void addTint(Tint tint) {

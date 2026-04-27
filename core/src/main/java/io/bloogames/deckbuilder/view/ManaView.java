@@ -50,8 +50,8 @@ public class ManaView extends ResizableGroup implements View {
 
     private class ManaSymbol extends ResizableGroup {
         private ManaState state = ManaState.INVISIBLE;
-        private Tint tint = new Tint();
-        private Image image;
+        private final Tint tint = new Tint();
+        private final Image image;
 
         public ManaSymbol() {
             super(50, 50);

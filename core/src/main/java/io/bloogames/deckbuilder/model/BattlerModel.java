@@ -8,10 +8,10 @@ import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class BattlerModel implements Damageable {
-    private BattlerCardModel cardModel;
-    private StatsModel stats;
+    private final BattlerCardModel cardModel;
+    private final StatsModel stats;
     private int damage;
-    private AuraSet auraSet;
+    private final AuraSet auraSet;
 
     public BattlerModel(BaseBattlerCard baseCard, Ownership.Type owner) {
         this(new BattlerCardModel(baseCard, owner));

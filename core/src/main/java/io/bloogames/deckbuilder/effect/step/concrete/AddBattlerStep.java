@@ -7,7 +7,7 @@ import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.BattlerModel;
 
 public class AddBattlerStep implements TargetStep<SlotTarget> {
-    private BattlerModel battler;
+    private final BattlerModel battler;
 
     public AddBattlerStep(BattlerModel battler) {
         this.battler = battler;

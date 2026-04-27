@@ -22,7 +22,7 @@ import io.bloogames.deckbuilder.view.*;
 
 public class BattleScreen implements Screen {
 
-    private Main game;
+    private final Main game;
     private Stage stage;
 
     private GameModel gameModel;

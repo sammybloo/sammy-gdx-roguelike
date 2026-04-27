@@ -6,9 +6,9 @@ import java.util.Comparator;
 import java.util.Optional;
 
 public class Damage {
-    private int baseAmount;
-    private Array<DamageModifier> modifiers = new Array<>();
-    private Array<DamagePreventer> preventers = new Array<>();
+    private final int baseAmount;
+    private final Array<DamageModifier> modifiers = new Array<>();
+    private final Array<DamagePreventer> preventers = new Array<>();
     private DamageType damageType;
 
     public Damage(DamageType type, int baseAmount) {

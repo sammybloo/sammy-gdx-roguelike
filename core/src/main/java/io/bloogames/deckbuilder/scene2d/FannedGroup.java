@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
 public class FannedGroup extends Group {
     protected float fannableWidth;
     protected float fannableHeight;
-    private FanSettings settings;
+    private final FanSettings settings;
     private Actor selectedActor = null;
 
     private Array<Actor> fannables = new Array<>();

@@ -8,5 +8,5 @@ import io.bloogames.deckbuilder.error.ValidationError;
 import java.util.Optional;
 
 public interface TargetCondition<T extends Target> {
-    public Optional<ValidationError> check(TargetContext<T> ctx, ConditionValidator validator);
+    Optional<ValidationError> check(TargetContext<T> ctx, ConditionValidator validator);
 }

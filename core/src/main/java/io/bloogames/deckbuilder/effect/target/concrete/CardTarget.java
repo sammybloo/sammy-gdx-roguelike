@@ -12,7 +12,7 @@ public class CardTarget implements Target {
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
         new TargetType[]{TargetType.CARD}
     );
-    private CardModel card;
+    private final CardModel card;
 
     public CardTarget(CardModel card) {
         this.card = card;

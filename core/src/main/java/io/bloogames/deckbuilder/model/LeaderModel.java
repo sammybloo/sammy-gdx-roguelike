@@ -8,11 +8,11 @@ import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class LeaderModel implements Damageable {
-    private BaseLeader base;
+    private final BaseLeader base;
     private int damage;
     private int currentMana;
-    private AuraSet auraSet;
-    private Ownership ownership;
+    private final AuraSet auraSet;
+    private final Ownership ownership;
 
     public LeaderModel(BaseLeader base, Ownership.Type owner) {
         this.base = base;

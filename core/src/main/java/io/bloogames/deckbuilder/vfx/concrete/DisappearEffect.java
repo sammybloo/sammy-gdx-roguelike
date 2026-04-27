@@ -7,7 +7,7 @@ import io.bloogames.deckbuilder.vfx.VisualEffect;
 
 public class DisappearEffect implements VisualEffect {
 
-    private Actor actor;
+    private final Actor actor;
 
     public DisappearEffect(Actor actor) {
         this.actor = actor;

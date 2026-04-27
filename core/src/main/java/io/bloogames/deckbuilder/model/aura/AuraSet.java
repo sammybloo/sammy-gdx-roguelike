@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.source.Source;
 
 public class AuraSet implements AuraOwner {
-    private Array<Aura> auras;
+    private final Array<Aura> auras;
 
     public AuraSet(Array<Aura> auras) {
         this.auras = auras;

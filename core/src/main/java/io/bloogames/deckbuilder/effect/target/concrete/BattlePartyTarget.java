@@ -7,15 +7,10 @@ import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
-public class BattlePartyTarget implements Target {
+public record BattlePartyTarget(BattlePartyModel battleParty) implements Target {
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
         new TargetType[]{TargetType.BATTLE_PARTY}
     );
-    private final BattlePartyModel battleParty;
-
-    public BattlePartyTarget(BattlePartyModel battleParty) {
-        this.battleParty = battleParty;
-    }
 
     @Override
     public Ownership.Type owner() {
@@ -25,9 +20,5 @@ public class BattlePartyTarget implements Target {
     @Override
     public Array<TargetType> types() {
         return TYPES;
-    }
-
-    public BattlePartyModel battleParty() {
-        return battleParty;
     }
 }

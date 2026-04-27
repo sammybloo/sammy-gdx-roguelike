@@ -20,11 +20,11 @@ import static io.bloogames.deckbuilder.manager.CustomActions.tint;
 
 public class DamageVisualEffect implements VisualEffect {
 
-    private Action flashAction;
-    private Action damageBubbleAction;
-    private Action shakeAction;
-    private Actor actor;
-    private ResizableContainer damageLabel;
+    private final Action flashAction;
+    private final Action damageBubbleAction;
+    private final Action shakeAction;
+    private final Actor actor;
+    private final ResizableContainer damageLabel;
 
     public DamageVisualEffect(ResizableGroup target, View targetView, int amount) {
         this.actor = target;

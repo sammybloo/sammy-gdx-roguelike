@@ -4,8 +4,8 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class DiscardPileModel {
-    private Ownership ownership;
-    private Array<CardModel> cards;
+    private final Ownership ownership;
+    private final Array<CardModel> cards;
 
     public DiscardPileModel(Ownership.Type owner) {
         this.ownership = new Ownership(owner);

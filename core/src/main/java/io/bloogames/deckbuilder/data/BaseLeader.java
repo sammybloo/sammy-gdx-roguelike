@@ -4,10 +4,10 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.model.aura.Aura;
 
 public class BaseLeader {
-    private String id;
-    private int maxHealth;
-    private int maxMana;
-    private AuraSupplier auraSupplier;
+    private final String id;
+    private final int maxHealth;
+    private final int maxMana;
+    private final AuraSupplier auraSupplier;
 
     public BaseLeader(String id, int maxHealth, int maxMana, Array<Aura> auras) {
         this.id = id;

@@ -7,7 +7,7 @@ import io.bloogames.deckbuilder.model.ownership.Ownership;
 public class PartyModel {
     private final LeaderModel leader;
     private final DeckModel fullDeck;
-    private Array<TrinketModel> trinkets;
+    private final Array<TrinketModel> trinkets;
 
     public PartyModel(LeaderModel leader) {
         this.leader = leader;

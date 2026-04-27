@@ -18,7 +18,7 @@ public class ResizableGroup extends Group implements Tintable {
     public boolean valid = false;
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     private NinePatch background;
-    private TintSet tintSet = new TintSet();
+    private final TintSet tintSet = new TintSet();
     private Color parentColor = null;
 
     public ResizableGroup(float targetWidth, float targetHeight) {

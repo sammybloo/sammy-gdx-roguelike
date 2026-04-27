@@ -14,14 +14,14 @@ public interface DamageModifier {
 
     Priority priority();
 
-    public enum Priority {
+    enum Priority {
         SHIELD (10),
         MULTIPLY(99),
         DIVIDE(100),
         ADD(500),
         SUBTRACT(500);
 
-        private int speed;
+        private final int speed;
 
         Priority(int speed) {
             this.speed = speed;

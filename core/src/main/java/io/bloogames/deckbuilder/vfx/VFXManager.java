@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 public enum VFXManager {
     INSTANCE;
 
-    private DelayedRemovalArray<VisualEffect> visualEffects = new DelayedRemovalArray<>();
+    private final DelayedRemovalArray<VisualEffect> visualEffects = new DelayedRemovalArray<>();
 
     public void addEffect(VisualEffect visualEffect) {
         visualEffects.add(visualEffect);
