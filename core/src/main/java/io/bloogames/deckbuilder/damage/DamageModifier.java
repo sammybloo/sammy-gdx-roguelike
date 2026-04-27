@@ -1,27 +1,34 @@
 package io.bloogames.deckbuilder.damage;
 
-import io.bloogames.deckbuilder.effect.context.SourceContext;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 
 public interface DamageModifier {
 
-    boolean applies(SourceContext<?> sourceContext, TargetContext<DamageableTarget> damageableTargetContext, Damage damage);
+    float calculate(Damage damage, float currentAmount);
 
-    int apply(Damage damage, int currentAmount);
+    //override for modifiers that actually need to do something when damage is modified
+    default float apply(TargetContext<DamageableTarget> context, Damage damage, float currentAmount) {
+        return calculate(damage, currentAmount);
+    }
 
-    int priority();
+    Priority priority();
 
     public enum Priority {
-        MULTIPLY(999),
-        DIVIDE(999),
+        SHIELD (10),
+        MULTIPLY(99),
+        DIVIDE(100),
         ADD(500),
         SUBTRACT(500);
 
-        public int speed;
+        private int speed;
 
         Priority(int speed) {
             this.speed = speed;
+        }
+
+        public int getSpeed() {
+            return speed;
         }
     }
 }

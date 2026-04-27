@@ -35,7 +35,8 @@ public class CardValidator {
     }
 
     public Optional<ValidationError> checkManaCondition(SourceContext<? extends CardSource> context) {
-        if (context.source().owner().getLeader().getCurrentMana() >= context.source().card().getCurrentCost()) {
+        if (context.game().getBattle().getParty(context.source().owner()).getLeader().getCurrentMana()
+            >= context.source().card().getCurrentCost()) {
             return Optional.empty();
         }
 

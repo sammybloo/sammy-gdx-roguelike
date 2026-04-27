@@ -60,19 +60,19 @@ public class TargetingController {
     }
 
     public void onCardStart(BattleController battleController, PartyView party) {
-        LeaderTarget leaderTarget = new LeaderTarget(party.getLeader().getModel(), party.getModel().getParty());
+        LeaderTarget leaderTarget = new LeaderTarget(party.getLeader().getModel());
         setValidity(battleController, party.getLeader(), leaderTarget);
         registerToPlayCard(battleController, party.getLeader(), leaderTarget);
-        if (!battleController.getBattleState().canSelectCards() || party.getModel().getParty() != selectedCardView.getSelectedCardSource().owner()) {
+        if (!battleController.getBattleState().canSelectCards() || party.getModel().getOwnership().getCurrentOwner() != selectedCardView.getSelectedCardSource().owner()) {
             for (CardView card : party.getHand().getCardViews()) {
-                CardTarget cardTarget = new CardTarget(card.getModel(), party.getModel().getParty());
+                CardTarget cardTarget = new CardTarget(card.getModel());
                 setValidity(battleController, card, cardTarget);
                 registerToPlayCard(battleController, card, cardTarget);
             }
         }
 
         for (SlotView slot : party.getTableau().getSlots()) {
-            SlotTarget slotTarget = new SlotTarget(slot.getModel(), party.getModel().getParty());
+            SlotTarget slotTarget = new SlotTarget(slot.getModel());
             if (battleController.isValidTarget(selectedCardView.getSelectedCardSource(), slotTarget)) {
                 slot.setTargetState(TargetState.VALID);
             } else {
@@ -83,7 +83,7 @@ public class TargetingController {
 
             if (slot.hasBattler()) {
                 BattlerView battler = slot.getBattler();
-                BattlerTarget battlerTarget = new BattlerTarget(battler.getModel(), party.getModel().getParty());
+                BattlerTarget battlerTarget = new BattlerTarget(battler.getModel());
                 setValidity(battleController, battler, battlerTarget);
                 registerToPlayCard(battleController, battler, battlerTarget);
             }

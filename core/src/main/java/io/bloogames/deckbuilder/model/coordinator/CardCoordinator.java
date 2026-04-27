@@ -48,7 +48,7 @@ public class CardCoordinator {
             return result;
         }
 
-        source.owner().getLeader().spendMana(game.getBattle(), source.card().getCurrentCost());
+        game.getBattle().getParty(source.owner()).getLeader().spendMana(game.getBattle(), source.card().getCurrentCost());
 
         game.getBattle().getOwner(source.card()).getHand().removeCard(source.card());
         game.getExecutor().enqueueImmediate(source.card().getEffect(), targetContext);

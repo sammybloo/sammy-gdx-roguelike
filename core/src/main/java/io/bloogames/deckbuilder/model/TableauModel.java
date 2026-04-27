@@ -2,17 +2,21 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class TableauModel {
     private int size;
     private Array<SlotModel> slots;
+    private Ownership ownership;
 
-    public TableauModel(int size) {
+    public TableauModel(int size, Ownership.Type owner) {
         this.size = size;
         this.slots = new Array<>();
+        this.ownership = new Ownership(owner);
 
         for (int i = 0; i < size; i++) {
-            slots.add(new SlotModel());
+            slots.add(new SlotModel(owner));
         }
     }
 
@@ -22,6 +26,10 @@ public class TableauModel {
 
     public int getSize() {
         return size;
+    }
+
+    public Ownership getOwnership() {
+        return ownership;
     }
 
     public void swapBattlers(BattleModel battle, int slotIndex1, int slotIndex2) {

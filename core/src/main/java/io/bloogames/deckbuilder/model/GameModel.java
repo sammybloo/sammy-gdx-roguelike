@@ -5,6 +5,7 @@ import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.execution.EffectExecutor;
+import io.bloogames.deckbuilder.model.aura.Aura;
 
 public class GameModel implements GameEventPublisher {
     private final GameEventDispatcher eventDispatcher;

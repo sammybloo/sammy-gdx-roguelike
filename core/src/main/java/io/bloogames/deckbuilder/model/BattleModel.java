@@ -9,7 +9,9 @@ import io.bloogames.deckbuilder.effect.target.concrete.BattlePartyTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.execution.EffectExecutor;
+import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.coordinator.CardCoordinator;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 public class BattleModel implements GameEventPublisher {
@@ -86,6 +88,16 @@ public class BattleModel implements GameEventPublisher {
         if (playerParty.hasCard(cardModel)) {
             return playerParty;
         } else if (enemyParty.hasCard(cardModel)) {
+            return enemyParty;
+        }
+        return null;
+    }
+
+    public BattlePartyModel getParty(Ownership.Type owner) {
+        if (owner == Ownership.Type.PLAYER) {
+            return playerParty;
+        }
+        if (owner == Ownership.Type.ENEMY) {
             return enemyParty;
         }
         return null;

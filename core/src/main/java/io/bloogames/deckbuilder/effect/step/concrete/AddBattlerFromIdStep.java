@@ -15,7 +15,7 @@ public class AddBattlerFromIdStep implements TargetStep<SlotTarget> {
 
     @Override
     public void applyTarget(TargetContext<SlotTarget> context) {
-        AddBattlerStep battlerStep = new AddBattlerStep(new BattlerModel(CardManager.INSTANCE.getBattlerCard(cardId)));
+        AddBattlerStep battlerStep = new AddBattlerStep(new BattlerModel(CardManager.INSTANCE.getBattlerCard(cardId), context.target().owner()));
         battlerStep.applyTarget(context);
     }
 }

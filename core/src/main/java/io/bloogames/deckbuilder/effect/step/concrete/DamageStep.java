@@ -14,7 +14,7 @@ public class DamageStep implements TargetStep<DamageableTarget> {
 
     @Override
     public void applyTarget(TargetContext<DamageableTarget> ctx) {
-        ctx.target().damageable().damage(ctx, amount);
+        ctx.target().damageable().damage(amount);
 
         ctx.game().dispatch(new GameEvent.DamageDealtEvent(
             ctx.source(), ctx.target().damageable(), amount));

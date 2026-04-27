@@ -2,15 +2,18 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
+import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraSet;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class BattlerCardModel extends CardModel {
     private final BaseBattlerCard baseBattlerCard;
-    private final Array<Aura> auras;
+    private final AuraSet auraSet;
 
-    public BattlerCardModel(BaseBattlerCard base) {
-        super(base);
+    public BattlerCardModel(BaseBattlerCard base, Ownership.Type owner) {
+        super(base, owner);
         this.baseBattlerCard = base;
-        auras = baseBattlerCard.getAuras();
+        auraSet = new AuraSet(baseBattlerCard.getAuras());
     }
 
     public int getPower() {
@@ -26,6 +29,6 @@ public class BattlerCardModel extends CardModel {
     }
 
     public void addAllAuras(Array<Aura> arr) {
-        arr.addAll(auras);
+        arr.addAll(auraSet.getAuras());
     }
 }

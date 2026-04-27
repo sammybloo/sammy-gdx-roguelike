@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class BattlePartyTarget implements Target {
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
@@ -18,8 +18,8 @@ public class BattlePartyTarget implements Target {
     }
 
     @Override
-    public PartyModel owner() {
-        return battleParty.getParty();
+    public Ownership.Type owner() {
+        return battleParty.getOwnership().getCurrentOwner();
     }
 
     @Override

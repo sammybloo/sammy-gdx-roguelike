@@ -2,19 +2,23 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseLeader;
-import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraSet;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class LeaderModel implements Damageable {
     private BaseLeader base;
     private int damage;
     private int currentMana;
-    private Array<Aura> auras;
+    private AuraSet auraSet;
+    private Ownership ownership;
 
-    public LeaderModel(BaseLeader base) {
+    public LeaderModel(BaseLeader base, Ownership.Type owner) {
         this.base = base;
         this.currentMana = base.getMaxMana();
-        this.auras = base.getAuras();
+        this.auraSet = new AuraSet(base.getAuras());
+        this.ownership = new Ownership(owner);
     }
 
     public int getMaxHealth() {
@@ -37,8 +41,12 @@ public class LeaderModel implements Damageable {
         return base.getMaxMana();
     }
 
+    public Ownership getOwnership() {
+        return ownership;
+    }
+
     public void addAllAuras(Array<Aura> arr) {
-        arr.addAll(auras);
+        arr.addAll(auraSet.getAuras());
     }
 
     public void spendMana(BattleModel battle, int amount) {
@@ -47,12 +55,12 @@ public class LeaderModel implements Damageable {
     }
 
     @Override
-    public int damage(TargetContext<?> context, int amount) {
+    public int damage(int amount) {
         return damage += amount;
     }
 
     @Override
-    public int heal(TargetContext<?> context, int amount) {
+    public int heal(int amount) {
         return damage -= amount;
     }
 }

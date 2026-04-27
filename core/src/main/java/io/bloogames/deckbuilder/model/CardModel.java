@@ -5,13 +5,16 @@ import io.bloogames.deckbuilder.effect.Effect;
 import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public abstract class CardModel {
     private BaseCard base;
+    private Ownership ownership;
     private boolean faceup = false;
 
-    public CardModel(BaseCard base) {
+    public CardModel(BaseCard base, Ownership.Type owner) {
         this.base = base;
+        this.ownership = new Ownership(owner);
     }
 
     public String getCardId() {
@@ -44,6 +47,10 @@ public abstract class CardModel {
 
     public int getCurrentCost() {
         return base.getCost();
+    }
+
+    public Ownership getOwnership() {
+        return ownership;
     }
 
     public SourceConditionList<? extends CardSource> getSourceConditionList() {

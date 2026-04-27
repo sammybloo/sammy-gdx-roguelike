@@ -20,7 +20,7 @@ public class PlayerPartyView extends PartyView {
             new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
                 0.8f, 0f, 0.15f),
             new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
-            new CardSelectHandler(battleController, model.getParty())));
+            new CardSelectHandler(battleController)));
 
         setTableau(new TableauView(model.getTableau()));
 

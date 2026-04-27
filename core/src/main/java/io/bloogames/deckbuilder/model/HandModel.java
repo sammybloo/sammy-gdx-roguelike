@@ -1,15 +1,18 @@
 package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class HandModel {
 
     private final Array<CardModel> cards = new Array<>();
     private final int maxSize;
     private boolean drawFaceUp = false;
+    private Ownership ownership;
 
-    public HandModel(int maxSize) {
+    public HandModel(int maxSize, Ownership.Type owner) {
         this.maxSize = maxSize;
+        this.ownership = new Ownership(owner);
     }
 
     public int getMaxSize() {
@@ -34,6 +37,10 @@ public class HandModel {
 
     public Array<CardModel> getCards() {
         return cards;
+    }
+
+    public Ownership getOwnership() {
+        return ownership;
     }
 
     public boolean addCard(CardModel card) {

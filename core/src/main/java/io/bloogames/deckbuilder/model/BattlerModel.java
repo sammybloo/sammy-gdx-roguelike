@@ -1,23 +1,26 @@
 package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
-import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraSet;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class BattlerModel implements Damageable {
     private BattlerCardModel cardModel;
     private StatsModel stats;
     private int damage;
-    private Array<Aura> auras;
+    private AuraSet auraSet;
 
-    public BattlerModel(BaseBattlerCard cardModel) {
-        this(new BattlerCardModel(cardModel));
+    public BattlerModel(BaseBattlerCard baseCard, Ownership.Type owner) {
+        this(new BattlerCardModel(baseCard, owner));
     }
 
     public BattlerModel(BattlerCardModel cardModel) {
         this.cardModel = cardModel;
         this.stats = new StatsModel(cardModel.getBaseBattlerCard().getBaseStats());
-        this.auras = new Array<>();
+        this.auraSet = new AuraSet(AuraSupplier.empty);
     }
 
     public String getBattlerId() {
@@ -40,18 +43,22 @@ public class BattlerModel implements Damageable {
         return cardModel;
     }
 
+    public Ownership getOwnership() {
+        return cardModel.getOwnership();
+    }
+
     @Override
-    public int damage(TargetContext<?> context, int amount) {
+    public int damage(int amount) {
         return damage += amount;
     }
 
     @Override
-    public int heal(TargetContext<?> context, int amount) {
+    public int heal(int amount) {
         return damage -= amount;
     }
 
     public void addAllAuras(Array<Aura> arr) {
-        arr.addAll(auras);
+        arr.addAll(auraSet.getAuras());
         cardModel.addAllAuras(arr);
     }
 }

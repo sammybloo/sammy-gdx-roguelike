@@ -10,7 +10,7 @@ import io.bloogames.deckbuilder.effect.step.concrete.AddBattlerFromSourceCardSte
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
 import io.bloogames.deckbuilder.effect.target.TargetType;
-import io.bloogames.deckbuilder.model.Aura;
+import io.bloogames.deckbuilder.model.aura.Aura;
 
 public class BaseBattlerCard extends BaseCard {
     private final BaseStats baseStats;

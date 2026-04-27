@@ -2,14 +2,18 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.SeedManager;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class DeckModel {
     private final Array<CardModel> cards = new Array<>();
+    private final Ownership ownership;
 
-    public DeckModel() {
+    public DeckModel(Ownership.Type owner) {
+        ownership = new Ownership(owner);
     }
 
-    public DeckModel(Array<CardModel> cards) {
+    public DeckModel(Array<CardModel> cards, Ownership.Type owner) {
+        this(owner);
         this.cards.addAll(cards);
     }
 
@@ -23,6 +27,10 @@ public class DeckModel {
 
     public Array<CardModel> getCards() {
         return cards;
+    }
+
+    public Ownership getOwnership() {
+        return ownership;
     }
 
     public CardModel removeTopCard() {

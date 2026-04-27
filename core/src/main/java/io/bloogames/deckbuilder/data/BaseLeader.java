@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.data;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.model.Aura;
+import io.bloogames.deckbuilder.model.aura.Aura;
 
 public class BaseLeader {
     private String id;

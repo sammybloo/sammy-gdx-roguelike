@@ -2,6 +2,8 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.GameConstants;
+import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class BattlePartyModel {
     private final PartyModel party;
@@ -11,9 +13,9 @@ public class BattlePartyModel {
 
     public BattlePartyModel(PartyModel party) {
         this.party = party;
-        this.tableau = new TableauModel(GameConstants.NUM_SLOTS);
-        this.hand = new HandModel(GameConstants.MAX_HAND_SIZE);
-        this.deck = new DeckModel(party.getFullDeck().getCards());
+        this.tableau = new TableauModel(GameConstants.NUM_SLOTS, getOwnership().getCurrentOwner());
+        this.hand = new HandModel(GameConstants.MAX_HAND_SIZE, getOwnership().getCurrentOwner());
+        this.deck = new DeckModel(party.getFullDeck().getCards(), getOwnership().getCurrentOwner());
     }
 
     public PartyModel getParty() {
@@ -34,6 +36,10 @@ public class BattlePartyModel {
 
     public DeckModel getDeck() {
         return deck;
+    }
+
+    public Ownership getOwnership() {
+        return party.getOwnership();
     }
 
     public void addAllAuras(Array<Aura> arr) {

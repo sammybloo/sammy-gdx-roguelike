@@ -5,24 +5,22 @@ import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.CardModel;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class CardTarget implements Target {
 
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
         new TargetType[]{TargetType.CARD}
     );
-    private PartyModel owner;
     private CardModel card;
 
-    public CardTarget(CardModel card, PartyModel owner) {
-        this.owner = owner;
+    public CardTarget(CardModel card) {
         this.card = card;
     }
 
     @Override
-    public PartyModel owner() {
-        return owner;
+    public Ownership.Type owner() {
+        return card.getOwnership().getCurrentOwner();
     }
 
     @Override

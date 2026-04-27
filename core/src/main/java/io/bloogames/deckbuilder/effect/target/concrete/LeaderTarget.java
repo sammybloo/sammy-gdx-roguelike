@@ -4,19 +4,17 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.model.LeaderModel;
-import io.bloogames.deckbuilder.model.PartyModel;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public final class LeaderTarget extends DamageableTarget {
     private static final Array<TargetType> TYPES = new SnapshotArray<>(
         new TargetType[]{TargetType.LEADER, TargetType.DAMAGEABLE}
     );
     private final LeaderModel leader;
-    private final PartyModel owner;
 
-    public LeaderTarget(LeaderModel leader, PartyModel owner) {
-        super(leader, owner);
+    public LeaderTarget(LeaderModel leader) {
+        super(leader);
         this.leader = leader;
-        this.owner = owner;
     }
 
     @Override
@@ -29,7 +27,7 @@ public final class LeaderTarget extends DamageableTarget {
     }
 
     @Override
-    public PartyModel owner() {
-        return owner;
+    public Ownership.Type owner() {
+        return leader.getOwnership().getCurrentOwner();
     }
 }
