@@ -1,0 +1,93 @@
+COMMON
+======
+Frog
+0-cost Battler
+1/1
+
+Peeper Puppy
+2-cost Battler
+2/2
+On play: Reveal your opponent's hand.
+
+Librarian
+3-cost Battler
+3/2
+On death: Draw a card.
+
+Manasipper
+3-cost Battler
+1/2
+Whenever you play an Action, give this Battler +1 power and health.
+
+Overgrown Bush Turkey
+5-cost Battler
+4/6
+On death: Give its Slot +1 power and health.
+
+Till the Soil
+2-cost Action
+Give a Slot +1 power and health.
+
+Rip Out
+2-cost Action
+Discard a card from your opponent's hand.
+
+Wisen 
+3-cost Action
+Draw 2 cards.
+
+Bounce
+2-cost Action
+Return target Battler to its owner's hand.
+
+Spark
+1-cost Action
+Deal 2 damage to any target.
+
+UNCOMMON
+======
+
+Wizard
+2-cost Battler
+0/1
+Has +1 power for each card in your hand.
+
+Bulk-Up
+4-cost Action
+Double a Battler's power and health.
+
+Toadstorm
+2-cost Action
+Summon 2 1/1 Frogs in random empty Slots.
+ 
+Renew
+2-cost Action
+Fully Heal all of your Battlers.
+
+Scorch
+2-cost Action
+Deal 3 damage to any target.
+
+RARE
+======
+Salt the Earth
+2-cost Action
+Give a Slot -1 power and health.
+
+Circle of Power
+3-cost Action
+Give target Slot +1 power for each card in your hand.
+
+Fireball
+4-cost Action
+Deal 5 damage to any target.
+
+LEGENDARY
+======
+Snatch
+3-cost Action
+Take a card from the opponent's hand.
+
+Meteor
+6-cost Action
+Deal 10 damage to any target.
