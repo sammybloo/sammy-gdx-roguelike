@@ -28,7 +28,7 @@ public class BattleModel implements GameEventPublisher {
         this.cardCoordinator = new CardCoordinator();
         this.eventPublisher = game;
 
-        playerParty.getHand().setDrawFaceUp(true);
+        playerParty.getHand().setAddFaceUp(true);
 
         game.getExecutor().begin(
             new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, new DrawCardsStep(5)).build(),

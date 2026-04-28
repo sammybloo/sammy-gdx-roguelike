@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.model.coordinator;
 
+import com.badlogic.gdx.Gdx;
 import io.bloogames.deckbuilder.effect.context.SourceContext;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
@@ -7,6 +8,8 @@ import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.validation.CardValidator;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.model.CardModel;
+import io.bloogames.deckbuilder.model.CardZone;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.ui.BattleState;
 
@@ -55,5 +58,15 @@ public class CardCoordinator {
         game.dispatch(new GameEvent.CardPlayedEvent(source.card(), source, target));
         game.getBattle().setState(BattleState.CARD_ACTIVATING);
         return Optional.empty();
+    }
+
+    public void moveCard(GameModel gameModel, CardModel card, CardZone from, CardZone to) {
+        if (!from.contains(card)) {
+            Gdx.app.error(CardCoordinator.class.getSimpleName(), "Tried to move card between zones, but card does not exist in from zone.");
+            return;
+        }
+        from.removeCard(card);
+        to.addCard(card);
+        gameModel.dispatch(new GameEvent.CardMovedEvent(card, from, to));
     }
 }

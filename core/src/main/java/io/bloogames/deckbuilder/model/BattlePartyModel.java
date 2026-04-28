@@ -5,6 +5,8 @@ import io.bloogames.deckbuilder.GameConstants;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
+import java.util.Optional;
+
 public class BattlePartyModel {
     private final PartyModel party;
     private final TableauModel tableau;
@@ -54,6 +56,34 @@ public class BattlePartyModel {
     }
 
     public boolean hasCard(CardModel card) {
-        return hand.contains(card);
+        return hand.contains(card) || deck.contains(card) || discardPile.contains(card);
+    }
+
+    public Optional<CardZone> getCardZone(CardModel card) {
+        if (deck.contains(card)) {
+            return Optional.of(deck);
+        }
+        if (hand.contains(card)) {
+            return Optional.of(hand);
+        }
+        if (discardPile.contains(card)) {
+            return Optional.of(discardPile);
+        }
+        return Optional.empty();
+    }
+
+    public CardZone getCardZone(CardZone.Type type) {
+        switch (type) {
+            case HAND -> {
+                return hand;
+            }
+            case DECK -> {
+                return deck;
+            }
+            case DISCARD_PILE -> {
+                return discardPile;
+            }
+        }
+        return null;
     }
 }

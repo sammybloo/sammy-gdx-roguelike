@@ -37,6 +37,10 @@ public sealed interface GameEvent {
         implements GameEvent {
     }
 
+    record CardMovedEvent(CardModel card, CardZone from, CardZone to)
+        implements GameEvent {
+    }
+
     record EffectFailedEvent(Source source, Target target, ValidationError error)
         implements GameEvent {
     }

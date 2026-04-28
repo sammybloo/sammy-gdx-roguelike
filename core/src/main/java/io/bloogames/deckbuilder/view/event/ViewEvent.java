@@ -4,6 +4,7 @@ import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
+import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.ui.BattleState;
@@ -53,6 +54,10 @@ public sealed interface ViewEvent {
     }
 
     record AuraModifiedEvent(Aura aura)
+        implements ViewEvent {
+    }
+
+    record CardMovedEvent(CardModel card, CardZone from, CardZone to)
         implements ViewEvent {
     }
 }

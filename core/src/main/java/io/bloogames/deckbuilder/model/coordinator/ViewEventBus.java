@@ -60,6 +60,7 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
             case GameEvent.CardDrawnEvent e -> new ViewEvent.CardDrawnEvent(e.hand(), e.card());
             case GameEvent.EffectFailedEvent e -> new ViewEvent.EffectFailedEvent(e.source(), e.target(), e.error());
             case GameEvent.AuraModifiedEvent e -> new ViewEvent.AuraModifiedEvent(e.aura());
+            case GameEvent.CardMovedEvent e -> new ViewEvent.CardMovedEvent(e.card(), e.from(), e.to());
         };
     }
 

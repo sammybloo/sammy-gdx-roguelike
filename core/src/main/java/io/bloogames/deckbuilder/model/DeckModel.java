@@ -4,42 +4,25 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.SeedManager;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
-public class DeckModel {
-    private final Array<CardModel> cards = new Array<>();
-    private final Ownership ownership;
-
+public final class DeckModel extends CardZone {
     public DeckModel(Ownership.Type owner) {
-        ownership = new Ownership(owner);
+        super(owner);
     }
 
     public DeckModel(Array<CardModel> cards, Ownership.Type owner) {
         this(owner);
-        this.cards.addAll(cards);
-    }
-
-    public void addCard(CardModel card) {
-        cards.add(card);
-    }
-
-    public boolean removeCard(CardModel card) {
-        return cards.removeValue(card, true);
-    }
-
-    public Array<CardModel> getCards() {
-        return cards;
-    }
-
-    public Ownership getOwnership() {
-        return ownership;
+        for (CardModel card : cards) {
+            addCard(card);
+        }
     }
 
     public CardModel removeTopCard() {
-        return cards.pop();
+        return getCards().pop();
     }
 
     public void shuffle() {
-        SeedManager.INSTANCE.shuffle(cards);
-        for (CardModel card : cards) {
+        SeedManager.INSTANCE.shuffle(getCards());
+        for (CardModel card : getCards()) {
             card.setFaceup(false);
         }
     }
