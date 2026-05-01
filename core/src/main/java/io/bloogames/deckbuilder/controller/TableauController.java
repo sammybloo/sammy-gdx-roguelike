@@ -6,6 +6,8 @@ import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
+import io.bloogames.deckbuilder.vfx.concrete.DieEffect;
+import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
@@ -27,6 +29,15 @@ public class TableauController {
 
         battleController.getEventBus().register(ViewEvent.BattleViewStateEvent.class, e -> {
             sync();
+        });
+
+        battleController.getEventBus().register(ViewEvent.BattlerDiedEvent.class, e -> {
+            for (SlotView slot : tableau.getSlots()) {
+                if (slot.hasBattler(e.battler())) {
+                    VFXManager.INSTANCE.addEffect(new DieEffect(slot.getBattler()));
+                    slot.removeBattler();
+                }
+            }
         });
 
         battleController.getEventBus().register(ViewEvent.DamageDealtEvent.class, e -> {

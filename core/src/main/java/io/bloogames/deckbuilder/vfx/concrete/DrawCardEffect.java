@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.vfx.concrete;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
-import io.bloogames.deckbuilder.ui.ViewUtils;
+import io.bloogames.deckbuilder.vfx.VFXUtils;
 import io.bloogames.deckbuilder.vfx.VisualEffect;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.DeckView;
@@ -32,7 +32,7 @@ public class DrawCardEffect implements VisualEffect {
                 deck.getHeight() / 2 + card.getHeight() / 2 * card.getScaleY());
             card.rotateBy(-180f);
         }
-        ViewUtils.unmoor(card);
+        VFXUtils.unmoor(card);
         deck.removeCard(card);
         Vector2 handPosition = hand.stageToLocalCoordinates(new Vector2(card.getX(), card.getY()));
         hand.addCard(card);

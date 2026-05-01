@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.ui.ViewUtils;
+import io.bloogames.deckbuilder.vfx.VFXUtils;
 
 public class SelectedCardView extends ResizableGroup {
 
@@ -26,7 +26,7 @@ public class SelectedCardView extends ResizableGroup {
 
     public CardView removeCard() {
         if (selectedCard != null) {
-            ViewUtils.unmoor(selectedCard);
+            VFXUtils.unmoor(selectedCard);
             unregister(selectedCard);
         }
         CardView temp = selectedCard;

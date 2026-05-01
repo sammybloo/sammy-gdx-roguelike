@@ -19,4 +19,9 @@ public final class HandModel extends CardZone {
     public boolean isFull() {
         return getCards().size >= maxSize;
     }
+
+    @Override
+    public String toString() {
+        return getOwner().toString() + " Hand";
+    }
 }

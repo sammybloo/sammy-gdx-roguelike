@@ -4,17 +4,21 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
-import io.bloogames.deckbuilder.execution.EffectExecutor;
+import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.coordinator.DamageCoordinator;
 
 public class GameModel implements GameEventPublisher {
     private final GameEventDispatcher eventDispatcher;
     private final EffectExecutor executor;
     private BattleModel battle;
+    private DamageCoordinator damageCoordinator;
+    private Array<Aura> currentAuras = new Array<>();
 
     public GameModel() {
         this.eventDispatcher = new GameEventDispatcher();
         this.executor = new EffectExecutor();
+        this.damageCoordinator = new DamageCoordinator(this);
     }
 
     public void doNext() {
@@ -43,12 +47,19 @@ public class GameModel implements GameEventPublisher {
         return executor;
     }
 
-    public Array<Aura> getAllAuras() {
-        Array<Aura> result = new Array<>();
+    public DamageCoordinator getDamageCoordinator() {
+        return damageCoordinator;
+    }
+
+    public void generateAuras() {
+        currentAuras.clear();
         if (inBattle()) {
-            battle.addAllAuras(result);
+            battle.addAllAuras(currentAuras);
         }
-        return result;
+    }
+
+    public Array<Aura> getAllAuras() {
+        return currentAuras;
     }
 
     @Override

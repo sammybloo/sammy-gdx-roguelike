@@ -13,6 +13,7 @@ import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
+import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.VisualEffect;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
@@ -44,13 +45,12 @@ public class DamageVisualEffect implements VisualEffect {
         );
         this.damageBubbleAction = sequence(
             alpha(0),
-            scaleTo(0, 0),
+            scaleTo(1.75f, 1.75f),
             parallel(
                 fadeIn(0.1f),
-                scaleTo(1.75f, 1.75f, 0.2f)
+                scaleTo(1f, 1f, 0.1f)
             ),
-            delay(0.1f),
-            scaleTo(1, 1, 0.1f),
+            delay(0.5f),
             parallel(
                 moveBy(0, 100f, 0.5f),
                 sequence(
@@ -71,10 +71,10 @@ public class DamageVisualEffect implements VisualEffect {
     public void play() {
         actor.addAction(flashAction);
         actor.addAction(shakeAction);
-        actor.getStage().addActor(damageLabel);
+        VFXManager.INSTANCE.addToTextGroup(damageLabel);
 
         Vector2 localPosition = new Vector2();
-        Vector2 stagePosition = actor.localToStageCoordinates(localPosition);
+        Vector2 stagePosition = actor.localToActorCoordinates(VFXManager.INSTANCE.getVfxActorGroup(), localPosition);
         damageLabel.setBounds(stagePosition.x, stagePosition.y, actor.getWidth(), actor.getHeight());
         damageLabel.setOrigin(Align.center);
         damageLabel.addAction(damageBubbleAction);

@@ -7,6 +7,7 @@ import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
 
@@ -18,6 +19,10 @@ public sealed interface ViewEvent {
     }
 
     record BattlerAddedEvent(SlotModel slot, BattlerModel battler) implements ViewEvent {
+    }
+
+    record BattlerDiedEvent(SlotModel slot, BattlerModel battler, Death death)
+        implements ViewEvent {
     }
 
     record BattlerSwappedEvent(TableauModel tableau, SlotModel slot1, SlotModel slot2) implements ViewEvent {

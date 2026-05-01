@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.controller.BattleController;
 import io.bloogames.deckbuilder.scene2d.HoverListener;
-import io.bloogames.deckbuilder.ui.ViewUtils;
+import io.bloogames.deckbuilder.vfx.VFXUtils;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
@@ -77,7 +77,7 @@ public class TableauSwapHandler {
                             }
                             var payload = new DragAndDrop.Payload();
                             var battler = slot.getBattler();
-                            ViewUtils.unmoor(battler);
+                            VFXUtils.unmoor(battler);
                             slot.removeBattler();
                             payload.setObject(slot);
                             payload.setDragActor(battler);

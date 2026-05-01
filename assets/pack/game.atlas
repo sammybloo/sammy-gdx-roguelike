@@ -160,16 +160,23 @@ card/fireball
   orig: 512, 512
   offset: 0, 0
   index: -1
-card/paulallen
+card/grow
   rotate: false
   xy: 516, 462
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
-card/snail
+card/paulallen
   rotate: false
   xy: 1030, 976
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+card/snail
+  rotate: false
+  xy: 1030, 462
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
@@ -181,13 +188,6 @@ card/vanille
   orig: 340, 340
   offset: 0, 0
   index: -1
-card/worms
-  rotate: false
-  xy: 1030, 462
-  size: 512, 512
-  orig: 512, 512
-  offset: 0, 0
-  index: -1
 card/wrio
   rotate: false
   xy: 2, 2
@@ -197,6 +197,19 @@ card/wrio
   index: -1
 
 game4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+card/worms
+  rotate: false
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+game5.png
 size: 2048, 1024
 format: RGBA8888
 filter: Linear, Linear

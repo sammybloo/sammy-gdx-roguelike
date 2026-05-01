@@ -10,6 +10,7 @@ import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -21,7 +22,7 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
     private final LeaderModel model;
     private final Image image;
     private final Image frame;
-    private final Label healthLabel;
+    private final UpdatingLabel healthLabel;
 
     public LeaderView(LeaderModel model) {
         super(WIDTH, HEIGHT);
@@ -31,13 +32,12 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
         image.setTouchable(Touchable.disabled);
         frame = new Image(AssetManager.INSTANCE.findRegion("leaderframe"));
         frame.setTouchable(Touchable.disabled);
-        healthLabel = new Label(model.getCurrentHealth() + "",
-            new Label.LabelStyle(FontManager.INSTANCE.getLeaderHealthFont(), null));
-        healthLabel.setTouchable(Touchable.disabled);
-        healthLabel.setAlignment(Align.bottom);
+        healthLabel = new UpdatingLabel(40, 40, model.getCurrentHealth() + "",
+            FontManager.INSTANCE.getLeaderHealthFont());
+        healthLabel.getLabel().setAlignment(Align.bottom);
         register(image, new ResizableSettings(WIDTH, HEIGHT));
         register(frame, new ResizableSettings(WIDTH, HEIGHT));
-        register(healthLabel, new ResizableSettings(40, 40, Align.bottom).yOffset(-6f));
+        register(healthLabel, new ResizableSettings(40, 40, Align.bottom).yOffset(-6f).keepColour());
 
         addTint(targetingVisualState().getTint());
     }
@@ -49,6 +49,7 @@ public class LeaderView extends ResizableGroup implements View, Targetable {
     @Override
     public void sync() {
         healthLabel.setText(model.getCurrentHealth() + "");
+        healthLabel.setColourByComparison(model.getMaxHealth(), model.getCurrentHealth());
     }
 
     @Override

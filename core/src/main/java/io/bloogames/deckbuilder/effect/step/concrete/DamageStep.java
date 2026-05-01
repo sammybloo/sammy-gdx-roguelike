@@ -4,19 +4,17 @@ import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.step.TargetStep;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
+import io.bloogames.deckbuilder.model.damage.Damage;
 
 public class DamageStep implements TargetStep<DamageableTarget> {
-    private final int amount;
+    private final Damage damage;
 
-    public DamageStep(int amount) {
-        this.amount = amount;
+    public DamageStep(Damage damage) {
+        this.damage = damage;
     }
 
     @Override
     public void applyTarget(TargetContext<DamageableTarget> ctx) {
-        ctx.target().damageable().damage(amount);
-
-        ctx.game().dispatch(new GameEvent.DamageDealtEvent(
-            ctx.source(), ctx.target().damageable(), amount));
+        ctx.game().getDamageCoordinator().damage(ctx.source(), ctx.target(), damage);
     }
 }

@@ -5,13 +5,16 @@ import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
+import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
+import io.bloogames.deckbuilder.model.stats.Stats;
 
 public class BattlerModel implements Damageable {
     private final BattlerCardModel cardModel;
-    private final StatsModel stats;
+    private final Stats stats;
     private int damage;
     private final AuraSet auraSet;
+    private Array<Death> deaths = new Array<>();
 
     public BattlerModel(BaseBattlerCard baseCard, Ownership.Type owner) {
         this(new BattlerCardModel(baseCard, owner));
@@ -19,7 +22,7 @@ public class BattlerModel implements Damageable {
 
     public BattlerModel(BattlerCardModel cardModel) {
         this.cardModel = cardModel;
-        this.stats = new StatsModel(cardModel.getBaseBattlerCard().getBaseStats());
+        this.stats = new Stats(cardModel.getBaseBattlerCard().getBaseStats());
         this.auraSet = new AuraSet(AuraSupplier.empty);
     }
 
@@ -28,11 +31,15 @@ public class BattlerModel implements Damageable {
     }
 
     public int getPower() {
-        return stats.getBaseStats().power();
+        return stats.getCurrentStats().power();
     }
 
     public int getMaxHealth() {
-        return stats.getBaseStats().health();
+        return stats.getCurrentStats().health();
+    }
+
+    public Stats getStats() {
+        return stats;
     }
 
     public int getCurrentHealth() {
@@ -45,6 +52,22 @@ public class BattlerModel implements Damageable {
 
     public Ownership getOwnership() {
         return cardModel.getOwnership();
+    }
+
+    public boolean isMarkedForDeath() {
+        return deaths.size > 0;
+    }
+
+    public void markForDeath(Death death) {
+        this.deaths.add(death);
+    }
+
+    public Death popDeath() {
+        return deaths.removeIndex(0);
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

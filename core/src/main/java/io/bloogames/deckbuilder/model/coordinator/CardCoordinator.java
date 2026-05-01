@@ -17,8 +17,13 @@ import java.util.Optional;
 
 public class CardCoordinator {
     private final CardValidator cardValidator = new CardValidator();
+    private final GameModel game;
 
-    public Optional<ValidationError> canPlayCard(GameModel game, CardSource source) {
+    public CardCoordinator(GameModel game) {
+        this.game = game;
+    }
+
+    public Optional<ValidationError> canPlayCard(CardSource source) {
         Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(game);
         if (result.isPresent()) {
             return result;
@@ -28,12 +33,12 @@ public class CardCoordinator {
         return cardValidator.checkCardCanBePlayed(sourceContext);
     }
 
-    public boolean isValidTarget(GameModel game, CardSource source, Target target) {
+    public boolean isValidTarget(CardSource source, Target target) {
         TargetContext<Target> targetContext = new TargetContext<>(game, source, target);
         return cardValidator.checkCardCanBePlayedOnTarget(source, targetContext).isEmpty();
     }
 
-    public Optional<ValidationError> playCard(GameModel game, CardSource source, Target target) {
+    public Optional<ValidationError> playCard(CardSource source, Target target) {
         Optional<ValidationError> result = cardValidator.checkCardsCanBePlayed(game);
         if (result.isPresent()) {
             return result;
@@ -60,13 +65,14 @@ public class CardCoordinator {
         return Optional.empty();
     }
 
-    public void moveCard(GameModel gameModel, CardModel card, CardZone from, CardZone to) {
+    public void moveCard(CardModel card, CardZone from, CardZone to) {
         if (!from.contains(card)) {
-            Gdx.app.error(CardCoordinator.class.getSimpleName(), "Tried to move card between zones, but card does not exist in from zone.");
+            Gdx.app.error(CardCoordinator.class.getSimpleName(),
+                "Tried to move card between zones, but card does not exist in from zone.");
             return;
         }
         from.removeCard(card);
         to.addCard(card);
-        gameModel.dispatch(new GameEvent.CardMovedEvent(card, from, to));
+        game.dispatch(new GameEvent.CardMovedEvent(card, from, to));
     }
 }

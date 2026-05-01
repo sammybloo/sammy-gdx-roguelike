@@ -1,8 +1,8 @@
 package io.bloogames.deckbuilder.model.aura.concrete;
 
 import com.badlogic.gdx.math.MathUtils;
-import io.bloogames.deckbuilder.damage.Damage;
-import io.bloogames.deckbuilder.damage.DamageModifier;
+import io.bloogames.deckbuilder.model.damage.Damage;
+import io.bloogames.deckbuilder.model.damage.DamageModifier;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
@@ -10,8 +10,9 @@ import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.StackableAura;
 
 public class ShieldAura extends StackableAura {
-    public ShieldAura(String id, int stacks) {
-        super(id, stacks);
+    private static final String ID = "shield";
+    public ShieldAura(int stacks) {
+        super(ID, stacks);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class ShieldAura extends StackableAura {
 
     @Override
     public Aura copy() {
-        return new ShieldAura(getId(), getStacks());
+        return new ShieldAura(getStacks());
     }
 }

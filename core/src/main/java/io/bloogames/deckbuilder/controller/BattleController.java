@@ -38,19 +38,19 @@ public class BattleController {
 
     public void startPlayCard(CardModel card) {
         CardSource cardSource = new CardSource(card);
-        Optional<ValidationError> result = getBattle().getCardCoordinator().canPlayCard(game, cardSource);
+        Optional<ValidationError> result = getBattle().getCardCoordinator().canPlayCard(cardSource);
 
         result.ifPresentOrElse(error -> getEventBus().dispatch(new ViewEvent.CardStartFailedEvent(cardSource, error)),
             () -> getEventBus().dispatch(new ViewEvent.CardStartEvent(cardSource)));
     }
 
     public void playCard(CardSource cardSource, Target target) {
-        Optional<ValidationError> result = getBattle().getCardCoordinator().playCard(game, cardSource, target);
+        Optional<ValidationError> result = getBattle().getCardCoordinator().playCard(cardSource, target);
         result.ifPresent(error -> getEventBus().dispatch(new ViewEvent.CardFailedEvent(cardSource, target, error)));
     }
 
     public boolean isValidTarget(CardSource cardSource, Target target) {
-        return getBattle().getCardCoordinator().isValidTarget(game, cardSource, target);
+        return getBattle().getCardCoordinator().isValidTarget(cardSource, target);
     }
 
     public void swapSlots(TableauModel tableau, SlotModel slot1, SlotModel slot2) {

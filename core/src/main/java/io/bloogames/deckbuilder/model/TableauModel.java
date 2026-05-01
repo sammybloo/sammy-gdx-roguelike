@@ -24,6 +24,10 @@ public class TableauModel {
         return slots.get(index);
     }
 
+    public Array<SlotModel> getSlots() {
+        return slots;
+    }
+
     public int getSize() {
         return size;
     }

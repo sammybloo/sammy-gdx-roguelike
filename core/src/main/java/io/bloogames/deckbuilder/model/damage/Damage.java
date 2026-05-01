@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.damage;
+package io.bloogames.deckbuilder.model.damage;
 
 import com.badlogic.gdx.utils.Array;
 
@@ -27,8 +27,9 @@ public class Damage {
         preventers.sort(Comparator.comparingInt((DamagePreventer preventer) -> preventer.priority().getSpeed()).reversed());
     }
 
-    public void clearModifiers() {
+    public void clear() {
         modifiers.clear();
+        preventers.clear();
     }
 
     public int getBaseAmount() {

@@ -10,6 +10,7 @@ import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -26,7 +27,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
     protected Image art;
     protected Image manaSymbol;
     protected Label nameLabel;
-    protected Label manaLabel;
+    protected UpdatingLabel manaLabel;
     protected ResizableGroup frontFace;
 
     public CardView(CardModel cardModel, String frameReference, String artReference) {
@@ -47,14 +48,15 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
             new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
         nameLabel.setAlignment(Align.center, Align.left);
 
-        manaLabel = new Label(cardModel.getCurrentCost() + "",
-            new Label.LabelStyle(FontManager.INSTANCE.getBattlerCardManaCostFont(), null));
-        manaLabel.setAlignment(Align.center, Align.center);
+        manaLabel = new UpdatingLabel(60, 60, cardModel.getCurrentCost() + "",
+            FontManager.INSTANCE.getCardManaCostFont());
+        manaLabel.getLabel().setAlignment(Align.center, Align.center);
 
         frontFace.register(art, new ResizableSettings(WIDTH * 0.948f, WIDTH * 0.948f).offset(WIDTH * 0.025f, HEIGHT * 0.284f));
         frontFace.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         frontFace.register(manaSymbol, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
-        frontFace.register(manaLabel, new ResizableSettings(60, 60, Align.topLeft).offset(-10f, -10f));
+        frontFace.register(manaLabel, new ResizableSettings(manaLabel.getTargetWidth(), manaLabel.getTargetHeight(), Align.topLeft)
+            .offset(-10f, -10f).keepColour());
         frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 30, Align.top).offset(30f, 9f));
 
         cardBack = new Image(AssetManager.INSTANCE.findRegion("cardback"));
@@ -105,6 +107,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
     public void sync() {
         setFacing(cardModel.isFaceup());
         nameLabel.setText(cardModel.getCardName());
-        manaLabel.setText(cardModel.getCurrentCost());
+        manaLabel.setText(cardModel.getCurrentCost() + "");
+        manaLabel.setColourByComparisonInverted(cardModel.getBaseCard().getCost(), cardModel.getCurrentCost());
     }
 }

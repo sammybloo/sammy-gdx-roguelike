@@ -6,10 +6,15 @@ import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.ui.BattleState;
 
 public sealed interface GameEvent {
     record BattlerAddedEvent(SlotModel slot, BattlerModel battler)
+        implements GameEvent {
+    }
+
+    record BattlerDiedEvent(SlotModel slot, BattlerModel battler, Death death)
         implements GameEvent {
     }
 

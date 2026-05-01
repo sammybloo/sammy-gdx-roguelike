@@ -24,7 +24,7 @@ public class StealCardFromHandStep implements TargetStep<CardTarget> {
         Optional<CardZone> cardZoneOptional = targetParty.getCardZone(context.target().card());
         cardZoneOptional.ifPresentOrElse((cardZone) -> {
             context.game().getBattle().getCardCoordinator()
-                .moveCard(context.game(), context.target().card(), cardZone, sourceParty.getCardZone(destination));
+                .moveCard(context.target().card(), cardZone, sourceParty.getCardZone(destination));
             },
             () -> Gdx.app.error(StealCardFromHandStep.class.getSimpleName(),
                 "Tried to steal card from hand, but the party didn't own the card."));

@@ -47,8 +47,10 @@ public class BattleScreen implements Screen {
         gameModel = new GameModel();
 
         battleModel = new BattleModel(
-            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("wizard", 20, 5, AuraSupplier.empty), Ownership.Type.PLAYER))),
-            new BattlePartyModel(new PartyModel(new LeaderModel(new BaseLeader("villain", 20, 5, AuraSupplier.empty), Ownership.Type.ENEMY))),
+            new BattlePartyModel(new PartyModel(new LeaderModel(
+                new BaseLeader("wizard", 20, 5, AuraSupplier.empty), Ownership.Type.PLAYER))),
+            new BattlePartyModel(new PartyModel(new LeaderModel(
+                new BaseLeader("villain", 20, 5, AuraSupplier.empty), Ownership.Type.ENEMY))),
             gameModel
         );
 
@@ -71,6 +73,10 @@ public class BattleScreen implements Screen {
             battleModel.getPlayerParty().getDeck().addCard(battlerCard);
         }
         battleModel.getPlayerParty().getDeck().shuffle();
+        battleModel.getPlayerParty().getDeck().addCard(
+            new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball"), Ownership.Type.PLAYER));
+        battleModel.getPlayerParty().getDeck().addCard(
+            new ActionCardModel(CardManager.INSTANCE.getActionCard("grow"), Ownership.Type.PLAYER));
 
         for (int i = 0; i < 45; i++) {
             battlerCard = new BattlerCardModel(
@@ -100,6 +106,7 @@ public class BattleScreen implements Screen {
         stage.addActor(enemyParty);
         stage.addActor(playerParty);
 
+        VFXManager.INSTANCE.initialiseForStage(stage);
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));
 
         playerParty.sync();

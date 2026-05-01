@@ -24,7 +24,7 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
     }
 
     public <E extends ViewEvent> void dispatch(E event) {
-        Gdx.app.log(this.getClass().getName(), "View event: " + event);
+        Gdx.app.log(this.getClass().getSimpleName(), "View event: " + event);
         if (!eventListeners.containsKey(event.getClass())) {
             return;
         }
@@ -61,6 +61,7 @@ public class ViewEventBus implements GameEventListener<GameEvent> {
             case GameEvent.EffectFailedEvent e -> new ViewEvent.EffectFailedEvent(e.source(), e.target(), e.error());
             case GameEvent.AuraModifiedEvent e -> new ViewEvent.AuraModifiedEvent(e.aura());
             case GameEvent.CardMovedEvent e -> new ViewEvent.CardMovedEvent(e.card(), e.from(), e.to());
+            case GameEvent.BattlerDiedEvent e -> new ViewEvent.BattlerDiedEvent(e.slot(), e.battler(), e.death());
         };
     }
 

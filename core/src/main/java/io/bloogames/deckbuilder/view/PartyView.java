@@ -84,5 +84,7 @@ public abstract class PartyView extends ResizableGroup implements View {
         leader.sync();
         hand.sync();
         tableau.sync();
+        deck.sync();
+        discardPile.sync();
     }
 }

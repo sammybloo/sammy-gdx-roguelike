@@ -11,6 +11,7 @@ import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -22,8 +23,8 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
     private final BattlerModel model;
     private final Image art;
     private final Image frame;
-    private final Label powerLabel;
-    private final Label healthLabel;
+    private final UpdatingLabel powerLabel;
+    private final UpdatingLabel healthLabel;
 
     public BattlerView(BattlerModel model) {
         super(WIDTH, HEIGHT);
@@ -33,21 +34,20 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         art.setTouchable(Touchable.disabled);
         frame = new Image(AssetManager.INSTANCE.findRegion("frame"));
         frame.setTouchable(Touchable.disabled);
-        powerLabel = new Label("", new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
-        powerLabel.setAlignment(Align.center, Align.center);
-        powerLabel.setTouchable(Touchable.disabled);
+        powerLabel = new UpdatingLabel(WIDTH * 0.19f, HEIGHT * 0.19f,model.getPower() + "",
+            FontManager.INSTANCE.getBattlerStatFont());
+        powerLabel.getLabel().setAlignment(Align.center, Align.center);
 
-        healthLabel = new Label("",
-            new Label.LabelStyle(FontManager.INSTANCE.getBattlerStatFont(), null));
-        healthLabel.setAlignment(Align.center, Align.center);
-        healthLabel.setTouchable(Touchable.disabled);
+        healthLabel = new UpdatingLabel(WIDTH * 0.19f, HEIGHT * 0.19f, model.getCurrentHealth() + "",
+            FontManager.INSTANCE.getBattlerStatFont());
+        healthLabel.getLabel().setAlignment(Align.center, Align.center);
 
         this.register(art, new ResizableSettings(WIDTH * 0.99f, HEIGHT * 0.99f, Align.center));
         this.register(frame, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         this.register(powerLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f)
-            .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
+            .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f).keepColour());
         this.register(healthLabel, new ResizableSettings(WIDTH * 0.19f, HEIGHT * 0.19f, Align.bottomRight)
-            .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f));
+            .offset(WIDTH * 0.0175f, HEIGHT * 0.0175f).keepColour());
 
         addTint(targetingVisualState().getTint());
 
@@ -65,8 +65,15 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
 
     @Override
     public void sync() {
-        powerLabel.setText(model.getPower());
-        healthLabel.setText(model.getCurrentHealth());
+        powerLabel.setText(model.getPower() + "");
+        powerLabel.setColourByComparison(model.getStats().getBaseStats().power(), model.getPower());
+        healthLabel.setText(model.getCurrentHealth() + "");
+        if (model.getDamage() > 0) {
+            healthLabel.setNegative();
+        }
+        else {
+            healthLabel.setColourByComparison(model.getStats().getBaseStats().health(), model.getCurrentHealth());
+        }
     }
 
     @Override

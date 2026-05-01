@@ -1,21 +1,16 @@
-package io.bloogames.deckbuilder.damage;
+package io.bloogames.deckbuilder.model.stats;
 
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
+import io.bloogames.deckbuilder.model.damage.Damage;
 
-public interface DamageModifier {
+public interface StatsModifier {
 
-    float calculate(Damage damage, float currentAmount);
-
-    //override for modifiers that actually need to do something when damage is modified
-    default float apply(TargetContext<DamageableTarget> context, Damage damage, float currentAmount) {
-        return calculate(damage, currentAmount);
-    }
+    float calculate(Stats stats, StatChanges currentChanges);
 
     Priority priority();
 
     enum Priority {
-        SHIELD (10),
         MULTIPLY(99),
         DIVIDE(100),
         ADD(500),

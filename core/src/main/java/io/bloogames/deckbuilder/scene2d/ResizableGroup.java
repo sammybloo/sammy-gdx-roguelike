@@ -170,4 +170,12 @@ public class ResizableGroup extends Group implements Tintable {
     private record Bounds(float x, float y, float width, float height) {
     }
 
+
+    public float getTargetWidth() {
+        return targetWidth;
+    }
+
+    public float getTargetHeight() {
+        return targetHeight;
+    }
 }

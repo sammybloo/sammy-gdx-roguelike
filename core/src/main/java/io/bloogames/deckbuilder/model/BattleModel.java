@@ -8,8 +8,9 @@ import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlePartyTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
-import io.bloogames.deckbuilder.execution.EffectExecutor;
+import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.coordinator.BattleCleanupCoordinator;
 import io.bloogames.deckbuilder.model.coordinator.CardCoordinator;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 import io.bloogames.deckbuilder.ui.BattleState;
@@ -19,13 +20,15 @@ public class BattleModel implements GameEventPublisher {
     private final BattlePartyModel enemyParty;
     private final BattleStateModel battleStateModel;
     private final CardCoordinator cardCoordinator;
+    private final BattleCleanupCoordinator cleanupCoordinator;
     private final GameEventPublisher eventPublisher;
 
     public BattleModel(BattlePartyModel playerParty, BattlePartyModel enemyParty, GameModel game) {
         this.playerParty = playerParty;
         this.enemyParty = enemyParty;
         this.battleStateModel = new BattleStateModel();
-        this.cardCoordinator = new CardCoordinator();
+        this.cardCoordinator = new CardCoordinator(game);
+        this.cleanupCoordinator = new BattleCleanupCoordinator(game);
         this.eventPublisher = game;
 
         playerParty.getHand().setAddFaceUp(true);
@@ -41,7 +44,12 @@ public class BattleModel implements GameEventPublisher {
 
     public void doNext(EffectExecutor executor) {
         if (executor.hasPending()) {
+            cleanupCoordinator.beforeEachStep();
             executor.update();
+            return;
+        }
+
+        if (cleanupCoordinator.beforePhase()) {
             return;
         }
 

@@ -56,4 +56,9 @@ public abstract class CardModel {
     public SourceConditionList<? extends CardSource> getSourceConditionList() {
         return base.getConditionList();
     }
+
+    @Override
+    public String toString() {
+        return getCardName() + " card";
+    }
 }

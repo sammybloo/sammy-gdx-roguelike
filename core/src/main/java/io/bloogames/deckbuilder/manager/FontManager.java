@@ -14,7 +14,7 @@ public enum FontManager {
     BitmapFont battlerCardStatFont;
     BitmapFont leaderHealthFont;
     BitmapFont leaderMessageFont;
-    BitmapFont battlerCardManaCostFont;
+    BitmapFont cardManaCostFont;
     BitmapFont damagePopupFont;
     BitmapFont deckCardsLeftFont;
     BitmapFont discardPileSizeFont;
@@ -23,8 +23,9 @@ public enum FontManager {
         if (battlerStatFont == null) {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
+            parameter.color = Color.GRAY;
             parameter.size = 48;
+            parameter.spaceX = -7;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;
             battlerStatFont = generator.generateFont(parameter);
@@ -64,26 +65,26 @@ public enum FontManager {
         return battlerCardStatFont;
     }
 
-    public BitmapFont getBattlerCardManaCostFont() {
-        if (battlerCardManaCostFont == null) {
+    public BitmapFont getCardManaCostFont() {
+        if (cardManaCostFont == null) {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             parameter.color = Color.BLACK;
             parameter.size = 64;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;
-            battlerCardManaCostFont = generator.generateFont(parameter);
+            cardManaCostFont = generator.generateFont(parameter);
             generator.dispose();
         }
 
-        return battlerCardManaCostFont;
+        return cardManaCostFont;
     }
 
     public BitmapFont getLeaderHealthFont() {
         if (leaderHealthFont == null) {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
+            parameter.color = Color.GRAY;
             parameter.size = 48;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;

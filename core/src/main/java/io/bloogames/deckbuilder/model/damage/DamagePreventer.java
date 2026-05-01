@@ -1,11 +1,9 @@
-package io.bloogames.deckbuilder.damage;
+package io.bloogames.deckbuilder.model.damage;
 
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 
 public interface DamagePreventer {
-    boolean applies(TargetContext<DamageableTarget> damageableTargetContext, Damage damage);
-
     void onPrevent(TargetContext<DamageableTarget> damageableTargetContext, Damage damage);
 
     Priority priority();
