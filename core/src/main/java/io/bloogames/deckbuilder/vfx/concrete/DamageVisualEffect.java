@@ -34,6 +34,7 @@ public class DamageVisualEffect implements VisualEffect {
 
         this.flashAction = sequence(tint(tint, Color.RED.toFloatBits(), 0.2f),
             run(targetView::sync),
+            delay(0.1f),
             tint(tint, Color.GRAY.toFloatBits(), 0.2f),
             run(() -> target.removeTint(tint)));
 
@@ -52,7 +53,7 @@ public class DamageVisualEffect implements VisualEffect {
             ),
             delay(0.5f),
             parallel(
-                moveBy(0, 100f, 0.5f),
+                moveBy(0, 50f, 0.5f),
                 sequence(
                     delay(0.2f),
                     fadeOut(0.3f)

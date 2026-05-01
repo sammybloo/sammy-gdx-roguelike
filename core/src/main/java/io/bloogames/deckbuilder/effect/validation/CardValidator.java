@@ -23,7 +23,7 @@ public class CardValidator {
         if (result.isPresent()) return result;
 
         return conditionValidator.checkSourceConditionsAreMet(
-            (SourceConditionList<CardSource>) context.source().card().getSourceConditionList(),
+            (SourceConditionList<CardSource>) context.source().model().getSourceConditionList(),
             (SourceContext<CardSource>) context);
     }
 
@@ -31,12 +31,12 @@ public class CardValidator {
         CardSource source,
         TargetContext<T> context
     ) {
-        return conditionValidator.checkTargetIsValid(source.card().getTargetSpec(), context);
+        return conditionValidator.checkTargetIsValid(source.model().getTargetSpec(), context);
     }
 
     public Optional<ValidationError> checkManaCondition(SourceContext<? extends CardSource> context) {
         if (context.game().getBattle().getParty(context.source().owner()).getLeader().getCurrentMana()
-            >= context.source().card().getCurrentCost()) {
+            >= context.source().model().getCurrentCost()) {
             return Optional.empty();
         }
 

@@ -52,6 +52,7 @@ public class BattleCleanupCoordinator {
         for (SlotModel slot : tableau.getSlots()) {
             if (slot.hasBattler()) {
                 BattlerTarget battlerTarget = new BattlerTarget(slot.getBattler());
+                slot.getBattler().getStats().clearModifiers();
                 for (Aura aura : auras) {
                     aura.onCalculateStats(game, battlerTarget);
                 }

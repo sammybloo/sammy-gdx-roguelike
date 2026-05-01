@@ -5,6 +5,7 @@ import io.bloogames.deckbuilder.handler.TableauSwapHandler;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
 import io.bloogames.deckbuilder.vfx.VFXManager;
+import io.bloogames.deckbuilder.vfx.concrete.BattlerEntryEffect;
 import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.vfx.concrete.DieEffect;
 import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
@@ -53,7 +54,7 @@ public class TableauController {
             SlotView slot = tableau.getSlot(e.slot());
             if (slot != null) {
                 slot.setBattler(e.battler());
-                slot.getBattler().playEntry();
+                VFXManager.INSTANCE.addEffect(new BattlerEntryEffect(slot.getBattler()));
             }
         });
     }

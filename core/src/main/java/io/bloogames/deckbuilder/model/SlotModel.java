@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.model;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseStats;
+import io.bloogames.deckbuilder.effect.source.concrete.SlotSource;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
@@ -17,7 +18,7 @@ public class SlotModel {
     private final Ownership ownership;
 
     public SlotModel(Ownership.Type owner) {
-        auraSet = new AuraSet(AuraSupplier.empty);
+        auraSet = new AuraSet(new SlotSource(this), AuraSupplier.empty);
         ownership = new Ownership(owner);
     }
 

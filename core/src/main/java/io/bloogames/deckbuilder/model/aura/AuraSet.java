@@ -4,19 +4,27 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.source.Source;
 
 public class AuraSet implements AuraOwner {
-    private final Array<Aura> auras;
+    private final Array<Aura> auras = new Array<>();
+    private final Source source;
 
-    public AuraSet(Array<Aura> auras) {
-        this.auras = auras;
+    public AuraSet(Source source, Array<Aura> auras) {
+        this.source = source;
+        addAllAuras(auras);
     }
 
     @Override
-    public Source getOwner() {
-        return null;
+    public Source source() {
+        return source;
     }
 
     public Array<Aura> getAuras() {
         return auras;
+    }
+
+    public void addAllAuras(Array<Aura> auras) {
+        for (Aura aura : auras) {
+            addAura(aura);
+        }
     }
 
     @Override

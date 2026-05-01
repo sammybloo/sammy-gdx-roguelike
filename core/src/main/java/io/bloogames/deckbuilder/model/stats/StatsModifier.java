@@ -6,15 +6,14 @@ import io.bloogames.deckbuilder.model.damage.Damage;
 
 public interface StatsModifier {
 
-    float calculate(Stats stats, StatChanges currentChanges);
+    void calculate(Stats stats, StatChanges currentChanges);
 
     Priority priority();
 
     enum Priority {
         MULTIPLY(99),
         DIVIDE(100),
-        ADD(500),
-        SUBTRACT(500);
+        ADD_AND_SUBTRACT(500);
 
         private final int speed;
 

@@ -56,7 +56,11 @@ public class TintSet {
     }
 
     public Color getColor(Color parentColor) {
-        Color.abgr8888ToColor(color, FloatColors.mix(getColor().toFloatBits(), parentColor.toFloatBits()));
+        if (parentColor.equals(Color.GRAY)) {
+            return getColor();
+        }
+            Color.abgr8888ToColor(color, FloatColors.mix(getColor().toFloatBits(), parentColor.toFloatBits()));
+
         return color;
     }
 

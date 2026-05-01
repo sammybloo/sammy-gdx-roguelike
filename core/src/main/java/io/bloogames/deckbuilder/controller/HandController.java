@@ -15,7 +15,7 @@ public class HandController {
     }
 
     private void handleCardPlayed(ViewEvent.CardStartEvent event) {
-        CardView card = hand.getCardView(event.cardSource().card());
+        CardView card = hand.getCardView(event.cardSource().model());
         if (card != null) {
             hand.sync();
             VFXManager.INSTANCE.addEffect(new DisappearEffect(card));

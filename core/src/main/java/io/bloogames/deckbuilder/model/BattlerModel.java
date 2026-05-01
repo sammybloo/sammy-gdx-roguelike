@@ -3,6 +3,7 @@ package io.bloogames.deckbuilder.model;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
+import io.bloogames.deckbuilder.effect.source.concrete.BattlerSource;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.death.Death;
@@ -23,7 +24,7 @@ public class BattlerModel implements Damageable {
     public BattlerModel(BattlerCardModel cardModel) {
         this.cardModel = cardModel;
         this.stats = new Stats(cardModel.getBaseBattlerCard().getBaseStats());
-        this.auraSet = new AuraSet(AuraSupplier.empty);
+        this.auraSet = new AuraSet(new BattlerSource(this), new AuraSupplier(cardModel.getAuras()).get());
     }
 
     public String getBattlerId() {
@@ -82,6 +83,6 @@ public class BattlerModel implements Damageable {
 
     public void addAllAuras(Array<Aura> arr) {
         arr.addAll(auraSet.getAuras());
-        cardModel.addAllAuras(arr);
+        // cardModel.addAllAuras(arr);
     }
 }

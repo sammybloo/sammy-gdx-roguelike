@@ -22,6 +22,9 @@ public class Stats {
         modifiers.add(modifier);
     }
 
+    public void clearModifiers() {
+        modifiers.clear();
+    }
     public void permanentlyChange(StatChanges changes) {
         permanentStatChanges.changeBy(changes);
     }

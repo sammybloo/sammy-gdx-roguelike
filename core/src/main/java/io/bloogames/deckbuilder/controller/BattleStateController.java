@@ -18,7 +18,7 @@ public class BattleStateController {
 
         eventBus.register(ViewEvent.BattleStateEvent.class, event -> changeStateBasedOnModel(event.newState()));
         eventBus.register(ViewEvent.CardStartEvent.class, event -> {
-            targetsOwnCards = targetsOwnCards(event.cardSource().card());
+            targetsOwnCards = targetsOwnCards(event.cardSource().model());
             changeState(BattleViewState.CARD_SELECTED);
         });
     }

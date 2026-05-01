@@ -48,7 +48,7 @@ public class BattleScreen implements Screen {
 
         battleModel = new BattleModel(
             new BattlePartyModel(new PartyModel(new LeaderModel(
-                new BaseLeader("wizard", 20, 5, AuraSupplier.empty), Ownership.Type.PLAYER))),
+                new BaseLeader("wizard", 20, 10, AuraSupplier.empty), Ownership.Type.PLAYER))),
             new BattlePartyModel(new PartyModel(new LeaderModel(
                 new BaseLeader("villain", 20, 5, AuraSupplier.empty), Ownership.Type.ENEMY))),
             gameModel
@@ -73,6 +73,8 @@ public class BattleScreen implements Screen {
             battleModel.getPlayerParty().getDeck().addCard(battlerCard);
         }
         battleModel.getPlayerParty().getDeck().shuffle();
+        battleModel.getPlayerParty().getDeck().addCard(
+            new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball"), Ownership.Type.PLAYER));
         battleModel.getPlayerParty().getDeck().addCard(
             new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball"), Ownership.Type.PLAYER));
         battleModel.getPlayerParty().getDeck().addCard(
@@ -149,6 +151,7 @@ public class BattleScreen implements Screen {
         playerParty.setBounds(0, 0, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
         selectedCardView.setBounds(50, (game.getViewport().getWorldHeight() - 450) * 0.5f, 300, 450);
+        VFXManager.INSTANCE.resize(game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight());
     }
 
     @Override

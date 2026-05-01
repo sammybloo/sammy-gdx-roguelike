@@ -3,7 +3,6 @@ package io.bloogames.deckbuilder.effect.source;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public interface Source {
-    String sourceId();
-
+    Object model();
     Ownership.Type owner();
 }

@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseLeader;
+import io.bloogames.deckbuilder.effect.source.concrete.LeaderSource;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.aura.Aura;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
@@ -17,7 +18,7 @@ public class LeaderModel implements Damageable {
     public LeaderModel(BaseLeader base, Ownership.Type owner) {
         this.base = base;
         this.currentMana = base.getMaxMana();
-        this.auraSet = new AuraSet(base.getAuras());
+        this.auraSet = new AuraSet(new LeaderSource(this), base.getAuras());
         this.ownership = new Ownership(owner);
     }
 

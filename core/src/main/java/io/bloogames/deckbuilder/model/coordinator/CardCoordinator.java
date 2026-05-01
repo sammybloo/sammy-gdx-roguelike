@@ -56,11 +56,11 @@ public class CardCoordinator {
             return result;
         }
 
-        game.getBattle().getParty(source.owner()).getLeader().spendMana(game.getBattle(), source.card().getCurrentCost());
+        game.getBattle().getParty(source.owner()).getLeader().spendMana(game.getBattle(), source.model().getCurrentCost());
 
-        game.getBattle().getOwner(source.card()).getHand().removeCard(source.card());
-        game.getExecutor().enqueueImmediate(source.card().getEffect(), targetContext);
-        game.dispatch(new GameEvent.CardPlayedEvent(source.card(), source, target));
+        game.getBattle().getOwner(source.model()).getHand().removeCard(source.model());
+        game.getExecutor().enqueueImmediate(source.model().getEffect(), targetContext);
+        game.dispatch(new GameEvent.CardPlayedEvent(source.model(), source, target));
         game.getBattle().setState(BattleState.CARD_ACTIVATING);
         return Optional.empty();
     }
