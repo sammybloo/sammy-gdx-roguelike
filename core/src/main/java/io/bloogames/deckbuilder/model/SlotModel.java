@@ -11,11 +11,10 @@ import io.bloogames.deckbuilder.model.stats.Stats;
 
 public class SlotModel {
     private static final BaseStats SLOT_BASE_STATS = new BaseStats(0, 0);
-
-    private BattlerModel battler;
     private final AuraSet auraSet;
     private final Stats stats = new Stats(SLOT_BASE_STATS);
     private final Ownership ownership;
+    private BattlerModel battler;
 
     public SlotModel(Ownership.Type owner) {
         auraSet = new AuraSet(new SlotSource(this), AuraSupplier.empty);
@@ -26,12 +25,12 @@ public class SlotModel {
         return battler;
     }
 
-    public Ownership getOwnership() {
-        return ownership;
-    }
-
     public void setBattler(BattlerModel battler) {
         this.battler = battler;
+    }
+
+    public Ownership getOwnership() {
+        return ownership;
     }
 
     public boolean hasBattler() {

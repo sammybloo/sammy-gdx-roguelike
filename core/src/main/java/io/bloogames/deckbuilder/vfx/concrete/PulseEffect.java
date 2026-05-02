@@ -2,10 +2,10 @@ package io.bloogames.deckbuilder.vfx.concrete;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import io.bloogames.deckbuilder.vfx.VisualEffect;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.scaleTo;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 public class PulseEffect implements VisualEffect {
     public Action pulseAction;

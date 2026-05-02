@@ -50,7 +50,7 @@ public class Damage {
 
     public Optional<DamagePreventer> getPreventer() {
         if (preventers.size == 0) {
-           return Optional.empty();
+            return Optional.empty();
         }
 
         sortPreventers();

@@ -1,16 +1,17 @@
 package io.bloogames.deckbuilder.model.aura.concrete;
 
 import com.badlogic.gdx.math.MathUtils;
-import io.bloogames.deckbuilder.model.damage.Damage;
-import io.bloogames.deckbuilder.model.damage.DamageModifier;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.StackableAura;
+import io.bloogames.deckbuilder.model.damage.Damage;
+import io.bloogames.deckbuilder.model.damage.DamageModifier;
 
 public class ShieldAura extends StackableAura {
     private static final String ID = "shield";
+
     public ShieldAura(int stacks) {
         super(ID, stacks);
     }

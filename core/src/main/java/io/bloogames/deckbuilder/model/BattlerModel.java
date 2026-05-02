@@ -13,8 +13,8 @@ import io.bloogames.deckbuilder.model.stats.Stats;
 public class BattlerModel implements Damageable {
     private final BattlerCardModel cardModel;
     private final Stats stats;
-    private int damage;
     private final AuraSet auraSet;
+    private int damage;
     private Array<Death> deaths = new Array<>();
 
     public BattlerModel(BaseBattlerCard baseCard, Ownership.Type owner) {

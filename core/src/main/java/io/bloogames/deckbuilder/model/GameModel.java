@@ -1,10 +1,10 @@
 package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
-import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.coordinator.DamageCoordinator;
 

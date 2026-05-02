@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.model;
 
-import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public final class HandModel extends CardZone {

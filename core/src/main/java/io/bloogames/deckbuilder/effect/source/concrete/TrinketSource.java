@@ -1,7 +1,6 @@
 package io.bloogames.deckbuilder.effect.source.concrete;
 
 import io.bloogames.deckbuilder.effect.source.Source;
-import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.TrinketModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 

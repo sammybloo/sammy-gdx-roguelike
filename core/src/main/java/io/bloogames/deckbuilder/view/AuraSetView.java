@@ -1,8 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.scene2d.IconGrid;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;

@@ -25,6 +25,7 @@ public class Stats {
     public void clearModifiers() {
         modifiers.clear();
     }
+
     public void permanentlyChange(StatChanges changes) {
         permanentStatChanges.changeBy(changes);
     }
@@ -47,5 +48,6 @@ public class Stats {
         return new CurrentStats(statChanges, baseStats.health() + statChanges.getHealth(), baseStats.power() + statChanges.getPower());
     }
 
-    public record CurrentStats(StatChanges statChanges, int health, int power) {}
+    public record CurrentStats(StatChanges statChanges, int health, int power) {
+    }
 }

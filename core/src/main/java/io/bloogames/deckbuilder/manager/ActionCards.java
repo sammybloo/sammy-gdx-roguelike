@@ -6,7 +6,6 @@ import io.bloogames.deckbuilder.effect.EffectBuilder;
 import io.bloogames.deckbuilder.effect.TargetedEffect;
 import io.bloogames.deckbuilder.effect.condition.SourceConditionList;
 import io.bloogames.deckbuilder.effect.condition.TargetConditionList;
-import io.bloogames.deckbuilder.effect.condition.concrete.target.IsBattlerCard;
 import io.bloogames.deckbuilder.effect.step.concrete.ChangeBattlerStatsStep;
 import io.bloogames.deckbuilder.effect.step.concrete.DamageStep;
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;

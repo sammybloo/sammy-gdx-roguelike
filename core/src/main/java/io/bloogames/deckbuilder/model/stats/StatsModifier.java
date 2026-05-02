@@ -1,9 +1,5 @@
 package io.bloogames.deckbuilder.model.stats;
 
-import io.bloogames.deckbuilder.effect.context.TargetContext;
-import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
-import io.bloogames.deckbuilder.model.damage.Damage;
-
 public interface StatsModifier {
 
     void calculate(Stats stats, StatChanges currentChanges);

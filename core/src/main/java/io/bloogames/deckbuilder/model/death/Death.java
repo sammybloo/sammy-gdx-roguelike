@@ -1,14 +1,13 @@
 package io.bloogames.deckbuilder.model.death;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.model.damage.DamagePreventer;
 
 import java.util.Comparator;
 import java.util.Optional;
 
 public class Death {
-    private Type type;
     private final Array<DeathPreventer> preventers = new Array<>();
+    private Type type;
     private NextLocation nextLocation = NextLocation.DISCARD_PILE;
 
     public Death(Type type) {

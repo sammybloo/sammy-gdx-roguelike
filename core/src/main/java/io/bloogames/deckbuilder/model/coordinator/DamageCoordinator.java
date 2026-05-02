@@ -1,14 +1,14 @@
 package io.bloogames.deckbuilder.model.coordinator;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.damage.Damage;
-import io.bloogames.deckbuilder.model.damage.DamagePreventer;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
+import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
+import io.bloogames.deckbuilder.model.damage.Damage;
+import io.bloogames.deckbuilder.model.damage.DamagePreventer;
 
 import java.util.Optional;
 

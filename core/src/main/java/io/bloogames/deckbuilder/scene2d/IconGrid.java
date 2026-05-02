@@ -33,11 +33,11 @@ public class IconGrid extends WidgetGroup {
         if (primary == PrimaryDirection.HORIZONTAL) {
             rows = fixedCount;
             cellSize = (height - (rows - 1) * spacing) / rows;
-            cols = Math.max(1, (int)(width / (cellSize + spacing)));
+            cols = Math.max(1, (int) (width / (cellSize + spacing)));
         } else {
             cols = fixedCount;
             cellSize = (width - (cols - 1) * spacing) / cols;
-            rows = Math.max(1, (int)(height / (cellSize + spacing)));
+            rows = Math.max(1, (int) (height / (cellSize + spacing)));
         }
 
         for (int i = 0; i < count; i++) {

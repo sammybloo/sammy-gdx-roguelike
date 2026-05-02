@@ -4,12 +4,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
-import io.bloogames.deckbuilder.scene2d.IconGrid;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
@@ -35,7 +33,7 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         art.setTouchable(Touchable.disabled);
         frame = new Image(AssetManager.INSTANCE.findRegion("frame"));
         frame.setTouchable(Touchable.disabled);
-        powerLabel = new UpdatingLabel(WIDTH * 0.19f, HEIGHT * 0.19f,model.getPower() + "",
+        powerLabel = new UpdatingLabel(WIDTH * 0.19f, HEIGHT * 0.19f, model.getPower() + "",
             FontManager.INSTANCE.getBattlerStatFont());
         powerLabel.getLabel().setAlignment(Align.center, Align.center);
 
@@ -66,8 +64,7 @@ public class BattlerView extends ResizableGroup implements View, Targetable {
         healthLabel.setText(model.getCurrentHealth() + "");
         if (model.getDamage() > 0) {
             healthLabel.setNegative();
-        }
-        else {
+        } else {
             healthLabel.setColourByComparison(model.getStats().getBaseStats().health(), model.getCurrentHealth());
         }
     }

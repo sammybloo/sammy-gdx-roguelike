@@ -11,9 +11,9 @@ import com.badlogic.gdx.utils.Array;
  *  Use fan() to redistribute the hand :)
  */
 public class FannedGroup extends Group {
+    private final FanSettings settings;
     protected float fannableWidth;
     protected float fannableHeight;
-    private final FanSettings settings;
     private Actor selectedActor = null;
 
     private Array<Actor> fannables = new Array<>();

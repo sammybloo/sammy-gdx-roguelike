@@ -5,8 +5,8 @@ import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public abstract class CardZone {
     private final Array<CardModel> cards = new Array<>();
-    private boolean addFaceUp = false;
     private final Ownership.Type owner;
+    private boolean addFaceUp = false;
 
     public CardZone(Ownership.Type owner) {
         this.owner = owner;

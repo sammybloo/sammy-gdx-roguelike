@@ -41,8 +41,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         if (model.getOwnership().getCurrentOwner() == Ownership.Type.PLAYER) {
             aurasView = new AuraSetView(IconGrid.VerticalAlign.TOP_TO_BOTTOM);
             aurasViewSettings.alignment(Align.bottom).yOffset(-HEIGHT / 3).paddingY(-1f);
-        }
-        else {
+        } else {
             aurasView = new AuraSetView(IconGrid.VerticalAlign.BOTTOM_TO_TOP);
             aurasViewSettings.alignment(Align.top).yOffset(-HEIGHT / 3).paddingY(-1f);
         }

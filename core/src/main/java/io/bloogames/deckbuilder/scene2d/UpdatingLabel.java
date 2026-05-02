@@ -13,8 +13,8 @@ public class UpdatingLabel extends ResizableGroup {
     public static final float POSITIVE_COLOUR = new Color(0f, 1f, 0f, 1).toFloatBits();
     public static final float NEUTRAL_COLOUR = Color.BLACK.toFloatBits();
     private final Label label;
-    private String text;
     private final Tint tint = new Tint();
+    private String text;
 
     public UpdatingLabel(float targetWidth, float targetHeight, String text, BitmapFont font) {
         super(targetWidth, targetHeight);
@@ -41,11 +41,9 @@ public class UpdatingLabel extends ResizableGroup {
     public void setColourByComparison(float base, float current) {
         if (base == current) {
             setNeutral();
-        }
-        else if (base > current) {
+        } else if (base > current) {
             setNegative();
-        }
-        else {
+        } else {
             setPositive();
         }
     }

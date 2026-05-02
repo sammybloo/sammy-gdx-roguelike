@@ -13,12 +13,12 @@ import io.bloogames.deckbuilder.ui.color.TintSet;
 import io.bloogames.deckbuilder.ui.color.Tintable;
 
 public class ResizableGroup extends Group implements Tintable {
+    private final TintSet tintSet = new TintSet();
     public float targetWidth;
     public float targetHeight;
     public boolean valid = false;
     ObjectMap<Actor, ResizableContainer> map = new ObjectMap<>();
     private NinePatch background;
-    private final TintSet tintSet = new TintSet();
     private Color parentColor = null;
 
     public ResizableGroup(float targetWidth, float targetHeight) {
@@ -167,15 +167,14 @@ public class ResizableGroup extends Group implements Tintable {
         setColor(parentColor);
     }
 
-    private record Bounds(float x, float y, float width, float height) {
-    }
-
-
     public float getTargetWidth() {
         return targetWidth;
     }
 
     public float getTargetHeight() {
         return targetHeight;
+    }
+
+    private record Bounds(float x, float y, float width, float height) {
     }
 }

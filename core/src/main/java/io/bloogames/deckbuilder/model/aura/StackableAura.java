@@ -12,19 +12,19 @@ public abstract class StackableAura extends AuraModel {
         return stacks;
     }
 
-    public void addStacks(int amount) {
-        setStacks(stacks + amount);
-    }
-
-    public void removeStacks(int amount) {
-        setStacks(stacks - amount);
-    }
-
     public void setStacks(int amount) {
         this.stacks = amount;
 
         if (this.stacks <= 0) {
             getOwner().removeAura(this);
         }
+    }
+
+    public void addStacks(int amount) {
+        setStacks(stacks + amount);
+    }
+
+    public void removeStacks(int amount) {
+        setStacks(stacks - amount);
     }
 }

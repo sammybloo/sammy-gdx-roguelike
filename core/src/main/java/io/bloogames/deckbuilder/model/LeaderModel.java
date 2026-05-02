@@ -10,10 +10,10 @@ import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class LeaderModel implements Damageable {
     private final BaseLeader base;
-    private int damage;
-    private int currentMana;
     private final AuraSet auraSet;
     private final Ownership ownership;
+    private int damage;
+    private int currentMana;
 
     public LeaderModel(BaseLeader base, Ownership.Type owner) {
         this.base = base;

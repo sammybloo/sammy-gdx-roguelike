@@ -83,8 +83,7 @@ public class BattleCleanupCoordinator {
                 BattlerModel battler = slot.getBattler();
                 if (battler.getMaxHealth() <= 0) {
                     battler.markForDeath(new Death(Death.Type.NO_MAX_HEALTH));
-                }
-                else if (battler.getCurrentHealth() <= 0) {
+                } else if (battler.getCurrentHealth() <= 0) {
                     battler.markForDeath(new Death(Death.Type.DAMAGE));
                 }
 

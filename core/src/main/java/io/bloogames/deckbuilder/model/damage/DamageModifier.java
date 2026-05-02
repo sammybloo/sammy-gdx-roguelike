@@ -15,7 +15,7 @@ public interface DamageModifier {
     Priority priority();
 
     enum Priority {
-        SHIELD (10),
+        SHIELD(10),
         MULTIPLY(99),
         DIVIDE(100),
         ADD(500),
