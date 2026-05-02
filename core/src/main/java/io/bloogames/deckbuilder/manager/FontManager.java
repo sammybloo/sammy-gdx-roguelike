@@ -24,8 +24,8 @@ public enum FontManager {
             var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
             var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             parameter.color = Color.GRAY;
-            parameter.size = 48;
-            parameter.spaceX = -7;
+            parameter.size = 42;
+            parameter.spaceX = -2;
             parameter.minFilter = Texture.TextureFilter.Linear;
             parameter.magFilter = Texture.TextureFilter.Linear;
             battlerStatFont = generator.generateFont(parameter);

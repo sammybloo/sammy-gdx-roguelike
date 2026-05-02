@@ -9,7 +9,7 @@ import io.bloogames.deckbuilder.effect.target.concrete.BattlePartyTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.coordinator.BattleCleanupCoordinator;
 import io.bloogames.deckbuilder.model.coordinator.CardCoordinator;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
@@ -109,7 +109,7 @@ public class BattleModel implements GameEventPublisher {
         return null;
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         playerParty.addAllAuras(arr);
         enemyParty.addAllAuras(arr);
     }

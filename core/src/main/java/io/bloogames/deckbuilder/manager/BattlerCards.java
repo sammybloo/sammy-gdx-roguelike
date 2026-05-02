@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.data.BaseStats;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.concrete.AmbientStatChangeForAlliesAura;
 import io.bloogames.deckbuilder.model.stats.StatChanges;
 import io.bloogames.deckbuilder.model.stats.concrete.FlatStatsModifier;
@@ -20,8 +20,8 @@ public class BattlerCards {
             new BaseStats(6, 2), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("fallenstar", "Fallen Star", 3,
             new BaseStats(99, 99), AuraSupplier.empty));
-        Array<Aura> wrioAura = new Array<>();
-        wrioAura.add(new AmbientStatChangeForAlliesAura("wrio_buff", new FlatStatsModifier(new StatChanges(1, 1))));
+        Array<AuraModel> wrioAura = new Array<>();
+        wrioAura.add(new AmbientStatChangeForAlliesAura(new FlatStatsModifier(new StatChanges(1, 1))));
         register(objectMap, new BaseBattlerCard("wrio", "Warm Wriothesley", 3,
             new BaseStats(5, 0), wrioAura));
         register(objectMap, new BaseBattlerCard("vanille", "Lesbean", 3,

@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.effect.source.concrete.LeaderSource;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
@@ -46,7 +46,7 @@ public class LeaderModel implements Damageable {
         return ownership;
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         arr.addAll(auraSet.getAuras());
     }
 

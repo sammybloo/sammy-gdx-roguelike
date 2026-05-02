@@ -10,13 +10,13 @@ import io.bloogames.deckbuilder.effect.step.concrete.AddBattlerFromSourceCardSte
 import io.bloogames.deckbuilder.effect.target.TargetOwnerType;
 import io.bloogames.deckbuilder.effect.target.TargetSpec;
 import io.bloogames.deckbuilder.effect.target.TargetType;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 public class BaseBattlerCard extends BaseCard {
     private final BaseStats baseStats;
     private final AuraSupplier auraSupplier;
 
-    public BaseBattlerCard(String cardId, String cardName, int cost, BaseStats baseStats, Array<Aura> auras) {
+    public BaseBattlerCard(String cardId, String cardName, int cost, BaseStats baseStats, Array<AuraModel> auras) {
         super(cardId, cardName, cost,
             new TargetedEffect(new TargetSpec(TargetOwnerType.OWN,
                 TargetConditionList.builder().add(TargetType.SLOT, new SlotIsEmpty()).build(), TargetType.SLOT),
@@ -30,7 +30,7 @@ public class BaseBattlerCard extends BaseCard {
         return baseStats;
     }
 
-    public Array<Aura> getAuras() {
+    public Array<AuraModel> getAuras() {
         return auraSupplier.get();
     }
 }

@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.model;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseTrinket;
 import io.bloogames.deckbuilder.effect.source.concrete.TrinketSource;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
@@ -18,7 +18,7 @@ public class TrinketModel {
         this.ownership = new Ownership(owner);
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         arr.addAll(auraSet.getAuras());
     }
 

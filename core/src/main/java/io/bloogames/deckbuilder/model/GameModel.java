@@ -5,7 +5,7 @@ import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.event.GameEventPublisher;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.coordinator.DamageCoordinator;
 
 public class GameModel implements GameEventPublisher {
@@ -13,7 +13,7 @@ public class GameModel implements GameEventPublisher {
     private final EffectExecutor executor;
     private BattleModel battle;
     private DamageCoordinator damageCoordinator;
-    private Array<Aura> currentAuras = new Array<>();
+    private Array<AuraModel> currentAuras = new Array<>();
 
     public GameModel() {
         this.eventDispatcher = new GameEventDispatcher();
@@ -58,7 +58,7 @@ public class GameModel implements GameEventPublisher {
         }
     }
 
-    public Array<Aura> getAllAuras() {
+    public Array<AuraModel> getAllAuras() {
         return currentAuras;
     }
 

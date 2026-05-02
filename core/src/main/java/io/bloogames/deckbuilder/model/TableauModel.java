@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class TableauModel {
@@ -47,12 +47,9 @@ public class TableauModel {
         battle.dispatch(new GameEvent.BattlersSwappedEvent(this, slot1, slot2));
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         for (SlotModel slot : slots) {
             slot.addAllAuras(arr);
-            if (slot.hasBattler()) {
-                slot.getBattler().addAllAuras(arr);
-            }
         }
     }
 }

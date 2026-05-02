@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.model;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
 public class PartyModel {
@@ -27,7 +27,7 @@ public class PartyModel {
         return leader.getOwnership();
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         getLeader().addAllAuras(arr);
         for (TrinketModel trinket : trinkets) {
             trinket.addAllAuras(arr);

@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.model;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 
@@ -29,11 +29,11 @@ public class BattlerCardModel extends CardModel {
         return baseBattlerCard;
     }
 
-    public Array<Aura> getAuras() {
+    public Array<AuraModel> getAuras() {
         return auraSet.getAuras();
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         arr.addAll(auraSet.getAuras());
     }
 }

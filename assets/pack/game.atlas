@@ -105,7 +105,7 @@ size: 2048, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-animations/fireball
+animation/fireball
   rotate: false
   xy: 2, 2
   size: 1152, 96
@@ -114,6 +114,19 @@ animations/fireball
   index: -1
 
 game3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+aura/stat_change_for_allies_aura
+  rotate: false
+  xy: 2, 2
+  size: 511, 511
+  orig: 511, 511
+  offset: 0, 0
+  index: -1
+
+game4.png
 size: 2048, 2048
 format: RGBA8888
 filter: Linear, Linear
@@ -196,7 +209,7 @@ card/wrio
   offset: 0, 0
   index: -1
 
-game4.png
+game5.png
 size: 1024, 1024
 format: RGBA8888
 filter: Linear, Linear
@@ -209,7 +222,7 @@ card/worms
   offset: 0, 0
   index: -1
 
-game5.png
+game6.png
 size: 2048, 1024
 format: RGBA8888
 filter: Linear, Linear

@@ -4,6 +4,6 @@ import io.bloogames.deckbuilder.effect.source.Source;
 
 public interface AuraOwner {
     Source source();
-    void addAura(Aura aura);
-    void removeAura(Aura aura);
+    void addAura(AuraModel aura);
+    void removeAura(AuraModel aura);
 }

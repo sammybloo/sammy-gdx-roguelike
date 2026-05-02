@@ -15,6 +15,7 @@ public enum SeedManager {
         this.seed = seed;
         worldRandom = new Random(seed.hashCode());
         battleRandom = new Random(seed.hashCode());
+
     }
 
     public void shuffle(Array<?> array) {

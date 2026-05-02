@@ -7,7 +7,7 @@ import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.model.death.DeathPreventer;
 
@@ -47,13 +47,13 @@ public class BattleCleanupCoordinator {
     }
 
     private void updateStatsForTableau(TableauModel tableau) {
-        Array<Aura> auras = game.getAllAuras();
+        Array<AuraModel> auras = game.getAllAuras();
 
         for (SlotModel slot : tableau.getSlots()) {
             if (slot.hasBattler()) {
                 BattlerTarget battlerTarget = new BattlerTarget(slot.getBattler());
                 slot.getBattler().getStats().clearModifiers();
-                for (Aura aura : auras) {
+                for (AuraModel aura : auras) {
                     aura.onCalculateStats(game, battlerTarget);
                 }
             }
@@ -75,7 +75,7 @@ public class BattleCleanupCoordinator {
     }
 
     private boolean checkDeathsForTableau(TableauModel tableau) {
-        Array<Aura> auras = game.getAllAuras();
+        Array<AuraModel> auras = game.getAllAuras();
         boolean deathOccurred = false;
 
         for (SlotModel slot : tableau.getSlots()) {
@@ -92,7 +92,7 @@ public class BattleCleanupCoordinator {
                     Death death = battler.popDeath();
                     BattlerTarget battlerTarget = new BattlerTarget(battler);
 
-                    for (Aura aura : auras) {
+                    for (AuraModel aura : auras) {
                         aura.beforeDeath(game, battlerTarget, death);
                     }
 
@@ -116,7 +116,7 @@ public class BattleCleanupCoordinator {
 
                     game.dispatch(new GameEvent.BattlerDiedEvent(slot, battler, death));
 
-                    for (Aura aura : auras) {
+                    for (AuraModel aura : auras) {
                         aura.afterDeath(game, battlerTarget, death);
                     }
 

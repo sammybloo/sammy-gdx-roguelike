@@ -4,9 +4,13 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
+import io.bloogames.deckbuilder.scene2d.IconGrid;
 import io.bloogames.deckbuilder.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
@@ -19,6 +23,7 @@ public class SlotView extends ResizableGroup implements View, Targetable {
     private final TargetingVisualState targetingVisualState = new TargetingVisualState();
     private final Image image;
     private final SlotModel model;
+    private final AuraSetView aurasView;
     private BattlerView battler;
 
     public SlotView(SlotModel model) {
@@ -30,6 +35,18 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         setBattler(model.getBattler());
 
         addTint(targetingVisualState().getTint());
+
+        ResizableSettings aurasViewSettings = new ResizableSettings(WIDTH, HEIGHT / 3);
+
+        if (model.getOwnership().getCurrentOwner() == Ownership.Type.PLAYER) {
+            aurasView = new AuraSetView(IconGrid.VerticalAlign.TOP_TO_BOTTOM);
+            aurasViewSettings.alignment(Align.bottom).yOffset(-HEIGHT / 3).paddingY(-1f);
+        }
+        else {
+            aurasView = new AuraSetView(IconGrid.VerticalAlign.BOTTOM_TO_TOP);
+            aurasViewSettings.alignment(Align.top).yOffset(-HEIGHT / 3).paddingY(-1f);
+        }
+        this.register(aurasView, aurasViewSettings);
     }
 
     public SlotModel getModel() {
@@ -100,6 +117,9 @@ public class SlotView extends ResizableGroup implements View, Targetable {
         if (hasBattler()) {
             battler.sync();
         }
+        Array<AuraModel> auras = new Array<>();
+        model.addAllAuras(auras);
+        aurasView.addAuras(auras);
     }
 
     @Override

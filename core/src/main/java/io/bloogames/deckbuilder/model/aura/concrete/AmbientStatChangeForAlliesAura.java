@@ -2,16 +2,15 @@ package io.bloogames.deckbuilder.model.aura.concrete;
 
 import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.model.GameModel;
-import io.bloogames.deckbuilder.model.aura.Aura;
-import io.bloogames.deckbuilder.model.stats.StatChanges;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.stats.StatsModifier;
 
-public class AmbientStatChangeForAlliesAura extends Aura {
+public class AmbientStatChangeForAlliesAura extends AuraModel {
 
     StatsModifier statsModifier;
 
-    public AmbientStatChangeForAlliesAura(String id, StatsModifier statsModifier) {
-        super(id);
+    public AmbientStatChangeForAlliesAura(StatsModifier statsModifier) {
+        super("stat_change_for_allies_aura");
         this.statsModifier = statsModifier;
     }
 
@@ -23,7 +22,7 @@ public class AmbientStatChangeForAlliesAura extends Aura {
     }
 
     @Override
-    public Aura copy() {
-        return new AmbientStatChangeForAlliesAura(getId(), statsModifier);
+    public AuraModel copy() {
+        return new AmbientStatChangeForAlliesAura(statsModifier);
     }
 }

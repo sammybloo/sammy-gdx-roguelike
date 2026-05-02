@@ -1,7 +1,7 @@
 package io.bloogames.deckbuilder.data;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 public class BaseLeader {
     private final String id;
@@ -9,7 +9,7 @@ public class BaseLeader {
     private final int maxMana;
     private final AuraSupplier auraSupplier;
 
-    public BaseLeader(String id, int maxHealth, int maxMana, Array<Aura> auras) {
+    public BaseLeader(String id, int maxHealth, int maxMana, Array<AuraModel> auras) {
         this.id = id;
         this.maxHealth = maxHealth;
         this.maxMana = maxMana;
@@ -28,7 +28,7 @@ public class BaseLeader {
         return maxMana;
     }
 
-    public Array<Aura> getAuras() {
+    public Array<AuraModel> getAuras() {
         return auraSupplier.get();
     }
 }

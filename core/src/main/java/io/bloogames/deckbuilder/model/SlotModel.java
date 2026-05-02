@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseStats;
 import io.bloogames.deckbuilder.effect.source.concrete.SlotSource;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
 import io.bloogames.deckbuilder.model.stats.Stats;
@@ -38,7 +38,10 @@ public class SlotModel {
         return battler != null;
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         arr.addAll(auraSet.getAuras());
+        if (hasBattler()) {
+            battler.addAllAuras(arr);
+        }
     }
 }

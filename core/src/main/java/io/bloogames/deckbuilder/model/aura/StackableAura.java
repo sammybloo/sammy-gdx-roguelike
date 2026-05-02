@@ -1,6 +1,6 @@
 package io.bloogames.deckbuilder.model.aura;
 
-public abstract class StackableAura extends Aura {
+public abstract class StackableAura extends AuraModel {
     private int stacks;
 
     public StackableAura(String id, int stacks) {

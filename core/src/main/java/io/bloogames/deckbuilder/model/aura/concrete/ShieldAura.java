@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.model.damage.DamageModifier;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.StackableAura;
 
 public class ShieldAura extends StackableAura {
@@ -41,7 +41,7 @@ public class ShieldAura extends StackableAura {
     }
 
     @Override
-    public Aura copy() {
+    public AuraModel copy() {
         return new ShieldAura(getStacks());
     }
 }

@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseBattlerCard;
 import io.bloogames.deckbuilder.effect.source.concrete.BattlerSource;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
@@ -81,7 +81,7 @@ public class BattlerModel implements Damageable {
         return damage -= amount;
     }
 
-    public void addAllAuras(Array<Aura> arr) {
+    public void addAllAuras(Array<AuraModel> arr) {
         arr.addAll(auraSet.getAuras());
         // cardModel.addAllAuras(arr);
     }

@@ -4,10 +4,10 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.source.Source;
 
 public class AuraSet implements AuraOwner {
-    private final Array<Aura> auras = new Array<>();
+    private final Array<AuraModel> auras = new Array<>();
     private final Source source;
 
-    public AuraSet(Source source, Array<Aura> auras) {
+    public AuraSet(Source source, Array<AuraModel> auras) {
         this.source = source;
         addAllAuras(auras);
     }
@@ -17,19 +17,19 @@ public class AuraSet implements AuraOwner {
         return source;
     }
 
-    public Array<Aura> getAuras() {
+    public Array<AuraModel> getAuras() {
         return auras;
     }
 
-    public void addAllAuras(Array<Aura> auras) {
-        for (Aura aura : auras) {
+    public void addAllAuras(Array<AuraModel> auras) {
+        for (AuraModel aura : auras) {
             addAura(aura);
         }
     }
 
     @Override
-    public void addAura(Aura newAura) {
-        for (Aura existingAura : auras) {
+    public void addAura(AuraModel newAura) {
+        for (AuraModel existingAura : auras) {
             if (existingAura.getId().equals(newAura.getId())) {
                 if (newAura instanceof StackableAura newStackableAura
                     && existingAura instanceof StackableAura existingStackableAura) {
@@ -43,7 +43,7 @@ public class AuraSet implements AuraOwner {
     }
 
     @Override
-    public void removeAura(Aura removedAura) {
+    public void removeAura(AuraModel removedAura) {
         auras.removeValue(removedAura, true);
     }
 }

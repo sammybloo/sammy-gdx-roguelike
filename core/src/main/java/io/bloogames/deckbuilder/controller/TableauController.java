@@ -1,6 +1,5 @@
 package io.bloogames.deckbuilder.controller;
 
-import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.handler.TableauSwapHandler;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.PartyModel;
@@ -8,7 +7,6 @@ import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.concrete.BattlerEntryEffect;
 import io.bloogames.deckbuilder.vfx.concrete.DamageVisualEffect;
 import io.bloogames.deckbuilder.vfx.concrete.DieEffect;
-import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
@@ -17,7 +15,6 @@ import io.bloogames.deckbuilder.view.event.ViewEvent;
 public class TableauController {
     private final TableauView tableau;
     private final BattleController battleController;
-    @Null
     private TableauSwapHandler tableauSwapHandler;
 
     public TableauController(TableauView tableau, BattleController battleController, PartyModel owner) {
@@ -35,6 +32,7 @@ public class TableauController {
         battleController.getEventBus().register(ViewEvent.BattlerDiedEvent.class, e -> {
             for (SlotView slot : tableau.getSlots()) {
                 if (slot.hasBattler(e.battler())) {
+                    slot.getBattler().sync();
                     VFXManager.INSTANCE.addEffect(new DieEffect(slot.getBattler()));
                     slot.removeBattler();
                 }

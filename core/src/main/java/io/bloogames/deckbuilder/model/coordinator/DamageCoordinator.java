@@ -8,7 +8,7 @@ import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.model.GameModel;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 import java.util.Optional;
 
@@ -22,10 +22,10 @@ public class DamageCoordinator {
     public void damage(Source source, DamageableTarget target, Damage damage) {
         damage.clear();
 
-        Array<Aura> auras = game.getAllAuras();
+        Array<AuraModel> auras = game.getAllAuras();
 
         TargetContext<DamageableTarget> context = new TargetContext<DamageableTarget>(game, source, target);
-        for (Aura aura : auras) {
+        for (AuraModel aura : auras) {
             aura.beforeDamage(context, damage);
         }
 

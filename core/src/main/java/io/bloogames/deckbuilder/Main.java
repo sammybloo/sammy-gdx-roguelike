@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.bloogames.deckbuilder.manager.AssetManager;
@@ -23,7 +24,7 @@ public class Main extends Game {
 
     @Override
     public void create() {
-        this.viewport = new StretchViewport(1920, 1080);
+        this.viewport = new ExtendViewport(1920, 1080);
 
         this.setScreen(new BattleScreen(this));
     }

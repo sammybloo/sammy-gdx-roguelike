@@ -6,13 +6,12 @@ import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.model.death.Death;
-import io.bloogames.deckbuilder.model.stats.Stats;
 
-public abstract class Aura {
+public abstract class AuraModel {
     private final String id;
     AuraOwner owner;
 
-    public Aura(String id) {
+    public AuraModel(String id) {
         this.id = id;
     }
 
@@ -35,5 +34,5 @@ public abstract class Aura {
     public void afterDeath(GameModel game, DamageableTarget damageableTarget, Death death) {}
     public void onCalculateStats(GameModel game, BattlerTarget battler) {}
 
-    public abstract Aura copy();
+    public abstract AuraModel copy();
 }

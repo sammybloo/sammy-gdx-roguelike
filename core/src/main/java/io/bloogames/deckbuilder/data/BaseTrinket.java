@@ -1,16 +1,16 @@
 package io.bloogames.deckbuilder.data;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 public class BaseTrinket {
     AuraSupplier auraSupplier;
 
-    public BaseTrinket(Array<Aura> auras) {
+    public BaseTrinket(Array<AuraModel> auras) {
         auraSupplier = new AuraSupplier(auras);
     }
 
-    public Array<Aura> getAuras() {
+    public Array<AuraModel> getAuras() {
         return auraSupplier.get();
     }
 }

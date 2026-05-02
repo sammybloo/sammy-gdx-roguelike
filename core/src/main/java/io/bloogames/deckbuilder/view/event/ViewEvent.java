@@ -4,9 +4,8 @@ import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
-import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.model.*;
-import io.bloogames.deckbuilder.model.aura.Aura;
+import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
@@ -58,7 +57,7 @@ public sealed interface ViewEvent {
         implements ViewEvent {
     }
 
-    record AuraModifiedEvent(Aura aura)
+    record AuraModifiedEvent(AuraModel aura)
         implements ViewEvent {
     }
 
