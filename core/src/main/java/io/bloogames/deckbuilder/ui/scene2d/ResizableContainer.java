@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.scene2d;
+package io.bloogames.deckbuilder.ui.scene2d;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;

@@ -1,0 +1,12 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "type": "multitext",
+    "cost": "number",
+    "rarity": "multitext",
+    "power": "number",
+    "health": "number"
+  }
+}

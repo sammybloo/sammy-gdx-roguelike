@@ -5,170 +5,130 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.utils.ObjectMap;
 
 public enum FontManager {
     INSTANCE;
 
-    BitmapFont cardNameFont;
-    BitmapFont battlerStatFont;
-    BitmapFont battlerCardStatFont;
-    BitmapFont leaderHealthFont;
-    BitmapFont leaderMessageFont;
-    BitmapFont cardManaCostFont;
-    BitmapFont damagePopupFont;
-    BitmapFont deckCardsLeftFont;
-    BitmapFont discardPileSizeFont;
+    private final ObjectMap<Integer, BitmapFont> fonts;
+    private final FreeTypeFontGenerator arialGenerator;
 
+    FontManager() {
+        fonts = new ObjectMap<>();
+        arialGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+    }
+
+    private FreeTypeFontGenerator.FreeTypeFontParameter getBaseParameters(int size, Color color) {
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.color = color;
+        parameter.size = size;
+        parameter.minFilter = Texture.TextureFilter.Linear;
+        parameter.magFilter = Texture.TextureFilter.Linear;
+        return parameter;
+    }
+
+    private static final int BATTLER_STAT_CODE = "BATTLER_STAT_CODE".hashCode();
     public BitmapFont getBattlerStatFont() {
-        if (battlerStatFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.GRAY;
-            parameter.size = 42;
+        if (!fonts.containsKey(BATTLER_STAT_CODE)) {
+            var parameter = getBaseParameters(42, Color.GRAY);
             parameter.spaceX = -2;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            battlerStatFont = generator.generateFont(parameter);
-            generator.dispose();
+            fonts.put(BATTLER_STAT_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return battlerStatFont;
+        return fonts.get(BATTLER_STAT_CODE);
     }
 
+    private static final int CARD_NAME_CODE = "CARD_NAME_CODE".hashCode();
     public BitmapFont getCardNameFont() {
-        if (cardNameFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
-            parameter.size = 32;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            cardNameFont = generator.generateFont(parameter);
-            generator.dispose();
+        if (!fonts.containsKey(CARD_NAME_CODE)) {
+            var parameter = getBaseParameters(32, Color.BLACK);
+            fonts.put(CARD_NAME_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return cardNameFont;
+        return fonts.get(CARD_NAME_CODE);
     }
 
+    private static final int BATTLER_CARD_STAT_CODE = "BATTLER_CARD_STAT_CODE".hashCode();
     public BitmapFont getBattlerCardStatFont() {
-        if (battlerCardStatFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
-            parameter.size = 64;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            battlerCardStatFont = generator.generateFont(parameter);
-            generator.dispose();
+        if (!fonts.containsKey(BATTLER_CARD_STAT_CODE)) {
+            var parameter = getBaseParameters(64, Color.BLACK);
+            fonts.put(BATTLER_CARD_STAT_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return battlerCardStatFont;
+        return fonts.get(BATTLER_CARD_STAT_CODE);
     }
 
+    private static final int CARD_MANA_COST_CODE = "CARD_MANA_COST_CODE".hashCode();
     public BitmapFont getCardManaCostFont() {
-        if (cardManaCostFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
-            parameter.size = 64;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            cardManaCostFont = generator.generateFont(parameter);
-            generator.dispose();
+        if (!fonts.containsKey(CARD_MANA_COST_CODE)) {
+            var parameter = getBaseParameters(64, Color.BLACK);
+            fonts.put(CARD_MANA_COST_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return cardManaCostFont;
+        return fonts.get(CARD_MANA_COST_CODE);
     }
 
+    private static final int LEADER_HEALTH_CODE = "LEADER_HEALTH_CODE".hashCode();
     public BitmapFont getLeaderHealthFont() {
-        if (leaderHealthFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.GRAY;
-            parameter.size = 48;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            leaderHealthFont = generator.generateFont(parameter);
-            generator.dispose();
+        if (!fonts.containsKey(LEADER_HEALTH_CODE)) {
+            var parameter = getBaseParameters(48, Color.GRAY);
+            fonts.put(LEADER_HEALTH_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return leaderHealthFont;
+        return fonts.get(LEADER_HEALTH_CODE);
     }
 
+    private static final int LEADER_MESSAGE_CODE = "LEADER_MESSAGE_CODE".hashCode();
     public BitmapFont getLeaderMessageFont() {
-        if (leaderMessageFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.BLACK;
-            parameter.size = 36;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
-            leaderMessageFont = generator.generateFont(parameter);
-            generator.dispose();
+        if (!fonts.containsKey(LEADER_MESSAGE_CODE)) {
+            var parameter = getBaseParameters(36, Color.BLACK);
+            fonts.put(LEADER_MESSAGE_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return leaderMessageFont;
+        return fonts.get(LEADER_MESSAGE_CODE);
     }
 
+    private static final int BUTTON_CODE = "BUTTON_CODE".hashCode();
+    public BitmapFont getButtonFont() {
+        if (!fonts.containsKey(BUTTON_CODE)) {
+            var parameter = getBaseParameters(36, Color.BLACK);
+            fonts.put(BUTTON_CODE, arialGenerator.generateFont(parameter));
+        }
+        return fonts.get(BUTTON_CODE);
+    }
+
+    private static final int DAMAGE_POPUP_CODE = "DAMAGE_POPUP_CODE".hashCode();
     public BitmapFont getDamagePopupFont() {
-        if (damagePopupFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.WHITE;
-            parameter.size = 64;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
+        if (!fonts.containsKey(DAMAGE_POPUP_CODE)) {
+            var parameter = getBaseParameters(64, Color.WHITE);
             parameter.borderColor = Color.BLACK;
             parameter.borderWidth = 3;
-            damagePopupFont = generator.generateFont(parameter);
-            generator.dispose();
+            fonts.put(DAMAGE_POPUP_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return damagePopupFont;
+        return fonts.get(DAMAGE_POPUP_CODE);
     }
 
+    private static final int DECK_CARDS_LEFT_CODE = "DECK_CARDS_LEFT_CODE".hashCode();
     public BitmapFont getDeckCardsLeftFont() {
-        if (deckCardsLeftFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.WHITE;
-            parameter.size = 76;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
+        if (!fonts.containsKey(DECK_CARDS_LEFT_CODE)) {
+            var parameter = getBaseParameters(76, Color.WHITE);
             parameter.borderColor = Color.BLACK;
             parameter.borderWidth = 3;
-            deckCardsLeftFont = generator.generateFont(parameter);
-            generator.dispose();
+            fonts.put(DECK_CARDS_LEFT_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return deckCardsLeftFont;
+        return fonts.get(DECK_CARDS_LEFT_CODE);
     }
 
+    private static final int DISCARD_PILE_SIZE_CODE = "DISCARD_PILE_SIZE_CODE".hashCode();
     public BitmapFont getDiscardPileSizeFont() {
-        if (discardPileSizeFont == null) {
-            var generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
-            var parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            parameter.color = Color.WHITE;
-            parameter.size = 76;
-            parameter.minFilter = Texture.TextureFilter.Linear;
-            parameter.magFilter = Texture.TextureFilter.Linear;
+        if (!fonts.containsKey(DISCARD_PILE_SIZE_CODE)) {
+            var parameter = getBaseParameters(76, Color.WHITE);
             parameter.borderColor = Color.BLACK;
             parameter.borderWidth = 3;
-            discardPileSizeFont = generator.generateFont(parameter);
-            generator.dispose();
+            fonts.put(DISCARD_PILE_SIZE_CODE, arialGenerator.generateFont(parameter));
         }
-
-        return discardPileSizeFont;
+        return fonts.get(DISCARD_PILE_SIZE_CODE);
     }
 
     public void dispose() {
-        if (cardNameFont != null) cardNameFont.dispose();
-        if (battlerStatFont != null) battlerStatFont.dispose();
-        if (battlerCardStatFont != null) battlerCardStatFont.dispose();
-        if (leaderHealthFont != null) leaderHealthFont.dispose();
-        if (leaderMessageFont != null) leaderMessageFont.dispose();
-        if (damagePopupFont != null) damagePopupFont.dispose();
-        if (deckCardsLeftFont != null) deckCardsLeftFont.dispose();
-        if (discardPileSizeFont != null) discardPileSizeFont.dispose();
+        for (BitmapFont font : fonts.values()) {
+            font.dispose();
+        }
+        arialGenerator.dispose();
+
     }
 }

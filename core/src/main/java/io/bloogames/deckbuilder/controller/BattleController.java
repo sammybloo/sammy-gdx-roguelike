@@ -5,7 +5,7 @@ import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.error.ValidationError;
 import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 import java.util.Optional;
 

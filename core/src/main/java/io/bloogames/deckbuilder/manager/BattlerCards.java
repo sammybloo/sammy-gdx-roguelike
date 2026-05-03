@@ -13,27 +13,27 @@ import io.bloogames.deckbuilder.model.stats.concrete.FlatStatsModifier;
 public class BattlerCards {
     public static void registerAll(ObjectMap<String, BaseBattlerCard> objectMap) {
         register(objectMap, new BaseBattlerCard("battler", "Mrs Battle", 1,
-            new BaseStats(5, 5), AuraSupplier.empty));
+            new BaseStats(5, 0), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("beetle", "Buggo", 2,
-            new BaseStats(7, 8), AuraSupplier.empty));
+            new BaseStats(8, 7), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("bird", "Da Bird", 3,
-            new BaseStats(6, 2), AuraSupplier.empty));
+            new BaseStats(2, 6), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("fallenstar", "Fallen Star", 3,
-            new BaseStats(99, 99), AuraSupplier.empty));
+            new BaseStats(20, 20), AuraSupplier.empty));
         Array<AuraModel> wrioAura = new Array<>();
         wrioAura.add(new AmbientStatChangeForAlliesAura(new FlatStatsModifier(new StatChanges(1, 1))));
         register(objectMap, new BaseBattlerCard("wrio", "Warm Wriothesley", 3,
-            new BaseStats(5, 0), wrioAura));
+            new BaseStats(0, 5), wrioAura));
         register(objectMap, new BaseBattlerCard("vanille", "Lesbean", 3,
-            new BaseStats(3, 10), AuraSupplier.empty));
+            new BaseStats(10, 3), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("columbo", "Columbno Glasses", 3,
             new BaseStats(5, 5), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("snail", "Snaul", 3,
-            new BaseStats(12, 1), AuraSupplier.empty));
+            new BaseStats(1, 12), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("paulallen", "Harvey Normal", 3,
             new BaseStats(2, 2), AuraSupplier.empty));
         register(objectMap, new BaseBattlerCard("worms", "Vent Worms", 3,
-            new BaseStats(4, 5), AuraSupplier.empty));
+            new BaseStats(5, 4), AuraSupplier.empty));
     }
 
     public static void register(ObjectMap<String, BaseBattlerCard> objectMap, BaseBattlerCard card) {

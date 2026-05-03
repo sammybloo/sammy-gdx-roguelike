@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.controller;
 
 import io.bloogames.deckbuilder.manager.TextManager;
 import io.bloogames.deckbuilder.view.LeaderMessageView;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class LeaderMessageController {
     public LeaderMessageController(LeaderMessageView leaderMessageView, BattleController battleController) {

@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.github.tommyettinger.colorful.rgb.ColorfulBatch;
 import io.bloogames.deckbuilder.Main;
-import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.controller.PartyController;
-import io.bloogames.deckbuilder.controller.PlayerPartyController;
-import io.bloogames.deckbuilder.controller.TargetingController;
+import io.bloogames.deckbuilder.controller.*;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
@@ -48,9 +45,9 @@ public class BattleScreen implements Screen {
 
         battleModel = new BattleModel(
             new BattlePartyModel(new PartyModel(new LeaderModel(
-                new BaseLeader("wizard", 20, 10, AuraSupplier.empty), Ownership.Type.PLAYER))),
+                new BaseLeader("wizard", 20, 7, AuraSupplier.empty), Ownership.Type.PLAYER))),
             new BattlePartyModel(new PartyModel(new LeaderModel(
-                new BaseLeader("villain", 20, 5, AuraSupplier.empty), Ownership.Type.ENEMY))),
+                new BaseLeader("villain", 20, 8, AuraSupplier.empty), Ownership.Type.ENEMY))),
             gameModel
         );
 
@@ -97,7 +94,7 @@ public class BattleScreen implements Screen {
         enemyParty = new EnemyPartyView(battleController, battleModel.getEnemyParty());
         enemyParty.setBounds(0, game.getViewport().getWorldHeight() * 0.5f, game.getViewport().getWorldWidth(), game.getViewport().getWorldHeight() * 0.5f);
 
-        new PartyController(enemyParty, battleController);
+        new EnemyPartyController(enemyParty, battleController);
 
         selectedCardView = new SelectedCardView();
         selectedCardView.setBounds(50, (game.getViewport().getWorldHeight() - 450) * 0.5f, 300, 450);

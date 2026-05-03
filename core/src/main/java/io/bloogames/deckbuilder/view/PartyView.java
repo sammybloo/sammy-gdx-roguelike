@@ -2,7 +2,7 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.View;
 
 public abstract class PartyView extends ResizableGroup implements View {

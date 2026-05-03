@@ -10,13 +10,13 @@ import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.CardTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.LeaderTarget;
 import io.bloogames.deckbuilder.effect.target.concrete.SlotTarget;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
+import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
 import io.bloogames.deckbuilder.ui.target.TargetState;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.*;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class TargetingController {
     private final ObjectMap<Targetable, InputListener> listenerMap = new ObjectMap<>();

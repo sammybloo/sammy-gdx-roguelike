@@ -3,7 +3,7 @@ package io.bloogames.deckbuilder.handler;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import io.bloogames.deckbuilder.controller.BattleStateController;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
+import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
 import io.bloogames.deckbuilder.view.CardView;
 import io.bloogames.deckbuilder.view.HandView;
 

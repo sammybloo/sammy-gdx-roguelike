@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.Null;
 import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
+import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
 import io.bloogames.deckbuilder.vfx.VFXUtils;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;

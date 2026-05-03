@@ -6,8 +6,9 @@ import io.bloogames.deckbuilder.effect.target.concrete.DamageableTarget;
 import io.bloogames.deckbuilder.model.GameModel;
 import io.bloogames.deckbuilder.model.damage.Damage;
 import io.bloogames.deckbuilder.model.death.Death;
+import io.bloogames.deckbuilder.text.Describable;
 
-public abstract class AuraModel {
+public abstract class AuraModel implements Describable {
     private final String id;
     AuraOwner owner;
 

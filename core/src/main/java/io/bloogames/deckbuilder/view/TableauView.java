@@ -6,8 +6,8 @@ import com.badlogic.gdx.utils.ObjectMap;
 import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.TableauModel;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 
 public class TableauView extends ResizableGroup implements View {

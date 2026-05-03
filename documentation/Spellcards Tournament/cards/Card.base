@@ -1,0 +1,33 @@
+views:
+  - type: table
+    name: Table
+    order:
+      - file.name
+      - cost
+      - type
+      - effect
+      - rarity
+      - power
+      - health
+    sort:
+      - property: cost
+        direction: ASC
+      - property: type
+        direction: ASC
+      - property: file.name
+        direction: DESC
+    columnSize:
+      file.name: 157
+      note.cost: 76
+      note.effect: 544
+  - type: cards
+    name: CardView
+    order:
+      - file.name
+      - cost
+      - effect
+      - health
+      - power
+      - rarity
+      - type
+    cardSize: 180

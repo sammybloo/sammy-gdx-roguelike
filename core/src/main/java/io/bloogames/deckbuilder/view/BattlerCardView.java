@@ -3,8 +3,8 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.BattlerCardModel;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.UpdatingLabel;
 
 public class BattlerCardView extends CardView {
     public static final float WIDTH = CardView.WIDTH;

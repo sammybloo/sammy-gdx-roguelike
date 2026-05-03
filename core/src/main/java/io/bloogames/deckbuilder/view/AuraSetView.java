@@ -2,9 +2,9 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
-import io.bloogames.deckbuilder.scene2d.IconGrid;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.IconGrid;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 
 public class AuraSetView extends ResizableGroup {
 

@@ -3,11 +3,14 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.LeaderModel;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.model.ownership.Ownership;
+import io.bloogames.deckbuilder.ui.scene2d.IconGrid;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
 
@@ -21,18 +24,20 @@ public class ManaView extends ResizableGroup implements View {
     private final static float FULL = new Color(0.3f, 0.3f, 1f, 0.8f).toFloatBits();
     private final static float EMPTY = new Color(0.3f, 0.3f, 0.3f, 0.3f).toFloatBits();
     private final Array<ManaSymbol> manaSymbols;
+    private final IconGrid iconGrid;
     private final LeaderModel leader;
 
     public ManaView(LeaderModel leader) {
         super(WIDTH, HEIGHT);
         this.leader = leader;
+        iconGrid = new IconGrid(IconGrid.PrimaryDirection.VERTICAL, IconGrid.HorizontalAlign.LEFT_TO_RIGHT,
+            leader.getOwnership().getCurrentOwner() == Ownership.Type.PLAYER ? IconGrid.VerticalAlign.BOTTOM_TO_TOP : IconGrid.VerticalAlign.TOP_TO_BOTTOM, 2, 0);
         manaSymbols = new Array<>(10);
         for (int i = 0; i < 10; i++) {
-            manaSymbols.add(new ManaSymbol());
-            register(manaSymbols.get(i), new ResizableSettings(WIDTH / 2f, HEIGHT / 5f)
-                .offset(i > 4 ? WIDTH / 2f : 0, HEIGHT / 5f * (i % 5)).keepAspect());
-            manaSymbols.get(i).setRotation(i * 45);
+            manaSymbols.add(new ManaSymbol(i));
+            iconGrid.addActor(manaSymbols.get(i));
         }
+        register(iconGrid, new ResizableSettings(WIDTH, HEIGHT));
         sync();
     }
 
@@ -53,18 +58,20 @@ public class ManaView extends ResizableGroup implements View {
         private final Image image;
         private ManaState state = ManaState.INVISIBLE;
 
-        public ManaSymbol() {
+        public ManaSymbol(int index) {
             super(50, 50);
             addTint(tint);
             image = new Image(AssetManager.INSTANCE.findRegion("mana"));
             register(image, new ResizableSettings(50, 50));
             setVisible(false);
+
+            image.setRotation(index * 45);
         }
 
         public void setFull() {
             if (state != ManaState.FULL) {
                 setVisible(true);
-                addAction(
+                image.addAction(
                     parallel(
                         fadeIn(0.2f),
                         tint(tint, FULL, 0.2f),
@@ -82,7 +89,7 @@ public class ManaView extends ResizableGroup implements View {
         public void setEmpty() {
             if (state != ManaState.EMPTY) {
                 setVisible(true);
-                addAction(
+                image.addAction(
                     parallel(
                         fadeIn(0.2f),
                         tint(tint, EMPTY, 0.2f),

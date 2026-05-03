@@ -12,8 +12,8 @@ public class GameModel implements GameEventPublisher {
     private final GameEventDispatcher eventDispatcher;
     private final EffectExecutor executor;
     private BattleModel battle;
-    private DamageCoordinator damageCoordinator;
-    private Array<AuraModel> currentAuras = new Array<>();
+    private final DamageCoordinator damageCoordinator;
+    private final Array<AuraModel> currentAuras = new Array<>();
 
     public GameModel() {
         this.eventDispatcher = new GameEventDispatcher();

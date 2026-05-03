@@ -2,11 +2,9 @@ package io.bloogames.deckbuilder.view;
 
 import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.controller.BattleController;
-import io.bloogames.deckbuilder.handler.CardSelectHandler;
-import io.bloogames.deckbuilder.handler.HandHoverHandler;
 import io.bloogames.deckbuilder.model.BattlePartyModel;
-import io.bloogames.deckbuilder.scene2d.FannedGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.FannedGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 
 public class PlayerPartyView extends PartyView {
 
@@ -18,9 +16,7 @@ public class PlayerPartyView extends PartyView {
 
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
-                0.8f, 0f, 0.15f),
-            new HandHoverHandler(battleController.getBattleState(), 0, 0.1f),
-            new CardSelectHandler(battleController)));
+                0.8f, 0f, 0.15f)));
 
         setTableau(new TableauView(model.getTableau()));
 

@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.view.event;
+package io.bloogames.deckbuilder.view;
 
 import io.bloogames.deckbuilder.effect.source.Source;
 import io.bloogames.deckbuilder.effect.source.concrete.CardSource;

@@ -8,19 +8,18 @@ import io.bloogames.deckbuilder.handler.HandHandler;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.HandModel;
-import io.bloogames.deckbuilder.scene2d.FannedGroup;
+import io.bloogames.deckbuilder.ui.scene2d.FannedGroup;
 import io.bloogames.deckbuilder.ui.View;
 
 public class HandView extends FannedGroup implements View {
 
     private final HandModel model;
     private final ObjectMap<CardModel, CardView> cardViews = new ObjectMap<>();
-    private final Array<HandHandler> interactionControllers;
+    private final Array<HandHandler> handlers = new Array<>();
 
-    public HandView(HandModel model, FannedGroup.FanSettings fanSettings, HandHandler... interactionControllers) {
+    public HandView(HandModel model, FannedGroup.FanSettings fanSettings) {
         super(fanSettings);
         this.model = model;
-        this.interactionControllers = new Array<>(interactionControllers);
         setTouchable(Touchable.childrenOnly);
         sync();
     }
@@ -33,7 +32,7 @@ public class HandView extends FannedGroup implements View {
         cardView.setSize(fannableWidth, fannableHeight);
         addActor(cardView);
         addFannable(cardView);
-        for (var controller : interactionControllers) {
+        for (var controller : handlers) {
             controller.attach(this, cardView);
         }
         fan();
@@ -46,7 +45,7 @@ public class HandView extends FannedGroup implements View {
         cardView.setSize(fannableWidth, fannableHeight);
         addActor(cardView);
         addFannable(cardView);
-        for (var controller : interactionControllers) {
+        for (var controller : handlers) {
             controller.attach(this, cardView);
         }
         fan();
@@ -82,6 +81,10 @@ public class HandView extends FannedGroup implements View {
     public void layout() {
         setFannableSize(getHeight() * 0.67f, getHeight());
         fan();
+    }
+
+    public void addHandler(HandHandler handler) {
+        handlers.add(handler);
     }
 
     @Override

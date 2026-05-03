@@ -1,4 +1,4 @@
-package io.bloogames.deckbuilder.scene2d;
+package io.bloogames.deckbuilder.ui.scene2d;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;

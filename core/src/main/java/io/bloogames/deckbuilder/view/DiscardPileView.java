@@ -8,9 +8,9 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.DiscardPileModel;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;

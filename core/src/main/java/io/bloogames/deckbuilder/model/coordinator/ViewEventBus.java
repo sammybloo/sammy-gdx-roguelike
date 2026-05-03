@@ -8,7 +8,7 @@ import io.bloogames.deckbuilder.effect.trigger.ViewEventListener;
 import io.bloogames.deckbuilder.event.GameEvent;
 import io.bloogames.deckbuilder.event.GameEventDispatcher;
 import io.bloogames.deckbuilder.model.GameModel;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class ViewEventBus implements GameEventListener<GameEvent> {
     private final ObjectMap<Class<? extends ViewEvent>, Array<ViewEventListener<?>>> eventListeners = new ObjectMap<>();

@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.coordinator.ViewEventBus;
 import io.bloogames.deckbuilder.ui.BattleState;
 import io.bloogames.deckbuilder.ui.BattleViewState;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class BattleStateController {
     private final ViewEventBus eventBus;

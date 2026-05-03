@@ -8,9 +8,9 @@ import com.badlogic.gdx.utils.Align;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.scene2d.UpdatingLabel;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.UpdatingLabel;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
@@ -44,8 +44,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
 
         this.manaSymbol = new Image(AssetManager.INSTANCE.findRegion("cardmana"));
 
-        nameLabel = new Label(cardModel.getCardName(),
-            new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
+        nameLabel = new Label(cardModel.getCardName(), new Label.LabelStyle(FontManager.INSTANCE.getCardNameFont(), null));
         nameLabel.setAlignment(Align.center, Align.left);
 
         manaLabel = new UpdatingLabel(60, 60, cardModel.getCurrentCost() + "",

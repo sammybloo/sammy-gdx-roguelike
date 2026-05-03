@@ -1,4 +1,4 @@
 package io.bloogames.deckbuilder.data;
 
-public record BaseStats(int health, int power) {
+public record BaseStats(int power, int health) {
 }

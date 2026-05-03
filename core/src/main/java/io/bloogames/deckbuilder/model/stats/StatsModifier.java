@@ -1,12 +1,14 @@
 package io.bloogames.deckbuilder.model.stats;
 
-public interface StatsModifier {
+import io.bloogames.deckbuilder.text.Describable;
 
-    void calculate(Stats stats, StatChanges currentChanges);
+public abstract class StatsModifier implements Describable {
 
-    Priority priority();
+    public abstract void calculate(Stats stats, StatChanges currentChanges);
 
-    enum Priority {
+    public abstract Priority priority();
+
+    public enum Priority {
         MULTIPLY(99),
         DIVIDE(100),
         ADD_AND_SUBTRACT(500);

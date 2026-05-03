@@ -1,15 +1,15 @@
-package io.bloogames.deckbuilder.scene2d;
+package io.bloogames.deckbuilder.ui.scene2d;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 public class IconGrid extends WidgetGroup {
-    private PrimaryDirection primary = PrimaryDirection.HORIZONTAL;
-    private HorizontalAlign hAlign = HorizontalAlign.LEFT_TO_RIGHT;
-    private VerticalAlign vAlign = VerticalAlign.TOP_TO_BOTTOM;
+    private final PrimaryDirection primary;
+    private final HorizontalAlign hAlign;
+    private final VerticalAlign vAlign;
 
-    private int fixedCount = 1; // rows if horizontal, cols if vertical
-    private float spacing = 5f;
+    private final int fixedCount; // rows if horizontal, cols if vertical
+    private final float spacing;
 
     public IconGrid(PrimaryDirection primary, HorizontalAlign hAlign, VerticalAlign vAlign, int fixedCount, float spacing) {
         this.primary = primary;

@@ -10,7 +10,7 @@ import io.bloogames.deckbuilder.vfx.concrete.DieEffect;
 import io.bloogames.deckbuilder.view.BattlerView;
 import io.bloogames.deckbuilder.view.SlotView;
 import io.bloogames.deckbuilder.view.TableauView;
-import io.bloogames.deckbuilder.view.event.ViewEvent;
+import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class TableauController {
     private final TableauView tableau;

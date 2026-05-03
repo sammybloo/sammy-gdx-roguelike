@@ -45,4 +45,9 @@ public class ShieldAura extends StackableAura {
     public AuraModel copy() {
         return new ShieldAura(getStacks());
     }
+
+    @Override
+    public String description() {
+        throw new UnsupportedOperationException("TODO implement Shield aura description");
+    }
 }

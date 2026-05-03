@@ -11,9 +11,9 @@ import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.DeckModel;
-import io.bloogames.deckbuilder.scene2d.HoverListener;
-import io.bloogames.deckbuilder.scene2d.ResizableGroup;
-import io.bloogames.deckbuilder.scene2d.ResizableSettings;
+import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
+import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
 import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.color.Tint;
 
