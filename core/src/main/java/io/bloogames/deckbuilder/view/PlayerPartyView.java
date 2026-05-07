@@ -16,7 +16,7 @@ public class PlayerPartyView extends PartyView {
 
         setHand(new HandView(model.getHand(),
             new FannedGroup.FanSettings(0.4f, 0.3f, 16f, 1.5f,
-                0.4f, 0f, 0.15f)));
+                0.5f, 0f, 0.15f)));
 
         setTableau(new TableauView(model.getTableau()));
 

@@ -67,6 +67,13 @@ public class Damage implements Describable {
 
     @Override
     public String description() {
-        return getAmount() + TextManager.INSTANCE.getCommonTextTemplate("damage");
+        String result = getAmount() + TextManager.INSTANCE.getCommonTextTemplate("damage");
+        if (getAmount() > getBaseAmount()) {
+            result = "[GOOD]" + result + "[]";
+        }
+        else if (getAmount() < getBaseAmount()) {
+            result = "[BAD]" + result + "[]";
+        }
+        return result;
     }
 }

@@ -2,6 +2,7 @@ package io.bloogames.deckbuilder.manager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -27,6 +28,8 @@ public enum FontManager {
     FontManager() {
         fonts = new ObjectMap<>();
         arialGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/arial.ttf"));
+        Colors.put("GOOD", new Color(0f, 0.8f, 0f, 1f));
+        Colors.put("BAD", new Color(0.8f, 0f, 0f, 1f));
     }
 
     private FreeTypeFontGenerator.FreeTypeFontParameter getBaseParameters(int size, Color color) {
@@ -57,8 +60,11 @@ public enum FontManager {
 
     public BitmapFont getCardTextFont() {
         if (!fonts.containsKey(CARD_TEXT_CODE)) {
-            var parameter = getBaseParameters(32, Color.BLACK);
-            fonts.put(CARD_TEXT_CODE, arialGenerator.generateFont(parameter));
+            var parameter = getBaseParameters(32, Color.GRAY);
+            BitmapFont font = arialGenerator.generateFont(parameter);
+            font.getData().markupEnabled = true;
+            fonts.put(CARD_TEXT_CODE, font);
+
         }
         return fonts.get(CARD_TEXT_CODE);
     }

@@ -1,5 +1,6 @@
 package io.bloogames.deckbuilder.view;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -52,7 +53,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
             FontManager.INSTANCE.getCardManaCostFont());
         manaLabel.getLabel().setAlignment(Align.center, Align.center);
 
-        textLabel = new Label(cardModel.description(), new Label.LabelStyle(FontManager.INSTANCE.getCardTextFont(), null));
+        textLabel = new Label("[BLACK]" + cardModel.description(), new Label.LabelStyle(FontManager.INSTANCE.getCardTextFont(), null));
         textLabel.setAlignment(Align.center, Align.center);
         textLabel.setWrap(true);
 
@@ -62,7 +63,7 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         frontFace.register(manaLabel, new ResizableSettings(manaLabel.getTargetWidth(), manaLabel.getTargetHeight(), Align.topLeft)
             .offset(-10f, -10f).keepColour());
         frontFace.register(nameLabel, new ResizableSettings(WIDTH - 60f, 30, Align.top).offset(30f, 9f));
-        frontFace.register(textLabel, new ResizableSettings(WIDTH - 4f, HEIGHT * 0.27f, Align.bottom).yOffset(2));
+        frontFace.register(textLabel, new ResizableSettings(WIDTH - 4f, HEIGHT * 0.27f, Align.bottom).yOffset(2).keepColour());
         cardBack = new Image(AssetManager.INSTANCE.findRegion("cardback"));
         register(frontFace, new ResizableSettings(WIDTH, HEIGHT, Align.center));
         register(cardBack, new ResizableSettings(WIDTH, HEIGHT, Align.center));
@@ -113,6 +114,6 @@ public abstract class CardView extends ResizableGroup implements View, Targetabl
         nameLabel.setText(cardModel.getCardName());
         manaLabel.setText(cardModel.getCurrentCost() + "");
         manaLabel.setColourByComparisonInverted(cardModel.getBaseCard().getCost(), cardModel.getCurrentCost());
-        textLabel.setText(cardModel.description());
+        textLabel.setText("[BLACK]" + cardModel.description());
     }
 }
