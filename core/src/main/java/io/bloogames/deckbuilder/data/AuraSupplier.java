@@ -1,11 +1,11 @@
 package io.bloogames.deckbuilder.data;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.libgdx.ImmutableArray;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 public class AuraSupplier {
-    // This isn't totally safe but. Y'know.
-    public static Array<AuraModel> empty = new Array<>();
+    public static Array<AuraModel> empty = new ImmutableArray<>();
 
     private Array<AuraModel> auras;
 

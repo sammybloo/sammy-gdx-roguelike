@@ -11,11 +11,11 @@ import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.manager.FontManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.DeckModel;
+import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.color.Tint;
 import io.bloogames.deckbuilder.ui.scene2d.HoverListener;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.ui.View;
-import io.bloogames.deckbuilder.ui.color.Tint;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
@@ -32,7 +32,7 @@ public class DeckView extends ResizableGroup implements View {
         super(WIDTH, HEIGHT);
         this.deckModel = deckModel;
         for (int i = 0; i < deckModel.getCards().size; i++) {
-            CardView card = CardManager.INSTANCE.getCard(deckModel.getCards().get(i));
+            CardView card = CardManager.INSTANCE.getCardView(deckModel.getCards().get(i));
             cardViews.add(card);
             if (rotateCards) {
                 card.setRotation(180f);

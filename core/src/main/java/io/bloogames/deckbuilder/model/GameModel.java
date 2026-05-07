@@ -11,9 +11,9 @@ import io.bloogames.deckbuilder.model.coordinator.DamageCoordinator;
 public class GameModel implements GameEventPublisher {
     private final GameEventDispatcher eventDispatcher;
     private final EffectExecutor executor;
-    private BattleModel battle;
     private final DamageCoordinator damageCoordinator;
     private final Array<AuraModel> currentAuras = new Array<>();
+    private BattleModel battle;
 
     public GameModel() {
         this.eventDispatcher = new GameEventDispatcher();

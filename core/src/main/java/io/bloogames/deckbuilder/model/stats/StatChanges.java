@@ -1,15 +1,24 @@
 package io.bloogames.deckbuilder.model.stats;
 
-public class StatChanges {
+import io.bloogames.deckbuilder.data.BaseStats;
+import io.bloogames.deckbuilder.manager.TextManager;
+import io.bloogames.deckbuilder.text.Describable;
+import io.bloogames.deckbuilder.text.DescriptionProperties;
+
+public class StatChanges implements Describable {
+    DescriptionProperties descriptionProperties = new DescriptionProperties();
     private int power = 0;
     private int health = 0;
 
     public StatChanges() {
     }
 
+    public StatChanges(BaseStats baseStats) {
+        this(baseStats.power(), baseStats.health());
+    }
+
     public StatChanges(StatChanges statChanges) {
-        health = statChanges.getHealth();
-        power = statChanges.getPower();
+        this(statChanges.getHealth(), statChanges.getPower());
     }
 
     public StatChanges(int power, int health) {
@@ -44,5 +53,17 @@ public class StatChanges {
     public void changeBy(StatChanges changes) {
         changePowerBy(changes.getPower());
         changeHealthBy(changes.getHealth());
+    }
+
+    @Override
+    public String description() {
+        descriptionProperties.registerSignedInt("power_mod", getPower());
+        descriptionProperties.registerSignedInt("health_mod", getHealth());
+        if (getPower() != 0 && getHealth() != 0) {
+            return TextManager.INSTANCE.getCommonText("stats_change_both", descriptionProperties);
+        } else if (getPower() != 0) {
+            return TextManager.INSTANCE.getCommonText("stats_change_power", descriptionProperties);
+        }
+        return TextManager.INSTANCE.getCommonText("stats_change_health", descriptionProperties);
     }
 }

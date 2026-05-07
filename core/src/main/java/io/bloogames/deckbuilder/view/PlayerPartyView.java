@@ -15,8 +15,8 @@ public class PlayerPartyView extends PartyView {
         setLeader(new LeaderView(model.getLeader()));
 
         setHand(new HandView(model.getHand(),
-            new FannedGroup.FanSettings(0.3f, 0.5f, 16f, 1.5f,
-                0.8f, 0f, 0.15f)));
+            new FannedGroup.FanSettings(0.4f, 0.3f, 16f, 1.5f,
+                0.4f, 0f, 0.15f)));
 
         setTableau(new TableauView(model.getTableau()));
 
@@ -34,7 +34,7 @@ public class PlayerPartyView extends PartyView {
         register(getDiscardPile(), new ResizableSettings(153.75f, 78.75f, Align.topRight).offset(30, 340).keepAspect());
         register(getDeck(), new ResizableSettings(200, 300, Align.topRight).offset(10, 10).keepAspect());
 
-        register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.3f));
+        register(getHand(), new ResizableSettings(WIDTH * 0.66f, HEIGHT * 0.5f, Align.bottom).yOffset(HEIGHT * -0.15f));
 
         register(getManaView(), new ResizableSettings(80, 200).xOffset(220f).paddingY(10).keepAspect());
 

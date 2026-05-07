@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.effect.EffectBuilder;
 import io.bloogames.deckbuilder.effect.context.TargetContext;
 import io.bloogames.deckbuilder.effect.execution.EffectExecutor;
+import io.bloogames.deckbuilder.effect.number.ExactAmount;
+import io.bloogames.deckbuilder.effect.source.concrete.GameRuleSource;
 import io.bloogames.deckbuilder.effect.step.concrete.DrawCardsStep;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlePartyTarget;
@@ -34,12 +36,12 @@ public class BattleModel implements GameEventPublisher {
         playerParty.getHand().setAddFaceUp(true);
 
         game.getExecutor().begin(
-            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, new DrawCardsStep(5)).build(),
-            new TargetContext<>(game, null, new BattlePartyTarget(enemyParty)));
+            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, (modelProperties -> new DrawCardsStep(new ExactAmount(5)))).build(),
+            new TargetContext<>(game, new GameRuleSource(game), new BattlePartyTarget(enemyParty)));
 
         game.getExecutor().begin(
-            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, new DrawCardsStep(5)).build(),
-            new TargetContext<>(game, null, new BattlePartyTarget(playerParty)));
+            new EffectBuilder().addTargetStep(TargetType.BATTLE_PARTY, modelProperties -> new DrawCardsStep(new ExactAmount(10))).build(),
+            new TargetContext<>(game, new GameRuleSource(game), new BattlePartyTarget(playerParty)));
     }
 
     public void doNext(EffectExecutor executor) {

@@ -1,18 +1,21 @@
 package io.bloogames.deckbuilder.model.damage;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.data.BaseDamage;
+import io.bloogames.deckbuilder.data.DamageType;
+import io.bloogames.deckbuilder.manager.TextManager;
+import io.bloogames.deckbuilder.text.Describable;
 
 import java.util.Comparator;
 import java.util.Optional;
 
-public class Damage {
-    private final int baseAmount;
+public class Damage implements Describable {
     private final Array<DamageModifier> modifiers = new Array<>();
     private final Array<DamagePreventer> preventers = new Array<>();
-    private DamageType damageType;
+    private BaseDamage baseDamage;
 
-    public Damage(DamageType type, int baseAmount) {
-        this.baseAmount = baseAmount;
+    public Damage(BaseDamage baseDamage) {
+        this.baseDamage = baseDamage;
     }
 
     public void addModifier(DamageModifier modifier) {
@@ -33,11 +36,11 @@ public class Damage {
     }
 
     public int getBaseAmount() {
-        return baseAmount;
+        return baseDamage.getAmount();
     }
 
     public int getAmount() {
-        float amount = baseAmount;
+        float amount = getBaseAmount();
 
         sortModifiers();
 
@@ -58,5 +61,12 @@ public class Damage {
         return Optional.of(preventers.get(0));
     }
 
-    public enum DamageType {ATTACK, SPELL, EFFECT}
+    public DamageType getDamageType() {
+        return baseDamage.getDamageType();
+    }
+
+    @Override
+    public String description() {
+        return getAmount() + TextManager.INSTANCE.getCommonTextTemplate("damage");
+    }
 }

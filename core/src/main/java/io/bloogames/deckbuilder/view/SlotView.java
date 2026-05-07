@@ -10,10 +10,10 @@ import io.bloogames.deckbuilder.model.BattlerModel;
 import io.bloogames.deckbuilder.model.SlotModel;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
+import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.scene2d.IconGrid;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.ui.View;
 import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.ui.target.TargetingVisualState;
 

@@ -1,12 +1,11 @@
 package io.bloogames.deckbuilder.model.coordinator;
 
 import com.badlogic.gdx.utils.Array;
+import io.bloogames.deckbuilder.effect.context.TargetContext;
+import io.bloogames.deckbuilder.effect.source.concrete.GameRuleSource;
 import io.bloogames.deckbuilder.effect.target.concrete.BattlerTarget;
 import io.bloogames.deckbuilder.event.GameEvent;
-import io.bloogames.deckbuilder.model.BattlerModel;
-import io.bloogames.deckbuilder.model.GameModel;
-import io.bloogames.deckbuilder.model.SlotModel;
-import io.bloogames.deckbuilder.model.TableauModel;
+import io.bloogames.deckbuilder.model.*;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.model.death.DeathPreventer;
@@ -42,8 +41,17 @@ public class BattleCleanupCoordinator {
     }
 
     public void updateStats() {
+        updateCardsForHand(game.getBattle().getPlayerParty().getHand());
+        updateCardsForHand(game.getBattle().getEnemyParty().getHand());
         updateStatsForTableau(game.getBattle().getPlayerParty().getTableau());
         updateStatsForTableau(game.getBattle().getEnemyParty().getTableau());
+    }
+
+    public void updateCardsForHand(HandModel hand) {
+        TargetContext<?> targetContext = new TargetContext<>(game, new GameRuleSource(game), null);
+        for (CardModel card : hand.getCards()) {
+            card.update(targetContext);
+        }
     }
 
     private void updateStatsForTableau(TableauModel tableau) {

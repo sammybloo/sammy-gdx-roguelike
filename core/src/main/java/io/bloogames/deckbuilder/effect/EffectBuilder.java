@@ -1,21 +1,20 @@
 package io.bloogames.deckbuilder.effect;
 
 import com.badlogic.gdx.utils.Array;
-import io.bloogames.deckbuilder.effect.step.GameStep;
-import io.bloogames.deckbuilder.effect.step.TargetStep;
+import io.bloogames.deckbuilder.effect.step.StepFactory;
 import io.bloogames.deckbuilder.effect.target.Target;
 import io.bloogames.deckbuilder.effect.target.TargetType;
 
 public final class EffectBuilder {
     private final Array<EffectStepEntry> entries = new Array<>();
 
-    public EffectBuilder addBattleStep(GameStep step) {
-        entries.add(new EffectStepEntry.Battle(step));
+    public EffectBuilder addBattleStep(StepFactory stepFactory) {
+        entries.add(new EffectStepEntry.Battle(stepFactory));
         return this;
     }
 
-    public <T extends Target> EffectBuilder addTargetStep(TargetType targetType, TargetStep<T> step) {
-        entries.add(new EffectStepEntry.Target(targetType, step));
+    public <T extends Target> EffectBuilder addTargetStep(TargetType targetType, StepFactory stepFactory) {
+        entries.add(new EffectStepEntry.Target(targetType, stepFactory));
         return this;
     }
 

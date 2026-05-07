@@ -8,6 +8,7 @@ import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.StackableAura;
 import io.bloogames.deckbuilder.model.damage.Damage;
 import io.bloogames.deckbuilder.model.damage.DamageModifier;
+import io.bloogames.deckbuilder.text.DescriptionProperties;
 
 public class ShieldAura extends StackableAura {
     private static final String ID = "shield";
@@ -44,6 +45,11 @@ public class ShieldAura extends StackableAura {
     @Override
     public AuraModel copy() {
         return new ShieldAura(getStacks());
+    }
+
+    @Override
+    protected void registerProperties(DescriptionProperties properties) {
+        throw new UnsupportedOperationException("TODO implement Shield aura description");
     }
 
     @Override

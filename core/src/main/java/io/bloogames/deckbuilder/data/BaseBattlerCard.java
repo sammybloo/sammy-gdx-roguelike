@@ -14,23 +14,18 @@ import io.bloogames.deckbuilder.model.aura.AuraModel;
 
 public class BaseBattlerCard extends BaseCard {
     private final BaseStats baseStats;
-    private final AuraSupplier auraSupplier;
 
-    public BaseBattlerCard(String cardId, String cardName, int cost, BaseStats baseStats, Array<AuraModel> auras) {
-        super(cardId, cardName, cost,
+    public BaseBattlerCard(String cardId, int cost, BaseStats baseStats, Array<AuraModel> auras, BaseProperties properties) {
+        super(cardId, cost,
             new TargetedEffect(new TargetSpec(TargetOwnerType.OWN,
                 TargetConditionList.builder().add(TargetType.SLOT, new SlotIsEmpty()).build(), TargetType.SLOT),
-                new EffectBuilder().addTargetStep(TargetType.SLOT, new AddBattlerFromSourceCardStep(cardId)).build()),
-            SourceConditionList.none());
+                new EffectBuilder().addTargetStep(TargetType.SLOT, (modelProperties) -> new AddBattlerFromSourceCardStep(cardId))
+                    .build()),
+            SourceConditionList.none(), auras, properties);
         this.baseStats = baseStats;
-        this.auraSupplier = new AuraSupplier(auras);
     }
 
     public BaseStats getBaseStats() {
         return baseStats;
-    }
-
-    public Array<AuraModel> getAuras() {
-        return auraSupplier.get();
     }
 }

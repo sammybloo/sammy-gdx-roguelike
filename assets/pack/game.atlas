@@ -114,13 +114,20 @@ animation/fireball
   index: -1
 
 game3.png
-size: 1024, 1024
+size: 2048, 1024
 format: RGBA8888
 filter: Linear, Linear
 repeat: none
-aura/stat_change_for_allies_aura
+aura/increase_spell_damage
   rotate: false
   xy: 2, 2
+  size: 511, 511
+  orig: 511, 511
+  offset: 0, 0
+  index: -1
+aura/stat_change_for_allies_aura
+  rotate: false
+  xy: 515, 2
   size: 511, 511
   orig: 511, 511
   offset: 0, 0

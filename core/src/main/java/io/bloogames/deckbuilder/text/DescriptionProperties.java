@@ -6,7 +6,7 @@ import io.bloogames.deckbuilder.manager.TextManager;
 import java.text.DecimalFormat;
 import java.util.function.Supplier;
 
-public class ModelProperties {
+public class DescriptionProperties {
     ObjectMap<String, Supplier<String>> propertyMap = new ObjectMap<>();
 
     public void registerString(String key, String value) {
@@ -19,8 +19,7 @@ public class ModelProperties {
             String sign;
             if (value >= 0) {
                 sign = TextManager.INSTANCE.getCommonTextTemplate("positive_symbol");
-            }
-            else {
+            } else {
                 sign = TextManager.INSTANCE.getCommonTextTemplate("negative_symbol");
             }
             return sign + Math.abs(value);
@@ -51,7 +50,7 @@ public class ModelProperties {
     public String parse(String original) {
         String result = original;
         for (ObjectMap.Entry<String, Supplier<String>> entry : propertyMap.entries()) {
-            result = result.replace(entry.key, entry.value.get());
+            result = result.replace("{" + entry.key + "}", entry.value.get());
         }
         return result;
     }

@@ -19,15 +19,32 @@ public class DamageCoordinator {
         this.game = game;
     }
 
-    public void damage(Source source, DamageableTarget target, Damage damage) {
+    private void buildDamage(TargetContext<DamageableTarget> context, Damage damage) {
         damage.clear();
 
         Array<AuraModel> auras = game.getAllAuras();
 
-        TargetContext<DamageableTarget> context = new TargetContext<DamageableTarget>(game, source, target);
         for (AuraModel aura : auras) {
             aura.beforeDamage(context, damage);
         }
+    }
+
+    public int calculateDamage(Source source, DamageableTarget target, Damage damage) {
+        TargetContext<DamageableTarget> context = new TargetContext<>(game, source, target);
+        buildDamage(context, damage);
+
+        Optional<DamagePreventer> preventer = damage.getPreventer();
+
+        if (preventer.isPresent()) {
+            return 0;
+        }
+
+        return damage.getAmount();
+    }
+
+    public void damage(Source source, DamageableTarget target, Damage damage) {
+        TargetContext<DamageableTarget> context = new TargetContext<>(game, source, target);
+        buildDamage(context, damage);
 
         Optional<DamagePreventer> preventer = damage.getPreventer();
 

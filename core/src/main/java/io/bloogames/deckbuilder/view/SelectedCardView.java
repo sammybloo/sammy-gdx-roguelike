@@ -19,7 +19,7 @@ public class SelectedCardView extends ResizableGroup {
     }
 
     public void setCard(CardSource cardSource) {
-        selectedCard = CardManager.INSTANCE.getCard(cardSource.model());
+        selectedCard = CardManager.INSTANCE.getCardView(cardSource.model());
         selectedCardSource = cardSource;
         register(selectedCard, new ResizableSettings(WIDTH, HEIGHT));
     }

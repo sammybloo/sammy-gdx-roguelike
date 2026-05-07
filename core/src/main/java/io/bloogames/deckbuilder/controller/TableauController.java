@@ -25,10 +25,6 @@ public class TableauController {
             sync();
         });
 
-        battleController.getEventBus().register(ViewEvent.BattleViewStateEvent.class, e -> {
-            sync();
-        });
-
         battleController.getEventBus().register(ViewEvent.BattlerDiedEvent.class, e -> {
             for (SlotView slot : tableau.getSlots()) {
                 if (slot.hasBattler(e.battler())) {

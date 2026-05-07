@@ -8,8 +8,8 @@ import io.bloogames.deckbuilder.handler.HandHandler;
 import io.bloogames.deckbuilder.manager.CardManager;
 import io.bloogames.deckbuilder.model.CardModel;
 import io.bloogames.deckbuilder.model.HandModel;
-import io.bloogames.deckbuilder.ui.scene2d.FannedGroup;
 import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.scene2d.FannedGroup;
 
 public class HandView extends FannedGroup implements View {
 
@@ -27,7 +27,7 @@ public class HandView extends FannedGroup implements View {
     public void addCard(CardModel cardModel) {
         if (cardViews.containsKey(cardModel)) return;
 
-        CardView cardView = CardManager.INSTANCE.getCard(cardModel);
+        CardView cardView = CardManager.INSTANCE.getCardView(cardModel);
         cardViews.put(cardModel, cardView);
         cardView.setSize(fannableWidth, fannableHeight);
         addActor(cardView);
@@ -108,6 +108,8 @@ public class HandView extends FannedGroup implements View {
         cardViews.forEach((entry) -> {
             if (!orderedCards.contains(entry.value, true)) {
                 removeCard(entry.key);
+            } else {
+                entry.value.sync();
             }
         });
 

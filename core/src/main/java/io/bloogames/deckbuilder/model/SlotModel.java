@@ -7,12 +7,12 @@ import io.bloogames.deckbuilder.effect.source.concrete.SlotSource;
 import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
-import io.bloogames.deckbuilder.model.stats.Stats;
+import io.bloogames.deckbuilder.model.stats.StatsModel;
 
 public class SlotModel {
     private static final BaseStats SLOT_BASE_STATS = new BaseStats(0, 0);
     private final AuraSet auraSet;
-    private final Stats stats = new Stats(SLOT_BASE_STATS);
+    private final StatsModel stats = new StatsModel(SLOT_BASE_STATS);
     private final Ownership ownership;
     private BattlerModel battler;
 

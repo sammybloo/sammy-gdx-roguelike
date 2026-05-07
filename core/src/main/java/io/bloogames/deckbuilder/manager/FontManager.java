@@ -10,6 +10,17 @@ import com.badlogic.gdx.utils.ObjectMap;
 public enum FontManager {
     INSTANCE;
 
+    private static final int BATTLER_STAT_CODE = "BATTLER_STAT_CODE".hashCode();
+    private static final int CARD_NAME_CODE = "CARD_NAME_CODE".hashCode();
+    private static final int CARD_TEXT_CODE = "CARD_TEXT_CODE".hashCode();
+    private static final int BATTLER_CARD_STAT_CODE = "BATTLER_CARD_STAT_CODE".hashCode();
+    private static final int CARD_MANA_COST_CODE = "CARD_MANA_COST_CODE".hashCode();
+    private static final int LEADER_HEALTH_CODE = "LEADER_HEALTH_CODE".hashCode();
+    private static final int LEADER_MESSAGE_CODE = "LEADER_MESSAGE_CODE".hashCode();
+    private static final int BUTTON_CODE = "BUTTON_CODE".hashCode();
+    private static final int DAMAGE_POPUP_CODE = "DAMAGE_POPUP_CODE".hashCode();
+    private static final int DECK_CARDS_LEFT_CODE = "DECK_CARDS_LEFT_CODE".hashCode();
+    private static final int DISCARD_PILE_SIZE_CODE = "DISCARD_PILE_SIZE_CODE".hashCode();
     private final ObjectMap<Integer, BitmapFont> fonts;
     private final FreeTypeFontGenerator arialGenerator;
 
@@ -27,7 +38,6 @@ public enum FontManager {
         return parameter;
     }
 
-    private static final int BATTLER_STAT_CODE = "BATTLER_STAT_CODE".hashCode();
     public BitmapFont getBattlerStatFont() {
         if (!fonts.containsKey(BATTLER_STAT_CODE)) {
             var parameter = getBaseParameters(42, Color.GRAY);
@@ -37,7 +47,6 @@ public enum FontManager {
         return fonts.get(BATTLER_STAT_CODE);
     }
 
-    private static final int CARD_NAME_CODE = "CARD_NAME_CODE".hashCode();
     public BitmapFont getCardNameFont() {
         if (!fonts.containsKey(CARD_NAME_CODE)) {
             var parameter = getBaseParameters(32, Color.BLACK);
@@ -46,7 +55,14 @@ public enum FontManager {
         return fonts.get(CARD_NAME_CODE);
     }
 
-    private static final int BATTLER_CARD_STAT_CODE = "BATTLER_CARD_STAT_CODE".hashCode();
+    public BitmapFont getCardTextFont() {
+        if (!fonts.containsKey(CARD_TEXT_CODE)) {
+            var parameter = getBaseParameters(32, Color.BLACK);
+            fonts.put(CARD_TEXT_CODE, arialGenerator.generateFont(parameter));
+        }
+        return fonts.get(CARD_TEXT_CODE);
+    }
+
     public BitmapFont getBattlerCardStatFont() {
         if (!fonts.containsKey(BATTLER_CARD_STAT_CODE)) {
             var parameter = getBaseParameters(64, Color.BLACK);
@@ -55,7 +71,6 @@ public enum FontManager {
         return fonts.get(BATTLER_CARD_STAT_CODE);
     }
 
-    private static final int CARD_MANA_COST_CODE = "CARD_MANA_COST_CODE".hashCode();
     public BitmapFont getCardManaCostFont() {
         if (!fonts.containsKey(CARD_MANA_COST_CODE)) {
             var parameter = getBaseParameters(64, Color.BLACK);
@@ -64,7 +79,6 @@ public enum FontManager {
         return fonts.get(CARD_MANA_COST_CODE);
     }
 
-    private static final int LEADER_HEALTH_CODE = "LEADER_HEALTH_CODE".hashCode();
     public BitmapFont getLeaderHealthFont() {
         if (!fonts.containsKey(LEADER_HEALTH_CODE)) {
             var parameter = getBaseParameters(48, Color.GRAY);
@@ -73,7 +87,6 @@ public enum FontManager {
         return fonts.get(LEADER_HEALTH_CODE);
     }
 
-    private static final int LEADER_MESSAGE_CODE = "LEADER_MESSAGE_CODE".hashCode();
     public BitmapFont getLeaderMessageFont() {
         if (!fonts.containsKey(LEADER_MESSAGE_CODE)) {
             var parameter = getBaseParameters(36, Color.BLACK);
@@ -82,7 +95,6 @@ public enum FontManager {
         return fonts.get(LEADER_MESSAGE_CODE);
     }
 
-    private static final int BUTTON_CODE = "BUTTON_CODE".hashCode();
     public BitmapFont getButtonFont() {
         if (!fonts.containsKey(BUTTON_CODE)) {
             var parameter = getBaseParameters(36, Color.BLACK);
@@ -91,7 +103,6 @@ public enum FontManager {
         return fonts.get(BUTTON_CODE);
     }
 
-    private static final int DAMAGE_POPUP_CODE = "DAMAGE_POPUP_CODE".hashCode();
     public BitmapFont getDamagePopupFont() {
         if (!fonts.containsKey(DAMAGE_POPUP_CODE)) {
             var parameter = getBaseParameters(64, Color.WHITE);
@@ -102,7 +113,6 @@ public enum FontManager {
         return fonts.get(DAMAGE_POPUP_CODE);
     }
 
-    private static final int DECK_CARDS_LEFT_CODE = "DECK_CARDS_LEFT_CODE".hashCode();
     public BitmapFont getDeckCardsLeftFont() {
         if (!fonts.containsKey(DECK_CARDS_LEFT_CODE)) {
             var parameter = getBaseParameters(76, Color.WHITE);
@@ -113,7 +123,6 @@ public enum FontManager {
         return fonts.get(DECK_CARDS_LEFT_CODE);
     }
 
-    private static final int DISCARD_PILE_SIZE_CODE = "DISCARD_PILE_SIZE_CODE".hashCode();
     public BitmapFont getDiscardPileSizeFont() {
         if (!fonts.containsKey(DISCARD_PILE_SIZE_CODE)) {
             var parameter = getBaseParameters(76, Color.WHITE);

@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.github.tommyettinger.colorful.rgb.ColorfulBatch;
 import io.bloogames.deckbuilder.Main;
-import io.bloogames.deckbuilder.controller.*;
+import io.bloogames.deckbuilder.controller.BattleController;
+import io.bloogames.deckbuilder.controller.EnemyPartyController;
+import io.bloogames.deckbuilder.controller.PlayerPartyController;
+import io.bloogames.deckbuilder.controller.TargetingController;
 import io.bloogames.deckbuilder.data.AuraSupplier;
 import io.bloogames.deckbuilder.data.BaseLeader;
 import io.bloogames.deckbuilder.manager.CardManager;
@@ -39,7 +42,7 @@ public class BattleScreen implements Screen {
     public void show() {
         stage = new Stage(game.getViewport(), new ColorfulBatch());
 
-        SeedManager.INSTANCE.setSeed("WUMBO");
+        SeedManager.INSTANCE.setSeed("COLUMBO");
 
         gameModel = new GameModel();
 
@@ -53,34 +56,24 @@ public class BattleScreen implements Screen {
 
         gameModel.setBattle(battleModel);
 
-        var arr = new String[]{"battler", "beetle", "bird", "fallenstar", "wrio",
-            "vanille", "columbo", "snail", "paulallen", "worms"};
-        battleModel.getPlayerParty().getTableau().getSlot(0).setBattler(
-            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[1]), Ownership.Type.PLAYER));
-        battleModel.getPlayerParty().getTableau().getSlot(2).setBattler(
-            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[0]), Ownership.Type.PLAYER));
-        battleModel.getEnemyParty().getTableau().getSlot(3).setBattler(
-            new BattlerModel(CardManager.INSTANCE.getBattlerCard(arr[2]), Ownership.Type.ENEMY));
+        var arr = new String[]{"beetle", "beetle", "beetle", "battler", "battler",
+            "bird", "grow", "grow", "fireball", "fireball"};
 
         BattlerCardModel battlerCard;
 
-        for (int i = 0; i < 20; i++) {
-            battlerCard = new BattlerCardModel(
-                CardManager.INSTANCE.getBattlerCard(arr[i % arr.length]), Ownership.Type.PLAYER);
-            battleModel.getPlayerParty().getDeck().addCard(battlerCard);
+        for (String s : arr) {
+            battleModel.getPlayerParty().getDeck().addCard(
+                CardManager.INSTANCE.getCardModel(s, battleModel.getPlayerParty().getOwnership().getCurrentOwner())
+            );
         }
-        battleModel.getPlayerParty().getDeck().shuffle();
-        battleModel.getPlayerParty().getDeck().addCard(
-            new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball"), Ownership.Type.PLAYER));
-        battleModel.getPlayerParty().getDeck().addCard(
-            new ActionCardModel(CardManager.INSTANCE.getActionCard("fireball"), Ownership.Type.PLAYER));
-        battleModel.getPlayerParty().getDeck().addCard(
-            new ActionCardModel(CardManager.INSTANCE.getActionCard("grow"), Ownership.Type.PLAYER));
 
-        for (int i = 0; i < 45; i++) {
-            battlerCard = new BattlerCardModel(
-                CardManager.INSTANCE.getBattlerCard(arr[i % arr.length]), Ownership.Type.ENEMY);
-            battleModel.getEnemyParty().getDeck().addCard(battlerCard);
+        battleModel.getPlayerParty().getDeck().shuffle();
+
+
+        for (String s : arr) {
+            battleModel.getEnemyParty().getDeck().addCard(
+                CardManager.INSTANCE.getCardModel(s, battleModel.getEnemyParty().getOwnership().getCurrentOwner())
+            );
         }
         battleModel.getEnemyParty().getDeck().shuffle();
 
@@ -104,6 +97,12 @@ public class BattleScreen implements Screen {
         stage.addActor(selectedCardView);
         stage.addActor(enemyParty);
         stage.addActor(playerParty);
+
+
+        battleController.getEventBus().register(ViewEvent.BattleViewStateEvent.class, e -> {
+            playerParty.sync();
+            enemyParty.sync();
+        });
 
         VFXManager.INSTANCE.initialiseForStage(stage);
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));

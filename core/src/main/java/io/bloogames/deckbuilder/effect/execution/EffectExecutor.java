@@ -48,6 +48,6 @@ public class EffectExecutor {
     }
 
     private <T extends Target> EffectExecution<T> createExecution(Effect effect, TargetContext<T> context) {
-        return new EffectExecution<>(context, effect.stepsFor(context.target().types()));
+        return new EffectExecution<>(context, effect.stepsFor(context.source().modelProperties(), context.target().types()));
     }
 }

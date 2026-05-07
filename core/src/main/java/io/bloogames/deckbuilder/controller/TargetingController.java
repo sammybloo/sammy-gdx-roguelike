@@ -16,7 +16,6 @@ import io.bloogames.deckbuilder.ui.target.Targetable;
 import io.bloogames.deckbuilder.vfx.VFXManager;
 import io.bloogames.deckbuilder.vfx.concrete.DisappearEffect;
 import io.bloogames.deckbuilder.view.*;
-import io.bloogames.deckbuilder.view.ViewEvent;
 
 public class TargetingController {
     private final ObjectMap<Targetable, InputListener> listenerMap = new ObjectMap<>();

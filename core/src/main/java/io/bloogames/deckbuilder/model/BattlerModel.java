@@ -8,11 +8,11 @@ import io.bloogames.deckbuilder.model.aura.AuraModel;
 import io.bloogames.deckbuilder.model.aura.AuraSet;
 import io.bloogames.deckbuilder.model.death.Death;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
-import io.bloogames.deckbuilder.model.stats.Stats;
+import io.bloogames.deckbuilder.model.stats.StatsModel;
 
 public class BattlerModel implements Damageable {
     private final BattlerCardModel cardModel;
-    private final Stats stats;
+    private final StatsModel stats;
     private final AuraSet auraSet;
     private int damage;
     private Array<Death> deaths = new Array<>();
@@ -23,7 +23,7 @@ public class BattlerModel implements Damageable {
 
     public BattlerModel(BattlerCardModel cardModel) {
         this.cardModel = cardModel;
-        this.stats = new Stats(cardModel.getBaseBattlerCard().getBaseStats());
+        this.stats = new StatsModel(cardModel.getBaseBattlerCard().getBaseStats());
         this.auraSet = new AuraSet(new BattlerSource(this), new AuraSupplier(cardModel.getAuras()).get());
     }
 
@@ -39,7 +39,7 @@ public class BattlerModel implements Damageable {
         return stats.getCurrentStats().health();
     }
 
-    public Stats getStats() {
+    public StatsModel getStats() {
         return stats;
     }
 

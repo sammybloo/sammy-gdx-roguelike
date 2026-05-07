@@ -4,7 +4,7 @@ import io.bloogames.deckbuilder.text.Describable;
 
 public abstract class StatsModifier implements Describable {
 
-    public abstract void calculate(Stats stats, StatChanges currentChanges);
+    public abstract void calculate(StatsModel stats, StatChanges currentChanges);
 
     public abstract Priority priority();
 

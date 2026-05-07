@@ -5,17 +5,24 @@ import io.bloogames.deckbuilder.data.BaseStats;
 
 import java.util.Comparator;
 
-public class Stats {
+public class StatsModel {
     private final BaseStats baseStats;
     private final StatChanges permanentStatChanges = new StatChanges();
     private final Array<StatsModifier> modifiers = new Array<>();
 
-    public Stats(BaseStats baseStats) {
+    public StatsModel(BaseStats baseStats) {
         this.baseStats = baseStats;
     }
 
     public BaseStats getBaseStats() {
         return baseStats;
+    }
+
+    // Permanent modifiers are calculated once and then discarded.
+    // This is so, for instance, doubling effects can be applied only once.
+    // If an effect needs to be recalculated over time, apply an Aura instead.
+    public void applyPermanentModifier(StatsModifier modifier) {
+        modifier.calculate(this, permanentStatChanges);
     }
 
     public void addModifier(StatsModifier modifier) {

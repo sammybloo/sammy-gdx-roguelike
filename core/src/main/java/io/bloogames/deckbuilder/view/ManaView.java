@@ -3,16 +3,15 @@ package io.bloogames.deckbuilder.view;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import io.bloogames.deckbuilder.manager.AssetManager;
 import io.bloogames.deckbuilder.model.LeaderModel;
 import io.bloogames.deckbuilder.model.ownership.Ownership;
+import io.bloogames.deckbuilder.ui.View;
+import io.bloogames.deckbuilder.ui.color.Tint;
 import io.bloogames.deckbuilder.ui.scene2d.IconGrid;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableGroup;
 import io.bloogames.deckbuilder.ui.scene2d.ResizableSettings;
-import io.bloogames.deckbuilder.ui.View;
-import io.bloogames.deckbuilder.ui.color.Tint;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static io.bloogames.deckbuilder.manager.CustomActions.tint;
